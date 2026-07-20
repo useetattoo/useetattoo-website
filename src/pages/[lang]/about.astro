@@ -1,0 +1,78 @@
+---
+import Base from '../../layouts/Base.astro';
+import { langs, t } from '../../data/i18n.js';
+
+export function getStaticPaths() {
+  return langs.map((lang) => ({ params: { lang } }));
+}
+const { lang } = Astro.params;
+const L = t[lang];
+
+const c = {
+  de: {
+    title: 'Über Usee Tattoo | UseeTattoo Studio – Berlin',
+    description: 'Josef Jamdar, Gründer von Usee Tattoo, geboren 1990 in Teheran. Die Geschichte eines Ateliers, das Kunst sichtbar macht, in Berlin-Charlottenburg.',
+    eyebrow: 'Über Usee',
+    h1: 'Ein Atelier, das<br>Kunst sichtbar macht',
+    lead: 'Josef Jamdar, der Gründer von Usee Tattoo, wurde 1990 in Teheran geboren. Schon früh war seine Leidenschaft für Design und Kunst unübersehbar.',
+    body: [
+      'Mit 18 trat Josef in die Welt des Tätowierens ein, eine Welt, die für ihn Ausdrucksfreiheit und grenzenlose Kreativität verkörperte. Getrieben von unermüdlicher Hingabe reiste er nach Istanbul, um bei einigen der angesehensten Meister des Fachs zu lernen.',
+      '2015 zog Josef nach Deutschland, in ein Land mit reicher Tattoo-Kultur. Er startete unabhängig in Dessau, doch seine Ambitionen reichten weiter. 2019 eröffnete er in Berlin sein erstes Studio, Usee Tattoo, in der Neue Kantstraße 6 in Charlottenburg.',
+      'In den Jahren danach wuchs Usee Tattoo zu einem festen Team heran und schärfte seine Handschrift, stets mit dem Anspruch, Tätowieren als ernsthafte Kunstform zu behandeln.',
+      'Heute ist Usee Tattoo die Heimat von acht engagierten Artists sowie wechselnden Gast-Artists aus aller Welt. Josefs Ziel: ein Ort für Künstler:innen, deren Talent zu oft ungesehen bleibt, eine Bühne, auf der wahre Kunst leuchten darf. Kunst verdient es, gesehen zu werden.',
+    ],
+    stats: [['2019', 'Charlottenburg'], ['8', 'Artists'], ['8', 'Stile']],
+  },
+  en: {
+    title: 'About Usee Tattoo | UseeTattoo Studio – Berlin',
+    description: 'Josef Jamdar, founder of Usee Tattoo, was born in Tehran in 1990. The story of an atelier built to make art seen, in Berlin-Charlottenburg.',
+    eyebrow: 'About Usee',
+    h1: 'An atelier built<br>to make art seen',
+    lead: 'Josef Jamdar, the founder of Usee Tattoo, was born in Tehran in 1990. From an early age, his passion for design and art was undeniable.',
+    body: [
+      'At eighteen, Josef entered the world of tattooing, a world that for him embodied freedom of expression and boundless creativity. Driven by relentless dedication, he travelled to Istanbul to hone his skills under some of the field’s most respected masters.',
+      'In 2015, Josef moved to Germany, a country with a rich tattoo culture. Starting independently in Dessau, he soon realised his ambitions went further. In 2019 he opened his first studio, Usee Tattoo, on Neue Kantstraße 6 in Charlottenburg.',
+      'In the years that followed, Usee Tattoo grew into a settled team and sharpened its signature, always treating tattooing as a serious art form.',
+      'Today, Usee Tattoo is home to eight dedicated artists along with visiting guest artists from around the world. Josef’s aim: a space for artists whose talent too often goes unseen, a platform where true artistry can shine. Art deserves to be seen.',
+    ],
+    stats: [['2019', 'Charlottenburg'], ['8', 'Artists'], ['8', 'Styles']],
+  },
+}[lang];
+---
+<Base lang={lang} title={c.title} description={c.description} ogImage="/images/AboutUsee/UseeTattoo.webp">
+  <section class="detail-hero">
+    <div class="wrap">
+      <div class="dh-txt reveal" style="max-width:820px">
+        <div class="eyebrow">{c.eyebrow}</div>
+        <h1 set:html={c.h1}></h1>
+        <p class="bio" style="max-width:640px;font-size:19px">{c.lead}</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:20px">
+    <div class="wrap">
+      <div class="about-media reveal"><img src="/images/AboutUsee/UseeTattoo.webp" alt="Usee Tattoo Atelier" /></div>
+      <div class="about-body reveal">
+        {c.body.map((p) => <p>{p}</p>)}
+      </div>
+      <div class="about-stats reveal">
+        {c.stats.map(([n, l]) => (
+          <div class="stat"><div class="num">{n}</div><div class="lbl">{l}</div></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <style>
+    .about-media{aspect-ratio:16/8;overflow:hidden;background:#e3ddd1;filter:grayscale(1) contrast(1.02);margin-bottom:64px}
+    .about-media img{width:100%;height:100%;object-fit:cover}
+    .about-body{columns:2;column-gap:56px;max-width:960px}
+    .about-body p{margin:0 0 22px;break-inside:avoid;color:var(--ink-soft);font-size:16px;line-height:1.85}
+    .about-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:80px}
+    .about-stats .stat{background:var(--paper);padding:44px 30px;text-align:center}
+    .about-stats .num{font-family:'Cormorant Garamond',serif;font-size:46px;color:var(--bronze-dk)}
+    .about-stats .lbl{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);margin-top:8px}
+    @media(max-width:760px){.about-body{columns:1}.about-stats{grid-template-columns:repeat(2,1fr)}}
+  </style>
+</Base>

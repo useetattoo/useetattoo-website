@@ -1,0 +1,63 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { t, langs } from '../../../data/i18n.js';
+import { site } from '../../../data/site.js';
+import { artists } from '../../../data/artists.js';
+import { gallery } from '../../../lib/gallery.js';
+
+export function getStaticPaths() {
+  const paths = [];
+  for (const lang of langs) {
+    for (const a of artists.filter((x) => x.built)) {
+      paths.push({ params: { lang, slug: a.slug }, props: { artist: a } });
+    }
+  }
+  return paths;
+}
+const { lang } = Astro.params;
+const { artist } = Astro.props;
+const L = t[lang];
+const base = `/${lang}`;
+const imgs = gallery(`/images/portfolio/${artist.folder}`, { exclude: ['Profile', 'Highlight'] });
+
+const title = lang === 'de'
+  ? `${artist.name}, Tattoo Artist | UseeTattoo Studio Berlin`
+  : `Tattoo Artist ${artist.name} | UseeTattoo Studio Berlin`;
+const description = artist.meta[lang];
+const bio = artist.bio[lang];
+---
+<Base lang={lang} title={title} description={description} ogImage={artist.portrait}>
+  <section class="detail-hero">
+    <div class="wrap dh-grid">
+      <div class="portrait reveal"><img src={artist.portrait} alt={artist.name} /></div>
+      <div class="dh-txt reveal">
+        <div class="eyebrow">{L.nav.artists}</div>
+        <h1>{artist.name}</h1>
+        <div class="spec">{artist.specialties[lang]}</div>
+        {bio
+          ? <p class="bio">{bio}</p>
+          : <p class="bio placeholder">{lang === 'de' ? 'Biografie folgt in Kürze.' : 'Biography coming soon.'}</p>}
+        <div class="cta-row" style="margin-top:0">
+          <a class="cta primary" style="background:var(--ink);color:var(--paper)" href={artist.book} target="_blank" rel="noopener">{L.bookNow}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {imgs.length > 0 && (
+    <section class="pf">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <span class="idx">{L.portfolio}</span>
+          <h2>{artist.name}</h2>
+          <a href={artist.book} target="_blank" rel="noopener">{L.bookNow} →</a>
+        </div>
+        <div class="pf-masonry reveal">
+          {imgs.map((src) => (
+            <a data-lb={src}><img src={src} alt={`${artist.name}, Usee Tattoo`} loading="lazy" /></a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+</Base>

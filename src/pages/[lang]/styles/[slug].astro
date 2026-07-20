@@ -1,0 +1,70 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { t, langs } from '../../../data/i18n.js';
+import { styles } from '../../../data/styles.js';
+import { artistsBySlug } from '../../../data/artists.js';
+import { gallery } from '../../../lib/gallery.js';
+
+export function getStaticPaths() {
+  const paths = [];
+  for (const lang of langs) {
+    for (const s of styles.filter((x) => x.built)) {
+      paths.push({ params: { lang, slug: s.slug }, props: { style: s } });
+    }
+  }
+  return paths;
+}
+const { lang } = Astro.params;
+const { style } = Astro.props;
+const L = t[lang];
+const imgs = gallery(`/images/TattooStyle/${style.folder}`, { exclude: ['Highlight'] });
+const featured = (style.artists || []).map((s) => artistsBySlug[s]).filter(Boolean);
+const primaryBook = featured[0]?.book;
+
+const title = `${style.name[lang]} Tattoos | UseeTattoo Studio – Berlin`;
+const description = style.desc[lang].slice(0, 155);
+---
+<Base lang={lang} title={title} description={description} ogImage={imgs[0]}>
+  <section class="detail-hero">
+    <div class="wrap">
+      <div class="s-feature">
+        <div class="txt dh-txt reveal">
+          <div class="eyebrow">{L.stylesTitle}</div>
+          <h1>{style.name[lang]}</h1>
+          <div class="spec">{style.tagline[lang]}</div>
+          <p>{style.desc[lang]}</p>
+          {featured.map((a) => (
+            <div class="s-artist-card">
+              <img src={a.portrait} alt={a.name} />
+              <div>
+                <div class="nm">{a.name}</div>
+                <div class="rl">{a.specialties[lang]}</div>
+              </div>
+              <a class="cta primary" style="background:var(--ink);color:var(--paper);margin-left:auto" href={a.book} target="_blank" rel="noopener">{L.bookNow}</a>
+            </div>
+          ))}
+        </div>
+        <div class="s-img reveal">
+          <img src={imgs[0]} alt={style.name[lang]} />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {imgs.length > 0 && (
+    <section class="pf" style="padding-top:60px">
+      <div class="wrap">
+        <div class="sec-head reveal">
+          <span class="idx">{L.portfolio}</span>
+          <h2>{style.name[lang]}</h2>
+          {primaryBook && <a href={primaryBook} target="_blank" rel="noopener">{L.bookNow} →</a>}
+        </div>
+        <div class="pf-masonry reveal">
+          {imgs.map((src) => (
+            <a data-lb={src}><img src={src} alt={`${style.name[lang]}, Usee Tattoo`} loading="lazy" /></a>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+</Base>

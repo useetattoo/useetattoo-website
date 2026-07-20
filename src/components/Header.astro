@@ -1,0 +1,30 @@
+---
+import { t } from '../data/i18n.js';
+import { site } from '../data/site.js';
+const { lang, altPath, altLabel } = Astro.props;
+const L = t[lang];
+const base = `/${lang}`;
+const nav = [
+  { href: `${base}/#artists`, label: L.nav.artists },
+  { href: `${base}/#styles`, label: L.nav.styles },
+  { href: `${base}/#events`, label: L.nav.events },
+  { href: `${base}/about`, label: L.nav.about },
+  { href: `${base}/#faq`, label: L.nav.faq },
+  { href: `${base}/#visit`, label: L.nav.contact },
+];
+---
+<header id="hd">
+  <div class="wrap nav">
+    <a href={`${base}/`} class="brand">Usee<span>·</span>Tattoo</a>
+    <nav>
+      <ul>
+        {nav.map((n) => <li><a href={n.href}>{n.label}</a></li>)}
+      </ul>
+    </nav>
+    <div class="nav-right">
+      <a class="lang-switch" href={altPath} hreflang={altLabel.toLowerCase()}>{altLabel}</a>
+      <a href={site.booking.consultation} class="btn-book" target="_blank" rel="noopener">{L.book}</a>
+      <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,83 @@
+---
+import Base from '../../layouts/Base.astro';
+import { langs, t } from '../../data/i18n.js';
+import { site } from '../../data/site.js';
+
+export function getStaticPaths() {
+  return langs.map((lang) => ({ params: { lang } }));
+}
+const { lang } = Astro.params;
+const L = t[lang];
+
+// Full FAQ, adapted from the studio's own answers and corrected to the
+// premium positioning (no price anchor, no "free", by-appointment, single location,
+// Weekly Ink question removed).
+const faq = {
+  de: {
+    title: 'FAQ | UseeTattoo Studio – Berlin',
+    description: 'Häufige Fragen zu Beratung, Preisen, Cover-ups, Anzahlung, Pflege und Terminen bei Usee Tattoo Berlin.',
+    h1: 'Häufige Fragen',
+    items: [
+      ['Was kostet ein Tattoo?', 'Jedes Tattoo wird individuell kalkuliert, je nach Größe, Komplexität und Zeitaufwand. Nach deiner persönlichen Beratung erhältst du immer ein klares Angebot, damit du genau weißt, was dich erwartet, bevor deine Session beginnt.'],
+      ['Ich komme nicht aus Berlin. Muss ich für eine Beratung anreisen?', 'Nein. Für Kund*innen außerhalb Berlins bieten wir Online-Beratungen an. Per E-Mail oder Videoanruf besprichst du dein Design und alle Details direkt mit deinem Artist. Egal, wo du bist, wir planen dein Projekt gemeinsam vor.'],
+      ['Kann ich kurzfristig einen Termin bekommen?', 'Wir arbeiten nach Termin, damit dir dein Artist die volle Aufmerksamkeit widmen kann. Kurzfristige Termine sind je nach Verfügbarkeit manchmal möglich, ruf uns einfach an oder schreib uns. Für das beste Erlebnis empfehlen wir, im Voraus zu buchen.'],
+      ['Wie buche ich einen Termin?', 'Ganz einfach: über unser Online-Buchungssystem, telefonisch oder per E-Mail. Unser Team hilft dir, den passenden Artist und Zeitpunkt zu finden, damit deine Erfahrung von Anfang an stimmt.'],
+      ['Braucht es eine Anzahlung?', 'Ja. Eine Anzahlung reserviert deinen Termin verbindlich und deckt die Vorbereitungszeit deines Artists ab. Sie wird anschließend vom Gesamtpreis deines Tattoos abgezogen. Nach deiner Beratung kannst du die Anzahlung leisten, um deine Buchung zu bestätigen.'],
+      ['Kann ich ein bestehendes Tattoo covern lassen?', 'Ja, wir bieten Cover-up-Tattoos an. Nicht jedes Tattoo eignet sich gleich gut dafür, deshalb ist eine persönliche Beratung notwendig: So beurteilen wir dein bestehendes Tattoo in Ruhe und schätzen ein, ob ein Cover-up gelingt. In der Beratung besprechen wir gemeinsam die besten Optionen für dein neues Design.'],
+      ['Kann ich mein eigenes Design mitbringen?', 'Absolut. Wenn du bereits eine Idee hast, bring sie gerne mit, und dein Artist entwickelt sie mit dir weiter. Auch beim Verfeinern und Ausarbeiten deines Entwurfs unterstützen wir dich, bis deine Vision steht.'],
+      ['Tut ein Tattoo weh?', 'Das Empfinden hängt von der Körperstelle und deiner persönlichen Schmerztoleranz ab, manche Stellen sind empfindlicher als andere. Unsere Artists arbeiten sorgfältig und mit Techniken, die den Prozess so angenehm wie möglich machen.'],
+      ['Wie pflege ich mein Tattoo nach dem Stechen?', 'Reinige die tätowierte Stelle vorsichtig mit milder Seife und Wasser und tupfe sie trocken. Trage die empfohlene Pflegecreme auf, damit die Haut mit Feuchtigkeit versorgt bleibt. Vermeide für mindestens zwei Wochen heißes Wasser, direkte Sonne und Schwimmen, und lass Hautschüppchen natürlich abheilen, ohne zu kratzen. Bei Fragen während der Heilung sind wir jederzeit für dich da.'],
+      ['Kann ein Tattoo verändert oder entfernt werden?', 'Ja. Ein bestehendes Tattoo lässt sich bei Bedarf überarbeiten oder per Laser entfernen. Auch bei einem Redesign helfen wir dir gerne. Teile uns deine Vorstellung mit, und wir finden gemeinsam die beste Lösung.'],
+      ['Wie ist die Atmosphäre im Studio?', 'Unser Atelier in Berlin-Charlottenburg bietet ein entspanntes, einladendes und kreatives Umfeld. Mit ruhiger Musik und einem aufmerksamen Team sorgen wir dafür, dass deine Tattoo-Erfahrung so angenehm und unkompliziert wie möglich wird.'],
+      ['Was, wenn ich während des Prozesses Fragen habe?', 'Kein Problem. Bei Fragen oder Anliegen während des Tattoo-Prozesses ist unser Team jederzeit über unsere Kontaktnummern erreichbar. Wir möchten, dass du dich von Anfang bis Ende gut aufgehoben fühlst.'],
+      ['Ist das Studio nur für Erwachsene?', 'Ja. Für ein Tattoo musst du mindestens 18 Jahre alt sein und einen gültigen Ausweis mitbringen. Unter 18 ist ein Tattoo nur in Begleitung eines Erziehungsberechtigten und mit schriftlicher Einverständniserklärung möglich.'],
+    ],
+  },
+  en: {
+    title: 'FAQ | UseeTattoo Studio – Berlin',
+    description: 'Common questions about consultation, pricing, cover-ups, deposits, aftercare and appointments at Usee Tattoo Berlin.',
+    h1: 'Frequently asked questions',
+    items: [
+      ['How much does a tattoo cost?', 'Every tattoo is quoted individually, based on size, complexity and time. After your private consultation you always receive a clear quote, so you know exactly what to expect before your session begins.'],
+      ["I'm not from Berlin. Do I need to travel for a consultation?", 'No. For clients outside Berlin we offer online consultations. By email or video call you discuss your design and every detail directly with your artist. Wherever you are, we plan your project together in advance.'],
+      ['Can I get a short-notice appointment?', 'We work by appointment so your artist can give you their full attention. Short-notice slots are sometimes available depending on the schedule, just call or message us. For the best experience we recommend booking ahead.'],
+      ['How do I book an appointment?', 'It is simple: through our online booking system, by phone, or by email. Our team helps you find the right artist and time so your experience is right from the start.'],
+      ['Do I need to pay a deposit?', 'Yes. A deposit secures your appointment and covers the preparation time your artist invests in your design. It is then deducted from the final price of your tattoo. After your consultation you can pay the deposit to confirm your booking.'],
+      ['Can you cover up an existing tattoo?', 'Yes, we offer cover-up tattoos. Not every tattoo is equally suited to it, so a private consultation is needed: we assess your existing tattoo in person and judge whether a cover-up will work. During the consultation we discuss the best options for your new design together.'],
+      ['Can I bring my own design?', 'Absolutely. If you already have an idea, bring it along and your artist will develop it further with you. We are also happy to help refine and finalise your concept until your vision is ready.'],
+      ['Does getting a tattoo hurt?', 'Sensation depends on the area of the body and your personal pain tolerance, some spots are more sensitive than others. Our artists work carefully and use techniques that keep the process as comfortable as possible.'],
+      ['How do I care for my tattoo afterwards?', 'Gently clean the tattooed area with mild soap and water and pat it dry. Apply the recommended aftercare cream so the skin stays hydrated. For at least two weeks avoid hot water, direct sun and swimming, and let any flaking heal naturally without scratching. If you have questions during healing, we are always here for you.'],
+      ['Can a tattoo be changed or removed?', 'Yes. An existing tattoo can be reworked if needed, or removed by laser. We are also glad to help with a redesign. Share your idea with us and we will find the best solution together.'],
+      ['What is the atmosphere like in the studio?', 'Our atelier in Berlin-Charlottenburg offers a relaxed, welcoming and creative environment. With calm music and an attentive team, we make sure your tattoo experience is as comfortable and easy as possible.'],
+      ['What if I have questions during the process?', 'No problem. If you have questions or concerns during the tattoo process, our team is always reachable on our contact numbers. We want you to feel looked after from beginning to end.'],
+      ['Is the studio adults only?', 'Yes. To get a tattoo you must be at least 18 and bring valid ID. Under 18, a tattoo is only possible accompanied by a legal guardian and with written consent.'],
+    ],
+  },
+}[lang];
+---
+<Base lang={lang} title={faq.title} description={faq.description}>
+  <section class="detail-hero">
+    <div class="wrap">
+      <div class="dh-txt reveal" style="max-width:760px">
+        <div class="eyebrow">FAQ</div>
+        <h1>{faq.h1}</h1>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq" style="padding-top:60px">
+    <div class="wrap">
+      <div class="faq-list reveal">
+        {faq.items.map(([q, a], i) => (
+          <details open={i === 0}>
+            <summary><span>{q}</span><span class="plus">+</span></summary>
+            <div class="ans">{a}</div>
+          </details>
+        ))}
+      </div>
+      <div class="reveal" style="text-align:center;margin-top:64px">
+        <a class="cta primary" style="background:var(--ink);color:var(--paper)" href={site.booking.consultation} target="_blank" rel="noopener">{L.bookConsult}</a>
+      </div>
+    </div>
+  </section>
+</Base>

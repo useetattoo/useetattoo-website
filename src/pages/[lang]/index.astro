@@ -1,0 +1,168 @@
+---
+import Base from '../../layouts/Base.astro';
+import { t, langs } from '../../data/i18n.js';
+import { site } from '../../data/site.js';
+import { artists } from '../../data/artists.js';
+import { styles } from '../../data/styles.js';
+
+export function getStaticPaths() {
+  return langs.map((lang) => ({ params: { lang } }));
+}
+const { lang } = Astro.params;
+const L = t[lang];
+const base = `/${lang}`;
+
+const title = lang === 'de'
+  ? 'Bestes Tattoo Studio in Berlin | UseeTattoo Studio'
+  : 'Best Tattoo Studio in Berlin | UseeTattoo Studio';
+const description = lang === 'de'
+  ? 'Usee Tattoo in Berlin ist mehr als ein Tattoo Studio. Ein Team aus qualifizierten Artists in Charlottenburg, Custom Tattoos nach persönlicher Beratung.'
+  : 'UseeTattoo in Berlin is not just a tattoo studio! Our team consists only of qualified artists. Custom tattoos by private consultation, Charlottenburg.';
+
+const homeGallery = [
+  '/images/portfolio/Josef/Josef_1.webp',
+  '/images/TattooStyle/Realistic/Realistic_1.webp',
+  '/images/portfolio/Josef/Josef_5.webp',
+  '/images/TattooStyle/Realistic/Realistic_3.webp',
+  '/images/portfolio/Josef/Josef_10.webp',
+  '/images/TattooStyle/Realistic/Realistic_5.webp',
+  '/images/portfolio/Josef/Josef_20.webp',
+  '/images/TattooStyle/Realistic/Realistic_7.webp',
+];
+---
+<Base lang={lang} title={title} description={description}>
+  <!-- HERO -->
+  <section class="hero" style={`--hero:url('${site.heroImage}')`}>
+    <div class="hero-inner">
+      <div class="kicker">{L.kicker}</div>
+      <h1 set:html={L.heroTitle}></h1>
+      <p class="lede">{L.heroLede}</p>
+      <div class="hero-cta">
+        <a class="cta primary" href={site.booking.consultation} target="_blank" rel="noopener">{L.bookConsult}</a>
+        <a class="cta ghost" href={site.booking.online} target="_blank" rel="noopener">{L.bookOnline}</a>
+      </div>
+    </div>
+    <a class="scrolldown" href={`${base}/#atelier`}>{L.discover}<span class="line"></span></a>
+  </section>
+
+  <!-- STATEMENT -->
+  <section class="statement wrap reveal" id="atelier">
+    <div class="eyebrow">{L.statementEyebrow}</div>
+    <p set:html={L.statement}></p>
+  </section>
+
+  <!-- ARTISTS -->
+  <section class="artists" id="artists">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="idx">01</span>
+        <h2>{L.artistsTitle}</h2>
+        <a href={`${base}/#artists`}>{L.viewAll}</a>
+      </div>
+      <div class="artist-grid reveal">
+        {artists.map((a) => (
+          <a class="artist" href={a.built ? `${base}/artists/${a.slug}` : `${base}/#artists`}>
+            <div class="ph"><img src={a.portrait} alt={a.name} loading="lazy" /></div>
+            <h3>{a.name}</h3>
+            <div class="spec">{a.specialties[lang]}</div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- STYLES -->
+  <section id="styles">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="idx">02</span>
+        <h2>{L.stylesTitle}</h2>
+        <a href={`${base}/#styles`}>{L.allStyles}</a>
+      </div>
+      <div class="style-grid reveal">
+        {styles.map((s, i) => (
+          <a class="style" href={s.built ? `${base}/styles/${s.slug}` : `${base}/#styles`}>
+            <span class="n">{String(i + 1).padStart(2, '0')}</span>
+            <h3>{s.name[lang]}</h3>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- SELECTED WORK -->
+  <section class="gallery">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="idx">03</span>
+        <h2>{L.workTitle}</h2>
+        <a href={site.social.instagram} target="_blank" rel="noopener">@useetattooatelier →</a>
+      </div>
+      <div class="g-grid reveal">
+        {homeGallery.map((src) => (
+          <div class="cell"><img src={src} alt="" loading="lazy" /></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- EVENTS / GUEST -->
+  <section id="events">
+    <div class="wrap">
+      <div class="events-row reveal">
+        <div class="txt">
+          <div class="eyebrow">{L.eventsEyebrow}</div>
+          <h2 set:html={L.eventsTitle}></h2>
+          <p>{L.eventsText}</p>
+          <a class="link-underline" href={`${base}/events`}>{L.eventsLink}</a>
+        </div>
+        <div class="ph"><img src="/images/portfolio/Josef/Josef_10.webp" alt="" loading="lazy" /></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq" id="faq">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="idx">04</span>
+        <h2>{L.faqTitle}</h2>
+        <a href={`${base}/faq`}>{L.allQuestions}</a>
+      </div>
+      <div class="faq-list reveal">
+        {L.faqItems.map((f, i) => (
+          <details open={i === 0}>
+            <summary><span>{f.q}</span><span class="plus">+</span></summary>
+            <div class="ans">{f.a}</div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- VISIT -->
+  <section class="visit" id="visit">
+    <div class="wrap visit-grid">
+      <div class="reveal">
+        <div class="eyebrow">{L.visitEyebrow}</div>
+        <h2 set:html={L.visitTitle}></h2>
+        <div class="cta-row">
+          <a class="cta primary" style="background:var(--ink);color:var(--paper)" href={site.booking.consultation} target="_blank" rel="noopener">{L.bookConsult}</a>
+          <a class="cta ghost" style="border-color:var(--ink);color:var(--ink)" href={site.phone.href}>{L.call}</a>
+        </div>
+      </div>
+      <div class="reveal">
+        <div class="detail"><div class="k">{L.labelAddress}</div><div class="v">{site.address.street}<br />{site.address.zip} {site.address.city} · {site.address.district}</div></div>
+        <div class="detail"><div class="k">{L.labelHours}</div><div class="v" set:html={L.hours}></div></div>
+        <div class="detail"><div class="k">{L.labelPhone}</div><div class="v"><a href={site.phone.href}>{site.phone.display}</a></div></div>
+        <div class="detail"><div class="k">E-Mail</div><div class="v"><a href={`mailto:${site.email.primary}`}>{site.email.primary}</a></div></div>
+      </div>
+    </div>
+    <div class="wrap" style="margin-top:64px">
+      <div class="map reveal">
+        <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Usee Tattoo, Neue Kantstraße 6, Berlin"
+          src={`https://www.google.com/maps?q=${site.mapQuery}&output=embed`}></iframe>
+      </div>
+    </div>
+  </section>
+</Base>

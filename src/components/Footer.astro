@@ -1,0 +1,48 @@
+---
+import { t } from '../data/i18n.js';
+import { site } from '../data/site.js';
+import { artists } from '../data/artists.js';
+const { lang } = Astro.props;
+const L = t[lang];
+const base = `/${lang}`;
+const year = new Date().getFullYear();
+---
+<footer>
+  <div class="wrap">
+    <div class="foot-top">
+      <div class="foot-brand">
+        <div class="b">Usee<span>·</span>Tattoo</div>
+        <p>{L.footerTagline}</p>
+      </div>
+      <div class="foot-cols">
+        <div>
+          <h4>Artists</h4>
+          <ul>
+            {artists.map((a) => <li><a href={a.built ? `${base}/artists/${a.slug}` : `${base}/#artists`}>{a.name}</a></li>)}
+          </ul>
+        </div>
+        <div>
+          <h4>{L.footStudio}</h4>
+          <ul>
+            <li><a href={`${base}/about`}>{L.nav.about}</a></li>
+            <li><a href={`${base}/#events`}>{L.nav.events}</a></li>
+            <li><a href={`${base}/#faq`}>{L.nav.faq}</a></li>
+            <li><a href={`${base}/#visit`}>{L.nav.contact}</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>{L.footFollow}</h4>
+          <ul>
+            <li><a href={site.social.instagram} target="_blank" rel="noopener">Instagram</a></li>
+            <li><a href={site.social.facebook} target="_blank" rel="noopener">Facebook</a></li>
+            <li><a href={site.social.pinterest} target="_blank" rel="noopener">Pinterest</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>© {year} Usee Tattoo · {site.address.street}, {site.address.city}</span>
+      <span>{L.legal}</span>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,70 @@
+---
+import '../styles/global.css';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import { site } from '../data/site.js';
+
+const { lang = 'de', title, description, ogImage } = Astro.props;
+const alt = lang === 'de' ? 'en' : 'de';
+const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
+const selfPath = pathname;
+const altPath = pathname.replace(new RegExp(`^/${lang}`), `/${alt}`);
+const canonical = site.domain + selfPath + (selfPath === '/' ? '' : '/');
+const og = ogImage || site.heroImage;
+---
+<!doctype html>
+<html lang={lang}>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+  <link rel="alternate" hreflang="de" href={site.domain + (selfPath.replace(new RegExp(`^/${lang}`), '/de'))} />
+  <link rel="alternate" hreflang="en" href={site.domain + (selfPath.replace(new RegExp(`^/${lang}`), '/en'))} />
+  <link rel="alternate" hreflang="x-default" href={site.domain + '/de/'} />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="UseeTattoo" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={site.domain + og} />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <!-- Google Tag Manager -->
+  <script is:inline>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-TFXZ2D2F');</script>
+  <!-- End Google Tag Manager -->
+</head>
+<body class={lang}>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TFXZ2D2F" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <div class="backdrop" id="backdrop"></div>
+  <Header lang={lang} altPath={altPath} altLabel={alt.toUpperCase()} />
+  <main>
+    <slot />
+  </main>
+  <Footer lang={lang} />
+
+  <div class="lb" id="lb"><span class="x" id="lbx">&times;</span><img id="lbimg" alt="" /></div>
+
+  <script is:inline>
+    const body=document.body, hd=document.querySelector('header');
+    addEventListener('scroll',()=>hd&&hd.classList.toggle('scrolled',scrollY>20));
+    const burger=document.getElementById('burger'),backdrop=document.getElementById('backdrop');
+    const closeMenu=()=>body.classList.remove('menu-open');
+    burger&&burger.addEventListener('click',()=>body.classList.toggle('menu-open'));
+    backdrop&&backdrop.addEventListener('click',closeMenu);
+    document.querySelectorAll('nav a').forEach(a=>a.addEventListener('click',closeMenu));
+    const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+    // lightbox
+    const lb=document.getElementById('lb'),lbimg=document.getElementById('lbimg'),lbx=document.getElementById('lbx');
+    document.querySelectorAll('[data-lb]').forEach(el=>el.addEventListener('click',(e)=>{e.preventDefault();lbimg.src=el.getAttribute('data-lb');lb.classList.add('on')}));
+    const closeLb=()=>{lb.classList.remove('on');lbimg.src=''};
+    lbx&&lbx.addEventListener('click',closeLb);
+    lb&&lb.addEventListener('click',(e)=>{if(e.target===lb)closeLb()});
+    addEventListener('keydown',(e)=>{if(e.key==='Escape')closeLb()});
+  </script>
+</body>
+</html>
