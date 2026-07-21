@@ -49,22 +49,41 @@ const og = ogImage || site.heroImage;
   <div class="lb" id="lb"><span class="x" id="lbx">&times;</span><img id="lbimg" alt="" /></div>
 
   <script is:inline>
-    const body=document.body, hd=document.querySelector('header');
-    addEventListener('scroll',()=>hd&&hd.classList.toggle('scrolled',scrollY>20));
-    const burger=document.getElementById('burger'),backdrop=document.getElementById('backdrop');
-    const closeMenu=()=>body.classList.remove('menu-open');
-    burger&&burger.addEventListener('click',()=>body.classList.toggle('menu-open'));
-    backdrop&&backdrop.addEventListener('click',closeMenu);
-    document.querySelectorAll('nav a').forEach(a=>a.addEventListener('click',closeMenu));
-    const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.12});
-    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
-    // lightbox
-    const lb=document.getElementById('lb'),lbimg=document.getElementById('lbimg'),lbx=document.getElementById('lbx');
-    document.querySelectorAll('[data-lb]').forEach(el=>el.addEventListener('click',(e)=>{e.preventDefault();lbimg.src=el.getAttribute('data-lb');lb.classList.add('on')}));
-    const closeLb=()=>{lb.classList.remove('on');lbimg.src=''};
-    lbx&&lbx.addEventListener('click',closeLb);
-    lb&&lb.addEventListener('click',(e)=>{if(e.target===lb)closeLb()});
-    addEventListener('keydown',(e)=>{if(e.key==='Escape')closeLb()});
+    (function(){
+      var body=document.body;
+      // header shadow on scroll
+      try{
+        var hd=document.querySelector('header');
+        addEventListener('scroll',function(){ if(hd) hd.classList.toggle('scrolled',scrollY>20); });
+      }catch(e){}
+      // mobile menu (runs first, isolated so nothing can break it)
+      try{
+        var burger=document.getElementById('burger');
+        var backdrop=document.getElementById('backdrop');
+        var closeMenu=function(){ body.classList.remove('menu-open'); };
+        if(burger){
+          burger.addEventListener('click',function(ev){ ev.preventDefault(); body.classList.toggle('menu-open'); });
+        }
+        if(backdrop){ backdrop.addEventListener('click',closeMenu); }
+        // close the menu whenever a nav link is tapped (works for hash + page links)
+        document.querySelectorAll('#hd nav a').forEach(function(a){ a.addEventListener('click',closeMenu); });
+        addEventListener('keydown',function(e){ if(e.key==='Escape') closeMenu(); });
+      }catch(e){}
+      // reveal on scroll
+      try{
+        var io=new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } }); },{threshold:.12});
+        document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+      }catch(e){ document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); }); }
+      // lightbox
+      try{
+        var lb=document.getElementById('lb'),lbimg=document.getElementById('lbimg'),lbx=document.getElementById('lbx');
+        document.querySelectorAll('[data-lb]').forEach(function(el){ el.addEventListener('click',function(e){ e.preventDefault(); lbimg.src=el.getAttribute('data-lb'); lb.classList.add('on'); }); });
+        var closeLb=function(){ lb.classList.remove('on'); lbimg.src=''; };
+        if(lbx) lbx.addEventListener('click',closeLb);
+        if(lb) lb.addEventListener('click',function(e){ if(e.target===lb) closeLb(); });
+        addEventListener('keydown',function(e){ if(e.key==='Escape') closeLb(); });
+      }catch(e){}
+    })();
   </script>
 </body>
 </html>

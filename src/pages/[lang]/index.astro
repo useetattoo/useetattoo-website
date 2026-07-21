@@ -4,6 +4,7 @@ import { t, langs } from '../../data/i18n.js';
 import { site } from '../../data/site.js';
 import { artists } from '../../data/artists.js';
 import { styles } from '../../data/styles.js';
+import { gallery } from '../../lib/gallery.js';
 
 export function getStaticPaths() {
   return langs.map((lang) => ({ params: { lang } }));
@@ -11,6 +12,11 @@ export function getStaticPaths() {
 const { lang } = Astro.params;
 const L = t[lang];
 const base = `/${lang}`;
+
+// One example image per style for the homepage curtain tiles.
+const styleImg = Object.fromEntries(
+  styles.map((s) => [s.slug, gallery(`/images/TattooStyle/${s.folder}`, { exclude: ['Highlight'] })[0] || site.heroImage])
+);
 
 const title = lang === 'de'
   ? 'Bestes Tattoo Studio in Berlin | UseeTattoo Studio'
@@ -81,9 +87,14 @@ const homeGallery = [
       </div>
       <div class="style-grid reveal">
         {styles.map((s, i) => (
-          <a class="style" href={s.built ? `${base}/styles/${s.slug}` : `${base}/#styles`}>
-            <span class="n">{String(i + 1).padStart(2, '0')}</span>
-            <h3>{s.name[lang]}</h3>
+          <a class="style-tile" href={`${base}/styles/${s.slug}`}>
+            <img class="style-img" src={styleImg[s.slug]} alt={s.name[lang]} loading="lazy" />
+            <div class="curtain c-l"></div>
+            <div class="curtain c-r"></div>
+            <div class="style-label">
+              <span class="n">{String(i + 1).padStart(2, '0')}</span>
+              <h3>{s.name[lang]}</h3>
+            </div>
           </a>
         ))}
       </div>

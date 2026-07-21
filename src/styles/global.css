@@ -93,13 +93,31 @@ body.menu-open .backdrop{opacity:1;pointer-events:auto}
 .artist h3{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:24px;margin-bottom:6px}
 .artist .spec{font-size:11.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--bronze-dk)}
 
-/* styles grid */
-.style-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
-.style{background:var(--paper);padding:44px 30px;text-decoration:none;color:var(--ink);min-height:180px;
-  display:flex;flex-direction:column;justify-content:space-between;transition:background .6s var(--ease),color .6s var(--ease)}
-.style:hover{background:var(--ink);color:var(--paper)}
-.style .n{font-size:11px;letter-spacing:.2em;color:var(--bronze)}
-.style h3{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:27px}
+/* styles grid — image tiles with curtain reveal */
+.style-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.style-tile{position:relative;overflow:hidden;aspect-ratio:3/4;display:block;text-decoration:none;background:#0e0d0d}
+.style-tile .style-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+  filter:grayscale(1) brightness(.72);transition:transform 1.2s var(--ease),filter 1.2s var(--ease)}
+.style-tile:hover .style-img{transform:scale(1.05);filter:grayscale(.35) brightness(.82)}
+.style-tile::after{content:"";position:absolute;inset:0;z-index:1;
+  background:linear-gradient(180deg,rgba(9,8,8,.05) 35%,rgba(9,8,8,.68))}
+.style-tile .style-label{position:absolute;left:0;right:0;bottom:0;z-index:2;padding:22px}
+.style-tile .n{font-size:11px;letter-spacing:.2em;color:var(--bronze)}
+.style-tile h3{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:26px;color:var(--paper);margin-top:4px}
+/* curtains: closed by default (meeting centre), slide apart on reveal */
+.style-tile .curtain{position:absolute;top:0;bottom:0;width:51%;background:var(--paper-2);z-index:3;
+  transition:transform 1.15s var(--ease)}
+.style-tile .c-l{left:0}
+.style-tile .c-r{right:0}
+.style-grid.in .style-tile .c-l{transform:translateX(-100%)}
+.style-grid.in .style-tile .c-r{transform:translateX(100%)}
+.style-grid.in .style-tile:nth-child(2) .curtain{transition-delay:.08s}
+.style-grid.in .style-tile:nth-child(3) .curtain{transition-delay:.16s}
+.style-grid.in .style-tile:nth-child(4) .curtain{transition-delay:.24s}
+.style-grid.in .style-tile:nth-child(5) .curtain{transition-delay:.10s}
+.style-grid.in .style-tile:nth-child(6) .curtain{transition-delay:.18s}
+.style-grid.in .style-tile:nth-child(7) .curtain{transition-delay:.26s}
+.style-grid.in .style-tile:nth-child(8) .curtain{transition-delay:.34s}
 
 /* gallery (home) */
 .gallery{background:#0e0d0d;color:var(--paper)}
@@ -189,9 +207,11 @@ footer{background:#0e0d0d;color:#b9b2a5;padding:80px 0 46px}
 .s-img{position:relative;overflow:hidden;background:#e3ddd1;filter:grayscale(1) contrast(1.02);min-height:100%}
 .s-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
 .s-artist-card{border:1px solid var(--line);padding:34px;display:flex;gap:22px;align-items:center;margin-top:34px}
-.s-artist-card img{width:74px;height:74px;border-radius:50%;object-fit:cover;filter:grayscale(1)}
+.s-artist-card img{width:74px;height:74px;border-radius:50%;object-fit:cover;filter:grayscale(1);flex-shrink:0}
+.s-artist-card>div{min-width:0}
 .s-artist-card .nm{font-family:'Cormorant Garamond',serif;font-size:24px}
 .s-artist-card .rl{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--bronze-dk)}
+.s-artist-card .cta{white-space:nowrap;flex-shrink:0;padding:14px 24px}
 
 /* lightbox */
 .lb{position:fixed;inset:0;background:rgba(8,7,7,.92);display:none;align-items:center;justify-content:center;z-index:100;padding:30px}
@@ -224,7 +244,7 @@ footer{background:#0e0d0d;color:#b9b2a5;padding:80px 0 46px}
   .detail-hero{padding:120px 0 0}
 }
 @media(max-width:560px){
-  .style-grid{grid-template-columns:1fr}
+  .style-grid{grid-template-columns:repeat(2,1fr);gap:10px}
   .g-grid{gap:8px}
   .hero-cta{flex-direction:column}.cta{width:100%}
   .nav{height:70px}.brand{font-size:22px}

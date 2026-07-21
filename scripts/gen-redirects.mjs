@@ -40,8 +40,8 @@ for (const l of L) {
     add(`/${l}/${oldp}`, `/${l}/${np}`);
   }
   for (const e of eventsSub) {
-    add(`/${l}/index.php/${e}`, `/${l}/events`);
-    add(`/${l}/${e}`, `/${l}/events`);
+    add(`/${l}/index.php/${e}`, `/${l}/events/${e}`);
+    add(`/${l}/${e}`, `/${l}/events/${e}`);
   }
   comment('');
 }

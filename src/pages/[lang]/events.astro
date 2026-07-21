@@ -1,43 +1,40 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { langs, t } from '../../data/i18n.js';
-import { site } from '../../data/site.js';
+import { langs } from '../../data/i18n.js';
+import { gallery } from '../../lib/gallery.js';
 
 export function getStaticPaths() {
   return langs.map((lang) => ({ params: { lang } }));
 }
 const { lang } = Astro.params;
-const L = t[lang];
-
-const past = [
-  { name: 'Ihara Sandoval', img: '/images/guest_artists/transparent/ihara.png', when: 'April 2026', from: 'Berlin', ig: 'soulsovivid',
-    de: 'Spezialisiert auf konzeptionelle, abstrakte und Fine-Line-Tattoos. Eine eintägige Residency mit feinem Gespür für Emotion, Symbolik und zeitgenössisches Design.',
-    en: 'Specializing in conceptual, abstract and fine line tattoos. A one-day residency balancing emotion, symbolism and contemporary design.' },
-  { name: 'Alex', img: '/images/guest_artists/transparent/alex.png', when: 'May 2026', from: 'Berlin', ig: 'str.tatt',
-    de: 'Konzeptioneller Mikro-Realismus und zeitgenössische Fine Line, präzise Details, Symbolik und modernes visuelles Storytelling.',
-    en: 'Conceptual microrealism and contemporary fine line, precise detail, symbolism and modern visual storytelling.' },
-  { name: 'Marie · MLX', img: '/images/guest_artists/transparent/marie.png', when: 'April 2025', from: 'Vosges, FR', ig: 'mlxtattoo',
-    de: 'Poetische Fine-Line-Arbeiten, inspiriert von floralen Elementen, Fantasy und Mythologie. Ein zweitägiger Gastaufenthalt.',
-    en: 'Poetic fine line work inspired by floral elements, fantasy and mythology. A two-day guest spot.' },
-  { name: 'Eric Waeny', img: '/images/guest_artists/transparent/eric.png', when: 'August 2023', from: 'Rio, BR', ig: 'ericwaeny',
-    de: 'Beeindruckende Lettering-Tattoos, bekannt für Präzision und zeitlose, bedeutungsvolle Designs. Zwei Wochen im Atelier.',
-    en: 'Striking lettering tattoos, known for precision and timeless, meaningful designs. Two weeks at the atelier.' },
-  { name: 'Bruno Vitoi', img: '/images/guest_artists/transparent/bruno.png', when: 'May 2023', from: 'Rio, BR', ig: 'brunavitoi',
-    de: 'Einzigartige Pet-Tattoos, die das Wesen geliebter Tiere einfangen, herzliche, persönliche Designs.',
-    en: 'Unique pet tattoos capturing the essence of beloved animals, heartfelt, personal designs.' },
-];
+const base = `/${lang}`;
+const pastCover = gallery('/images/past_events/coverImage')[0] || '/images/guest_artists/Past-artists/Alex/Alex-1.webp';
 
 const c = {
-  de: { title: 'Events | UseeTattoo Studio – Berlin', description: 'Guest Artist Residencies bei Usee Tattoo Berlin, Artists aus aller Welt, limitierte Plätze.',
-    eyebrow: 'Events', h1: 'Guest Artist<br>Residencies',
-    lead: 'Wir laden Artists aus aller Welt für limitierte Residencies in unser Atelier, von konzeptioneller Fine Line bis Lettering. Wenige Plätze, jedes Mal.',
-    upcoming: 'Kommende Artists', tba: 'In Kürze', tbaText: 'Der nächste Gast-Artist wird bald bekannt gegeben. Folge uns, um deinen Platz zu sichern.',
-    pastTitle: 'Vergangene Artists', follow: 'Auf Instagram folgen' },
-  en: { title: 'Events | UseeTattoo Studio – Berlin', description: 'Guest artist residencies at Usee Tattoo Berlin, artists from around the world, limited seats.',
-    eyebrow: 'Events', h1: 'Guest Artist<br>Residencies',
-    lead: 'We invite artists from around the world for limited residencies at our atelier, from conceptual fine line to lettering. A few seats, each time.',
-    upcoming: 'Upcoming Artists', tba: 'To be announced', tbaText: 'Our next guest artist will be revealed soon. Follow us to secure your spot.',
-    pastTitle: 'Past Artists', follow: 'Follow on Instagram' },
+  de: {
+    title: 'Events | UseeTattoo Studio – Berlin',
+    description: 'Events bei Usee Tattoo Berlin: Guest Artist Residencies, Weekly Ink Specials, vergangene Events und Flash Day.',
+    eyebrow: 'Events', h1: 'Events',
+    lead: 'Guest-Artist-Residencies, Weekly Ink Specials, Flash Days und Rückblicke. Was bei Usee Tattoo passiert.',
+    cards: [
+      { slug: 'guest-artists', img: '/images/guest_artists/Past-artists/Ihara/Ihara-1.webp', title: 'Guest Artist Residencies', text: 'Artists aus aller Welt, zu Gast in unserem Atelier.' },
+      { slug: 'weekly-ink', img: '/images/weekly_ink/WeeklyInkBanner.webp', title: 'Weekly Ink Specials', text: 'Wöchentlich ausgewählte Designs zu besonderen Konditionen.' },
+      { slug: 'flash-day', img: '/images/flash_day/FlashDay_Cover.webp', title: 'Flash Day', text: 'Unser Summer Flash Day mit exklusiver Design-Kollektion.' },
+      { slug: 'past-events', img: pastCover, title: 'Vergangene Events', text: 'Ein Rückblick auf besondere Momente im Atelier.' },
+    ],
+  },
+  en: {
+    title: 'Events | UseeTattoo Studio – Berlin',
+    description: 'Events at Usee Tattoo Berlin: guest artist residencies, Weekly Ink Specials, past events and Flash Day.',
+    eyebrow: 'Events', h1: 'Events',
+    lead: 'Guest artist residencies, Weekly Ink Specials, Flash Days and look-backs. What happens at Usee Tattoo.',
+    cards: [
+      { slug: 'guest-artists', img: '/images/guest_artists/Past-artists/Ihara/Ihara-1.webp', title: 'Guest Artist Residencies', text: 'Artists from around the world, visiting our atelier.' },
+      { slug: 'weekly-ink', img: '/images/weekly_ink/WeeklyInkBanner.webp', title: 'Weekly Ink Specials', text: 'Weekly selected designs on special terms.' },
+      { slug: 'flash-day', img: '/images/flash_day/FlashDay_Cover.webp', title: 'Flash Day', text: 'Our Summer Flash Day with an exclusive design collection.' },
+      { slug: 'past-events', img: pastCover, title: 'Past Events', text: 'A look back at special moments at the atelier.' },
+    ],
+  },
 }[lang];
 ---
 <Base lang={lang} title={c.title} description={c.description}>
@@ -45,7 +42,7 @@ const c = {
     <div class="wrap">
       <div class="dh-txt reveal" style="max-width:760px">
         <div class="eyebrow">{c.eyebrow}</div>
-        <h1 set:html={c.h1}></h1>
+        <h1>{c.h1}</h1>
         <p class="bio" style="max-width:560px">{c.lead}</p>
       </div>
     </div>
@@ -53,44 +50,34 @@ const c = {
 
   <section style="padding-top:20px">
     <div class="wrap">
-      <div class="sec-head reveal"><span class="idx">01</span><h2>{c.upcoming}</h2></div>
-      <div class="upcoming reveal">
-        <div class="tba">{c.tba}</div>
-        <p>{c.tbaText}</p>
-        <a class="link-underline" href={site.social.instagram} target="_blank" rel="noopener">{c.follow}</a>
-      </div>
-    </div>
-  </section>
-
-  <section class="artists" style="padding-top:0">
-    <div class="wrap">
-      <div class="sec-head reveal"><span class="idx">02</span><h2>{c.pastTitle}</h2></div>
-      <div class="guest-grid reveal">
-        {past.map((g) => (
-          <article class="guest">
-            <div class="ph"><img src={g.img} alt={g.name} loading="lazy" /></div>
-            <h3>{g.name}</h3>
-            <div class="meta">{g.when} · {g.from}</div>
-            <p>{g[lang]}</p>
-            <a href={`https://www.instagram.com/${g.ig}`} target="_blank" rel="noopener">@{g.ig}</a>
-          </article>
+      <div class="ev-cards reveal">
+        {c.cards.map((card) => (
+          <a class="ev-card" href={`${base}/events/${card.slug}`}>
+            <div class="ev-media"><img src={card.img} alt={card.title} loading="lazy" /></div>
+            <div class="ev-body">
+              <h3>{card.title}</h3>
+              <p>{card.text}</p>
+              <span class="ev-arrow">&rarr;</span>
+            </div>
+          </a>
         ))}
       </div>
     </div>
   </section>
 
   <style>
-    .upcoming{border:1px solid var(--line);padding:56px;text-align:center;max-width:720px;margin:0 auto}
-    .upcoming .tba{font-family:'Cormorant Garamond',serif;font-size:32px;margin-bottom:14px}
-    .upcoming p{color:var(--ink-soft);max-width:440px;margin:0 auto 24px}
-    .guest-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px 32px}
-    .guest .ph{width:170px;height:170px;border-radius:50%;overflow:hidden;background:var(--paper-2);margin-bottom:22px}
-    .guest .ph img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.02)}
-    .guest h3{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:24px}
-    .guest .meta{font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--bronze-dk);margin:6px 0 14px}
-    .guest p{color:var(--ink-soft);font-size:14.5px;line-height:1.7;margin-bottom:14px}
-    .guest a{font-size:12px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink);text-decoration:none;border-bottom:1px solid var(--bronze);padding-bottom:3px}
-    @media(max-width:860px){.guest-grid{grid-template-columns:repeat(2,1fr)}.upcoming{padding:40px 24px}}
-    @media(max-width:560px){.guest-grid{grid-template-columns:1fr}}
+    .ev-cards{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+    .ev-card{display:block;text-decoration:none;color:var(--ink);border:1px solid var(--line);background:var(--paper);
+      transition:border-color .5s var(--ease),transform .5s var(--ease)}
+    .ev-card:hover{border-color:var(--bronze);transform:translateY(-3px)}
+    .ev-media{aspect-ratio:16/9;overflow:hidden;background:#0e0d0d}
+    .ev-media img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) brightness(.85);transition:transform 1.1s var(--ease),filter 1.1s var(--ease)}
+    .ev-card:hover .ev-media img{transform:scale(1.05);filter:grayscale(.3) brightness(.95)}
+    .ev-body{padding:30px 32px 34px;position:relative}
+    .ev-body h3{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:28px;margin-bottom:8px}
+    .ev-body p{color:var(--ink-soft);font-size:15px;max-width:80%}
+    .ev-arrow{position:absolute;right:32px;bottom:34px;color:var(--bronze);font-size:20px;transition:transform .5s var(--ease)}
+    .ev-card:hover .ev-arrow{transform:translateX(6px)}
+    @media(max-width:760px){.ev-cards{grid-template-columns:1fr}}
   </style>
 </Base>

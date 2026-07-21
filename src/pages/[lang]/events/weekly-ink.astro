@@ -1,0 +1,89 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { langs, t } from '../../../data/i18n.js';
+import { gallery } from '../../../lib/gallery.js';
+
+export function getStaticPaths() {
+  return langs.map((lang) => ({ params: { lang } }));
+}
+const { lang } = Astro.params;
+const base = `/${lang}`;
+const pastSpecials = gallery('/images/weekly_ink/PastSpecials');
+const bookUrl = 'https://book.useetattoo.com/weekly-ink';
+
+const c = {
+  de: {
+    title: 'Weekly Ink Specials | UseeTattoo Studio – Berlin',
+    description: 'Weekly Ink Specials bei Usee Tattoo Berlin. Jede Woche ausgewählte Designs zu besonderen Konditionen, für begrenzte Zeit.',
+    crumb: 'Events', eyebrow: 'Events', h1: 'Weekly Ink<br>Specials',
+    tagline: 'Ausgewählte Designs. Zeitlich begrenzte Konditionen.',
+    intro: 'Jede Woche präsentieren unsere Artists eine kleine Auswahl exklusiver Designs, entweder Portfolio-Stücke oder beliebte kleinere Motive, zu besonderen Konditionen und nur für begrenzte Zeit verfügbar.',
+    thisWeekTitle: 'Diese Woche',
+    thisWeekText: 'Das aktuelle Weekly-Ink-Design, ausgewählt von unseren Artists. Begrenzte Plätze, sichere dir deinen frühzeitig.',
+    book: 'Jetzt buchen',
+    pastTitle: 'Vergangene Specials',
+    pastText: 'Hier findest du Designs, die zuvor Teil unserer Weekly Ink Specials waren. Sie sind nicht mehr zu den Sonderkonditionen verfügbar, können aber nach einer Beratung weiterhin umgesetzt werden.',
+  },
+  en: {
+    title: 'Weekly Ink Specials | UseeTattoo Studio – Berlin',
+    description: 'Weekly Ink Specials at Usee Tattoo Berlin. Each week, selected designs on special terms, for a limited time.',
+    crumb: 'Events', eyebrow: 'Events', h1: 'Weekly Ink<br>Specials',
+    tagline: 'Selected designs. Limited-time terms.',
+    intro: 'Each week our artists present a small selection of exclusive designs, either portfolio pieces or popular smaller motifs, on special terms and available for a limited time only.',
+    thisWeekTitle: 'This Week',
+    thisWeekText: 'The current Weekly Ink design, selected by our artists. Limited spots, secure yours early.',
+    book: 'Book now',
+    pastTitle: 'Past Specials',
+    pastText: 'Here you can explore designs that were previously part of our Weekly Ink Specials. They are no longer available on the special terms, but can still be created after a consultation.',
+  },
+}[lang];
+---
+<Base lang={lang} title={c.title} description={c.description}>
+  <section class="detail-hero">
+    <div class="wrap">
+      <a class="link-underline" href={`${base}/events`} style="font-size:11px">&larr; {c.crumb}</a>
+      <div class="dh-txt reveal" style="max-width:760px;margin-top:30px">
+        <div class="eyebrow">{c.eyebrow}</div>
+        <h1 set:html={c.h1}></h1>
+        <div class="spec">{c.tagline}</div>
+        <p class="bio" style="max-width:560px">{c.intro}</p>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:20px">
+    <div class="wrap">
+      <div class="wi-feature reveal">
+        <div class="wi-img"><img src="/images/weekly_ink/thisWeek/weekly-ink.webp" alt="This week's Weekly Ink design" /></div>
+        <div class="wi-txt">
+          <div class="eyebrow" style="color:var(--bronze);font-size:12px;letter-spacing:.3em;text-transform:uppercase">{c.thisWeekTitle}</div>
+          <p>{c.thisWeekText}</p>
+          <a class="cta primary" style="background:var(--ink);color:var(--paper)" href={bookUrl} target="_blank" rel="noopener">{c.book}</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {pastSpecials.length > 0 && (
+    <section class="artists" style="padding-top:0">
+      <div class="wrap">
+        <div class="sec-head reveal"><span class="idx">{c.pastTitle}</span><h2>{c.pastTitle}</h2></div>
+        <p class="reveal" style="max-width:640px;color:var(--ink-soft);margin:-34px 0 44px">{c.pastText}</p>
+        <div class="g-grid reveal" style="grid-template-columns:repeat(4,1fr)">
+          {pastSpecials.map((src) => <div class="cell" style="background:#e6e0d4"><img src={src} alt="Past Weekly Ink special" loading="lazy" style="filter:grayscale(1) contrast(1.02)" /></div>)}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <style>
+    .wi-feature{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+    .wi-img{aspect-ratio:4/3;overflow:hidden;background:var(--paper-2)}
+    .wi-img img{width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.02)}
+    .wi-txt p{color:var(--ink-soft);font-size:16px;line-height:1.8;margin:18px 0 28px;max-width:420px}
+    .g-grid .cell{aspect-ratio:1;overflow:hidden}
+    .g-grid .cell img{width:100%;height:100%;object-fit:cover;transition:filter 1s var(--ease)}
+    .g-grid .cell:hover img{filter:none !important}
+    @media(max-width:860px){.wi-feature{grid-template-columns:1fr;gap:32px}.g-grid{grid-template-columns:repeat(2,1fr) !important}}
+  </style>
+</Base>

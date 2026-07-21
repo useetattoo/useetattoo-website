@@ -37,14 +37,14 @@
 /de/index.php/faq                            /de/faq                  301
 /de/index.php/contact-us                     /de/contact              301
 /de/contact-us                               /de/contact              301
-/de/index.php/past-events                    /de/events               301
-/de/past-events                              /de/events               301
-/de/index.php/flash-day                      /de/events               301
-/de/flash-day                                /de/events               301
-/de/index.php/guest-artists                  /de/events               301
-/de/guest-artists                            /de/events               301
-/de/index.php/weekly-ink                     /de/events               301
-/de/weekly-ink                               /de/events               301
+/de/index.php/past-events                    /de/events/past-events   301
+/de/past-events                              /de/events/past-events   301
+/de/index.php/flash-day                      /de/events/flash-day     301
+/de/flash-day                                /de/events/flash-day     301
+/de/index.php/guest-artists                  /de/events/guest-artists 301
+/de/guest-artists                            /de/events/guest-artists 301
+/de/index.php/weekly-ink                     /de/events/weekly-ink    301
+/de/weekly-ink                               /de/events/weekly-ink    301
 
 # ---- EN ----
 /en/index.php                                /en/                     301
@@ -81,12 +81,12 @@
 /en/index.php/faq                            /en/faq                  301
 /en/index.php/contact-us                     /en/contact              301
 /en/contact-us                               /en/contact              301
-/en/index.php/past-events                    /en/events               301
-/en/past-events                              /en/events               301
-/en/index.php/flash-day                      /en/events               301
-/en/flash-day                                /en/events               301
-/en/index.php/guest-artists                  /en/events               301
-/en/guest-artists                            /en/events               301
-/en/index.php/weekly-ink                     /en/events               301
-/en/weekly-ink                               /en/events               301
+/en/index.php/past-events                    /en/events/past-events   301
+/en/past-events                              /en/events/past-events   301
+/en/index.php/flash-day                      /en/events/flash-day     301
+/en/flash-day                                /en/events/flash-day     301
+/en/index.php/guest-artists                  /en/events/guest-artists 301
+/en/guest-artists                            /en/events/guest-artists 301
+/en/index.php/weekly-ink                     /en/events/weekly-ink    301
+/en/weekly-ink                               /en/events/weekly-ink    301
 
