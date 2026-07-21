@@ -11,9 +11,10 @@ const base = `/${lang}`;
     <a href={`${base}/`} class="brand">Usee<span>·</span>Tattoo</a>
     <nav>
       <ul>
+        <li><a href={`${base}/`}>{L.nav.home}</a></li>
         <li><a href={`${base}/#artists`}>{L.nav.artists}</a></li>
         <li class="has-sub">
-          <a href={`${base}/#styles`}>{L.nav.styles}</a>
+          <a href={`${base}/#styles`}>{L.nav.styles}<span class="sub-caret" aria-hidden="true">+</span></a>
           <ul class="submenu">
             {styles.map((s) => <li><a href={`${base}/styles/${s.slug}`}>{s.name[lang]}</a></li>)}
           </ul>

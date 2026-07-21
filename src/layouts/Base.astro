@@ -76,6 +76,13 @@ const og = ogImage || site.heroImage;
           burger.addEventListener('click',function(ev){ ev.preventDefault(); body.classList.toggle('menu-open'); });
         }
         if(backdrop){ backdrop.addEventListener('click',closeMenu); }
+        // On mobile, tapping a parent item with a submenu toggles it instead of navigating
+        document.querySelectorAll('.has-sub').forEach(function(hs){
+          var pa=hs.querySelector(':scope > a');
+          if(pa){ pa.addEventListener('click',function(ev){
+            if(window.matchMedia('(max-width:960px)').matches){ ev.preventDefault(); hs.classList.toggle('open'); }
+          }); }
+        });
         // Do NOT close the menu on the link's click event , on touch the closing slide
         // moves the tap target and cancels navigation. Let page links navigate (fresh
         // page loads with menu closed); same-page hash links close via hashchange.

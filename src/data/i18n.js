@@ -3,7 +3,7 @@ export const langs = ['de', 'en'];
 export const t = {
   de: {
     label: 'Deutsch',
-    nav: { artists: 'Artists', styles: 'Stile', events: 'Events', about: 'Über Usee', faq: 'FAQ', contact: 'Kontakt' },
+    nav: { home: 'Start', artists: 'Artists', styles: 'Stile', events: 'Events', about: 'Über Usee', faq: 'FAQ', contact: 'Kontakt' },
     book: 'Beratung',
     bookConsult: 'Beratung buchen',
     bookOnline: 'Online-Beratung',
@@ -42,7 +42,7 @@ export const t = {
   },
   en: {
     label: 'English',
-    nav: { artists: 'Artists', styles: 'Styles', events: 'Events', about: 'About Usee', faq: 'FAQ', contact: 'Contact' },
+    nav: { home: 'Home', artists: 'Artists', styles: 'Styles', events: 'Events', about: 'About Usee', faq: 'FAQ', contact: 'Contact' },
     book: 'Book',
     bookConsult: 'Book a consultation',
     bookOnline: 'Online consultation',
