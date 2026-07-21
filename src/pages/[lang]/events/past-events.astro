@@ -9,14 +9,22 @@ export function getStaticPaths() {
 const { lang } = Astro.params;
 const base = `/${lang}`;
 
-// NOTE: captions are short placeholders — Hossein to supply the real text per event.
 const tabs = [
-  { folder: 'RDS', title: 'RÜFÜS DU SOL', de: 'Rückblick auf unser RÜFÜS DU SOL Event.', en: 'A look back at our RÜFÜS DU SOL event.' },
-  { folder: 'C2C2', title: 'Country to Country · 2024', de: 'Impressionen von Country to Country 2024.', en: 'Impressions from Country to Country 2024.' },
-  { folder: '2ndFlashDay', title: '2nd Flash Day', de: 'Momente von unserem zweiten Flash Day.', en: 'Moments from our second Flash Day.' },
-  { folder: 'countryToCountry', title: 'Country to Country · 2023', de: 'Impressionen von Country to Country 2023.', en: 'Impressions from Country to Country 2023.' },
-  { folder: 'flashDay', title: '1st Flash Day', de: 'Momente von unserem ersten Flash Day.', en: 'Moments from our first Flash Day.' },
-  { folder: 'opening', title: 'Opening Party', de: 'Die Eröffnung von Usee Tattoo.', en: 'Celebrating the opening of Usee Tattoo.' },
+  { folder: 'RDS', title: 'RÜFÜS DU SOL', date: 'May 01–02, 2026',
+    de: 'Zwei unvergessliche Tage hinter den Kulissen des RÜFÜS DU SOL Konzerts in Berlin. Unser Artist Josef tätowierte Crew-Mitglieder und Künstler*innen, jedes Tattoo persönlich ausgewählt und ein echtes Unikat. Echte Menschen, echte Leidenschaft, echte Energie. Ein großes Dankeschön und unseren größten Respekt an das gesamte Team.',
+    en: 'Two unforgettable days behind the scenes of the RÜFÜS DU SOL concert in Berlin. Our artist Josef tattooed crew members and artists, each tattoo personally chosen and truly one of a kind. Real people, real passion, real energy. A big thank you and our deepest respect to the whole team.' },
+  { folder: 'C2C2', title: 'Country to Country', date: 'March 02–03, 2024',
+    de: 'Wir hatten eine großartige zweitägige Zusammenarbeit mit dem Country to Country Festival und boten exklusive, vom Country-Stil inspirierte Tattoo-Designs zu besonderen Preisen an.',
+    en: 'We had a great two-day collaboration with the Country to Country festival, offering exclusive, country-inspired tattoo designs at special prices.' },
+  { folder: '2ndFlashDay', title: '2nd Flash Day', date: 'November 10, 2024',
+    de: 'Unser Flash Day bot besondere Rabatte auf Tattoos und Piercings, mit über 200 Designs zur Auswahl sowie DJ, Snacks, Drinks und einer spannenden Verlosung!',
+    en: 'Our Flash Day offered special deals on tattoos and piercings, with over 200 designs to choose from, plus a DJ, snacks, drinks and an exciting raffle!' },
+  { folder: 'opening', title: 'Atelier Opening Party', date: 'December 09, 2023',
+    de: 'Die große Eröffnung unseres neuen Atelier-Standorts in Berlin war ein unvergessliches Event voller Kreativität, guter Stimmung und großartiger Gäste.',
+    en: 'The grand opening of our new atelier location in Berlin was an unforgettable event full of creativity, good vibes and wonderful guests.' },
+  { folder: 'flashDay', title: '1st Flash Day', date: 'February 17, 2024',
+    de: 'Unser erster Flash Day bot besondere Rabatte und eine Vielzahl einzigartiger kleiner Designs, ein kreativer Tag voller Inspiration und Tattoo-Kunst.',
+    en: 'Our first Flash Day offered special deals and a wide variety of unique small designs, a creative day full of inspiration and tattoo art.' },
 ].map((tb) => ({ ...tb, imgs: gallery(`/images/past_events/${tb.folder}`) }));
 
 const c = {
@@ -43,6 +51,7 @@ const c = {
           <details open={i === 0}>
             <summary><span>{tb.title}</span><span class="plus">+</span></summary>
             <div class="ans" style="max-width:none">
+              <div style="font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--bronze-dk);margin-bottom:12px">{tb.date}</div>
               <p style="margin-bottom:20px">{tb[lang]}</p>
               {tb.imgs.length > 0 && (
                 <div class="pe-grid">

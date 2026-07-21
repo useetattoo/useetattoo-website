@@ -19,6 +19,7 @@ const nav = [
     <nav>
       <ul>
         {nav.map((n) => <li><a href={n.href}>{n.label}</a></li>)}
+        <li class="mobile-book"><a href={site.booking.consultation} target="_blank" rel="noopener">{L.book}</a></li>
       </ul>
     </nav>
     <div class="nav-right">
