@@ -54,6 +54,10 @@ const c = {
     sendTitle: 'Sende uns deine Fotos',
     send: 'Das ist der schnellste Weg zu einer echten Antwort, keine Vermutung. Teile ein paar klare Fotos und einige Basisinformationen, und wir sagen dir, was für deine Haut realistisch ist.',
     sendBtn: 'Meine Fotos senden',
+    fName: 'Name', fEmail: 'E-Mail', fPhone: 'Telefon (optional)',
+    fMsg: 'Erzähl uns von deinem Tattoo (Größe, Alter, Platzierung, Idee)',
+    fFile: 'Fotos anhängen (bis zu 5)', fSubmit: 'Anfrage senden',
+    sent: 'Danke! Deine Anfrage ist eingegangen. Wir melden uns, sobald wir deine Fotos gesichtet haben.',
     talkTitle: 'Lieber erst darüber sprechen?',
     talk: 'Wenn du bereits weißt, dass du eine Beratung möchtest, kannst du direkt buchen, unser Team sichtet deine Fotos vorab.',
     talkBtn: 'Beratung buchen',
@@ -137,7 +141,7 @@ const c = {
         <p class="bio" style="max-width:640px;font-size:18px">{c.intro}</p>
         <div class="cta-row">
           <a class="cta primary" style="background:var(--ink);color:var(--paper)" href={bookUrl} target="_blank" rel="noopener">{c.ctaBook}</a>
-          <a class="cta ghost" style="border-color:var(--ink);color:var(--ink)" href={photoUrl}>{c.ctaPhotos}</a>
+          <a class="cta ghost" style="border-color:var(--ink);color:var(--ink)" href="#cu-form">{c.ctaPhotos}</a>
         </div>
       </div>
     </div>
@@ -213,12 +217,25 @@ const c = {
     </div>
   </section>
 
-  <section class="artists" style="padding:90px 0">
-    <div class="wrap cu-split" style="align-items:center">
+  <section class="artists" style="padding:90px 0" id="cu-form">
+    <div class="wrap cu-split" style="align-items:start">
       <div class="reveal">
         <h2 class="cu-h2">{c.sendTitle}</h2>
         <p class="cu-p">{c.send}</p>
-        <a class="cta primary" style="background:var(--ink);color:var(--paper)" href={photoUrl}>{c.sendBtn}</a>
+        <p class="cu-form-sent" hidden>{c.sent}</p>
+        <form class="cu-form" name="cover-up" method="POST" data-netlify="true" netlify-honeypot="bot-field" enctype="multipart/form-data" action={`/${lang}/cover-up?sent=1`}>
+          <input type="hidden" name="form-name" value="cover-up" />
+          <input type="hidden" name="lang" value={lang} />
+          <p hidden><label>Don’t fill this out: <input name="bot-field" /></label></p>
+          <div class="cu-grid2">
+            <label>{c.fName}<input type="text" name="name" required /></label>
+            <label>{c.fEmail}<input type="email" name="email" required /></label>
+          </div>
+          <label>{c.fPhone}<input type="tel" name="phone" /></label>
+          <label>{c.fMsg}<textarea name="message" rows="4"></textarea></label>
+          <label class="cu-file">{c.fFile}<input type="file" name="photos" accept="image/*" multiple /></label>
+          <button type="submit" class="cta primary" style="background:var(--ink);color:var(--paper);border:0;cursor:pointer">{c.fSubmit}</button>
+        </form>
       </div>
       <div class="reveal cu-talk">
         <h3 class="cu-col-t">{c.talkTitle}</h3>
@@ -270,6 +287,16 @@ const c = {
     .cu-step h3{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:22px;margin:8px 0 10px}
     .cu-step p{color:var(--ink-soft);font-size:14.5px;line-height:1.7}
     .cu-talk{border:1px solid var(--line);padding:34px;background:var(--paper)}
+    .cu-form{margin-top:8px}
+    .cu-form label{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--bronze-dk);margin-bottom:18px}
+    .cu-form input,.cu-form textarea{width:100%;margin-top:8px;padding:13px 15px;border:1px solid var(--line);background:var(--white);font-family:'Inter',sans-serif;font-size:15px;color:var(--ink);letter-spacing:normal;text-transform:none;border-radius:0}
+    .cu-form input:focus,.cu-form textarea:focus{outline:none;border-color:var(--bronze)}
+    .cu-form textarea{resize:vertical}
+    .cu-grid2{display:grid;grid-template-columns:1fr 1fr;gap:0 20px}
+    .cu-file input{padding:11px;background:var(--paper-2);cursor:pointer}
+    .cu-form button{margin-top:4px}
+    .cu-form-sent{background:var(--paper-2);border:1px solid var(--bronze);padding:14px 18px;margin-bottom:20px;color:var(--bronze-dk)}
+    @media(max-width:560px){.cu-grid2{grid-template-columns:1fr}}
     @media(max-width:860px){
       .cu-split{grid-template-columns:1fr;gap:36px}
       .cu-factors{grid-template-columns:1fr 1fr}
@@ -278,4 +305,11 @@ const c = {
     }
     @media(max-width:560px){.cu-factors{grid-template-columns:1fr}.cu-steps{grid-template-columns:1fr}}
   </style>
+
+  <script is:inline>
+    if (new URLSearchParams(location.search).has('sent')) {
+      var el = document.querySelector('.cu-form-sent');
+      if (el) { el.hidden = false; el.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+    }
+  </script>
 </Base>
