@@ -80,7 +80,12 @@ const og = ogImage || site.heroImage;
         document.querySelectorAll('.has-sub').forEach(function(hs){
           var pa=hs.querySelector(':scope > a');
           if(pa){ pa.addEventListener('click',function(ev){
-            if(window.matchMedia('(max-width:960px)').matches){ ev.preventDefault(); hs.classList.toggle('open'); }
+            ev.preventDefault(); // parent (Artists/Styles) never navigates , only opens the submenu
+            if(window.matchMedia('(max-width:960px)').matches){
+              var wasOpen=hs.classList.contains('open');
+              document.querySelectorAll('.has-sub.open').forEach(function(o){ if(o!==hs) o.classList.remove('open'); });
+              hs.classList.toggle('open', !wasOpen);
+            }
           }); }
         });
         // Do NOT close the menu on the link's click event , on touch the closing slide

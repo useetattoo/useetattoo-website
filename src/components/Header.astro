@@ -2,6 +2,7 @@
 import { t } from '../data/i18n.js';
 import { site } from '../data/site.js';
 import { styles } from '../data/styles.js';
+import { artists } from '../data/artists.js';
 const { lang, altPath, altLabel } = Astro.props;
 const L = t[lang];
 const base = `/${lang}`;
@@ -12,9 +13,14 @@ const base = `/${lang}`;
     <nav>
       <ul>
         <li><a href={`${base}/`}>{L.nav.home}</a></li>
-        <li><a href={`${base}/#artists`}>{L.nav.artists}</a></li>
         <li class="has-sub">
-          <a href={`${base}/#styles`}>{L.nav.styles}<span class="sub-caret" aria-hidden="true">+</span></a>
+          <a class="sub-parent" role="button" tabindex="0">{L.nav.artists}<span class="sub-caret" aria-hidden="true">+</span></a>
+          <ul class="submenu">
+            {artists.map((a) => <li><a href={`${base}/artists/${a.slug}`}>{a.name}</a></li>)}
+          </ul>
+        </li>
+        <li class="has-sub">
+          <a class="sub-parent" role="button" tabindex="0">{L.nav.styles}<span class="sub-caret" aria-hidden="true">+</span></a>
           <ul class="submenu">
             {styles.map((s) => <li><a href={`${base}/styles/${s.slug}`}>{s.name[lang]}</a></li>)}
           </ul>
