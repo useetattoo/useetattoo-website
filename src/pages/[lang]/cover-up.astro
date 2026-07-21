@@ -115,6 +115,10 @@ const c = {
     sendTitle: 'Send us your photos',
     send: "This is the fastest way to get a real answer, not a guess. Share a few clear photos and some basic details, and we'll tell you what's realistic for your skin.",
     sendBtn: 'Send my photos',
+    fName: 'Name', fEmail: 'Email', fPhone: 'Phone (optional)',
+    fMsg: 'Tell us about your tattoo (size, age, placement, idea)',
+    fFile: 'Attach photos (up to 5)', fSubmit: 'Send request',
+    sent: "Thank you! Your request has been received. We'll get back to you after reviewing your photos.",
     talkTitle: 'Prefer to talk it through?',
     talk: "If you already know you want a consultation, you can book directly, our team will review your photos beforehand.",
     talkBtn: 'Book a consultation',
@@ -188,7 +192,7 @@ const c = {
 
   <section style="padding-top:0">
     <div class="wrap cu-split">
-      <div class="cu-media reveal"><img src={gallery[3]} alt="Scar and stretch mark coverage" loading="lazy" /></div>
+      <div class="cu-media cu-media-sm reveal"><img src={gallery[3]} alt="Scar and stretch mark coverage" loading="lazy" /></div>
       <div class="reveal">
         <h2 class="cu-h2">{c.scarTitle}</h2>
         <p class="cu-p">{c.scar}</p>
@@ -269,6 +273,7 @@ const c = {
     .cu-quote{border-left:2px solid var(--bronze);padding:6px 0 6px 24px;margin:28px 0 0;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:22px;line-height:1.5;color:var(--bronze-dk);max-width:620px}
     .cu-media{aspect-ratio:4/5;overflow:hidden;background:var(--paper-2);filter:grayscale(1) contrast(1.02)}
     .cu-media img{width:100%;height:100%;object-fit:cover}
+    .cu-media-sm{max-width:290px;aspect-ratio:3/4;justify-self:start}
     .cu-factors{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
     .cu-factor{background:var(--paper-2);padding:30px 22px}
     .cu-factor .n{font-size:11px;letter-spacing:.2em;color:var(--bronze)}
@@ -288,7 +293,7 @@ const c = {
     .cu-step p{color:var(--ink-soft);font-size:14.5px;line-height:1.7}
     .cu-talk{border:1px solid var(--line);padding:34px;background:var(--paper)}
     .cu-form{margin-top:8px}
-    .cu-form label{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--bronze-dk);margin-bottom:18px}
+    .cu-form label{display:block;font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:var(--ink);margin-bottom:18px}
     .cu-form input,.cu-form textarea{width:100%;margin-top:8px;padding:13px 15px;border:1px solid var(--line);background:var(--white);font-family:'Inter',sans-serif;font-size:15px;color:var(--ink);letter-spacing:normal;text-transform:none;border-radius:0}
     .cu-form input:focus,.cu-form textarea:focus{outline:none;border-color:var(--bronze)}
     .cu-form textarea{resize:vertical}
@@ -299,6 +304,7 @@ const c = {
     @media(max-width:560px){.cu-grid2{grid-template-columns:1fr}}
     @media(max-width:860px){
       .cu-split{grid-template-columns:1fr;gap:36px}
+      .cu-media-sm{max-width:340px}
       .cu-factors{grid-template-columns:1fr 1fr}
       .cu-cols{grid-template-columns:1fr}
       .cu-steps{grid-template-columns:1fr 1fr}
