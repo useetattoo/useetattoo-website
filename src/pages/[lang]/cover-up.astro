@@ -191,7 +191,7 @@ const c = {
   </section>
 
   <section style="padding-top:0">
-    <div class="wrap cu-split">
+    <div class="wrap cu-split cu-split-scar">
       <div class="cu-media cu-media-sm reveal"><img src={gallery[3]} alt="Scar and stretch mark coverage" loading="lazy" /></div>
       <div class="reveal">
         <h2 class="cu-h2">{c.scarTitle}</h2>
@@ -274,6 +274,7 @@ const c = {
     .cu-media{aspect-ratio:4/5;overflow:hidden;background:var(--paper-2);filter:grayscale(1) contrast(1.02)}
     .cu-media img{width:100%;height:100%;object-fit:cover}
     .cu-media-sm{max-width:290px;aspect-ratio:3/4;justify-self:start}
+    .cu-split-scar{grid-template-columns:290px 1fr;gap:48px;align-items:center}
     .cu-factors{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
     .cu-factor{background:var(--paper-2);padding:30px 22px}
     .cu-factor .n{font-size:11px;letter-spacing:.2em;color:var(--bronze)}
