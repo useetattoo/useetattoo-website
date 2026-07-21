@@ -62,7 +62,7 @@ export const artists = [
     slug: 'nana', name: 'Nana', built: true,
     portrait: '/images/artists/Nazanin.webp',
     folder: 'Nana',
-    book: 'https://book.useetattoo.com/nana',
+    book: 'https://book.useetattoo.com/piercing',
     piercing: true,
     specialties: { de: 'Piercing · Atelier', en: 'Piercing · Atelier' },
     meta: {
