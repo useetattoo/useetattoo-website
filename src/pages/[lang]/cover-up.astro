@@ -42,6 +42,8 @@ const c = {
     s3Note: 'Keiner dieser Fälle ist unmöglich, meist braucht es teilweise Laseraufhellung, eine Neugestaltung oder mehr Zeit, statt eines direkten Cover-Ups.',
     scarTitle: 'Narben- & Dehnungsstreifen-Cover-Up',
     scar: 'In manchen Fällen kann künstlerisches Design auch genutzt werden, um die Sichtbarkeit von Narben oder Dehnungsstreifen zu verringern. Nicht jede Narbe und nicht jeder Dehnungsstreifen eignet sich dafür, es hängt von der Art der Narbe, dem Heilungsverlauf der Haut und ihrer Reaktion auf das Tätowieren ab. Das wird immer separat und individuell geprüft.',
+    scar2: 'Wichtig ist der Zeitpunkt: Narbengewebe muss vollständig verheilt und stabil sein, oft über ein Jahr alt, bevor wir es überhaupt in Betracht ziehen. Frisches oder noch reifendes Gewebe reagiert unvorhersehbar auf Farbe und kann sich mit der Zeit weiter verändern.',
+    scar3: 'Deshalb beginnt jedes dieser Projekte mit einer persönlichen Begutachtung. Wir sehen uns die Haut aus der Nähe an, besprechen deine Ziele ehrlich und sagen dir klar, was realistisch ist, bevor irgendeine Nadel ins Spiel kommt.',
     workTitle: 'Aktuelle Arbeiten aus dem Studio',
     work: 'Vorher-Nachher-Dokumentation unserer Cover-Up-Projekte ist in Vorbereitung. Bis dahin zeigen wir das Niveau an Design und Umsetzung, dem jedes Usee-Tattoo-Stück folgt.',
     stepsTitle: 'Vom ersten Foto zum gebuchten Projekt',
@@ -103,6 +105,8 @@ const c = {
     s3Note: 'None of these are impossible, they usually call for partial laser fading, a redesign, or a longer timeline instead of a direct cover-up.',
     scarTitle: 'Scar & stretch mark coverage',
     scar: "In some cases, artistic design can also be used to soften the visibility of scars or stretch marks. Not every scar or every stretch mark is suited for this, it depends on the type of scarring, the skin's healing history, and how it responds to tattooing. This is always assessed on its own, separately from any tattoo cover-up.",
+    scar2: "Timing matters as much as technique. Scar tissue needs to be fully healed and settled, often more than a year old, before we'll even consider working over it. Fresh or still-maturing tissue reacts unpredictably to ink and can keep changing over time.",
+    scar3: "That's why every one of these projects starts with an in-person assessment. We look at the skin up close, talk through your goals honestly, and tell you clearly what's realistic before any needle is involved.",
     workTitle: 'Recent studio work',
     work: "Before-and-after documentation of our cover-up projects is on its way. In the meantime, here's the level of design and execution every Usee Tattoo piece is held to.",
     stepsTitle: 'From first photo to booked project',
@@ -152,7 +156,7 @@ const c = {
   </section>
 
   <section>
-    <div class="wrap cu-split">
+    <div class="wrap cu-split cu-split-tall">
       <div class="reveal">
         <h2 class="cu-h2">{c.s1Title}</h2>
         {c.s1.map((p) => <p class="cu-p">{p}</p>)}
@@ -196,6 +200,8 @@ const c = {
       <div class="reveal">
         <h2 class="cu-h2">{c.scarTitle}</h2>
         <p class="cu-p">{c.scar}</p>
+        <p class="cu-p">{c.scar2}</p>
+        <p class="cu-p">{c.scar3}</p>
       </div>
     </div>
   </section>
@@ -274,7 +280,9 @@ const c = {
     .cu-media{aspect-ratio:4/5;overflow:hidden;background:var(--paper-2);filter:grayscale(1) contrast(1.02)}
     .cu-media img{width:100%;height:100%;object-fit:cover}
     .cu-media-sm{max-width:290px;aspect-ratio:3/4;justify-self:start}
-    .cu-split-scar{grid-template-columns:290px 1fr;gap:48px;align-items:center}
+    .cu-split-scar{grid-template-columns:290px 1fr;gap:48px;align-items:start}
+    .cu-split-tall{align-items:stretch}
+    .cu-split-tall .cu-media{aspect-ratio:auto;height:100%}
     .cu-factors{display:grid;grid-template-columns:repeat(5,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
     .cu-factor{background:var(--paper-2);padding:30px 22px}
     .cu-factor .n{font-size:11px;letter-spacing:.2em;color:var(--bronze)}
@@ -306,6 +314,7 @@ const c = {
     @media(max-width:860px){
       .cu-split{grid-template-columns:1fr;gap:36px}
       .cu-media-sm{max-width:340px}
+      .cu-split-tall .cu-media{aspect-ratio:4/5;height:auto}
       .cu-factors{grid-template-columns:1fr 1fr}
       .cu-cols{grid-template-columns:1fr}
       .cu-steps{grid-template-columns:1fr 1fr}
