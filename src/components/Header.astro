@@ -1,24 +1,27 @@
 ---
 import { t } from '../data/i18n.js';
 import { site } from '../data/site.js';
+import { styles } from '../data/styles.js';
 const { lang, altPath, altLabel } = Astro.props;
 const L = t[lang];
 const base = `/${lang}`;
-const nav = [
-  { href: `${base}/#artists`, label: L.nav.artists },
-  { href: `${base}/#styles`, label: L.nav.styles },
-  { href: `${base}/events`, label: L.nav.events },
-  { href: `${base}/about`, label: L.nav.about },
-  { href: `${base}/faq`, label: L.nav.faq },
-  { href: `${base}/contact`, label: L.nav.contact },
-];
 ---
 <header id="hd">
   <div class="wrap nav">
     <a href={`${base}/`} class="brand">Usee<span>·</span>Tattoo</a>
     <nav>
       <ul>
-        {nav.map((n) => <li><a href={n.href}>{n.label}</a></li>)}
+        <li><a href={`${base}/#artists`}>{L.nav.artists}</a></li>
+        <li class="has-sub">
+          <a href={`${base}/#styles`}>{L.nav.styles}</a>
+          <ul class="submenu">
+            {styles.map((s) => <li><a href={`${base}/styles/${s.slug}`}>{s.name[lang]}</a></li>)}
+          </ul>
+        </li>
+        <li><a href={`${base}/events`}>{L.nav.events}</a></li>
+        <li><a href={`${base}/about`}>{L.nav.about}</a></li>
+        <li><a href={`${base}/faq`}>{L.nav.faq}</a></li>
+        <li><a href={`${base}/contact`}>{L.nav.contact}</a></li>
         <li class="mobile-book"><a href={site.booking.consultation} target="_blank" rel="noopener">{L.book}</a></li>
       </ul>
     </nav>

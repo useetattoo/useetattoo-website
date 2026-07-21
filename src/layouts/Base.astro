@@ -118,6 +118,21 @@ const og = ogImage || site.heroImage;
           });
         });
       }catch(e){}
+      // vertical tabs (e.g. past events)
+      try{
+        document.querySelectorAll('.pe-tabs').forEach(function(group){
+          var tabs=group.querySelectorAll('.pe-tab');
+          var panels=group.querySelectorAll('.pe-panel');
+          tabs.forEach(function(tab){
+            tab.addEventListener('click',function(){
+              var i=tab.getAttribute('data-i');
+              tabs.forEach(function(t){ t.classList.toggle('active',t===tab); });
+              panels.forEach(function(p){ p.hidden = p.getAttribute('data-i')!==i; });
+              if(window.matchMedia('(max-width:860px)').matches){ var pp=group.querySelector('.pe-panels'); if(pp) pp.scrollIntoView({behavior:'smooth',block:'start'}); }
+            });
+          });
+        });
+      }catch(e){}
       // lightbox
       try{
         var lb=document.getElementById('lb'),lbimg=document.getElementById('lbimg'),lbx=document.getElementById('lbx');
