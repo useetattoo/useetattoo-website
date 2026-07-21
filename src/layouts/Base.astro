@@ -39,6 +39,7 @@ const og = ogImage || site.heroImage;
 <body class={lang}>
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TFXZ2D2F" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <div id="page-loader"><span class="pl-mark">Usee<span>·</span>Tattoo</span></div>
   <div class="backdrop" id="backdrop"></div>
   <Header lang={lang} altPath={altPath} altLabel={alt.toUpperCase()} />
   <main>
@@ -51,6 +52,16 @@ const og = ogImage || site.heroImage;
   <script is:inline>
     (function(){
       var body=document.body;
+      // page loader , reveal the page once loaded (capped so it never hangs on slow embeds)
+      try{
+        var pl=document.getElementById('page-loader');
+        if(pl){
+          var hidePl=function(){ pl.classList.add('hide'); };
+          if(document.readyState==='complete'){ hidePl(); }
+          else { addEventListener('load',hidePl); }
+          setTimeout(hidePl,2500);
+        }
+      }catch(e){}
       // header shadow on scroll
       try{
         var hd=document.querySelector('header');
@@ -65,8 +76,10 @@ const og = ogImage || site.heroImage;
           burger.addEventListener('click',function(ev){ ev.preventDefault(); body.classList.toggle('menu-open'); });
         }
         if(backdrop){ backdrop.addEventListener('click',closeMenu); }
-        // close the menu whenever a nav link is tapped (works for hash + page links)
-        document.querySelectorAll('#hd nav a').forEach(function(a){ a.addEventListener('click',closeMenu); });
+        // Do NOT close the menu on the link's click event , on touch the closing slide
+        // moves the tap target and cancels navigation. Let page links navigate (fresh
+        // page loads with menu closed); same-page hash links close via hashchange.
+        addEventListener('hashchange', closeMenu);
         addEventListener('keydown',function(e){ if(e.key==='Escape') closeMenu(); });
       }catch(e){}
       // reveal on scroll
@@ -96,6 +109,14 @@ const og = ogImage || site.heroImage;
       // newsletter success message
       try{
         if(location.search.indexOf('subscribed')>-1){ var sm=document.querySelector('.newsletter .sent'); if(sm) sm.hidden=false; }
+      }catch(e){}
+      // single-open accordion (only one tab open at a time)
+      try{
+        document.querySelectorAll('.acc-single details').forEach(function(d){
+          d.addEventListener('toggle',function(){
+            if(d.open){ d.parentElement.querySelectorAll('details[open]').forEach(function(o){ if(o!==d) o.open=false; }); }
+          });
+        });
       }catch(e){}
       // lightbox
       try{
