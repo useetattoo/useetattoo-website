@@ -16,19 +16,6 @@ export const artists = [
     },
   },
   {
-    slug: 'nilou', name: 'Nilou', built: true,
-    portrait: '/images/artists/Nilou.webp',
-    folder: 'Nilou',
-    book: 'https://book.useetattoo.com/nilou',
-    specialties: { de: 'Fine Line · Ornamental · Maori', en: 'Fine Line · Ornamental · Maori' },
-    meta: {
-      de: 'Nilou ist bekannt für ihre Präzision und ihr natürliches Talent, spezialisiert auf Ornamental, Fine Line und Tribal.',
-      en: 'Nilou is known for her incredible precision and natural talent. Specializing in ornamental, fine line, and tribal styles.',
-    },
-    // Real bio to be supplied by Hossein, placeholder kept out of production.
-    bio: { de: '', en: '' },
-  },
-  {
     slug: 'cali', name: 'Cali', built: true,
     portrait: '/images/artists/Cali.webp',
     folder: 'Cali',

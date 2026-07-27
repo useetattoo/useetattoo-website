@@ -30,12 +30,16 @@ const base = `/${lang}`;
         <li><a href={`${base}/about`}>{L.nav.about}</a></li>
         <li><a href={`${base}/faq`}>{L.nav.faq}</a></li>
         <li><a href={`${base}/contact`}>{L.nav.contact}</a></li>
-        <li class="mobile-book"><a href={site.booking.consultation} target="_blank" rel="noopener">{L.book}</a></li>
+        <li class="has-sub nav-book-li">
+          <a class="sub-parent" role="button" tabindex="0">{L.book}<span class="sub-caret" aria-hidden="true">+</span></a>
+          <ul class="submenu book-menu">
+            {site.bookingServices.map((s) => <li><a href={s.url} target="_blank" rel="noopener">{s[lang]}</a></li>)}
+          </ul>
+        </li>
       </ul>
     </nav>
     <div class="nav-right">
       <a class="lang-switch" href={altPath} hreflang={altLabel.toLowerCase()}>{altLabel}</a>
-      <a href={site.booking.consultation} class="btn-book" target="_blank" rel="noopener">{L.book}</a>
       <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
     </div>
   </div>

@@ -33,7 +33,7 @@ const homeGallery = [
   '/images/portfolio/Josef/Josef_10.webp',
   '/images/TattooStyle/Realistic/Realistic_5.webp',
   '/images/portfolio/Josef/Josef_20.webp',
-  '/images/TattooStyle/Realistic/Realistic_7.webp',
+  '/images/TattooStyle/Realistic/Realistic_9.webp',
 ];
 ---
 <Base lang={lang} title={title} description={description}>
@@ -118,6 +118,21 @@ const homeGallery = [
     </div>
   </section>
 
+  <!-- WALK-IN -->
+  <section id="walkin">
+    <div class="wrap">
+      <div class="events-row home-ev-row reveal">
+        <div class="txt">
+          <div class="eyebrow">{L.walkinEyebrow}</div>
+          <h2 set:html={L.walkinTitle}></h2>
+          <p>{L.walkinText}</p>
+          <a class="cta primary" style="background:var(--ink);color:var(--paper)" href={site.booking.walkin} target="_blank" rel="noopener">{L.walkinBtn}</a>
+        </div>
+        <div class="ph"><img src="/images/TattooStyle/FineLine/FineLine_2.webp" alt="Walk-in tattoo" loading="lazy" /></div>
+      </div>
+    </div>
+  </section>
+
   <!-- COVER-UP -->
   <section id="coverup" class="artists">
     <div class="wrap">
@@ -145,7 +160,7 @@ const homeGallery = [
           <p>{L.eventsText}</p>
           <a class="link-underline" href={`${base}/events`}>{L.eventsLink}</a>
         </div>
-        <div class="ph"><img src="/images/portfolio/Josef/Josef_10.webp" alt="" loading="lazy" /></div>
+        <div class="ph"><img src="/images/past_events/opening/Opening_1.webp" alt="Usee Tattoo studio" loading="lazy" /></div>
       </div>
     </div>
   </section>

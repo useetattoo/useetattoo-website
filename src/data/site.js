@@ -7,7 +7,18 @@ export const site = {
     consultation: 'https://book.useetattoo.com/Consultation',
     online: 'https://book.useetattoo.com/online-consultation',
     coverup: 'https://book.useetattoo.com/cover-up',
+    walkin: 'https://book.useetattoo.com/walk-in-tattoo',
+    piercing: 'https://book.useetattoo.com/piercing',
   },
+  // All bookable services (mirrors the old site's 6 booking buttons).
+  bookingServices: [
+    { de: 'Persönliche Beratung', en: 'Personal consultation', url: 'https://book.useetattoo.com/Consultation' },
+    { de: 'Online-Beratung', en: 'Online consultation', url: 'https://book.useetattoo.com/online-consultation' },
+    { de: 'Walk-In (selber Tag)', en: 'Same-day walk-in', url: 'https://book.useetattoo.com/walk-in-tattoo' },
+    { de: 'Piercing', en: 'Piercing', url: 'https://book.useetattoo.com/piercing' },
+    { de: 'Cover-Up', en: 'Cover-up', url: 'https://book.useetattoo.com/cover-up' },
+    { de: 'Sleeve Tattoo', en: 'Sleeve tattoo', url: 'https://book.useetattoo.com/Consultation' },
+  ],
   phone: { display: '+49 30 27979327', href: 'tel:+493027979327' },
   mobile: { display: '+49 176 47615189', href: 'tel:+4917647615189' },
   whatsapp: 'https://wa.me/4917647615189',

@@ -19,7 +19,7 @@ export const styles = [
     },
   },
   {
-    slug: 'fine-line', built: true, folder: 'FineLine', artists: ['cali', 'jvd', 'nilou'],
+    slug: 'fine-line', built: true, folder: 'FineLine', artists: ['cali', 'jvd'],
     name: { de: 'Fine Line', en: 'Fine Line' },
     tagline: { de: 'Zarte, präzise Designs mit feinen Linien', en: 'Delicate and precise designs with thin lines' },
     desc: {
@@ -37,7 +37,7 @@ export const styles = [
     },
   },
   {
-    slug: 'ornamental', built: true, folder: 'Ornamental', artists: ['nilou'],
+    slug: 'ornamental', built: true, folder: 'Ornamental', artists: ['josef'],
     name: { de: 'Ornamental', en: 'Ornamental' },
     tagline: { de: 'Dekorative Designs mit atemberaubenden Details', en: 'Decorative designs with stunning details' },
     desc: {
