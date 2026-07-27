@@ -3,7 +3,7 @@ export const langs = ['de', 'en'];
 export const t = {
   de: {
     label: 'Deutsch',
-    nav: { home: 'Start', artists: 'Artists', styles: 'Stile', coverup: 'Cover-up', events: 'Events', about: 'Über', faq: 'FAQ', contact: 'Kontakt' },
+    nav: { home: 'Start', artists: 'Artists', styles: 'Stile', services: 'Services', piercing: 'Piercing', coverup: 'Cover-up', events: 'Events', about: 'Über', faq: 'FAQ', contact: 'Kontakt' },
     navGuestArtists: 'Guest Artists', navPastEvents: 'Vergangene Events',
     book: 'Beratung',
     bookConsult: 'Beratung buchen',
@@ -34,6 +34,9 @@ export const t = {
     walkinEyebrow: 'Walk-In', walkinTitle: 'Walk-In<br>Tattoo',
     walkinText: 'Spontan in Berlin? Komm bei uns vorbei. Für kleinere Motive und Fine-Line-Arbeiten tätowieren wir dich oft noch am selben Tag, ganz ohne langen Vorlauf. Sichere dir vorab deinen Walk-In-Slot.',
     walkinBtn: 'Walk-In buchen',
+    piercingEyebrow: 'Piercing', piercingTitle: 'Piercing<br>in Berlin',
+    piercingText: 'Sterile Einwegnadeln, hochwertiger Schmuck und eine ehrliche Beratung vor jedem Termin. Von Ohr über Gesicht bis Body, sorgfältig gesetzt und für die Dauer gemacht.',
+    piercingBtn: 'Piercing buchen', piercingMore: 'Zur Piercing-Seite →',
     footStudio: 'Studio', footFollow: 'Folgen',
     legal: 'Impressum · Datenschutz',
     bookNow: 'Jetzt buchen', portfolio: 'Portfolio',
@@ -46,7 +49,7 @@ export const t = {
   },
   en: {
     label: 'English',
-    nav: { home: 'Home', artists: 'Artists', styles: 'Styles', coverup: 'Cover-up', events: 'Events', about: 'About', faq: 'FAQ', contact: 'Contact' },
+    nav: { home: 'Home', artists: 'Artists', styles: 'Styles', services: 'Services', piercing: 'Piercing', coverup: 'Cover-up', events: 'Events', about: 'About', faq: 'FAQ', contact: 'Contact' },
     navGuestArtists: 'Guest Artists', navPastEvents: 'Past Events',
     book: 'Book',
     bookConsult: 'Book a consultation',
@@ -77,6 +80,9 @@ export const t = {
     walkinEyebrow: 'Walk-In', walkinTitle: 'Walk-In<br>Tattoo',
     walkinText: "Spontaneously in Berlin? Come by. For smaller pieces and fine-line work we can often tattoo you the same day, no long wait. Reserve your walk-in slot in advance.",
     walkinBtn: 'Book a walk-in',
+    piercingEyebrow: 'Piercing', piercingTitle: 'Piercing<br>in Berlin',
+    piercingText: 'Sterile single-use needles, high-quality jewelry and an honest consultation before every appointment. From ear to face to body, placed with care and made to last.',
+    piercingBtn: 'Book a piercing', piercingMore: 'Visit the piercing page →',
     footStudio: 'Studio', footFollow: 'Follow',
     legal: 'Imprint · Privacy',
     bookNow: 'Book now', portfolio: 'Portfolio',

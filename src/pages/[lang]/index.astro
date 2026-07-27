@@ -151,6 +151,24 @@ const homeGallery = [
     </div>
   </section>
 
+  <!-- PIERCING -->
+  <section id="piercing-home" class="artists">
+    <div class="wrap">
+      <div class="events-row home-ev-row reveal">
+        <div class="txt">
+          <div class="eyebrow">{L.piercingEyebrow}</div>
+          <h2 set:html={L.piercingTitle}></h2>
+          <p>{L.piercingText}</p>
+          <div class="cta-row" style="align-items:center;gap:24px;flex-wrap:wrap">
+            <a class="cta primary" style="background:var(--ink);color:var(--paper)" href={site.booking.piercing} target="_blank" rel="noopener">{L.piercingBtn}</a>
+            <a class="link-underline" href={`${base}/piercing`}>{L.piercingMore}</a>
+          </div>
+        </div>
+        <div class="ph"><img src="/images/piercing/gallery/Piercing_6.webp" alt="Piercing at Usee Tattoo" loading="lazy" /></div>
+      </div>
+    </div>
+  </section>
+
   <!-- EVENTS / GUEST -->
   <section id="events">
     <div class="wrap">

@@ -1,0 +1,89 @@
+---
+import Base from '../../../../layouts/Base.astro';
+import { langs } from '../../../../data/i18n.js';
+import { site } from '../../../../data/site.js';
+import { journal } from '../../../../data/journal.js';
+
+export function getStaticPaths() {
+  const paths = [];
+  for (const lang of langs) {
+    for (const a of journal) {
+      paths.push({ params: { lang, slug: a.slug }, props: { article: a } });
+    }
+  }
+  return paths;
+}
+const { lang } = Astro.params;
+const { article } = Astro.props;
+const base = `/${lang}`;
+const bookUrl = site.booking.piercing;
+const others = journal.filter((a) => a.slug !== article.slug);
+
+const ui = {
+  de: { crumb: 'Piercing Journal', read: 'Lesezeit', cta: 'Piercing-Termin buchen', ctaText: 'Wenn du noch überlegst, welches Piercing zu dir passt, helfen wir gern. Buche eine Beratung bei Usee Tattoo Berlin.', more: 'Weiterlesen' },
+  en: { crumb: 'Piercing Journal', read: 'Reading time', cta: 'Book a piercing appointment', ctaText: 'If you’re still deciding which piercing is right for you, we’re happy to help. Book a consultation at Usee Tattoo Berlin.', more: 'Continue reading' },
+}[lang];
+
+const title = `${article.title[lang]} | Usee Tattoo Berlin`;
+const description = article.excerpt[lang];
+---
+<Base lang={lang} title={title} description={description} ogImage="/images/piercing/Ear.webp">
+  <article class="jn">
+    <div class="wrap jn-wrap">
+      <a class="link-underline jn-crumb" href={`${base}/piercing`}>&larr; {ui.crumb}</a>
+      <div class="jn-tag reveal">{article.tag[lang]}</div>
+      <h1 class="jn-title reveal">{article.title[lang]}</h1>
+      <div class="jn-meta reveal">{ui.read}: {article.readTime[lang]}</div>
+
+      <div class="jn-body">
+        {article.body[lang].map((blk) => (
+          <section class="jn-block reveal">
+            {blk.h && <h2>{blk.h}</h2>}
+            {blk.p && blk.p.map((para) => <p>{para}</p>)}
+            {blk.ul && <ul>{blk.ul.map((li) => <li>{li}</li>)}</ul>}
+          </section>
+        ))}
+      </div>
+
+      <div class="jn-cta reveal">
+        <p>{ui.ctaText}</p>
+        <a class="cta primary" style="background:var(--ink);color:var(--paper)" href={bookUrl} target="_blank" rel="noopener">{ui.cta}</a>
+      </div>
+
+      <div class="jn-more reveal">
+        <span class="jn-more-h">{ui.more}</span>
+        <div class="jn-more-grid">
+          {others.map((a) => (
+            <a class="jn-more-card" href={`${base}/piercing/journal/${a.slug}`}>
+              <span class="t">{a.tag[lang]}</span>
+              <h3>{a.title[lang]}</h3>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </article>
+
+  <style>
+    .jn{padding:70px 0 100px}
+    .jn-wrap{max-width:760px}
+    .jn-crumb{font-size:11px;display:inline-block;margin-bottom:36px}
+    .jn-tag{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--bronze);margin-bottom:14px}
+    .jn-title{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(30px,5vw,50px);line-height:1.12;margin:0 0 14px}
+    .jn-meta{font-size:12px;letter-spacing:.06em;color:var(--ink-soft);padding-bottom:30px;border-bottom:1px solid var(--line);margin-bottom:30px}
+    .jn-block{margin-bottom:34px}
+    .jn-block h2{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(22px,3vw,28px);margin:0 0 14px}
+    .jn-block p{color:var(--ink-soft);font-size:16.5px;line-height:1.85;margin:0 0 16px}
+    .jn-block ul{margin:0 0 16px;padding-left:20px}
+    .jn-block li{color:var(--ink-soft);font-size:16px;line-height:1.7;margin-bottom:8px}
+    .jn-cta{border:1px solid var(--line);background:var(--paper-2);padding:38px 34px;text-align:center;margin:50px 0}
+    .jn-cta p{color:var(--ink-soft);font-size:16px;line-height:1.8;max-width:520px;margin:0 auto 24px}
+    .jn-more-h{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--bronze-dk)}
+    .jn-more-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:18px}
+    .jn-more-card{display:block;text-decoration:none;color:var(--ink);border:1px solid var(--line);padding:22px 20px;transition:border-color .5s var(--ease)}
+    .jn-more-card:hover{border-color:var(--bronze)}
+    .jn-more-card .t{font-size:10.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--bronze)}
+    .jn-more-card h3{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:19px;margin-top:8px;line-height:1.25}
+    @media(max-width:560px){.jn-more-grid{grid-template-columns:1fr}}
+  </style>
+</Base>
