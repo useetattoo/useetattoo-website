@@ -31,7 +31,7 @@
 /de/tatto-styles/color                       /de/styles/color         301
 /de/index.php/tatto-styles/dotwork           /de/styles/dotwork       301
 /de/tatto-styles/dotwork                     /de/styles/dotwork       301
-/de/index.php/events                         /de/events               301
+/de/index.php/events                         /de/events/guest-artists               301
 /de/index.php/about-usee                     /de/about                301
 /de/about-usee                               /de/about                301
 /de/index.php/faq                            /de/faq                  301
@@ -39,12 +39,12 @@
 /de/contact-us                               /de/contact              301
 /de/index.php/past-events                    /de/events/past-events   301
 /de/past-events                              /de/events/past-events   301
-/de/index.php/flash-day                      /de/events     301
-/de/flash-day                                /de/events     301
+/de/index.php/flash-day                      /de/events/guest-artists     301
+/de/flash-day                                /de/events/guest-artists     301
 /de/index.php/guest-artists                  /de/events/guest-artists 301
 /de/guest-artists                            /de/events/guest-artists 301
-/de/index.php/weekly-ink                     /de/events    301
-/de/weekly-ink                               /de/events    301
+/de/index.php/weekly-ink                     /de/events/guest-artists    301
+/de/weekly-ink                               /de/events/guest-artists    301
 
 # ---- EN ----
 /en/index.php                                /en/                     301
@@ -75,7 +75,7 @@
 /en/tatto-styles/color                       /en/styles/color         301
 /en/index.php/tatto-styles/dotwork           /en/styles/dotwork       301
 /en/tatto-styles/dotwork                     /en/styles/dotwork       301
-/en/index.php/events                         /en/events               301
+/en/index.php/events                         /en/events/guest-artists               301
 /en/index.php/about-usee                     /en/about                301
 /en/about-usee                               /en/about                301
 /en/index.php/faq                            /en/faq                  301
@@ -83,10 +83,14 @@
 /en/contact-us                               /en/contact              301
 /en/index.php/past-events                    /en/events/past-events   301
 /en/past-events                              /en/events/past-events   301
-/en/index.php/flash-day                      /en/events     301
-/en/flash-day                                /en/events     301
+/en/index.php/flash-day                      /en/events/guest-artists     301
+/en/flash-day                                /en/events/guest-artists     301
 /en/index.php/guest-artists                  /en/events/guest-artists 301
 /en/guest-artists                            /en/events/guest-artists 301
-/en/index.php/weekly-ink                     /en/events    301
-/en/weekly-ink                               /en/events    301
+/en/index.php/weekly-ink                     /en/events/guest-artists    301
+/en/weekly-ink                               /en/events/guest-artists    301
 
+
+# events hub removed -> guest artists
+/de/events    /de/events/guest-artists   301
+/en/events    /en/events/guest-artists   301

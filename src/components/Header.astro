@@ -26,7 +26,13 @@ const base = `/${lang}`;
           </ul>
         </li>
         <li><a href={`${base}/cover-up`}>{L.nav.coverup}</a></li>
-        <li><a href={`${base}/events`}>{L.nav.events}</a></li>
+        <li class="has-sub">
+          <a class="sub-parent" role="button" tabindex="0">{L.nav.events}<span class="sub-caret" aria-hidden="true">+</span></a>
+          <ul class="submenu">
+            <li><a href={`${base}/events/guest-artists`}>{L.navGuestArtists}</a></li>
+            <li><a href={`${base}/events/past-events`}>{L.navPastEvents}</a></li>
+          </ul>
+        </li>
         <li><a href={`${base}/about`}>{L.nav.about}</a></li>
         <li><a href={`${base}/faq`}>{L.nav.faq}</a></li>
         <li><a href={`${base}/contact`}>{L.nav.contact}</a></li>

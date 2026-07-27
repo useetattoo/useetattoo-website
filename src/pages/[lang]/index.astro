@@ -43,9 +43,10 @@ const homeGallery = [
       <div class="kicker">{L.kicker}</div>
       <h1 set:html={L.heroTitle}></h1>
       <p class="lede">{L.heroLede}</p>
-      <div class="hero-cta">
-        <a class="cta primary" href={site.booking.consultation} target="_blank" rel="noopener">{L.bookConsult}</a>
-        <a class="cta ghost" href={site.booking.online} target="_blank" rel="noopener">{L.bookOnline}</a>
+      <div class="hero-cta hero-booking">
+        {site.bookingServices.map((s, i) => (
+          <a class={`cta ${i === 0 ? 'primary' : 'ghost'}`} href={s.url} target="_blank" rel="noopener">{s[lang]}</a>
+        ))}
       </div>
     </div>
     <a class="scrolldown" href={`${base}/#atelier`}>{L.discover}<span class="line"></span></a>
@@ -158,9 +159,9 @@ const homeGallery = [
           <div class="eyebrow">{L.eventsEyebrow}</div>
           <h2 set:html={L.eventsTitle}></h2>
           <p>{L.eventsText}</p>
-          <a class="link-underline" href={`${base}/events`}>{L.eventsLink}</a>
+          <a class="link-underline" href={`${base}/events/guest-artists`}>{L.eventsLink}</a>
         </div>
-        <div class="ph"><img src="/images/past_events/opening/Opening_1.webp" alt="Usee Tattoo studio" loading="lazy" /></div>
+        <div class="ph"><img src="/images/past_events/opening/Opening_6.webp" alt="Guest artist tattooing at Usee Tattoo" loading="lazy" /></div>
       </div>
     </div>
   </section>

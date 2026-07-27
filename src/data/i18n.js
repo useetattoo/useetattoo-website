@@ -4,6 +4,7 @@ export const t = {
   de: {
     label: 'Deutsch',
     nav: { home: 'Start', artists: 'Artists', styles: 'Stile', coverup: 'Cover-up', events: 'Events', about: 'Über', faq: 'FAQ', contact: 'Kontakt' },
+    navGuestArtists: 'Guest Artists', navPastEvents: 'Vergangene Events',
     book: 'Beratung',
     bookConsult: 'Beratung buchen',
     bookOnline: 'Online-Beratung',
@@ -46,6 +47,7 @@ export const t = {
   en: {
     label: 'English',
     nav: { home: 'Home', artists: 'Artists', styles: 'Styles', coverup: 'Cover-up', events: 'Events', about: 'About', faq: 'FAQ', contact: 'Contact' },
+    navGuestArtists: 'Guest Artists', navPastEvents: 'Past Events',
     book: 'Book',
     bookConsult: 'Book a consultation',
     bookOnline: 'Online consultation',
