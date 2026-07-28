@@ -49,11 +49,11 @@ const homeGallery = [
         ))}
       </div>
     </div>
-    <a class="scrolldown" href={`${base}/#atelier`}>{L.discover}<span class="line"></span></a>
+    <a class="scrolldown" href={`${base}/#studio`}>{L.discover}<span class="line"></span></a>
   </section>
 
   <!-- STATEMENT -->
-  <section class="statement wrap reveal" id="atelier">
+  <section class="statement wrap reveal" id="studio">
     <div class="eyebrow">{L.statementEyebrow}</div>
     <p set:html={L.statement}></p>
   </section>
@@ -109,7 +109,7 @@ const homeGallery = [
       <div class="sec-head reveal">
         <span class="idx">03</span>
         <h2>{L.workTitle}</h2>
-        <a href={site.social.instagram} target="_blank" rel="noopener">@useetattooatelier →</a>
+        <a href={site.social.instagram} target="_blank" rel="noopener">@usee.tattoo →</a>
       </div>
       <div class="g-grid reveal">
         {homeGallery.map((src) => (
@@ -127,9 +127,12 @@ const homeGallery = [
           <div class="eyebrow">{L.walkinEyebrow}</div>
           <h2 set:html={L.walkinTitle}></h2>
           <p>{L.walkinText}</p>
-          <a class="cta primary" style="background:var(--ink);color:var(--paper)" href={site.booking.walkin} target="_blank" rel="noopener">{L.walkinBtn}</a>
+          <div class="cta-row" style="align-items:center;gap:24px;flex-wrap:wrap">
+            <a class="cta primary" style="background:var(--ink);color:var(--paper)" href={site.booking.walkin} target="_blank" rel="noopener">{L.walkinBtn}</a>
+            <a class="link-underline" href={`${base}/walk-in`}>{L.walkinMore}</a>
+          </div>
         </div>
-        <div class="ph"><img src="/images/TattooStyle/FineLine/FineLine_2.webp" alt="Walk-in tattoo" loading="lazy" /></div>
+        <div class="ph"><img src="/images/walkin/Hero.webp" alt="Walk-in tattoo" loading="lazy" /></div>
       </div>
     </div>
   </section>

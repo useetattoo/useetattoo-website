@@ -1,0 +1,344 @@
+---
+import Base from '../../layouts/Base.astro';
+import { langs } from '../../data/i18n.js';
+import { site } from '../../data/site.js';
+import { gallery } from '../../lib/gallery.js';
+
+export function getStaticPaths() {
+  return langs.map((lang) => ({ params: { lang } }));
+}
+const { lang } = Astro.params;
+const bookUrl = site.booking.walkin;
+const imgs = gallery('/images/walkin/gallery');
+
+const c = {
+  de: {
+    title: 'Walk-In Tattoo in Berlin | UseeTattoo Studio – Charlottenburg',
+    description: 'Walk-In Tattoo in Berlin bei Usee Tattoo: ohne Termin, nur Resident-Artists, sterile Einwegausrüstung, kostenlose Nachbesserung. Ab 100 €.',
+    eyebrow: '/ Walk-In',
+    h1: 'Walk-In Tattoo in Berlin',
+    tagline: 'Professionelle Tattoos. Ohne Termin.',
+    intro: 'Manchmal kommt die richtige Tattoo-Idee ganz unerwartet, ein bedeutungsvolles Symbol, eine Reiseerinnerung, ein passendes Design mit einer Freundin oder etwas, das dir schon länger im Kopf herumgeht. Bei Usee Tattoo kannst du für ausgewählte kleine und mittelgroße Projekte ohne Termin vorbeikommen und wirst von einem unserer erfahrenen Resident-Artists tätowiert, nie von einem Lehrling.',
+    intro2: 'Ein Walk-In bedeutet kein überstürztes Tattoo. Jede Sitzung beginnt mit einer kurzen Beratung, Hilfe bei der Platzierung und einer Stencil-Anprobe. Wir starten erst, wenn du mit Platzierung und Design auf deiner Haut vollständig zufrieden bist.',
+    ctaBook: 'Heutige Verfügbarkeit prüfen',
+    whyTitle: 'Warum Usee Tattoo für dein Walk-In',
+    why: [
+      'Nur Resident-Artists, nie Lehrlinge, auch bei kleinen Motiven',
+      'Täglich Walk-In-Termine möglich, je nach Verfügbarkeit der Artists',
+      'Kostenlose Nachbesserung nach der Heilung',
+      'Englisch- und deutschsprachiges Team',
+      'Professionelle Hygiene, sterile Einwegausrüstung',
+      'Transparente Preise, keine versteckten Kosten',
+    ],
+    whatTitle: 'Was als Walk-In zählt',
+    whatIntro: 'Ein Walk-In bedeutet, während der Öffnungszeiten vorbeizukommen, deine Idee direkt vor Ort zu besprechen und, je nach Verfügbarkeit des Tages, in derselben Sitzung tätowiert zu werden. Am besten funktioniert es für Designs, die keine aufwendige Custom-Illustration brauchen und sich bequem in einer Sitzung umsetzen lassen:',
+    whatList: ['Fine-Line-Tattoos', 'Lettering & Zitate', 'Minimalistische Symbole, Herzen, Sterne, Sternzeichen, geometrische Formen', 'Kleine Black-&-Grey-Arbeiten', 'Ausgewählter Mikrorealismus', 'Partner- & Freundschaftstattoos'],
+    whatNote: 'Jede Idee wird individuell geprüft, bevor wir einen Termin am selben Tag bestätigen. Die Größe allein entscheidet nicht, Detailgrad, Platzierung und geschätzte Tätowierzeit zählen genauso.',
+    whenTitle: 'Wann ein geplanter Termin besser passt',
+    whenIntro: 'Manche Projekte profitieren wirklich von mehr Vorbereitung, und das sagen wir dir direkt:',
+    whenHead: ['Braucht Planung', 'Warum'],
+    whenRows: [
+      ['Große Tattoos & Sleeves', 'Komposition, Fluss und Körperproportion brauchen Zeit.'],
+      ['Cover-ups', 'Größe, Farbe und Sättigung des alten Tattoos bestimmen zuerst das Design.'],
+      ['Detaillierter Realismus', 'Porträts, Tiere und Architektur brauchen vorab Referenzarbeit.'],
+      ['Komplexe Custom-Konzepte', 'Originale, mehrteilige Designs werden vor dem Termin gezeichnet.'],
+      ['Mehrsitzungs-Projekte', 'Größere Arbeiten werden in einen richtigen Behandlungsplan aufgeteilt.'],
+    ],
+    whenNote: 'Wenn wir statt einer Sitzung am selben Tag eine Beratung empfehlen, dann weil du so das bessere Tattoo bekommst, nicht weil die Idee zu viel für ein Walk-In wäre.',
+    visitorsTitle: 'Walk-In-Tattoos für Berlin-Besucher',
+    visitors: [
+      'Berlin zieht jedes Jahr Millionen Reisende an. Viele Besucher wählen ein Tattoo als einzigartige Berlin-Erinnerung statt eines klassischen Souvenirs.',
+      'Wir tätowieren regelmäßig Besucher während ihres Aufenthalts, und unser Team spricht Englisch und Deutsch, sodass das Erklären deiner Idee und deine Fragen nie ein Hindernis sind.',
+      'Beliebt bei Reisenden sind Fine-Line-Symbole, Koordinaten, bedeutungsvolle Daten und kleine Schriftzüge zur Reise selbst, die meisten passen bequem in eine einzige Walk-In-Sitzung.',
+      'Bring einen gültigen Lichtbildausweis mit, komm ausgeruht und gut hydriert und plane etwas Puffer ein, ein gutes Tattoo sollte nicht mit einem Flug konkurrieren müssen.',
+    ],
+    groupTitle: 'Gruppen- & Partnertattoos als Walk-In',
+    group: [
+      'Sich gemeinsam tätowieren zu lassen, als Paar, mit Freunden oder als Familie, gehört zu unseren häufigsten Walk-In-Wünschen, ob identische Designs oder einzelne Stücke mit gemeinsamem Thema.',
+      'Als kleine Gruppe kommt ihr einfach zusammen vorbei und wir klären die Logistik vor Ort. Bei größeren Gruppen hilft eine kurze Nachricht vorab, damit wir genug Zeit einplanen und sich niemand gehetzt fühlt.',
+    ],
+    howTitle: 'So läuft es ab',
+    steps: [
+      ['Teile deine Idee', 'Ein Referenzbild, eine gespeicherte Inspiration oder einfach ein Konzept im Kopf.'],
+      ['Beratung', 'Wir besprechen Platzierung, Größe und Stil und beantworten alles, was dich beschäftigt.'],
+      ['Stencil & Größe', 'Wir testen die Proportionen direkt auf deiner Haut aus verschiedenen Winkeln, bis es passt.'],
+      ['Deine Freigabe', 'Nichts beginnt, bevor jedes Detail von dir bestätigt ist.'],
+      ['Tätowieren', 'Ausgeführt von einem Resident-Artist, durchgehend mit sterilem Einwegmaterial.'],
+      ['Nachsorge', 'Klare Anweisungen, bevor du gehst, damit die Heilung gut startet.'],
+    ],
+    priceTitle: 'Preise',
+    price: 'Walk-In-Tattoos beginnen ab 100 €. Der Endpreis hängt von Größe, Platzierung, Komplexität, Stil und geschätzter Tätowierzeit ab, du erhältst vor Beginn einen klaren Kostenrahmen. Unser Fokus liegt nicht auf dem günstigsten Tattoo Berlins, sondern auf professionellem Handwerk, transparenten Preisen und Tattoos, die du jahrelang mit Stolz trägst.',
+    hygieneTitle: 'Hygiene, jedes Mal',
+    hygiene: 'Jeder Arbeitsplatz wird für jede Person frisch vorbereitet, sterile Einwegnadeln werden erst zu Beginn deines Termins geöffnet. Handschuhe werden bei Bedarf gewechselt, Oberflächen bleiben geschützt, und wir arbeiten mit professionellen Desinfektionsmitteln und hochwertigen Farben. Das ist keine Walk-In-Ausnahme, sondern der Standard für jedes Tattoo.',
+    touchTitle: 'Kostenlose Nachbesserung',
+    touch: 'Die meisten Tattoos heilen mit guter Pflege wunderbar ab. Falls nach vollständiger Heilung noch eine kleine Nachbesserung nötig ist, übernehmen wir sie kostenlos, sofern unsere Pflegehinweise befolgt wurden.',
+    galleryTitle: 'Walk-In-Arbeiten',
+    faqTitle: 'Häufige Fragen',
+    faq: [
+      ['Brauche ich einen Termin?', 'Nein, komm einfach während der Öffnungszeiten vorbei. Ist gerade kein Artist frei, helfen wir dir, den nächsten freien Slot zu finden.'],
+      ['Kann ich Verfügbarkeit oder Preis vorab erfragen?', 'Ja, sende uns Idee, Platzierung und ungefähre Größe, und wir sagen dir, ob es Walk-In-tauglich ist.'],
+      ['Wie lange muss ich warten?', 'Kommt auf den Tag an. Manchmal können wir sofort starten; an vollen Tagen kann es eine kurze Wartezeit geben.'],
+      ['Kann ich meinen Artist wählen?', 'Wenn er verfügbar ist, ja. Sonst finden wir einen Resident-Artist, dessen Stil zu deiner Idee passt.'],
+      ['Sind große Tattoos oder Cover-ups als Walk-In möglich?', 'In der Regel nein, siehe „Wann ein geplanter Termin besser passt" oben.'],
+      ['Können Tourist:innen ein Walk-In-Tattoo bekommen?', 'Absolut. Wir begrüßen regelmäßig Besucher aus aller Welt und tun unser Bestes, dein Tattoo in deinen Aufenthalt einzuplanen.'],
+      ['Was soll ich mitbringen?', 'Einen gültigen Lichtbildausweis und alle Referenzbilder, die du hast.'],
+      ['Wie bereite ich mich vor?', 'Iss vorher etwas, trink ausreichend und verzichte auf Alkohol oder Drogen, beides beeinflusst den Ablauf und die Heilung.'],
+      ['Bietet ihr kostenlose Nachbesserungen an?', 'Ja, sobald die Heilung vollständig ist und unsere Pflegehinweise befolgt wurden.'],
+    ],
+    readyTitle: 'Bereit für dein Walk-In-Tattoo in Berlin?',
+    ready: 'Bring deine Idee mit, um den Rest kümmern wir uns in unserem Tattoo-Studio in Berlin. Kein Termin nötig, nur ehrliche Beratung, sorgfältige Vorbereitung und Artists, die jedes Tattoo, groß oder klein, gleich behandeln.',
+    ctaBook2: 'Walk-In-Slot buchen',
+  },
+  en: {
+    title: 'Walk-In Tattoo in Berlin | UseeTattoo Studio – Charlottenburg',
+    description: 'Walk-in tattoo in Berlin at Usee Tattoo: no appointment, resident artists only, sterile single-use equipment, free touch-up. From €100.',
+    eyebrow: '/ Walk-In',
+    h1: 'Walk-In Tattoo in Berlin',
+    tagline: 'Professional tattoos. No appointment required.',
+    intro: "Sometimes the right tattoo idea comes unexpectedly, a meaningful symbol, a travel memory, a matching design with a friend, or something you've been thinking about for a while. At Usee Tattoo, you can walk in without an appointment for selected small and medium-sized projects and be tattooed by one of our experienced resident artists, never an apprentice.",
+    intro2: "A walk-in doesn't mean a rushed tattoo. Every session still starts with a short consultation, placement guidance and a stencil fitting. We begin only once you're fully happy with the placement and design on your skin.",
+    ctaBook: "Check today's availability",
+    whyTitle: 'Why choose Usee Tattoo for a walk-in',
+    why: [
+      'Resident artists only, never apprentices, even for small pieces',
+      'Walk-in appointments available daily, subject to artist availability',
+      'Free touch-up after healing',
+      'English & German-speaking team',
+      'Professional hygiene, sterile single-use equipment',
+      'Transparent pricing, no hidden costs',
+    ],
+    whatTitle: 'What counts as a walk-in',
+    whatIntro: "A walk-in means visiting during opening hours, discussing your idea on the spot, and, depending on the day's availability, getting tattooed the same session. It works best for designs that don't require extensive custom illustration and can be completed comfortably in one sitting:",
+    whatList: ['Fine line tattoos', 'Lettering & quotes', 'Minimal symbols, hearts, stars, zodiac signs, geometric shapes', 'Small black & grey pieces', 'Selected micro realism', 'Matching & friendship tattoos'],
+    whatNote: "Every idea is reviewed individually before we confirm a same-day appointment. Size alone doesn't decide it, detail, placement and estimated tattooing time matter just as much.",
+    whenTitle: 'When a scheduled appointment fits better',
+    whenIntro: "Some projects genuinely benefit from more preparation, and we'll say so directly:",
+    whenHead: ['Needs planning', 'Why'],
+    whenRows: [
+      ['Large tattoos & sleeves', 'Composition, flow and body proportion take time to get right.'],
+      ['Cover-ups', "The old tattoo's size, colour and saturation shape the design first."],
+      ['Detailed realism', 'Portraits, animals and architecture need reference work in advance.'],
+      ['Complex custom concepts', 'Original multi-element designs are drawn before the appointment.'],
+      ['Multi-session pieces', 'Larger work is split into a proper treatment plan.'],
+    ],
+    whenNote: "If we recommend a consultation instead of a same-day session, it's because that gets you the better tattoo, not because the idea is too much for a walk-in.",
+    visitorsTitle: 'Walk-in tattoos for visitors in Berlin',
+    visitors: [
+      'Berlin draws millions of travellers every year. Many visitors choose a tattoo as a unique Berlin memory rather than a traditional souvenir.',
+      'We regularly tattoo visitors during their stay, and our team speaks both English and German, so explaining your idea and asking questions is never a barrier.',
+      'Popular choices among travellers include fine line symbols, coordinates, meaningful dates, and small lettering tied to the trip itself, most of which fit comfortably into a single walk-in session.',
+      "Bring a valid photo ID, arrive rested and hydrated, and leave a little buffer in your itinerary, a good tattoo shouldn't have to compete with a flight to catch.",
+    ],
+    groupTitle: 'Group & matching walk-in tattoos',
+    group: [
+      "Getting tattooed together, as a couple, with friends, or as a family, is one of our most common walk-in requests, whether it's identical designs or individual pieces tied by a shared theme.",
+      "If you're coming as a small group, just arrive together and we'll work out the logistics on the spot. For larger groups, a quick message beforehand helps us set aside enough time so no one feels rushed.",
+    ],
+    howTitle: 'How it works',
+    steps: [
+      ['Share your idea', 'A reference image, a saved inspiration, or just a concept in your head.'],
+      ['Consultation', "We talk through placement, size and style, and answer whatever's on your mind."],
+      ['Stencil & sizing', 'We test proportions directly on your skin from different angles until it feels right.'],
+      ['Your approval', 'Nothing starts until every detail is confirmed by you.'],
+      ['Tattooing', 'Completed by a resident artist, using sterile, single-use equipment throughout.'],
+      ['Aftercare guidance', 'Clear instructions before you leave, so healing starts on the right foot.'],
+    ],
+    priceTitle: 'Pricing',
+    price: "Walk-in tattoos start from €100. The final price depends on size, placement, complexity, style and estimated tattooing time, you'll get a clear estimate before anything begins. Our focus isn't on offering the cheapest tattoo in Berlin, it's on delivering professional craftsmanship, transparent pricing and tattoos you'll be proud to wear for years to come.",
+    hygieneTitle: 'Hygiene, every time',
+    hygiene: "Every workstation is freshly prepared per client, with sterile single-use needles opened only at the start of your appointment. Gloves are changed as needed, surfaces stay protected, and we work with professional-grade disinfectants and high-quality inks. This isn't a walk-in exception, it's the standard for every tattoo we create.",
+    touchTitle: 'Free touch-up',
+    touch: 'Most tattoos heal beautifully with proper aftercare. If a small refinement is still needed once healing is fully complete, we take care of it at no extra charge, provided our aftercare guidance was followed.',
+    galleryTitle: 'Walk-in work',
+    faqTitle: 'Frequently asked questions',
+    faq: [
+      ['Do I need an appointment?', "No, just visit during opening hours. If no artist is free right away, we'll help you arrange the next available slot."],
+      ['Can I check availability or get a price estimate beforehand?', "Yes, send your idea, placement and approximate size, and we'll let you know if it's walk-in ready."],
+      ['How long will I have to wait?', 'Depends on the day. Sometimes we can start right away; on busier days there may be a short wait.'],
+      ['Can I choose my artist?', "If they're available, yes. Otherwise we'll match you with a resident artist whose style suits your idea."],
+      ['Are large tattoos or cover-ups available as walk-ins?', 'Generally no, see “When a scheduled appointment fits better" above.'],
+      ['Can tourists get a walk-in tattoo?', 'Absolutely. We regularly welcome visitors from around the world and will do our best to fit your tattoo into your stay.'],
+      ['What should I bring?', 'A valid photo ID, and any reference images you have.'],
+      ['How should I prepare?', 'Eat beforehand, stay hydrated, and skip alcohol or recreational drugs, both affect the process and the healing.'],
+      ['Do you offer free touch-ups?', 'Yes, once healing is fully complete and our aftercare guidance was followed.'],
+    ],
+    readyTitle: 'Ready for your walk-in tattoo in Berlin?',
+    ready: "Bring your idea, we'll take care of the rest at our tattoo studio in Berlin. No appointment needed, just honest guidance, careful preparation, and artists who treat every tattoo, big or small, the same way.",
+    ctaBook2: 'Book your walk-in slot',
+  },
+}[lang];
+---
+<Base lang={lang} title={c.title} description={c.description} ogImage="/images/walkin/Hero.webp">
+  <section class="detail-hero wk-hero">
+    <div class="wrap">
+      <div class="wk-hero-grid">
+        <div class="dh-txt reveal">
+          <div class="eyebrow">{c.eyebrow}</div>
+          <h1>{c.h1}</h1>
+          <div class="wk-tag">{c.tagline}</div>
+          <p class="wk-p">{c.intro}</p>
+          <p class="wk-p">{c.intro2}</p>
+          <div class="cta-row"><a class="cta primary" style="background:var(--ink);color:var(--paper)" href={bookUrl} target="_blank" rel="noopener">{c.ctaBook}</a></div>
+        </div>
+        <div class="wk-hero-img reveal"><img src="/images/walkin/Hero.webp" alt="Fine line walk-in tattoo, Usee Tattoo Berlin" /></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY -->
+  <section class="artists" style="padding:80px 0">
+    <div class="wrap">
+      <h2 class="wk-h2 reveal" style="margin-bottom:36px">{c.whyTitle}</h2>
+      <div class="wk-why reveal">
+        {c.why.map((x) => <div class="wk-why-item"><span class="wk-check">✓</span><span>{x}</span></div>)}
+      </div>
+    </div>
+  </section>
+
+  <!-- WHAT COUNTS -->
+  <section>
+    <div class="wrap wk-split">
+      <div class="reveal">
+        <h2 class="wk-h2">{c.whatTitle}</h2>
+        <p class="wk-p">{c.whatIntro}</p>
+        <p class="wk-note">{c.whatNote}</p>
+      </div>
+      <div class="reveal wk-card">
+        <ul class="wk-list">{c.whatList.map((x) => <li>{x}</li>)}</ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHEN SCHEDULED -->
+  <section class="artists" style="padding:80px 0">
+    <div class="wrap" style="max-width:900px">
+      <h2 class="wk-h2 reveal" style="margin-bottom:14px">{c.whenTitle}</h2>
+      <p class="wk-p reveal" style="margin-bottom:28px">{c.whenIntro}</p>
+      <div class="wk-table-wrap reveal">
+        <table class="wk-table">
+          <thead><tr><th>{c.whenHead[0]}</th><th>{c.whenHead[1]}</th></tr></thead>
+          <tbody>{c.whenRows.map(([a, b]) => <tr><td>{a}</td><td>{b}</td></tr>)}</tbody>
+        </table>
+      </div>
+      <p class="wk-note reveal">{c.whenNote}</p>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section>
+    <div class="wrap">
+      <h2 class="wk-h2 reveal" style="margin-bottom:40px">{c.howTitle}</h2>
+      <div class="wk-steps reveal">
+        {c.steps.map(([t, d], i) => (
+          <div class="wk-step"><span class="n">{String(i + 1).padStart(2, '0')}</span><h3>{t}</h3><p>{d}</p></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY -->
+  {imgs.length > 0 && (
+    <section class="gallery">
+      <div class="wrap">
+        <div class="sec-head reveal"><span class="idx">Walk-In</span><h2>{c.galleryTitle}</h2><a href={site.social.instagram} target="_blank" rel="noopener">{site.social.instagramHandle} →</a></div>
+        <div class="wk-gallery reveal">
+          {imgs.slice(0, 12).map((src) => <div class="cell"><a data-lb={src}><img src={src} alt="Walk-in tattoo, Usee Tattoo" loading="lazy" /></a></div>)}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- VISITORS + GROUP -->
+  <section>
+    <div class="wrap wk-split">
+      <div class="reveal">
+        <h2 class="wk-h2">{c.visitorsTitle}</h2>
+        {c.visitors.map((p) => <p class="wk-p">{p}</p>)}
+      </div>
+      <div class="reveal wk-card">
+        <h3 class="wk-col-t">{c.groupTitle}</h3>
+        {c.group.map((p) => <p class="wk-p">{p}</p>)}
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING + HYGIENE + TOUCHUP -->
+  <section class="artists" style="padding:80px 0">
+    <div class="wrap wk-info">
+      <div class="reveal"><h3 class="wk-col-t">{c.priceTitle}</h3><p class="wk-p">{c.price}</p></div>
+      <div class="reveal"><h3 class="wk-col-t">{c.hygieneTitle}</h3><p class="wk-p">{c.hygiene}</p></div>
+      <div class="reveal"><h3 class="wk-col-t">{c.touchTitle}</h3><p class="wk-p">{c.touch}</p></div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq" style="padding:80px 0">
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="idx">FAQ</span><h2>{c.faqTitle}</h2></div>
+      <div class="faq-list acc-single reveal">
+        {c.faq.map(([q, a], i) => (
+          <details open={i === 0}>
+            <summary><span>{q}</span><span class="plus">+</span></summary>
+            <div class="ans">{a}</div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- READY / CTA -->
+  <section class="artists" style="padding:80px 0">
+    <div class="wrap" style="text-align:center;max-width:760px">
+      <h2 class="wk-h2 reveal" style="margin-bottom:16px">{c.readyTitle}</h2>
+      <p class="wk-p reveal" style="margin:0 auto 30px;max-width:620px">{c.ready}</p>
+      <div class="reveal"><a class="cta primary" style="background:var(--ink);color:var(--paper)" href={bookUrl} target="_blank" rel="noopener">{c.ctaBook2}</a></div>
+    </div>
+  </section>
+
+  <style>
+    .wk-hero{padding-bottom:56px}
+    .wk-hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:56px;align-items:center}
+    .wk-tag{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:22px;color:var(--bronze-dk);margin:2px 0 22px}
+    .wk-hero-img{aspect-ratio:3/4;overflow:hidden;background:var(--paper-2)}
+    .wk-hero-img img{width:100%;height:100%;object-fit:cover}
+    .wk-h2{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(28px,4vw,42px);margin:0 0 18px;line-height:1.15}
+    .wk-p{color:var(--ink-soft);font-size:16px;line-height:1.85;margin-bottom:16px;max-width:680px}
+    .wk-note{color:var(--bronze-dk);font-style:italic;font-family:'Cormorant Garamond',serif;font-size:18px;margin-top:22px;max-width:680px}
+    .wk-split{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:start}
+    .wk-card{border:1px solid var(--line);padding:34px;background:var(--paper)}
+    .wk-col-t{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:24px;margin-bottom:14px}
+    .wk-why{display:grid;grid-template-columns:1fr 1fr;gap:16px 34px}
+    .wk-why-item{display:flex;gap:14px;align-items:flex-start;color:var(--ink-soft);font-size:15.5px;line-height:1.6}
+    .wk-check{color:var(--bronze);font-weight:600;flex:0 0 auto}
+    .wk-list{list-style:none}
+    .wk-list li{padding:12px 0;border-bottom:1px solid rgba(216,210,198,.55);color:var(--ink);font-size:16px}
+    .wk-list li:last-child{border-bottom:0}
+    .wk-table-wrap{overflow-x:auto}
+    .wk-table{width:100%;border-collapse:collapse;font-size:15px}
+    .wk-table th{text-align:left;font-family:'Inter',sans-serif;font-weight:600;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--bronze-dk);padding:12px 16px;border-bottom:1px solid var(--line)}
+    .wk-table td{padding:14px 16px;border-bottom:1px solid rgba(216,210,198,.55);color:var(--ink-soft);vertical-align:top}
+    .wk-table td:first-child{color:var(--ink);font-weight:500;white-space:nowrap;padding-right:28px}
+    .wk-steps{display:grid;grid-template-columns:repeat(3,1fr);gap:26px}
+    .wk-step .n{font-family:'Cormorant Garamond',serif;font-size:32px;color:var(--bronze)}
+    .wk-step h3{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:21px;margin:6px 0 8px}
+    .wk-step p{color:var(--ink-soft);font-size:14px;line-height:1.7}
+    .wk-info{display:grid;grid-template-columns:repeat(3,1fr);gap:40px}
+    .wk-gallery{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+    .wk-gallery .cell{aspect-ratio:1/1;overflow:hidden;background:#161514;cursor:pointer}
+    .wk-gallery img{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease)}
+    .wk-gallery .cell:hover img{transform:scale(1.06)}
+    @media(max-width:900px){
+      .wk-hero-grid{grid-template-columns:1fr;gap:32px}
+      .wk-hero-img{max-width:360px}
+      .wk-split{grid-template-columns:1fr;gap:32px}
+      .wk-why{grid-template-columns:1fr}
+      .wk-steps{grid-template-columns:1fr 1fr}
+      .wk-info{grid-template-columns:1fr;gap:30px}
+      .wk-gallery{grid-template-columns:repeat(3,1fr)}
+    }
+    @media(max-width:560px){
+      .wk-steps{grid-template-columns:1fr}
+      .wk-gallery{grid-template-columns:repeat(2,1fr)}
+    }
+  </style>
+</Base>

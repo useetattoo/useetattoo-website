@@ -25,14 +25,14 @@ const tabs = [
   { folder: 'flashDay', title: '1st Flash Day', date: 'February 17, 2024',
     de: 'Unser erster Flash Day bot besondere Rabatte und eine Vielzahl einzigartiger kleiner Designs, ein kreativer Tag voller Inspiration und Tattoo-Kunst.',
     en: 'Our first Flash Day offered special deals and a wide variety of unique small designs, a creative day full of inspiration and tattoo art.' },
-  { folder: 'opening', title: 'Atelier Opening Party', date: 'December 09, 2023',
-    de: 'Die große Eröffnung unseres neuen Atelier-Standorts in Berlin war ein unvergessliches Event voller Kreativität, guter Stimmung und großartiger Gäste.',
-    en: 'The grand opening of our new atelier location in Berlin was an unforgettable event full of creativity, good vibes and wonderful guests.' },
+  { folder: 'opening', title: 'Studio Opening Party', date: 'December 09, 2023',
+    de: 'Die große Eröffnung unseres neuen Studio-Standorts in Berlin war ein unvergessliches Event voller Kreativität, guter Stimmung und großartiger Gäste.',
+    en: 'The grand opening of our new studio location in Berlin was an unforgettable event full of creativity, good vibes and wonderful guests.' },
 ].map((tb) => ({ ...tb, imgs: gallery(`/images/past_events/${tb.folder}`) }));
 
 const c = {
-  de: { title: 'Vergangene Events | UseeTattoo Studio – Berlin', description: 'Ein Rückblick auf vergangene Events im Usee Tattoo Atelier in Berlin.', crumb: 'Events', eyebrow: 'Events', h1: 'Vergangene Events', lead: 'Ein Rückblick auf besondere Momente in unserem Atelier.' },
-  en: { title: 'Past Events | UseeTattoo Studio – Berlin', description: 'A look back at past events at the Usee Tattoo atelier in Berlin.', crumb: 'Events', eyebrow: 'Events', h1: 'Past Events', lead: 'A look back at special moments at our atelier.' },
+  de: { title: 'Vergangene Events | UseeTattoo Studio – Berlin', description: 'Ein Rückblick auf vergangene Events im Usee Tattoo Studio in Berlin.', crumb: 'Events', eyebrow: 'Events', h1: 'Vergangene Events', lead: 'Ein Rückblick auf besondere Momente in unserem Studio.' },
+  en: { title: 'Past Events | UseeTattoo Studio – Berlin', description: 'A look back at past events at the Usee Tattoo studio in Berlin.', crumb: 'Events', eyebrow: 'Events', h1: 'Past Events', lead: 'A look back at special moments at our studio.' },
 }[lang];
 ---
 <Base lang={lang} title={c.title} description={c.description}>

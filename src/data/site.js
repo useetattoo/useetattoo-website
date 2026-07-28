@@ -26,8 +26,10 @@ export const site = {
   address: { street: 'Neue Kantstraße 6', zip: '14057', city: 'Berlin', district: 'Charlottenburg' },
   mapQuery: 'Neue+Kantstra%C3%9Fe+6,+14057+Berlin',
   social: {
-    instagram: 'https://www.instagram.com/useetattooatelier/',
+    instagram: 'https://www.instagram.com/usee.tattoo',
+    instagramHandle: '@usee.tattoo',
     facebook: 'https://www.facebook.com/useetattooo/',
     pinterest: 'https://www.pinterest.co.uk/usmejdar/',
+    tiktok: 'https://www.tiktok.com/@useetattoofamily',
   },
 };

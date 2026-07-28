@@ -307,13 +307,11 @@ footer{background:#0e0d0d;color:#b9b2a5;padding:80px 0 46px}
   nav a{font-size:17px;letter-spacing:.1em}
   nav > ul > li{width:100%}
   nav > ul > li > a{padding:11px 0;display:inline-flex}   /* uniform spacing for main items */
-  .has-sub{display:flex;flex-direction:column;align-items:flex-start;width:100%}
-  .submenu{display:block;position:static;max-height:0;overflow:hidden;opacity:1;visibility:visible;transform:none;width:100%;
-    margin:0;padding:0 0 0 16px;border:0;background:transparent;min-width:0;white-space:normal;transition:max-height .35s var(--ease)}
-  .has-sub.open .submenu{max-height:520px}
-  .submenu li:last-child a{padding-bottom:0}
-  .submenu a{padding:9px 0;font-size:15px;text-transform:none;letter-spacing:.03em;white-space:normal}
-  .submenu li:first-child a{padding-top:12px}
+  .has-sub{width:100%}
+  .submenu{display:none;position:static;opacity:1;visibility:visible;transform:none;width:100%;
+    margin:0;padding:2px 0 10px 16px;border:0;background:transparent;min-width:0;white-space:normal}
+  .has-sub.open .submenu{display:block}
+  .submenu a{padding:8px 0;font-size:15px;text-transform:none;letter-spacing:.03em;white-space:normal}
   .has-sub>a::before{display:none}
   .has-sub>a{display:inline-flex;align-items:center;gap:10px}
   .sub-caret{display:inline-block;color:var(--bronze);font-size:18px;line-height:1;transition:transform .3s var(--ease)}
