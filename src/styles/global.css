@@ -242,7 +242,7 @@ footer{background:#0e0d0d;color:#b9b2a5;padding:80px 0 46px}
 .foot-brand .b{font-family:'Cormorant Garamond',serif;font-size:26px;letter-spacing:.28em;text-transform:uppercase;color:var(--paper)}
 .foot-brand .b span{color:var(--bronze)}
 .foot-brand p{margin-top:16px;font-size:13.5px;max-width:280px;line-height:1.7}
-.foot-cols{display:flex;gap:70px;flex-wrap:wrap}
+.foot-cols{display:flex;gap:48px;flex-wrap:wrap}
 .foot-cols h4{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#8f887c;margin-bottom:18px}
 .foot-cols ul{list-style:none}.foot-cols li{margin-bottom:11px}
 .foot-cols a{color:#cfc9bd;text-decoration:none;font-size:13.5px;transition:color .4s}
@@ -299,16 +299,16 @@ footer{background:#0e0d0d;color:#b9b2a5;padding:80px 0 46px}
   .burger{display:flex}
   .btn-book{display:none}                 /* hidden on mobile so the burger never gets pushed off-screen */
   .brand{letter-spacing:.14em}
-  nav ul{position:fixed;top:0;right:0;height:100vh;width:80%;max-width:330px;flex-direction:column;
+  nav > ul{position:fixed;top:0;right:0;height:100vh;width:80%;max-width:330px;flex-direction:column;
     justify-content:flex-start;align-items:flex-start;gap:0;background:#0e0d0d;padding:96px 48px 48px;
     transform:translateX(100%);transition:transform .6s var(--ease);z-index:60;box-shadow:-24px 0 70px rgba(0,0,0,.5)}
-  body.menu-open nav ul{transform:none}
-  nav ul{overflow-y:auto}
+  body.menu-open nav > ul{transform:none}
+  nav > ul{overflow-y:auto}
   nav a{font-size:17px;letter-spacing:.1em}
   nav > ul > li{width:100%}
   nav > ul > li > a{padding:11px 0;display:inline-flex}   /* uniform spacing for main items */
   .has-sub{width:100%}
-  .submenu{display:none;position:static;opacity:1;visibility:visible;transform:none;width:100%;
+  .submenu{display:none;position:static;height:auto;max-height:none;opacity:1;visibility:visible;transform:none;width:100%;
     margin:0;padding:2px 0 10px 16px;border:0;background:transparent;min-width:0;white-space:normal}
   .has-sub.open .submenu{display:block}
   .submenu a{padding:8px 0;font-size:15px;text-transform:none;letter-spacing:.03em;white-space:normal}
