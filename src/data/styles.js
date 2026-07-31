@@ -1,7 +1,7 @@
 // Every style is built. Galleries auto-populate from public/images/TattooStyle/<folder>.
 export const styles = [
   {
-    slug: 'realistic', built: true, folder: 'Realistic', artists: ['josef'],
+    slug: 'realistic', built: true, folder: 'Realistic', artists: ['josef'], hero: 'Realistic_Cover.webp',
     name: { de: 'Realistic', en: 'Realistic' },
     tagline: { de: 'Lebensechte Bilder mit feinsten Details', en: 'Creating lifelike images with fine details' },
     desc: {
@@ -10,7 +10,7 @@ export const styles = [
     },
   },
   {
-    slug: 'micro-realism', built: true, folder: 'MicroRealism', artists: ['cali', 'jvd'],
+    slug: 'micro-realism', built: true, folder: 'MicroRealism', artists: ['cali', 'jvd'], hero: 'MicroReal_Cover.webp',
     name: { de: 'Micro Realism', en: 'Micro Realism' },
     tagline: { de: 'Realismus verbunden mit kleinen Designs und geometrischen Formen', en: 'A blend of realism with small designs and geometric shapes' },
     desc: {
@@ -19,7 +19,7 @@ export const styles = [
     },
   },
   {
-    slug: 'fine-line', built: true, folder: 'FineLine', artists: ['cali', 'jvd'],
+    slug: 'fine-line', built: true, folder: 'FineLine', artists: ['cali', 'jvd'], hero: 'FineLine_Cover.webp',
     name: { de: 'Fine Line', en: 'Fine Line' },
     tagline: { de: 'Zarte, präzise Designs mit feinen Linien', en: 'Delicate and precise designs with thin lines' },
     desc: {
@@ -28,7 +28,7 @@ export const styles = [
     },
   },
   {
-    slug: 'maori', built: true, folder: 'Maori', artists: ['josef'],
+    slug: 'maori', built: true, folder: 'Maori', artists: ['josef'], hero: 'Maori_5.webp',
     name: { de: 'Maori', en: 'Maori' },
     tagline: { de: 'Kunstvolle Designs mit tiefer kultureller Bedeutung', en: 'Intricate designs with rich cultural meanings' },
     desc: {
@@ -37,7 +37,7 @@ export const styles = [
     },
   },
   {
-    slug: 'ornamental', built: true, folder: 'Ornamental', artists: ['josef'],
+    slug: 'ornamental', built: true, folder: 'Ornamental', artists: ['josef'], hero: 'Ornamental_Cover.webp',
     name: { de: 'Ornamental', en: 'Ornamental' },
     tagline: { de: 'Dekorative Designs mit atemberaubenden Details', en: 'Decorative designs with stunning details' },
     desc: {
@@ -46,7 +46,7 @@ export const styles = [
     },
   },
   {
-    slug: 'portraits', built: true, folder: 'Portrait', artists: ['josef'],
+    slug: 'portraits', built: true, folder: 'Portrait', artists: ['josef'], hero: 'Portrait_Cover.webp',
     name: { de: 'Portraits', en: 'Portraits' },
     tagline: { de: 'Lebensechte Darstellungen von Gesichtern und Persönlichkeiten', en: 'Lifelike depictions of faces and personalities' },
     desc: {

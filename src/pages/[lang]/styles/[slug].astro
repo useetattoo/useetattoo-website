@@ -18,13 +18,14 @@ const { lang } = Astro.params;
 const { style } = Astro.props;
 const L = t[lang];
 const imgs = gallery(`/images/TattooStyle/${style.folder}`, { exclude: ['Highlight'] });
+const heroImg = style.hero ? `/images/TattooStyle/${style.folder}/${style.hero}` : imgs[0];
 const featured = (style.artists || []).map((s) => artistsBySlug[s]).filter(Boolean);
 const primaryBook = featured[0]?.book;
 
 const title = `${style.name[lang]} Tattoos | UseeTattoo Studio – Berlin`;
 const description = style.desc[lang].slice(0, 155);
 ---
-<Base lang={lang} title={title} description={description} ogImage={imgs[0]}>
+<Base lang={lang} title={title} description={description} ogImage={heroImg}>
   <section class="detail-hero">
     <div class="wrap">
       <div class="s-feature">
@@ -45,7 +46,7 @@ const description = style.desc[lang].slice(0, 155);
           ))}
         </div>
         <div class="s-img reveal">
-          <img src={imgs[0]} alt={style.name[lang]} />
+          <img src={heroImg} alt={style.name[lang]} />
         </div>
       </div>
     </div>
