@@ -233,10 +233,12 @@ const c = {
         <h2 class="cu-h2">{c.sendTitle}</h2>
         <p class="cu-p">{c.send}</p>
         <p class="cu-form-sent" hidden>{c.sent}</p>
-        <form class="cu-form" name="cover-up" method="POST" data-netlify="true" netlify-honeypot="bot-field" enctype="multipart/form-data" action={`/${lang}/cover-up?sent=1`}>
-          <input type="hidden" name="form-name" value="cover-up" />
+        <form id="coverupForm" class="cu-form" method="POST" enctype="multipart/form-data" action="https://api.web3forms.com/submit">
+          <input type="hidden" name="access_key" value="3c230d18-5a06-494a-9786-6c0a58e1d5a0" />
+          <input type="hidden" name="subject" value="New website enquiry: Cover-up photos (useetattoo.com)" />
+          <input type="hidden" name="from_name" value="Usee Tattoo Website" />
           <input type="hidden" name="lang" value={lang} />
-          <p hidden><label>Don’t fill this out: <input name="bot-field" /></label></p>
+          <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" />
           <div class="cu-grid2">
             <label>{c.fName}<input type="text" name="name" required /></label>
             <label>{c.fEmail}<input type="email" name="email" required /></label>
@@ -323,9 +325,31 @@ const c = {
   </style>
 
   <script is:inline>
-    if (new URLSearchParams(location.search).has('sent')) {
-      var el = document.querySelector('.cu-form-sent');
-      if (el) { el.hidden = false; el.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
-    }
+    (function () {
+      var form = document.getElementById('coverupForm');
+      if (!form) return;
+      form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        var btn = form.querySelector('button[type="submit"]');
+        var original = btn ? btn.textContent : '';
+        if (btn) { btn.disabled = true; btn.textContent = '…'; }
+        try {
+          var res = await fetch(form.action, { method: 'POST', body: new FormData(form) });
+          var data = await res.json();
+          if (data.success) {
+            var el = document.querySelector('.cu-form-sent');
+            if (el) { el.hidden = false; el.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+            form.reset();
+            form.style.display = 'none';
+          } else {
+            if (btn) { btn.disabled = false; btn.textContent = original; }
+            alert('Something went wrong. Please email info@useetattoo.com directly.');
+          }
+        } catch (err) {
+          if (btn) { btn.disabled = false; btn.textContent = original; }
+          alert('Something went wrong. Please email info@useetattoo.com directly.');
+        }
+      });
+    })();
   </script>
 </Base>

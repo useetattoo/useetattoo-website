@@ -59,10 +59,12 @@ const c = {
       <div class="form-wrap reveal">
         <h2 class="form-title">{c.formTitle}</h2>
         <p class="form-sent" id="formSent" hidden>{c.sent}</p>
-        <form name="inquiry" method="POST" data-netlify="true" netlify-honeypot="bot-field" action={`/${lang}/contact?success=1`}>
-          <input type="hidden" name="form-name" value="inquiry" />
+        <form id="inquiryForm" method="POST" action="https://api.web3forms.com/submit">
+          <input type="hidden" name="access_key" value="3c230d18-5a06-494a-9786-6c0a58e1d5a0" />
+          <input type="hidden" name="subject" value="New website enquiry: Contact form (useetattoo.com)" />
+          <input type="hidden" name="from_name" value="Usee Tattoo Website" />
           <input type="hidden" name="lang" value={lang} />
-          <p hidden><label>Don’t fill this out: <input name="bot-field" /></label></p>
+          <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" />
           <div class="grid2">
             <label>{c.fName}<input type="text" name="name" required /></label>
             <label>{c.fEmail}<input type="email" name="email" required /></label>
@@ -88,10 +90,32 @@ const c = {
   </section>
 
   <script is:inline>
-    if (new URLSearchParams(location.search).has('success')) {
-      const el = document.getElementById('formSent');
-      if (el) { el.hidden = false; el.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
-    }
+    (function () {
+      var form = document.getElementById('inquiryForm');
+      if (!form) return;
+      form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        var btn = form.querySelector('button[type="submit"]');
+        var original = btn ? btn.textContent : '';
+        if (btn) { btn.disabled = true; btn.textContent = '…'; }
+        try {
+          var res = await fetch(form.action, { method: 'POST', body: new FormData(form) });
+          var data = await res.json();
+          if (data.success) {
+            var el = document.getElementById('formSent');
+            if (el) { el.hidden = false; el.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+            form.reset();
+            form.style.display = 'none';
+          } else {
+            if (btn) { btn.disabled = false; btn.textContent = original; }
+            alert('Something went wrong. Please email info@useetattoo.com directly.');
+          }
+        } catch (err) {
+          if (btn) { btn.disabled = false; btn.textContent = original; }
+          alert('Something went wrong. Please email info@useetattoo.com directly.');
+        }
+      });
+    })();
   </script>
 
   <style>
