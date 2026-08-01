@@ -55,7 +55,7 @@ export const styles = [
     },
   },
   {
-    slug: 'color', built: true, folder: 'Colour', artists: ['josef'],
+    slug: 'color', built: true, folder: 'Colour', artists: ['josef'], hero: 'Color_Cover.webp',
     name: { de: 'Color', en: 'Color' },
     tagline: { de: 'Lebendige, fließende Designs mit Farbakzenten', en: 'Vibrant and fluid designs with splashes of color' },
     desc: {
@@ -64,7 +64,7 @@ export const styles = [
     },
   },
   {
-    slug: 'dotwork', built: true, folder: 'DotWork', artists: ['josef'],
+    slug: 'dotwork', built: true, folder: 'DotWork', artists: ['josef'], hero: 'DotWork-8.webp',
     name: { de: 'DotWork', en: 'DotWork' },
     tagline: { de: 'Präzise Designs aus feinen, gleichmäßigen Punkten', en: 'A precise style built from small, uniform dots' },
     desc: {
