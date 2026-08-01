@@ -14,8 +14,13 @@ const L = t[lang];
 const base = `/${lang}`;
 
 // One example image per style for the homepage curtain tiles.
+// These styles reuse the same photo shown in their page hero.
+const heroForHome = new Set(['ornamental', 'dotwork', 'maori', 'fine-line']);
 const styleImg = Object.fromEntries(
-  styles.map((s) => [s.slug, gallery(`/images/TattooStyle/${s.folder}`, { exclude: ['Highlight'] })[0] || site.heroImage])
+  styles.map((s) => {
+    if (heroForHome.has(s.slug) && s.hero) return [s.slug, `/images/TattooStyle/${s.folder}/${s.hero}`];
+    return [s.slug, gallery(`/images/TattooStyle/${s.folder}`, { exclude: ['Highlight'] })[0] || site.heroImage];
+  })
 );
 
 const title = lang === 'de'

@@ -11,7 +11,7 @@ export const styles = [
   },
   {
     slug: 'micro-realism', built: true, folder: 'MicroRealism', artists: ['cali', 'jvd'], hero: 'MicroReal_Cover.webp',
-    name: { de: 'Micro Realism', en: 'Micro Realism' },
+    name: { de: 'Micro Realism/Conceptual', en: 'Micro Realism/Conceptual' },
     tagline: { de: 'Realismus verbunden mit kleinen Designs und geometrischen Formen', en: 'A blend of realism with small designs and geometric shapes' },
     desc: {
       de: 'Micro Realism ist ein innovativer Stil, der realistische Elemente mit kleinen, feinen Details, Linien und geometrischen Formen verbindet. Anders als klassische Realismus-Tattoos mit meist größeren Motiven geht es hier um filigrane, realistische Designs im kompakten Format. Häufig treffen realistische Bildsprache und geometrische Elemente aufeinander, klar, minimalistisch und nie überladen. Wer ein detailreiches Tattoo im kleineren Maßstab sucht, ist mit Micro Realism bestens beraten.',
