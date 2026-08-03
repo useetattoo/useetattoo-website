@@ -1,4 +1,5 @@
 ---
+import '../styles/fonts.css';
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
@@ -43,9 +44,6 @@ const og = ogImage || site.heroImage;
   <meta property="og:description" content={description} />
   <meta property="og:image" content={site.domain + og} />
   <meta name="twitter:card" content="summary_large_image" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
   <!-- Consent-gated Google Tag Manager (loads only after opt-in, per GDPR / § 25 TDDDG) -->
   <script is:inline>
     window.dataLayer = window.dataLayer || [];
