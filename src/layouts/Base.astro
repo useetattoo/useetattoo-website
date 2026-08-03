@@ -5,6 +5,20 @@ import Footer from '../components/Footer.astro';
 import { site } from '../data/site.js';
 
 const { lang = 'de', title, description, ogImage } = Astro.props;
+const ck = {
+  de: {
+    text: 'Wir verwenden Cookies. Technisch notwendige sind immer aktiv. Andere Dienste (z. B. Google Tag Manager, Google Maps) laden wir nur mit deiner Einwilligung. Mehr in unserer',
+    privacy: 'Datenschutzerklärung',
+    accept: 'Akzeptieren',
+    decline: 'Nur notwendige',
+  },
+  en: {
+    text: 'We use cookies. Technically necessary ones are always active. Other services (e.g. Google Tag Manager, Google Maps) are only loaded with your consent. More in our',
+    privacy: 'Privacy Policy',
+    accept: 'Accept',
+    decline: 'Only necessary',
+  },
+}[lang];
 const alt = lang === 'de' ? 'en' : 'de';
 const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
 const selfPath = pathname;
@@ -32,13 +46,55 @@ const og = ogImage || site.heroImage;
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
-  <!-- Google Tag Manager -->
-  <script is:inline>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-TFXZ2D2F');</script>
-  <!-- End Google Tag Manager -->
+  <!-- Consent-gated Google Tag Manager (loads only after opt-in, per GDPR / § 25 TDDDG) -->
+  <script is:inline>
+    window.dataLayer = window.dataLayer || [];
+    window.__loadGTM = function () {
+      if (window.__gtmLoaded) return; window.__gtmLoaded = true;
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-TFXZ2D2F');
+    };
+    try { if (localStorage.getItem('usee-cookie-consent') === 'granted') window.__loadGTM(); } catch (e) {}
+  </script>
+  <style is:global>
+    /* Cookie consent banner */
+    .cookie-banner{position:fixed;left:0;right:0;bottom:0;z-index:9000;background:var(--ink);color:var(--paper);
+      transform:translateY(110%);transition:transform .5s cubic-bezier(.22,1,.36,1);box-shadow:0 -8px 40px rgba(0,0,0,.25)}
+    .cookie-banner.show{transform:translateY(0)}
+    .ck-inner{max-width:1200px;margin:0 auto;padding:20px 28px;display:flex;align-items:center;gap:28px;flex-wrap:wrap;justify-content:space-between}
+    .ck-text{font-family:'Inter',sans-serif;font-size:13.5px;line-height:1.6;margin:0;max-width:820px;color:rgba(255,255,255,.86)}
+    .ck-text a{color:var(--paper);text-decoration:underline;text-underline-offset:2px}
+    .ck-actions{display:flex;gap:12px;flex-shrink:0}
+    .ck-btn{font-family:'Inter',sans-serif;font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:12px 22px;border:1px solid rgba(255,255,255,.4);
+      background:transparent;color:var(--paper);cursor:pointer;border-radius:0;transition:all .3s var(--ease)}
+    .ck-btn:hover{border-color:var(--paper)}
+    .ck-accept{background:var(--paper);color:var(--ink);border-color:var(--paper);font-weight:600}
+    .ck-accept:hover{background:var(--bronze);border-color:var(--bronze);color:var(--ink)}
+    @media(max-width:640px){.ck-inner{padding:16px 18px;gap:14px}.ck-actions{width:100%}.ck-btn{flex:1;padding:12px 10px}}
+    /* Footer legal links */
+    .foot-legal{display:inline-flex;align-items:center;gap:10px;flex-wrap:wrap}
+    .foot-legal a,.cookie-settings-link{color:inherit;opacity:.75;transition:opacity .3s var(--ease)}
+    .foot-legal a:hover,.cookie-settings-link:hover{opacity:1}
+    .cookie-settings-link{background:none;border:0;padding:0;font:inherit;cursor:pointer;text-decoration:underline;text-underline-offset:2px}
+    /* Legal pages */
+    .legal-page{padding-top:140px}
+    .legal-wrap{max-width:820px;margin:0 auto}
+    .legal-wrap h1{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(38px,6vw,60px);line-height:1.05;margin:12px 0 28px}
+    .legal-wrap h2{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(21px,3vw,27px);margin:38px 0 12px;color:var(--ink)}
+    .legal-wrap p{font-family:'Inter',sans-serif;font-size:15.5px;line-height:1.8;color:var(--ink-soft);margin:0 0 14px}
+    .legal-wrap a{color:var(--bronze-dk);text-decoration:underline;text-underline-offset:2px;word-break:break-word}
+    .legal-wrap .lg-block{color:var(--ink)}
+    .legal-wrap .lg-lead{font-size:17px;color:var(--ink)}
+    .legal-wrap .lg-stand{font-size:13px;color:var(--bronze-dk);margin-bottom:8px}
+    .legal-wrap .lg-note{margin-top:34px;padding-top:20px;border-top:1px solid var(--line);font-size:14px}
+    /* Consent-gated embeds (e.g. Google Maps) */
+    .consent-embed{position:relative}
+    .consent-embed .consent-ph{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;
+      text-align:center;padding:24px;background:var(--paper-2);border:1px solid var(--line)}
+    .consent-embed .consent-ph p{font-family:'Inter',sans-serif;font-size:13.5px;color:var(--ink-soft);max-width:360px;margin:0;line-height:1.6}
+    .consent-embed.loaded .consent-ph{display:none}
+  </style>
 </head>
 <body class={lang}>
-  <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TFXZ2D2F" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <div id="page-loader"><span class="pl-mark">Usee<span>·</span>Tattoo</span></div>
   <div class="backdrop" id="backdrop"></div>
   <Header lang={lang} altPath={altPath} altLabel={alt.toUpperCase()} />
@@ -46,6 +102,46 @@ const og = ogImage || site.heroImage;
     <slot />
   </main>
   <Footer lang={lang} />
+
+  <div class="cookie-banner" id="cookieBanner" role="dialog" aria-label="Cookie" hidden>
+    <div class="ck-inner">
+      <p class="ck-text">{ck.text} <a href={`/${lang}/datenschutz`}>{ck.privacy}</a>.</p>
+      <div class="ck-actions">
+        <button type="button" class="ck-btn ck-decline" data-consent="denied">{ck.decline}</button>
+        <button type="button" class="ck-btn ck-accept" data-consent="granted">{ck.accept}</button>
+      </div>
+    </div>
+  </div>
+
+  <script is:inline>
+    (function () {
+      var KEY = 'usee-cookie-consent';
+      var banner = document.getElementById('cookieBanner');
+      function getV(){ try { return localStorage.getItem(KEY); } catch (e) { return null; } }
+      function loadEmbeds(){
+        document.querySelectorAll('iframe[data-consent-src]').forEach(function (f) {
+          if (!f.getAttribute('src')) f.setAttribute('src', f.getAttribute('data-consent-src'));
+          var box = f.closest('.consent-embed'); if (box) box.classList.add('loaded');
+        });
+      }
+      function apply(v){ if (v === 'granted') { if (window.__loadGTM) window.__loadGTM(); loadEmbeds(); } }
+      function hide(){ if (banner) { banner.classList.remove('show'); banner.hidden = true; } }
+      function show(){ if (banner) { banner.hidden = false; requestAnimationFrame(function(){ banner.classList.add('show'); }); } }
+      function setV(v){ try { localStorage.setItem(KEY, v); } catch (e) {} hide(); apply(v); }
+      var cur = getV();
+      if (cur === 'granted') apply('granted');
+      else if (cur !== 'denied') show();
+      if (banner) banner.querySelectorAll('[data-consent]').forEach(function (b) {
+        b.addEventListener('click', function () { setV(b.getAttribute('data-consent')); });
+      });
+      document.querySelectorAll('[data-cookie-settings]').forEach(function (el) {
+        el.addEventListener('click', function (e) { e.preventDefault(); show(); });
+      });
+      document.querySelectorAll('[data-load-embeds]').forEach(function (el) {
+        el.addEventListener('click', function (e) { e.preventDefault(); setV('granted'); });
+      });
+    })();
+  </script>
 
   <div class="floating-contact">
     <a class="fab call" href={site.phone.href} aria-label={lang === 'de' ? 'Anrufen' : 'Call'} title={lang === 'de' ? 'Anrufen' : 'Call'}>

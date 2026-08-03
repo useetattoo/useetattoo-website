@@ -1,0 +1,136 @@
+---
+import Base from '../../layouts/Base.astro';
+import { langs } from '../../data/i18n.js';
+import { site } from '../../data/site.js';
+
+export function getStaticPaths() {
+  return langs.map((lang) => ({ params: { lang } }));
+}
+const { lang } = Astro.params;
+
+const updated = '2. August 2026';
+const updatedEn = '2 August 2026';
+
+const c = {
+  de: {
+    title: 'Datenschutzerklärung | UseeTattoo Studio – Berlin',
+    description: 'Datenschutzerklärung von Usee Tattoo Berlin: Informationen zur Verarbeitung personenbezogener Daten gemäß DSGVO.',
+    eyebrow: 'Rechtliches',
+    h1: 'Datenschutzerklärung',
+    intro: 'Der Schutz deiner personenbezogenen Daten ist uns wichtig. Nachfolgend informieren wir dich gemäß der Datenschutz-Grundverordnung (DSGVO) und dem Telekommunikation-Digitale-Dienste-Datenschutz-Gesetz (TDDDG) darüber, welche Daten wir erheben und wie wir mit ihnen umgehen.',
+    stand: 'Stand: ' + updated,
+    sections: [
+      { h: '1. Verantwortlicher', body: [
+        'Verantwortlich für die Datenverarbeitung auf dieser Website ist:',
+        'Usee Tattoo, Inhaber Yousef Ahmadi Jamdar<br />' + site.address.street + '<br />' + site.address.zip + ' ' + site.address.city + ', Deutschland<br />Telefon: ' + site.phone.display + '<br />E-Mail: ' + site.email.secondary,
+      ]},
+      { h: '2. Deine Rechte', body: [
+        'Du hast jederzeit das Recht auf Auskunft (Art. 15 DSGVO), Berichtigung (Art. 16 DSGVO), Löschung (Art. 17 DSGVO), Einschränkung der Verarbeitung (Art. 18 DSGVO), Datenübertragbarkeit (Art. 20 DSGVO) sowie das Recht auf Widerspruch gegen die Verarbeitung (Art. 21 DSGVO). Eine erteilte Einwilligung kannst du jederzeit mit Wirkung für die Zukunft widerrufen.',
+        'Zur Ausübung deiner Rechte genügt eine Nachricht an die oben genannten Kontaktdaten.',
+      ]},
+      { h: '3. Beschwerderecht bei der Aufsichtsbehörde', body: [
+        'Dir steht ein Beschwerderecht bei einer Datenschutz-Aufsichtsbehörde zu. Zuständig ist die Berliner Beauftragte für Datenschutz und Informationsfreiheit, Alt-Moabit 59-61, 10555 Berlin (www.datenschutz-berlin.de).',
+      ]},
+      { h: '4. Hosting', body: [
+        'Diese Website wird bei Cloudflare gehostet (Cloudflare, Inc., 101 Townsend St, San Francisco, CA 94107, USA, sowie Cloudflare Germany GmbH). Cloudflare verarbeitet in unserem Auftrag Daten, die beim Aufruf der Website automatisch übertragen werden, und stellt Content-Delivery- und Sicherheitsfunktionen bereit. Rechtsgrundlage ist unser berechtigtes Interesse an einem sicheren und effizienten Betrieb der Website (Art. 6 Abs. 1 lit. f DSGVO). Mit Cloudflare besteht ein Auftragsverarbeitungsvertrag. Eine Übermittlung in die USA erfolgt auf Grundlage der EU-Standardvertragsklauseln bzw. des EU-US Data Privacy Framework.',
+      ]},
+      { h: '5. Server-Logfiles', body: [
+        'Beim Aufruf der Website werden automatisch Informationen in sogenannten Server-Logfiles gespeichert, die dein Browser übermittelt: Browsertyp und -version, verwendetes Betriebssystem, Referrer-URL, Hostname des zugreifenden Rechners, Uhrzeit der Serveranfrage und die IP-Adresse. Diese Daten werden nicht mit anderen Datenquellen zusammengeführt. Die Erfassung erfolgt zur Gewährleistung eines störungsfreien Betriebs und der Sicherheit (Art. 6 Abs. 1 lit. f DSGVO).',
+      ]},
+      { h: '6. Cookies und Einwilligung', body: [
+        'Unsere Website verwendet technisch notwendige Elemente sowie – nur nach deiner ausdrücklichen Einwilligung – Dienste, die Cookies oder vergleichbare Technologien einsetzen (insbesondere Google Tag Manager sowie eingebettete Karten von Google Maps). Beim ersten Besuch fragen wir über ein Einwilligungs-Banner deine Zustimmung ab. Ohne deine Einwilligung werden diese Dienste nicht geladen. Rechtsgrundlage für den Einsatz einwilligungspflichtiger Dienste ist Art. 6 Abs. 1 lit. a DSGVO in Verbindung mit § 25 Abs. 1 TDDDG. Deine Auswahl kannst du über den Link „Cookie-Einstellungen" im Seitenfuß jederzeit ändern oder widerrufen.',
+      ]},
+      { h: '7. Google Tag Manager', body: [
+        'Nach deiner Einwilligung nutzen wir den Google Tag Manager der Google Ireland Limited (Gordon House, Barrow Street, Dublin 4, Irland). Der Tag Manager dient dazu, Website-Tags zentral zu verwalten. Das Tool selbst erstellt keine Nutzerprofile, kann jedoch weitere Tags auslösen, die ihrerseits Daten erfassen. Der Einsatz erfolgt ausschließlich auf Grundlage deiner Einwilligung (Art. 6 Abs. 1 lit. a DSGVO, § 25 Abs. 1 TDDDG).',
+      ]},
+      { h: '8. Google Fonts', body: [
+        'Zur einheitlichen Darstellung von Schriftarten binden wir Schriftarten von Google Fonts ein. Beim Aufruf einer Seite lädt dein Browser die benötigten Schriften von Servern der Google Ireland Limited, wobei deine IP-Adresse übermittelt wird. Rechtsgrundlage ist unser berechtigtes Interesse an einer einheitlichen und ansprechenden Darstellung (Art. 6 Abs. 1 lit. f DSGVO).',
+      ]},
+      { h: '9. Google Maps', body: [
+        'Auf unserer Kontaktseite binden wir – nach deiner Einwilligung – Karten des Dienstes Google Maps der Google Ireland Limited ein, um dir unseren Standort zu zeigen. Dabei können Daten wie deine IP-Adresse an Google übertragen und Cookies gesetzt werden. Rechtsgrundlage ist deine Einwilligung (Art. 6 Abs. 1 lit. a DSGVO, § 25 Abs. 1 TDDDG). Weitere Informationen findest du in der Datenschutzerklärung von Google: https://policies.google.com/privacy',
+      ]},
+      { h: '10. Kontaktaufnahme und Formulare', body: [
+        'Wenn du uns über das Kontakt- oder Cover-Up-Formular oder per E-Mail kontaktierst, verarbeiten wir die von dir angegebenen Daten (z. B. Name, E-Mail-Adresse, Telefonnummer, Nachricht sowie ggf. hochgeladene Fotos), um deine Anfrage zu bearbeiten. Der Versand der Formulare erfolgt über den Dienstleister Web3Forms (BackND Web Services LLP), der die Daten in unserem Auftrag verarbeitet und an unsere E-Mail-Adresse weiterleitet. Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO (vorvertragliche Maßnahmen) bzw. lit. f DSGVO (Bearbeitung deiner Anfrage). Die Daten werden gelöscht, sobald sie für die Zweckerreichung nicht mehr erforderlich sind und keine gesetzlichen Aufbewahrungspflichten entgegenstehen.',
+      ]},
+      { h: '11. Online-Terminbuchung', body: [
+        'Für die Buchung von Terminen verlinken wir auf externe Buchungsdienste (z. B. Fresha). Die Datenverarbeitung erfolgt dort in eigener Verantwortung des jeweiligen Anbieters nach dessen Datenschutzbestimmungen.',
+      ]},
+      { h: '12. Social Media', body: [
+        'Unsere Website enthält Verlinkungen zu unseren Profilen bei Instagram, TikTok, Facebook und Pinterest. Erst mit Klick auf einen dieser Links wirst du zum jeweiligen Netzwerk weitergeleitet; für deren Datenverarbeitung gelten die Datenschutzbestimmungen des jeweiligen Anbieters.',
+      ]},
+      { h: '13. SSL-/TLS-Verschlüsselung', body: [
+        'Diese Seite nutzt aus Sicherheitsgründen und zum Schutz der Übertragung vertraulicher Inhalte eine SSL-/TLS-Verschlüsselung. Eine verschlüsselte Verbindung erkennst du am „https://" in der Adresszeile deines Browsers.',
+      ]},
+    ],
+  },
+  en: {
+    title: 'Privacy Policy | UseeTattoo Studio – Berlin',
+    description: 'Privacy Policy of Usee Tattoo Berlin: information about the processing of personal data under the GDPR.',
+    eyebrow: 'Legal',
+    h1: 'Privacy Policy',
+    intro: 'The protection of your personal data is important to us. Below we inform you, in accordance with the General Data Protection Regulation (GDPR), which data we collect and how we handle it.',
+    stand: 'Last updated: ' + updatedEn,
+    sections: [
+      { h: '1. Controller', body: [
+        'The party responsible for data processing on this website is:',
+        'Usee Tattoo, owner Yousef Ahmadi Jamdar<br />' + site.address.street + '<br />' + site.address.zip + ' ' + site.address.city + ', Germany<br />Phone: ' + site.phone.display + '<br />Email: ' + site.email.secondary,
+      ]},
+      { h: '2. Your rights', body: [
+        'You have the right at any time to information (Art. 15 GDPR), rectification (Art. 16 GDPR), erasure (Art. 17 GDPR), restriction of processing (Art. 18 GDPR), data portability (Art. 20 GDPR) and the right to object to processing (Art. 21 GDPR). You may withdraw any consent given at any time with effect for the future.',
+        'To exercise your rights, a message to the contact details above is sufficient.',
+      ]},
+      { h: '3. Right to lodge a complaint', body: [
+        'You have the right to lodge a complaint with a data protection supervisory authority. The competent authority is the Berlin Commissioner for Data Protection and Freedom of Information, Alt-Moabit 59-61, 10555 Berlin (www.datenschutz-berlin.de).',
+      ]},
+      { h: '4. Hosting', body: [
+        'This website is hosted by Cloudflare (Cloudflare, Inc., 101 Townsend St, San Francisco, CA 94107, USA, and Cloudflare Germany GmbH). On our behalf, Cloudflare processes data automatically transmitted when the website is accessed and provides content-delivery and security functions. The legal basis is our legitimate interest in the secure and efficient operation of the website (Art. 6 (1)(f) GDPR). A data processing agreement is in place with Cloudflare. Any transfer to the USA takes place on the basis of the EU standard contractual clauses or the EU-US Data Privacy Framework.',
+      ]},
+      { h: '5. Server log files', body: [
+        'When you access the website, information is automatically stored in so-called server log files that your browser transmits: browser type and version, operating system used, referrer URL, host name of the accessing computer, time of the server request and the IP address. This data is not merged with other data sources. Collection takes place to ensure trouble-free operation and security (Art. 6 (1)(f) GDPR).',
+      ]},
+      { h: '6. Cookies and consent', body: [
+        'Our website uses technically necessary elements and – only with your explicit consent – services that use cookies or comparable technologies (in particular Google Tag Manager and embedded Google Maps). On your first visit, we ask for your consent via a consent banner. Without your consent, these services are not loaded. The legal basis for the use of consent-based services is Art. 6 (1)(a) GDPR in conjunction with § 25 (1) TDDDG. You can change or withdraw your choice at any time via the "Cookie settings" link in the footer.',
+      ]},
+      { h: '7. Google Tag Manager', body: [
+        'With your consent, we use Google Tag Manager provided by Google Ireland Limited (Gordon House, Barrow Street, Dublin 4, Ireland). The Tag Manager is used to centrally manage website tags. The tool itself does not create user profiles, but it can trigger additional tags that in turn collect data. It is used exclusively on the basis of your consent (Art. 6 (1)(a) GDPR, § 25 (1) TDDDG).',
+      ]},
+      { h: '8. Google Fonts', body: [
+        'To display fonts consistently, we embed fonts from Google Fonts. When you access a page, your browser loads the required fonts from servers of Google Ireland Limited, transmitting your IP address. The legal basis is our legitimate interest in a uniform and appealing presentation (Art. 6 (1)(f) GDPR).',
+      ]},
+      { h: '9. Google Maps', body: [
+        'On our contact page, with your consent, we embed maps from the Google Maps service of Google Ireland Limited to show you our location. Data such as your IP address may be transmitted to Google and cookies may be set. The legal basis is your consent (Art. 6 (1)(a) GDPR, § 25 (1) TDDDG). Further information can be found in Google\'s privacy policy: https://policies.google.com/privacy',
+      ]},
+      { h: '10. Contact and forms', body: [
+        'If you contact us via the contact or cover-up form or by email, we process the data you provide (e.g. name, email address, telephone number, message and any uploaded photos) in order to handle your request. The forms are sent via the service provider Web3Forms (BackND Web Services LLP), which processes the data on our behalf and forwards it to our email address. The legal basis is Art. 6 (1)(b) GDPR (pre-contractual measures) or (f) GDPR (handling your request). The data is deleted as soon as it is no longer required to achieve the purpose and no statutory retention obligations prevent this.',
+      ]},
+      { h: '11. Online appointment booking', body: [
+        'For booking appointments, we link to external booking services (e.g. Fresha). Data processing there takes place under the sole responsibility of the respective provider in accordance with its privacy policy.',
+      ]},
+      { h: '12. Social media', body: [
+        'Our website contains links to our profiles on Instagram, TikTok, Facebook and Pinterest. Only when you click on one of these links are you redirected to the respective network; the privacy policies of the respective provider apply to their data processing.',
+      ]},
+      { h: '13. SSL/TLS encryption', body: [
+        'For security reasons and to protect the transmission of confidential content, this site uses SSL/TLS encryption. You can recognise an encrypted connection by the "https://" in your browser\'s address bar.',
+      ]},
+    ],
+  },
+}[lang];
+---
+<Base lang={lang} title={c.title} description={c.description}>
+  <section class="detail-hero legal-page">
+    <div class="wrap">
+      <div class="legal-wrap reveal">
+        <div class="eyebrow">{c.eyebrow}</div>
+        <h1>{c.h1}</h1>
+        <p class="lg-lead">{c.intro}</p>
+        <p class="lg-stand">{c.stand}</p>
+        {c.sections.map((s) => (
+          <Fragment>
+            <h2>{s.h}</h2>
+            {s.body.map((p) => <p set:html={p}></p>)}
+          </Fragment>
+        ))}
+      </div>
+    </div>
+  </section>
+</Base>

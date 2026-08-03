@@ -1,0 +1,112 @@
+---
+import Base from '../../layouts/Base.astro';
+import { langs } from '../../data/i18n.js';
+import { site } from '../../data/site.js';
+
+export function getStaticPaths() {
+  return langs.map((lang) => ({ params: { lang } }));
+}
+const { lang } = Astro.params;
+
+const c = {
+  de: {
+    title: 'Impressum | UseeTattoo Studio – Berlin',
+    description: 'Impressum und Anbieterkennzeichnung von Usee Tattoo, Neue Kantstraße 6, 14057 Berlin.',
+    eyebrow: 'Rechtliches',
+    h1: 'Impressum',
+    tmg: 'Angaben gemäß § 5 DDG (Digitale-Dienste-Gesetz)',
+    ownerLabel: 'Inhaber',
+    contactTitle: 'Kontakt',
+    phone: 'Telefon',
+    mobile: 'Mobil',
+    email: 'E-Mail',
+    vatTitle: 'Umsatzsteuer-Identifikationsnummer',
+    vatText: 'Umsatzsteuer-Identifikationsnummer gemäß § 27a Umsatzsteuergesetz:',
+    respTitle: 'Verantwortlich für den Inhalt nach § 18 Abs. 2 MStV',
+    disputeTitle: 'Verbraucherstreitbeilegung / Universalschlichtungsstelle',
+    disputeText: 'Wir sind nicht bereit und nicht verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle teilzunehmen.',
+    liabTitle: 'Haftung für Inhalte',
+    liab: 'Als Diensteanbieter sind wir für eigene Inhalte auf diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Wir sind jedoch nicht verpflichtet, übermittelte oder gespeicherte fremde Informationen zu überwachen oder nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen. Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben hiervon unberührt. Eine diesbezügliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis einer konkreten Rechtsverletzung möglich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen werden wir diese Inhalte umgehend entfernen.',
+    linkTitle: 'Haftung für Links',
+    link: 'Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Links umgehend entfernen.',
+    copyTitle: 'Urheberrecht',
+    copy: 'Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung außerhalb der Grenzen des Urheberrechtes bedürfen der schriftlichen Zustimmung des jeweiligen Autors bzw. Erstellers. Downloads und Kopien dieser Seite sind nur für den privaten, nicht kommerziellen Gebrauch gestattet.',
+    privacyNote: 'Informationen zum Umgang mit personenbezogenen Daten findest du in unserer',
+    privacyLink: 'Datenschutzerklärung',
+  },
+  en: {
+    title: 'Imprint | UseeTattoo Studio – Berlin',
+    description: 'Imprint and provider identification for Usee Tattoo, Neue Kantstraße 6, 14057 Berlin.',
+    eyebrow: 'Legal',
+    h1: 'Imprint',
+    tmg: 'Information pursuant to § 5 DDG (German Digital Services Act)',
+    ownerLabel: 'Owner',
+    contactTitle: 'Contact',
+    phone: 'Phone',
+    mobile: 'Mobile',
+    email: 'Email',
+    vatTitle: 'VAT identification number',
+    vatText: 'VAT identification number pursuant to § 27a of the German VAT Act:',
+    respTitle: 'Responsible for content pursuant to § 18 (2) MStV',
+    disputeTitle: 'Consumer dispute resolution',
+    disputeText: 'We are neither willing nor obliged to take part in dispute resolution proceedings before a consumer arbitration board.',
+    liabTitle: 'Liability for content',
+    liab: 'As a service provider, we are responsible for our own content on these pages in accordance with general legislation. However, we are not obliged to monitor transmitted or stored third-party information or to investigate circumstances that indicate illegal activity. Obligations to remove or block the use of information under general law remain unaffected. Liability in this respect is only possible from the point in time at which we become aware of a specific infringement. If we become aware of any such infringements, we will remove the content in question immediately.',
+    linkTitle: 'Liability for links',
+    link: 'Our website contains links to external third-party websites over whose content we have no influence. Therefore, we cannot accept any liability for this external content. The respective provider or operator of the linked pages is always responsible for their content. If we become aware of any legal violations, we will remove such links immediately.',
+    copyTitle: 'Copyright',
+    copy: 'The content and works created by the site operators on these pages are subject to German copyright law. Duplication, processing, distribution and any form of exploitation beyond the limits of copyright require the written consent of the respective author or creator. Downloads and copies of this page are only permitted for private, non-commercial use.',
+    privacyNote: 'Information on how we handle personal data can be found in our',
+    privacyLink: 'Privacy Policy',
+  },
+}[lang];
+---
+<Base lang={lang} title={c.title} description={c.description}>
+  <section class="detail-hero legal-page">
+    <div class="wrap">
+      <div class="legal-wrap reveal">
+        <div class="eyebrow">{c.eyebrow}</div>
+        <h1>{c.h1}</h1>
+
+        <h2>{c.tmg}</h2>
+        <p class="lg-block">
+          Usee Tattoo<br />
+          {c.ownerLabel}: Yousef Ahmadi Jamdar<br />
+          {site.address.street}<br />
+          {site.address.zip} {site.address.city}<br />
+          {lang === 'de' ? 'Deutschland' : 'Germany'}
+        </p>
+
+        <h2>{c.contactTitle}</h2>
+        <p class="lg-block">
+          {c.phone}: <a href={site.phone.href}>{site.phone.display}</a><br />
+          {c.mobile}: <a href={site.mobile.href}>{site.mobile.display}</a><br />
+          {c.email}: <a href={`mailto:${site.email.secondary}`}>{site.email.secondary}</a>
+        </p>
+
+        <h2>{c.vatTitle}</h2>
+        <p class="lg-block">{c.vatText}<br />DE334217010</p>
+
+        <h2>{c.respTitle}</h2>
+        <p class="lg-block">
+          Yousef Ahmadi Jamdar<br />
+          {site.address.street}, {site.address.zip} {site.address.city}
+        </p>
+
+        <h2>{c.disputeTitle}</h2>
+        <p>{c.disputeText}</p>
+
+        <h2>{c.liabTitle}</h2>
+        <p>{c.liab}</p>
+
+        <h2>{c.linkTitle}</h2>
+        <p>{c.link}</p>
+
+        <h2>{c.copyTitle}</h2>
+        <p>{c.copy}</p>
+
+        <p class="lg-note">{c.privacyNote} <a href={`/${lang}/datenschutz`}>{c.privacyLink}</a>.</p>
+      </div>
+    </div>
+  </section>
+</Base>

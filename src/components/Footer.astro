@@ -51,7 +51,13 @@ const year = new Date().getFullYear();
     </div>
     <div class="foot-bot">
       <span>© {year} Usee Tattoo · {site.address.street}, {site.address.city}</span>
-      <span>{L.legal}</span>
+      <span class="foot-legal">
+        <a href={`${base}/impressum`}>{lang === 'de' ? 'Impressum' : 'Imprint'}</a>
+        <span aria-hidden="true">·</span>
+        <a href={`${base}/datenschutz`}>{lang === 'de' ? 'Datenschutz' : 'Privacy Policy'}</a>
+        <span aria-hidden="true">·</span>
+        <button type="button" class="cookie-settings-link" data-cookie-settings>{lang === 'de' ? 'Cookie-Einstellungen' : 'Cookie settings'}</button>
+      </span>
     </div>
   </div>
 </footer>

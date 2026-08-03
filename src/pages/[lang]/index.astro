@@ -230,9 +230,13 @@ const homeGallery = [
       </div>
     </div>
     <div class="wrap" style="margin-top:64px">
-      <div class="map reveal">
+      <div class="map reveal consent-embed">
         <iframe loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Usee Tattoo, Neue Kantstraße 6, Berlin"
-          src={`https://www.google.com/maps?q=${site.mapQuery}&output=embed`}></iframe>
+          data-consent-src={`https://www.google.com/maps?q=${site.mapQuery}&output=embed`}></iframe>
+        <div class="consent-ph">
+          <p>{lang === 'de' ? 'Zum Anzeigen der Karte werden Cookies von Google Maps gesetzt.' : 'Showing the map sets cookies from Google Maps.'}</p>
+          <button type="button" class="cta ghost" style="border-color:var(--ink);color:var(--ink)" data-load-embeds>{lang === 'de' ? 'Karte laden' : 'Load map'}</button>
+        </div>
       </div>
     </div>
   </section>
