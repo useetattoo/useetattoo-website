@@ -1,0 +1,5 @@
+# Usee Tattoo — robots.txt
+User-agent: *
+Allow: /
+
+Sitemap: https://useetattoo.com/sitemap.xml
