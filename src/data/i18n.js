@@ -3,7 +3,7 @@ export const langs = ['de', 'en'];
 export const t = {
   de: {
     label: 'Deutsch',
-    nav: { home: 'Start', artists: 'Artists', styles: 'Stile', services: 'Services', walkin: 'Walk-In', piercing: 'Piercing', coverup: 'Cover-up', events: 'Events', about: 'Über', faq: 'FAQ', contact: 'Kontakt' },
+    nav: { home: 'Start', artists: 'Artists', styles: 'Stile', services: 'Services', consultation: 'Beratung', walkin: 'Walk-In', piercing: 'Piercing', coverup: 'Cover-up', events: 'Events', about: 'Über', faq: 'FAQ', contact: 'Kontakt' },
     navGuestArtists: 'Guest Artists', navPastEvents: 'Vergangene Events',
     book: 'Beratung',
     bookConsult: 'Beratung buchen',
@@ -37,6 +37,9 @@ export const t = {
     piercingEyebrow: 'Piercing', piercingTitle: 'Piercing<br>in Berlin',
     piercingText: 'Sterile Einwegnadeln, hochwertiger Schmuck und eine ehrliche Beratung vor jedem Termin. Von Ohr über Gesicht bis Body, sorgfältig gesetzt und für die Dauer gemacht. Jedes Piercing setzt Nana, unsere Piercing-Spezialistin, nie mit einer Gun. Piercings ab 50 €, der erste Schmuckwechsel ist gratis.',
     piercingBtn: 'Piercing buchen', piercingMore: 'Zur Piercing-Seite →',
+    consultEyebrow: 'Beratung', consultTitle: 'Tattoo<br>Beratung',
+    consultText: 'Große Projekte, ganze Sleeves, Black-&-Grey-Realismus, Micro-Realismus, Maori, werden nicht online gebucht. Sie beginnen mit einer kostenlosen Beratung, in der dein Artist das Motiv um deinen Körper, deine Geschichte und deine Anatomie herum entwirft, nie aus einer Vorlage vergrößert. Du gehst mit einer klaren kreativen Richtung, einer Live-Skizze, einem Preisrahmen und einem Sitzungsplan. Ob persönlich oder online, ihr bleibt bis zum Tattoo-Tag in direktem Kontakt.',
+    consultBtn: 'Beratung buchen', consultMore: 'Zur Beratungs-Seite →',
     footStudio: 'Studio', footFollow: 'Folgen',
     legal: 'Impressum · Datenschutz',
     bookNow: 'Jetzt buchen', portfolio: 'Portfolio',
@@ -49,7 +52,7 @@ export const t = {
   },
   en: {
     label: 'English',
-    nav: { home: 'Home', artists: 'Artists', styles: 'Styles', services: 'Services', walkin: 'Walk-In', piercing: 'Piercing', coverup: 'Cover-up', events: 'Events', about: 'About', faq: 'FAQ', contact: 'Contact' },
+    nav: { home: 'Home', artists: 'Artists', styles: 'Styles', services: 'Services', consultation: 'Consultation', walkin: 'Walk-In', piercing: 'Piercing', coverup: 'Cover-up', events: 'Events', about: 'About', faq: 'FAQ', contact: 'Contact' },
     navGuestArtists: 'Guest Artists', navPastEvents: 'Past Events',
     book: 'Book',
     bookConsult: 'Book a consultation',
@@ -83,6 +86,9 @@ export const t = {
     piercingEyebrow: 'Piercing', piercingTitle: 'Piercing<br>in Berlin',
     piercingText: 'Sterile single-use needles, high-quality jewelry and an honest consultation before every appointment. From ear to face to body, placed with care and made to last. Every piercing is done by Nana, our piercing specialist, never with a gun. Piercings start at €50, and your first jewelry change is free.',
     piercingBtn: 'Book a piercing', piercingMore: 'Visit the piercing page →',
+    consultEyebrow: 'Consultation', consultTitle: 'Tattoo<br>Consultation',
+    consultText: "Large projects, full sleeves, black & grey realism, micro-realism, Maori, aren't booked online. They start with a free consultation where your artist designs the piece around your body, your story and your anatomy, never resized from a reference. You leave with a clear creative direction, a live sketch, a price estimate and a session plan. Whether you start in person or online, you stay in direct contact with your artist right up to your tattoo day.",
+    consultBtn: 'Book a consultation', consultMore: 'About the consultation →',
     footStudio: 'Studio', footFollow: 'Follow',
     legal: 'Imprint · Privacy',
     bookNow: 'Book now', portfolio: 'Portfolio',

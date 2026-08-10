@@ -45,6 +45,7 @@ const homeGallery = [
   <!-- HERO -->
   <section class="hero" style={`--hero:url('${site.heroImage}')`}>
     <div class="hero-inner">
+      <img class="hero-logo" src="/images/brand/LOGO_white_TransparentBG.png" alt="Usee Tattoo" width="80" height="105" />
       <div class="kicker">{L.kicker}</div>
       <h1 set:html={L.heroTitle}></h1>
       <p class="lede">{L.heroLede}</p>
@@ -120,6 +121,24 @@ const homeGallery = [
         {homeGallery.map((src) => (
           <div class="cell"><img src={src} alt="" loading="lazy" /></div>
         ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CONSULTATION -->
+  <section id="consultation-home" class="artists">
+    <div class="wrap">
+      <div class="events-row home-ev-row reveal">
+        <div class="txt">
+          <div class="eyebrow">{L.consultEyebrow}</div>
+          <h2 set:html={L.consultTitle}></h2>
+          <p>{L.consultText}</p>
+          <div class="cta-row" style="align-items:center;gap:24px;flex-wrap:wrap">
+            <a class="cta primary" style="background:var(--ink);color:var(--paper)" href={site.booking.consultation} target="_blank" rel="noopener">{L.consultBtn}</a>
+            <a class="link-underline" href={`${base}/consultation`}>{L.consultMore}</a>
+          </div>
+        </div>
+        <div class="ph"><img src="/images/consultation/Consultation.webp" alt="Tattoo consultation at Usee Tattoo" loading="lazy" /></div>
       </div>
     </div>
   </section>
@@ -240,4 +259,9 @@ const homeGallery = [
       </div>
     </div>
   </section>
+
+  <style>
+    .hero-logo{display:block;height:82px;width:auto;margin:0 auto 26px;opacity:.96}
+    @media(max-width:640px){ .hero-logo{height:60px;margin-bottom:18px} }
+  </style>
 </Base>

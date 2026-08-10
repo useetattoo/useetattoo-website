@@ -5,7 +5,7 @@ export const artists = [
     portrait: '/images/artists/Josef-Profile.webp',
     folder: 'Josef',
     book: 'https://book.useetattoo.com/josef',
-    specialties: { de: 'Realistic · Black & Grey · Neo Traditional', en: 'Realistic · Black & Grey · Neo Traditional' },
+    specialties: { de: 'Realistic · Black & Grey · Japanese', en: 'Realistic · Black & Grey · Japanese' },
     meta: {
       de: 'Josef ist der kreative Kopf hinter Usee Tattoo, spezialisiert auf Realismus, Mikro-Realismus, Porträts, Mandalas und Maori.',
       en: 'Josef is the creative genius behind UseeTattoo. He specializes in realism, micro-realism, portraits, mandalas, and Maori art and has a deep passion for Japanese tattoos.',
