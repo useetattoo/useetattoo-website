@@ -3,6 +3,7 @@ import '../styles/fonts.css';
 import '../styles/global.css';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import QuickForm from '../components/QuickForm.astro';
 import { site } from '../data/site.js';
 
 const { lang = 'de', title, description, ogImage } = Astro.props;
@@ -22,6 +23,8 @@ const ck = {
 }[lang];
 const alt = lang === 'de' ? 'en' : 'de';
 const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
+// Pages that already have their own dedicated form: don't add the global quick form
+const hasOwnForm = /\/(contact|cover-up)$/.test(pathname);
 const selfPath = pathname;
 const altPath = pathname.replace(new RegExp(`^/${lang}`), `/${alt}`);
 const canonical = site.domain + selfPath + (selfPath === '/' ? '' : '/');
@@ -100,6 +103,7 @@ const og = ogImage || site.heroImage;
   <main>
     <slot />
   </main>
+  {!hasOwnForm && <QuickForm lang={lang} />}
   <Footer lang={lang} />
 
   <div class="cookie-banner" id="cookieBanner" role="dialog" aria-label="Cookie" hidden>

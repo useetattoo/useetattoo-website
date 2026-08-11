@@ -1,0 +1,105 @@
+---
+import { site } from '../data/site.js';
+const { lang = 'de' } = Astro.props;
+const pageUrl = site.domain + Astro.url.pathname;
+
+const c = {
+  de: {
+    eyebrow: 'Kontakt',
+    title: 'Schreib uns',
+    sub: 'Eine Frage, eine Idee oder ein Projekt? Schreib uns, wir melden uns zeitnah.',
+    fName: 'Name', fEmail: 'E-Mail', fPhone: 'Telefon (optional)', fInterest: 'Interesse', fMessage: 'Deine Nachricht', fSubmit: 'Anfrage senden',
+    interests: ['Allgemeine Frage', 'Tattoo-Beratung (großes Projekt)', 'Persönliche Beratung', 'Online-Beratung', 'Walk-In Tattoo', 'Piercing', 'Cover-up', 'Sleeve Tattoo', 'Guest Artist / Event'],
+    sent: 'Danke! Wir haben deine Anfrage erhalten und melden uns zeitnah.',
+  },
+  en: {
+    eyebrow: 'Contact',
+    title: 'Send us a message',
+    sub: 'A question, an idea or a project? Write to us and we will get back to you shortly.',
+    fName: 'Name', fEmail: 'Email', fPhone: 'Phone (optional)', fInterest: 'Interest', fMessage: 'Your message', fSubmit: 'Send enquiry',
+    interests: ['General question', 'Tattoo consultation (large project)', 'In-person consultation', 'Online consultation', 'Walk-in tattoo', 'Piercing', 'Cover-up', 'Sleeve tattoo', 'Guest artist / event'],
+    sent: "Thank you! We've received your enquiry and will be in touch shortly.",
+  },
+}[lang];
+---
+<section class="qform">
+  <div class="wrap">
+    <div class="qform-card reveal">
+      <div class="qform-head">
+        <div class="eyebrow">{c.eyebrow}</div>
+        <h2>{c.title}</h2>
+        <p>{c.sub}</p>
+      </div>
+      <p class="qform-sent" id="qfSent" hidden>{c.sent}</p>
+      <form id="quickForm" method="POST" action="https://api.web3forms.com/submit">
+        <input type="hidden" name="access_key" value="3c230d18-5a06-494a-9786-6c0a58e1d5a0" />
+        <input type="hidden" name="subject" value="New website enquiry: Quick contact form (useetattoo.com)" />
+        <input type="hidden" name="from_name" value="Usee Tattoo Website" />
+        <input type="hidden" name="replyto" value="" />
+        <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" />
+        <div class="qgrid">
+          <label>{c.fName}<input type="text" name="name" required /></label>
+          <label>{c.fEmail}<input type="email" name="email" required /></label>
+          <label>{c.fPhone}<input type="tel" name="phone" /></label>
+          <label>{c.fInterest}
+            <select name="interest">{c.interests.map((i) => <option value={i}>{i}</option>)}</select>
+          </label>
+        </div>
+        <label>{c.fMessage}<textarea name="message" rows="4" required></textarea></label>
+        <input type="hidden" name="Submitted from" value={pageUrl} />
+        <button type="submit" class="cta primary" style="background:var(--ink);color:var(--paper);border:0;cursor:pointer">{c.fSubmit}</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    var form = document.getElementById('quickForm');
+    if (!form) return;
+    form.addEventListener('submit', async function (e) {
+      e.preventDefault();
+      var btn = form.querySelector('button[type="submit"]');
+      var original = btn ? btn.textContent : '';
+      var pf = form.querySelector('input[name="Submitted from"]');
+      if (pf) pf.value = document.title + ' | ' + location.href;
+      var rt = form.querySelector('input[name="replyto"]');
+      var em = form.querySelector('input[name="email"]');
+      if (rt && em) rt.value = em.value;
+      if (btn) { btn.disabled = true; btn.textContent = '…'; }
+      try {
+        var res = await fetch(form.action, { method: 'POST', body: new FormData(form) });
+        var data = await res.json();
+        if (data.success) {
+          var el = document.getElementById('qfSent');
+          if (el) { el.hidden = false; el.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+          form.reset();
+          form.style.display = 'none';
+        } else {
+          if (btn) { btn.disabled = false; btn.textContent = original; }
+          alert('Something went wrong. Please email info@useetattoo.com directly.');
+        }
+      } catch (err) {
+        if (btn) { btn.disabled = false; btn.textContent = original; }
+        alert('Something went wrong. Please email info@useetattoo.com directly.');
+      }
+    });
+  })();
+</script>
+
+<style>
+  .qform{border-top:1px solid var(--line);background:var(--paper-2);padding:80px 0}
+  .qform-card{max-width:820px;margin:0 auto}
+  .qform-head{margin-bottom:30px}
+  .qform-head h2{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(28px,4vw,42px);line-height:1.1;margin:8px 0 12px}
+  .qform-head p{color:var(--ink-soft);font-size:16px;line-height:1.7;max-width:560px}
+  .qform-sent{background:var(--paper);border:1px solid var(--bronze);padding:16px 20px;margin-bottom:22px;color:var(--bronze-dk)}
+  .qform form label{display:block;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--bronze-dk);margin-bottom:22px}
+  .qform .qgrid{display:grid;grid-template-columns:1fr 1fr;gap:0 30px}
+  .qform input,.qform select,.qform textarea{width:100%;margin-top:9px;padding:14px 16px;border:1px solid var(--line);background:var(--white);
+    font-family:'Inter',sans-serif;font-size:15px;color:var(--ink);letter-spacing:normal;text-transform:none;border-radius:0;transition:border-color .4s var(--ease)}
+  .qform input:focus,.qform select:focus,.qform textarea:focus{outline:none;border-color:var(--bronze)}
+  .qform textarea{resize:vertical}
+  .qform form button{margin-top:6px}
+  @media(max-width:640px){.qform{padding:60px 0}.qform .qgrid{grid-template-columns:1fr}}
+</style>
