@@ -11,7 +11,7 @@ export const site = {
     piercing: 'https://book.useetattoo.com/piercing',
     // SINGLE Fresha entry point for the Booking Hub "Book via the app" button.
     // Exact URL is still being confirmed by the team, edit only this one value.
-    fresha: 'https://book.useetattoo.com/',
+        fresha: 'https://www.fresha.com/de/a/usee-tattoo-studio-berlin-neue-kantstrasse-6-hrwzrip0/all-offer?menu=true&pId=1394031',
   },
   // Live-review claim, kept in one place so it is easy to update.
   reviews: { count: '600+', de: '5★ Google Bewertungen', en: '5★ Google reviews' },
