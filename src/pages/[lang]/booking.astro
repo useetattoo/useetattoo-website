@@ -1,0 +1,202 @@
+---
+import Base from '../../layouts/Base.astro';
+import { langs } from '../../data/i18n.js';
+import { site } from '../../data/site.js';
+import { artists } from '../../data/artists.js';
+
+export function getStaticPaths() {
+  return langs.map((lang) => ({ params: { lang } }));
+}
+const { lang } = Astro.params;
+const base = `/${lang}`;
+const img = '/images/booking/Booking_Hub.webp';
+
+const c = {
+  de: {
+    title: 'Termin buchen | UseeTattoo Studio – Berlin',
+    description: 'Zwei Wege zu deinem Termin bei Usee Tattoo Berlin: direkt online über die Buchungs-App oder teile deine Idee für eine kostenlose Beratung.',
+    eyebrow: '/ Termin',
+    h1: 'Dein Termin bei Usee Tattoo',
+    lead: 'Zwei Wege zu deinem Termin, wähl den, der zu dir passt.',
+    cardA: {
+      tag: 'Direkt buchen',
+      title: 'Direkt online buchen, über unsere Buchungs-App',
+      sub: 'Für Piercing, Walk-in-Tattoos, Auffrischungen und alles, was du direkt terminieren kannst.',
+      body: 'Wähl deinen Service, deinen Künstler und deine Wunschzeit selbst, mit Erinnerungen und allen Infos zu deinem Termin auf einen Blick.',
+      cta: 'Zur Buchungs-App →',
+    },
+    cardB: {
+      tag: 'Beratung',
+      title: 'Deine Idee mit uns teilen',
+      sub: 'Für individuelle Tattoo-Projekte, große Motive und Cover-ups, hier brauchen wir vorab ein kurzes Gespräch.',
+      body: 'Erzähl uns von deiner Idee, stell deine Fragen, wir melden uns innerhalb von 24 Stunden für eine kostenlose Beratung.',
+      cta: 'Idee teilen →',
+      direct: 'Oder schreib uns direkt:',
+    },
+    trustTitle: 'Dein Team, deine Bewertungen, dein Studio',
+    reviews: site.reviews.count + ' ' + site.reviews.de,
+    hours: 'Mo–Sa · 11–19 Uhr',
+    faqTitle: 'Häufige Fragen',
+    faq: [
+      ['Ist die Beratung wirklich kostenlos?', 'Ja. Beratung und erste Skizze sind kostenlos und unverbindlich, es gibt keine separate Designgebühr.'],
+      ['Was ist der Unterschied zwischen den zwei Wegen?', 'Über die Buchungs-App buchst du direkt terminierbare Services selbst (z. B. Piercing oder Walk-in). Für individuelle Projekte, große Motive und Cover-ups teilst du zuerst deine Idee, wir melden uns für eine kostenlose Beratung.'],
+      ['Kann ich meinen Künstler auswählen?', 'Ja. In der App wählst du deinen Artist selbst; bei individuellen Projekten ordnen wir dich dem Artist zu, dessen Stil am besten passt.'],
+      ['Was, wenn ich meinen App-Termin ändern muss?', 'Kein Problem. Du kannst deinen Termin über die Buchungs-App verschieben, deine Bestätigung enthält alle Details dazu.'],
+    ],
+    reassure: 'Fragen? Ruf uns an unter',
+    reassureOr: 'oder',
+    reassureMsg: 'schreib uns',
+  },
+  en: {
+    title: 'Book Your Visit | UseeTattoo Studio – Berlin',
+    description: 'Two ways to get your appointment at Usee Tattoo Berlin: book directly online via the app, or share your idea for a free consultation.',
+    eyebrow: '/ Booking',
+    h1: 'Book Your Visit at Usee Tattoo',
+    lead: 'Two ways to get your appointment, pick the one that fits.',
+    cardA: {
+      tag: 'Book directly',
+      title: 'Book directly, via our booking app',
+      sub: 'For piercing, walk-in tattoos, touch-ups, and anything you can schedule directly.',
+      body: 'Choose your service, artist, and time yourself, with reminders and all your appointment info in one place.',
+      cta: 'Open booking app →',
+    },
+    cardB: {
+      tag: 'Consultation',
+      title: 'Share your idea',
+      sub: 'For custom tattoo projects, large pieces, and cover-ups, these always start with a short conversation.',
+      body: "Tell us about your idea, ask your questions, we'll get back to you within 24 hours for a free consultation.",
+      cta: 'Share your idea →',
+      direct: 'Or reach us directly:',
+    },
+    trustTitle: 'Your team, your reviews, your studio',
+    reviews: site.reviews.count + ' ' + site.reviews.en,
+    hours: 'Mon–Sat · 11am–7pm',
+    faqTitle: 'Common questions',
+    faq: [
+      ['Is the consultation really free?', 'Yes. The consultation and first sketch are free and without obligation, and there is no separate design fee.'],
+      ["What's the difference between the two paths?", 'Via the booking app you book directly schedulable services yourself (e.g. piercing or walk-in). For custom projects, large pieces and cover-ups, you share your idea first and we get back to you for a free consultation.'],
+      ['Can I choose my artist?', 'Yes. In the app you pick your artist yourself; for custom projects we match you with the artist whose style fits best.'],
+      ['What if I need to change my app booking?', 'No problem. You can reschedule via the booking app, and your confirmation includes all the details.'],
+    ],
+    reassure: 'Questions? Call us at',
+    reassureOr: 'or',
+    reassureMsg: 'send us a message',
+  },
+}[lang];
+---
+<Base lang={lang} title={c.title} description={c.description} ogImage={img}>
+  <section class="detail-hero bk-hero">
+    <div class="wrap">
+      <div class="bk-hero-grid">
+        <div class="dh-txt reveal">
+          <div class="eyebrow">{c.eyebrow}</div>
+          <h1>{c.h1}</h1>
+          <p class="bk-lead">{c.lead}</p>
+        </div>
+        <div class="bk-hero-img reveal"><img src={img} alt="Usee Tattoo Studio, Berlin" /></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap">
+      <div class="bk-cards reveal">
+        <div class="bk-card">
+          <div class="bk-tag">{c.cardA.tag}</div>
+          <h2>{c.cardA.title}</h2>
+          <p class="bk-sub">{c.cardA.sub}</p>
+          <p class="bk-body">{c.cardA.body}</p>
+          <a id="booking-fresha-cta" data-service="all" class="cta primary bk-cta" style="background:var(--ink);color:var(--paper)" href={site.booking.fresha} target="_blank" rel="noopener">{c.cardA.cta}</a>
+        </div>
+        <div class="bk-card">
+          <div class="bk-tag">{c.cardB.tag}</div>
+          <h2>{c.cardB.title}</h2>
+          <p class="bk-sub">{c.cardB.sub}</p>
+          <p class="bk-body">{c.cardB.body}</p>
+          <a id="booking-form-cta" class="cta primary bk-cta" style="background:var(--ink);color:var(--paper)" href={`${base}/contact`}>{c.cardB.cta}</a>
+          <p class="bk-direct">{c.cardB.direct}<br />
+            <a id="contact-email-link" href={`mailto:${site.email.secondary}`}>{site.email.secondary}</a>
+            <span class="sep"> · </span>
+            <a id="contact-whatsapp-link" href={site.whatsapp} target="_blank" rel="noopener">WhatsApp {site.mobile.display}</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="artists bk-trust-sec">
+    <div class="wrap">
+      <h2 class="bk-h2 reveal">{c.trustTitle}</h2>
+      <div class="bk-trust reveal">
+        <div class="bk-artists">
+          {artists.map((a) => (
+            <a class="bk-artist" href={`${base}/artists/${a.slug}`}>
+              <span class="ph"><img src={a.portrait} alt={a.name} loading="lazy" /></span>
+              <span class="nm">{a.name}</span>
+            </a>
+          ))}
+        </div>
+        <div class="bk-meta">
+          <div class="bk-rating"><span class="stars" aria-hidden="true">★★★★★</span><span>{c.reviews}</span></div>
+          <div class="bk-addr">{site.address.street}, {site.address.zip} {site.address.city} · {site.address.district}<br />{c.hours}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq" style="padding-top:20px">
+    <div class="wrap">
+      <div class="sec-head reveal"><span class="idx">FAQ</span><h2>{c.faqTitle}</h2></div>
+      <div class="faq-list acc-single reveal">
+        {c.faq.map(([q, a], i) => (
+          <details open={i === 0}>
+            <summary><span>{q}</span><span class="plus">+</span></summary>
+            <div class="ans">{a}</div>
+          </details>
+        ))}
+      </div>
+      <p class="bk-reassure reveal">
+        {c.reassure} <a href={site.phone.href}>{site.phone.display}</a> {c.reassureOr} <a href="#quickForm">{c.reassureMsg}</a>.
+      </p>
+    </div>
+  </section>
+
+  <style>
+    .bk-hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:center}
+    .bk-hero-img{aspect-ratio:4/5;overflow:hidden;background:var(--paper-2)}
+    .bk-hero-img img{width:100%;height:100%;object-fit:cover}
+    .bk-lead{color:var(--ink-soft);font-size:19px;line-height:1.7;max-width:440px;margin-top:8px}
+    .bk-cards{display:grid;grid-template-columns:1fr 1fr;gap:30px}
+    .bk-card{border:1px solid var(--line);background:var(--paper);padding:42px 38px;display:flex;flex-direction:column}
+    .bk-tag{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--bronze);margin-bottom:16px}
+    .bk-card h2{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(24px,2.6vw,32px);line-height:1.15;margin:0 0 14px}
+    .bk-sub{color:var(--ink);font-size:15.5px;line-height:1.7;margin:0 0 12px;font-weight:500}
+    .bk-body{color:var(--ink-soft);font-size:15px;line-height:1.8;margin:0 0 26px;flex:1}
+    .bk-cta{align-self:flex-start}
+    .bk-direct{margin-top:22px;font-size:13.5px;color:var(--ink-soft);line-height:1.9}
+    .bk-direct a{color:var(--bronze-dk);text-decoration:underline;text-underline-offset:2px}
+    .bk-trust-sec{padding:80px 0}
+    .bk-h2{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(24px,3vw,34px);margin:0 0 36px;text-align:center}
+    .bk-trust{display:flex;align-items:center;justify-content:space-between;gap:40px;flex-wrap:wrap}
+    .bk-artists{display:flex;gap:26px;flex-wrap:wrap}
+    .bk-artist{display:flex;flex-direction:column;align-items:center;gap:10px;width:84px}
+    .bk-artist .ph{width:72px;height:72px;border-radius:50%;overflow:hidden;background:var(--paper-2);filter:grayscale(1) contrast(1.02);transition:filter .4s var(--ease)}
+    .bk-artist:hover .ph{filter:grayscale(0)}
+    .bk-artist .ph img{width:100%;height:100%;object-fit:cover}
+    .bk-artist .nm{font-size:13px;letter-spacing:.04em;color:var(--ink)}
+    .bk-meta{text-align:right}
+    .bk-rating{display:flex;align-items:center;gap:10px;justify-content:flex-end;font-size:14px;color:var(--ink)}
+    .bk-rating .stars{color:var(--bronze);letter-spacing:2px}
+    .bk-addr{margin-top:12px;font-size:13.5px;color:var(--ink-soft);line-height:1.7}
+    .bk-reassure{margin-top:40px;text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:20px;color:var(--bronze-dk)}
+    .bk-reassure a{color:var(--bronze-dk);text-decoration:underline;text-underline-offset:3px}
+    @media(max-width:900px){
+      .bk-hero-grid{grid-template-columns:1fr;gap:32px}
+      .bk-hero-img{aspect-ratio:16/10;max-height:400px}
+      .bk-cards{grid-template-columns:1fr}
+      .bk-trust{flex-direction:column;align-items:flex-start;gap:28px}
+      .bk-meta{text-align:left}
+      .bk-rating{justify-content:flex-start}
+    }
+  </style>
+</Base>

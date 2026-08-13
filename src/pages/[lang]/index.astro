@@ -51,7 +51,7 @@ const homeGallery = [
       <p class="lede">{L.heroLede}</p>
       <div class="hero-cta hero-booking">
         {site.bookingServices.map((s, i) => (
-          <a class={`cta ${i === 0 ? 'primary' : 'ghost'}`} href={s.url} target="_blank" rel="noopener">{s[lang]}</a>
+          <a class={`cta ${i === 0 ? 'primary' : 'ghost'}`} data-service={s.service} href={s.url} target="_blank" rel="noopener">{s[lang]}</a>
         ))}
       </div>
     </div>
@@ -192,6 +192,24 @@ const homeGallery = [
           </div>
         </div>
         <div class="ph"><img src="/images/piercing/Piercing.webp" alt="Piercing at Usee Tattoo" loading="lazy" /></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOOKING HUB -->
+  <section id="booking-home" class="artists">
+    <div class="wrap">
+      <div class="events-row home-ev-row reveal">
+        <div class="txt">
+          <div class="eyebrow">{L.bookingEyebrow}</div>
+          <h2 set:html={L.bookingTitle}></h2>
+          <p>{L.bookingText}</p>
+          <div class="cta-row" style="align-items:center;gap:24px;flex-wrap:wrap">
+            <a class="cta primary" style="background:var(--ink);color:var(--paper)" href={`${base}/booking`}>{L.bookingBtn}</a>
+            <a class="link-underline" href={`${base}/booking`}>{L.bookingMore}</a>
+          </div>
+        </div>
+        <div class="ph"><img src="/images/booking/Booking_Hub.webp" alt="Book your visit at Usee Tattoo" loading="lazy" /></div>
       </div>
     </div>
   </section>
