@@ -36,8 +36,8 @@ const c = {
 ---
 <Base lang={lang} title={c.title} description={c.description}>
   <section class="detail-hero">
-    <div class="wrap visit-grid" style="align-items:start">
-      <div class="reveal">
+    <div class="wrap contact-top">
+      <div class="ct-intro reveal">
         <div class="eyebrow">{c.eyebrow}</div>
         <h1 style="font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(40px,6vw,68px);line-height:1;margin-bottom:20px">{c.h1}</h1>
         <p class="bio" style="max-width:420px">{c.lead}</p>
@@ -46,17 +46,15 @@ const c = {
           <a class="cta ghost" style="border-color:var(--ink);color:var(--ink)" href={site.phone.href}>{L.call}</a>
         </div>
       </div>
-      <div class="reveal">
+      <div class="ct-info reveal">
         <div class="detail"><div class="k">{L.labelAddress}</div><div class="v">{site.address.street}<br />{site.address.zip} {site.address.city} · {site.address.district}</div></div>
         <div class="detail"><div class="k">{L.labelHours}</div><div class="v" set:html={L.hours}></div></div>
         <div class="detail"><div class="k">{L.labelPhone}</div><div class="v"><a href={site.phone.href}>{site.phone.display}</a><br /><a href={site.mobile.href}>{site.mobile.display}</a></div></div>
         <div class="detail"><div class="k">{c.email}</div><div class="v"><a href={`mailto:${site.email.primary}`}>{site.email.primary}</a><br /><a href={`mailto:${site.email.secondary}`}>{site.email.secondary}</a></div></div>
         <div class="detail"><div class="k">{c.social}</div><div class="v"><a href={site.social.instagram} target="_blank" rel="noopener">Instagram</a> · <a href={site.social.facebook} target="_blank" rel="noopener">Facebook</a> · <a href={site.social.pinterest} target="_blank" rel="noopener">Pinterest</a></div></div>
       </div>
-    </div>
-
-    <div class="wrap" style="margin-top:70px">
-      <div class="form-wrap reveal">
+      <div class="ct-form">
+        <div class="form-wrap reveal">
         <h2 class="form-title">{c.formTitle}</h2>
         <p class="form-sent" id="formSent" hidden>{c.sent}</p>
         <form id="inquiryForm" method="POST" action="https://api.web3forms.com/submit">
@@ -78,6 +76,7 @@ const c = {
           <label>{c.fMessage}<textarea name="message" rows="5" required></textarea></label>
           <button type="submit" class="cta primary" style="background:var(--ink);color:var(--paper);border:0;cursor:pointer">{c.fSubmit}</button>
         </form>
+        </div>
       </div>
     </div>
 
@@ -134,5 +133,17 @@ const c = {
     textarea{resize:vertical}
     form button{margin-top:6px}
     @media(max-width:640px){.grid2{grid-template-columns:1fr}}
+    /* Desktop: intro (left) + info (right), form full-width below.
+       Mobile only: intro, then the form, then the info block (form and info swapped). */
+    .contact-top{display:grid;grid-template-columns:1fr 1fr;column-gap:70px;row-gap:0;align-items:start}
+    .ct-intro{grid-column:1;grid-row:1}
+    .ct-info{grid-column:2;grid-row:1}
+    .ct-form{grid-column:1 / -1;grid-row:2;margin-top:70px}
+    @media(max-width:860px){
+      .contact-top{grid-template-columns:1fr}
+      .ct-intro{grid-column:1;grid-row:1}
+      .ct-form{grid-column:1;grid-row:2;margin-top:40px}
+      .ct-info{grid-column:1;grid-row:3;margin-top:44px}
+    }
   </style>
 </Base>
