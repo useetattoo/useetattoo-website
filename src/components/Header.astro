@@ -28,6 +28,7 @@ const base = `/${lang}`;
         <li class="has-sub">
           <a class="sub-parent" role="button" tabindex="0">{L.nav.services}<span class="sub-caret" aria-hidden="true">+</span></a>
           <ul class="submenu">
+            <li><a href={`${base}/booking`}>{L.nav.booking}</a></li>
             <li><a href={`${base}/consultation`}>{L.nav.consultation}</a></li>
             <li><a href={`${base}/walk-in`}>{L.nav.walkin}</a></li>
             <li><a href={`${base}/piercing`}>{L.nav.piercing}</a></li>
@@ -44,7 +45,6 @@ const base = `/${lang}`;
         <li><a href={`${base}/about`}>{L.nav.about}</a></li>
         <li><a href={`${base}/faq`}>{L.nav.faq}</a></li>
         <li><a href={`${base}/contact`}>{L.nav.contact}</a></li>
-        <li class="nav-book-li"><a class="sub-parent" href={`${base}/booking`}>{L.nav.booking}</a></li>
       </ul>
     </nav>
     <div class="nav-right">
