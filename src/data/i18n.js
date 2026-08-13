@@ -3,7 +3,7 @@ export const langs = ['de', 'en'];
 export const t = {
   de: {
     label: 'Deutsch',
-    nav: { home: 'Start', artists: 'Artists', styles: 'Stile', services: 'Services', consultation: 'Beratung', walkin: 'Walk-In', piercing: 'Piercing', coverup: 'Cover-up', events: 'Events', about: 'Über', faq: 'FAQ', contact: 'Kontakt', booking: 'Termin' },
+    nav: { home: 'Start', artists: 'Artists', styles: 'Stile', services: 'Services', consultation: 'Beratung', walkin: 'Walk-In', piercing: 'Piercing', coverup: 'Cover-up', events: 'Events', about: 'Über', faq: 'FAQ', contact: 'Kontakt', booking: 'Booking Hub' },
     navGuestArtists: 'Guest Artists', navPastEvents: 'Vergangene Events',
     book: 'Beratung',
     bookConsult: 'Beratung buchen',
@@ -40,7 +40,7 @@ export const t = {
     consultEyebrow: 'Beratung', consultTitle: 'Tattoo<br>Beratung',
     consultText: 'Große Projekte, ganze Sleeves, Black-&-Grey-Realismus, Micro-Realismus, Maori, werden nicht online gebucht. Sie beginnen mit einer kostenlosen Beratung, in der dein Artist das Motiv um deinen Körper, deine Geschichte und deine Anatomie herum entwirft, nie aus einer Vorlage vergrößert. Du gehst mit einer klaren kreativen Richtung, einer Live-Skizze, einem Preisrahmen und einem Sitzungsplan. Ob persönlich oder online, ihr bleibt bis zum Tattoo-Tag in direktem Kontakt.',
     consultBtn: 'Beratung buchen', consultMore: 'Zur Beratungs-Seite →',
-    bookingEyebrow: 'Termin', bookingTitle: 'Zwei Wege zu<br>deinem Termin',
+    bookingEyebrow: 'Booking Hub', bookingTitle: 'Zwei Wege zu<br>deinem Termin',
     bookingText: 'Buch direkt online über unsere Buchungs-App, für Piercing, Walk-ins und alles, was du selbst terminieren kannst. Oder teile deine Idee für ein individuelles Projekt, ein großes Motiv oder ein Cover-up, und wir melden uns innerhalb von 24 Stunden für eine kostenlose Beratung. Wähl den Weg, der zu dir passt.',
     bookingBtn: 'Termin buchen', bookingMore: 'Beide Wege ansehen →',
     footStudio: 'Studio', footFollow: 'Folgen',
@@ -55,7 +55,7 @@ export const t = {
   },
   en: {
     label: 'English',
-    nav: { home: 'Home', artists: 'Artists', styles: 'Styles', services: 'Services', consultation: 'Consultation', walkin: 'Walk-In', piercing: 'Piercing', coverup: 'Cover-up', events: 'Events', about: 'About', faq: 'FAQ', contact: 'Contact', booking: 'Book' },
+    nav: { home: 'Home', artists: 'Artists', styles: 'Styles', services: 'Services', consultation: 'Consultation', walkin: 'Walk-In', piercing: 'Piercing', coverup: 'Cover-up', events: 'Events', about: 'About', faq: 'FAQ', contact: 'Contact', booking: 'Booking Hub' },
     navGuestArtists: 'Guest Artists', navPastEvents: 'Past Events',
     book: 'Book',
     bookConsult: 'Book a consultation',
@@ -92,7 +92,7 @@ export const t = {
     consultEyebrow: 'Consultation', consultTitle: 'Tattoo<br>Consultation',
     consultText: "Large projects, full sleeves, black & grey realism, micro-realism, Maori, aren't booked online. They start with a free consultation where your artist designs the piece around your body, your story and your anatomy, never resized from a reference. You leave with a clear creative direction, a live sketch, a price estimate and a session plan. Whether you start in person or online, you stay in direct contact with your artist right up to your tattoo day.",
     consultBtn: 'Book a consultation', consultMore: 'About the consultation →',
-    bookingEyebrow: 'Booking', bookingTitle: 'Two ways to<br>book your visit',
+    bookingEyebrow: 'Booking Hub', bookingTitle: 'Two ways to<br>book your visit',
     bookingText: "Book directly online through our booking app, for piercing, walk-ins and anything you can schedule yourself. Or share your idea for a custom project, a large piece or a cover-up, and we'll get back to you within 24 hours for a free consultation. Pick the path that fits you.",
     bookingBtn: 'Book your visit', bookingMore: 'See both ways →',
     footStudio: 'Studio', footFollow: 'Follow',
