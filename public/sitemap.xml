@@ -13,6 +13,18 @@
     <xhtml:link rel="alternate" hreflang="en" href="https://useetattoo.com/en/"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://useetattoo.com/de/"/>
   </url>
+          <url>
+                    <loc>https://useetattoo.com/de/booking/</loc>
+                    <xhtml:link rel="alternate" hreflang="de" href="https://useetattoo.com/de/booking/"/>
+                    <xhtml:link rel="alternate" hreflang="en" href="https://useetattoo.com/en/booking/"/>
+                    <xhtml:link rel="alternate" hreflang="x-default" href="https://useetattoo.com/de/booking/"/>
+          </url>
+        <url>
+                  <loc>https://useetattoo.com/en/booking/</loc>
+                  <xhtml:link rel="alternate" hreflang="de" href="https://useetattoo.com/de/booking/"/>
+                  <xhtml:link rel="alternate" hreflang="en" href="https://useetattoo.com/en/booking/"/>
+                  <xhtml:link rel="alternate" hreflang="x-default" href="https://useetattoo.com/de/booking/"/>
+        </url>
   <url>
     <loc>https://useetattoo.com/de/about/</loc>
     <xhtml:link rel="alternate" hreflang="de" href="https://useetattoo.com/de/about/"/>
