@@ -1,6 +1,7 @@
 ---
 import Base from '../../layouts/Base.astro';
 import { langs, t } from '../../data/i18n.js';
+import { site } from '../../data/site.js';
 
 export function getStaticPaths() {
   return langs.map((lang) => ({ params: { lang } }));
@@ -10,8 +11,8 @@ const L = t[lang];
 
 const c = {
   de: {
-    title: 'Über Usee Tattoo | UseeTattoo Studio – Berlin',
-    description: 'Josef Jamdar, Gründer von Usee Tattoo, geboren 1990 in Teheran. Die Geschichte eines Studios, das Kunst sichtbar macht, in Berlin-Charlottenburg.',
+    title: 'Über Usee Tattoo | Tattoo Studio Berlin-Charlottenburg',
+    description: 'Josef Jamdar, Gründer von Usee Tattoo, geboren 1990 in Teheran. Die Geschichte eines Tattoo Studios in Berlin-Charlottenburg, das Kunst sichtbar macht.',
     eyebrow: 'Über Usee',
     h1: 'Ein Studio, das<br>Kunst sichtbar macht',
     lead: 'Josef Jamdar, der Gründer von Usee Tattoo, wurde 1990 in Teheran geboren. Schon früh war seine Leidenschaft für Design und Kunst unübersehbar.',
@@ -22,10 +23,28 @@ const c = {
       'Heute ist Usee Tattoo die Heimat von acht engagierten Artists sowie wechselnden Gast-Artists aus aller Welt. Josefs Ziel: ein Ort für Künstler:innen, deren Talent zu oft ungesehen bleibt, eine Bühne, auf der wahre Kunst leuchten darf. Kunst verdient es, gesehen zu werden.',
     ],
     stats: [['2019', 'Gegründet'], ['600+', '5★ Google Bewertungen'], ['Artspace', 'Kultur & Events'], ['Berlin', 'Charlottenburg']],
+    whyEyebrow: 'Warum Usee',
+    whyTitle: 'Ein Tattoo Studio in Charlottenburg,<br>das seinen Anspruch hält',
+    whyItems: [
+      ['Erfahrene Artists', 'Jedes Tattoo bei uns wird von einem erfahrenen Resident-Artist gestochen, nie von einem Lehrling in Ausbildung.'],
+      ['Individuelles Design', 'Kein Motiv aus dem Katalog. Jedes Stück entsteht für deinen Körper, deine Anatomie und deine Geschichte, in persönlicher Beratung.'],
+      ['Höchste Hygienestandards', 'Sterile Einwegnadeln und deutsche Qualitätsstandards bei Farben und Ausrüstung, bei jedem Termin.'],
+      ['Zentral in Charlottenburg', `${site.address.street}, mitten in Charlottenburg, gut erreichbar aus der ganzen Stadt. ${L.hours}.`],
+    ],
+    servicesTitle: 'Unsere Leistungen',
+    services: [
+      ['Persönliche Beratung', '/de/consultation'],
+      ['Walk-In Tattoo', '/de/walk-in'],
+      ['Piercing', '/de/piercing'],
+      ['Cover-Up', '/de/cover-up'],
+    ],
+    quote: 'Ich habe mich mit 53 Jahren dazu entschieden, mir mein erstes Tattoo stechen zu lassen, und bin sowas von begeistert.',
+    quoteSrc: '— Google-Bewertung, Usee Tattoo Studio',
+    visitTitle: 'Besuch uns in Charlottenburg',
   },
   en: {
-    title: 'About Usee Tattoo | UseeTattoo Studio – Berlin',
-    description: 'Josef Jamdar, founder of Usee Tattoo, was born in Tehran in 1990. The story of an studio built to make art seen, in Berlin-Charlottenburg.',
+    title: 'About Usee Tattoo | Tattoo Studio Berlin-Charlottenburg',
+    description: "Josef Jamdar, founder of Usee Tattoo, was born in Tehran in 1990. The story of a tattoo studio in Berlin-Charlottenburg built to make art seen.",
     eyebrow: 'About Usee',
     h1: 'An studio built<br>to make art seen',
     lead: 'Josef Jamdar, the founder of Usee Tattoo, was born in Tehran in 1990. From an early age, his passion for design and art was undeniable.',
@@ -36,6 +55,24 @@ const c = {
       'Today, Usee Tattoo is home to eight dedicated artists along with visiting guest artists from around the world. Josef’s aim: a space for artists whose talent too often goes unseen, a platform where true artistry can shine. Art deserves to be seen.',
     ],
     stats: [['2019', 'Founded'], ['600+', '5★ Google reviews'], ['Artspace', 'Culture & events'], ['Berlin', 'Charlottenburg']],
+    whyEyebrow: 'Why Usee',
+    whyTitle: 'A tattoo studio in Charlottenburg<br>that holds its standard',
+    whyItems: [
+      ['Experienced artists', 'Every tattoo here is done by an experienced resident artist, never an apprentice in training.'],
+      ['Individual design', 'No motif from a catalogue. Every piece is designed for your body, your anatomy and your story, through personal consultation.'],
+      ['Highest hygiene standards', 'Sterile single-use needles and German quality standards for inks and equipment, at every appointment.'],
+      ['Central in Charlottenburg', `${site.address.street}, right in the heart of Charlottenburg, easy to reach from across the city. ${L.hours}.`],
+    ],
+    servicesTitle: 'Our Services',
+    services: [
+      ['Personal consultation', '/en/consultation'],
+      ['Walk-in tattoo', '/en/walk-in'],
+      ['Piercing', '/en/piercing'],
+      ['Cover-up', '/en/cover-up'],
+    ],
+    quote: "At 53, I decided to get my first tattoo, and I'm absolutely thrilled with it.",
+    quoteSrc: '— Google review, Usee Tattoo Studio',
+    visitTitle: 'Visit us in Charlottenburg',
   },
 }[lang];
 ---
@@ -64,6 +101,45 @@ const c = {
     </div>
   </section>
 
+  <section class="why-section">
+    <div class="wrap">
+      <div class="reveal" style="max-width:720px">
+        <div class="eyebrow">{c.whyEyebrow}</div>
+        <h2 class="why-h2" set:html={c.whyTitle}></h2>
+      </div>
+      <div class="why-grid reveal">
+        {c.whyItems.map(([title, text]) => (
+          <div class="why-card">
+            <h3>{title}</h3>
+            <p>{text}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="quote-block reveal">
+        <p class="quote-text">&ldquo;{c.quote}&rdquo;</p>
+        <p class="quote-src">{c.quoteSrc}</p>
+      </div>
+
+      <div class="services-visit reveal">
+        <div class="services-col">
+          <h3>{c.servicesTitle}</h3>
+          <ul>
+            {c.services.map(([label, href]) => (
+              <li><a href={href}>{label} →</a></li>
+            ))}
+          </ul>
+        </div>
+        <div class="visit-col">
+          <h3>{c.visitTitle}</h3>
+          <p>{site.address.street}, {site.address.zip} {site.address.city}</p>
+          <p>{L.hours}</p>
+          <p><a href={site.phone.href}>{site.phone.display}</a></p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <style>
     .about-media{aspect-ratio:16/8;overflow:hidden;background:#e3ddd1;filter:grayscale(1) contrast(1.02);margin-bottom:64px}
     .about-media img{width:100%;height:100%;object-fit:cover}
@@ -74,5 +150,29 @@ const c = {
     .about-stats .num{font-family:'Cormorant Garamond',serif;font-size:46px;color:var(--bronze-dk)}
     .about-stats .lbl{font-size:11.5px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);margin-top:8px}
     @media(max-width:760px){.about-body{columns:1}.about-stats{grid-template-columns:repeat(2,1fr)}}
+
+    .why-section{padding:100px 0}
+    .why-h2{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(30px,4vw,42px);line-height:1.15;margin:12px 0 0}
+    .why-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border:1px solid var(--line);margin-top:48px}
+    .why-card{background:var(--paper);padding:32px 26px}
+    .why-card h3{font-family:'Inter',sans-serif;font-size:14px;letter-spacing:.02em;color:var(--ink);margin:0 0 10px}
+    .why-card p{font-family:'Inter',sans-serif;font-size:14.5px;line-height:1.7;color:var(--ink-soft);margin:0}
+    @media(max-width:900px){.why-grid{grid-template-columns:repeat(2,1fr)}}
+    @media(max-width:560px){.why-grid{grid-template-columns:1fr}}
+
+    .quote-block{max-width:720px;margin:72px auto 0;text-align:center}
+    .quote-text{font-family:'Cormorant Garamond',serif;font-size:clamp(22px,3vw,30px);line-height:1.4;color:var(--ink);margin:0 0 14px}
+    .quote-src{font-family:'Inter',sans-serif;font-size:12.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--ink-soft)}
+
+    .services-visit{display:grid;grid-template-columns:1fr 1fr;gap:56px;margin-top:80px;max-width:900px}
+    .services-visit h3{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:24px;color:var(--ink);margin:0 0 18px}
+    .services-col ul{list-style:none;margin:0;padding:0}
+    .services-col li{border-top:1px solid var(--line);padding:14px 0}
+    .services-col li:last-child{border-bottom:1px solid var(--line)}
+    .services-col a{font-family:'Inter',sans-serif;font-size:15px;color:var(--ink);text-decoration:none}
+    .services-col a:hover{color:var(--bronze-dk)}
+    .visit-col p{font-family:'Inter',sans-serif;font-size:15px;line-height:1.8;color:var(--ink-soft);margin:0 0 8px}
+    .visit-col a{color:var(--bronze-dk);text-decoration:underline;text-underline-offset:2px}
+    @media(max-width:700px){.services-visit{grid-template-columns:1fr;gap:40px}}
   </style>
 </Base>
