@@ -6,9 +6,9 @@ export const site = {
   booking: {
     consultation: 'https://book.useetattoo.com/Consultation',
     online: 'https://book.useetattoo.com/online-consultation',
-    coverup: 'https://book.useetattoo.com/cover-up',
+    coverup: 'https://www.fresha.com/de/a/usee-tattoo-studio-berlin-neue-kantstrasse-6-hrwzrip0/booking?menu=true&share=true&offerItems=sv:19603606&pId=1394031&dppub=true',
     walkin: 'https://book.useetattoo.com/walk-in-tattoo',
-    piercing: 'https://book.useetattoo.com/piercing',
+    piercing: 'https://www.fresha.com/de/a/usee-tattoo-studio-berlin-neue-kantstrasse-6-hrwzrip0/booking?menu=true&share=true&offerItems=sv:28816723&pId=1394031&dppub=true&employeeId=3325666',
     // SINGLE Fresha entry point for the Booking Hub "Book via the app" button.
     // Exact URL is still being confirmed by the team, edit only this one value.
         fresha: 'https://www.fresha.com/de/a/usee-tattoo-studio-berlin-neue-kantstrasse-6-hrwzrip0/all-offer?menu=true&pId=1394031',
@@ -20,8 +20,8 @@ export const site = {
     { de: 'Persönliche Beratung', en: 'Personal consultation', service: 'consultation', url: 'https://book.useetattoo.com/Consultation' },
     { de: 'Online-Beratung', en: 'Online consultation', service: 'online-consultation', url: 'https://book.useetattoo.com/online-consultation' },
     { de: 'Walk-In (selber Tag)', en: 'Same-day walk-in', service: 'walk-in', url: 'https://book.useetattoo.com/walk-in-tattoo' },
-    { de: 'Piercing', en: 'Piercing', service: 'piercing', url: 'https://book.useetattoo.com/piercing' },
-    { de: 'Cover-Up', en: 'Cover-up', service: 'cover-up', url: 'https://book.useetattoo.com/cover-up' },
+    { de: 'Piercing', en: 'Piercing', service: 'piercing', url: 'https://www.fresha.com/de/a/usee-tattoo-studio-berlin-neue-kantstrasse-6-hrwzrip0/booking?menu=true&share=true&offerItems=sv:28816723&pId=1394031&dppub=true&employeeId=3325666' },
+    { de: 'Cover-Up', en: 'Cover-up', service: 'cover-up', url: 'https://www.fresha.com/de/a/usee-tattoo-studio-berlin-neue-kantstrasse-6-hrwzrip0/booking?menu=true&share=true&offerItems=sv:19603606&pId=1394031&dppub=true' },
     { de: 'Sleeve Tattoo', en: 'Sleeve tattoo', service: 'sleeve', url: 'https://book.useetattoo.com/Consultation' },
   ],
   phone: { display: '+49 30 27979327', href: 'tel:+493027979327' },
