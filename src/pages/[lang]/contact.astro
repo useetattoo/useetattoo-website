@@ -104,6 +104,10 @@ const c = {
           var res = await fetch(form.action, { method: 'POST', body: new FormData(form) });
           var data = await res.json();
           if (data.success) {
+            var leadType = (form.querySelector('[name="interest"]') || {}).value || '';
+            var leadLang = (form.querySelector('[name="lang"]') || {}).value || '';
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({ event: 'lead_consultation_form', lead_type: leadType, lead_lang: leadLang });
             var el = document.getElementById('formSent');
             if (el) { el.hidden = false; el.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
             form.reset();
