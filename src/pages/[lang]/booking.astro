@@ -24,6 +24,7 @@ const c = {
       sub: 'Für Piercing, Walk-in-Tattoos, Auffrischungen und alles, was du direkt terminieren kannst.',
       body: 'Wähl deinen Service, deinen Künstler und deine Wunschzeit selbst, mit Erinnerungen und allen Infos zu deinem Termin auf einen Blick.',
       cta: 'Zur Buchungs-App →',
+      note: 'Du wirst zu unserem sicheren Buchungssystem (Fresha) weitergeleitet.',
     },
     cardB: {
       tag: 'Beratung',
@@ -59,6 +60,7 @@ const c = {
       sub: 'For piercing, walk-in tattoos, touch-ups, and anything you can schedule directly.',
       body: 'Choose your service, artist, and time yourself, with reminders and all your appointment info in one place.',
       cta: 'Open booking app →',
+      note: "You'll be taken to our secure booking system (Fresha).",
     },
     cardB: {
       tag: 'Consultation',
@@ -107,6 +109,7 @@ const c = {
           <p class="bk-sub">{c.cardA.sub}</p>
           <p class="bk-body">{c.cardA.body}</p>
           <a id="booking-fresha-cta" data-service="all" class="cta primary bk-cta" style="background:var(--ink);color:var(--paper)" href={site.booking.fresha} target="_blank" rel="noopener">{c.cardA.cta}</a>
+          <p class="bk-note">{c.cardA.note}</p>
         </div>
         <div class="bk-card">
           <div class="bk-tag">{c.cardB.tag}</div>
@@ -173,6 +176,7 @@ const c = {
     .bk-sub{color:var(--ink);font-size:15.5px;line-height:1.7;margin:0 0 12px;font-weight:500}
     .bk-body{color:var(--ink-soft);font-size:15px;line-height:1.8;margin:0 0 26px;flex:1}
     .bk-cta{align-self:flex-start}
+      .bk-note{margin-top:14px;font-size:12.5px;color:var(--ink-soft);line-height:1.6}
     .bk-direct{margin-top:22px;font-size:13.5px;color:var(--ink-soft);line-height:1.9}
     .bk-direct a{color:var(--bronze-dk);text-decoration:underline;text-underline-offset:2px}
     .bk-trust-sec{padding:80px 0}
