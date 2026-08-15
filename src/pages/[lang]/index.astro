@@ -40,8 +40,40 @@ const homeGallery = [
   '/images/home/selected/SelectedWorks_7.webp',
   '/images/home/selected/SelectedWorks_8.webp',
 ];
+
+// LocalBusiness structured data (schema.org / JSON-LD) — enables Google rich
+// results and improves entity recognition for AI search engines. Address,
+// phone and hours mirror the values already shown in the Visit section below.
+const localBusinessSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'LocalBusiness',
+  '@id': `${site.domain}/#business`,
+  name: site.name,
+  image: site.domain + site.heroImage,
+  url: site.domain,
+  telephone: site.phone.display,
+  priceRange: '€€',
+  address: {
+    '@type': 'PostalAddress',
+    streetAddress: site.address.street,
+    postalCode: site.address.zip,
+    addressLocality: site.address.city,
+    addressRegion: 'Berlin',
+    addressCountry: 'DE',
+  },
+  geo: { '@type': 'GeoCoordinates', latitude: 52.506937, longitude: 13.2919169 },
+  openingHoursSpecification: [{
+    '@type': 'OpeningHoursSpecification',
+    dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+    opens: '11:00',
+    closes: '19:00',
+  }],
+  aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.9', reviewCount: '691' },
+  sameAs: [site.social.instagram, site.social.facebook, site.social.tiktok, site.social.pinterest],
+};
 ---
 <Base lang={lang} title={title} description={description}>
+  <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)}></script>
   <!-- HERO -->
   <section class="hero" style={`--hero:url('${site.heroImage}')`}>
     <div class="hero-inner">
