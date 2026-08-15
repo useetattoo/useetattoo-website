@@ -55,8 +55,22 @@ const faq = {
     ],
   },
 }[lang];
+
+// FAQPage structured data (schema.org / JSON-LD) — makes the studio eligible
+// for expandable FAQ rich results in Google Search and improves how AI
+// search engines can read and cite our own answers.
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.items.map(([q, a]) => ({
+    '@type': 'Question',
+    name: q,
+    acceptedAnswer: { '@type': 'Answer', text: a },
+  })),
+};
 ---
 <Base lang={lang} title={faq.title} description={faq.description}>
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)}></script>
   <section class="detail-hero">
     <div class="wrap">
       <div class="dh-txt reveal" style="max-width:760px">
