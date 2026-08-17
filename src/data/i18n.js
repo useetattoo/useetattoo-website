@@ -3,7 +3,7 @@ export const langs = ['de', 'en'];
 export const t = {
   de: {
     label: 'Deutsch',
-    nav: { home: 'Start', artists: 'Artists', styles: 'Stile', services: 'Services', consultation: 'Beratung', walkin: 'Walk-In', piercing: 'Piercing', coverup: 'Cover-up', events: 'Events', about: 'Über', faq: 'FAQ', contact: 'Kontakt', booking: 'Booking Hub' },
+    nav: { home: 'Start', artists: 'Artists', styles: 'Stile', services: 'Services', consultation: 'Beratung', walkin: 'Walk-In', piercing: 'Piercing', coverup: 'Cover-up', events: 'Events', about: 'Über', faq: 'FAQ', contact: 'Kontakt', booking: 'Booking Hub', firstTattoo: 'Erstes Tattoo' },
     navGuestArtists: 'Guest Artists', navPastEvents: 'Vergangene Events',
     book: 'Beratung',
     bookConsult: 'Beratung buchen',
@@ -43,6 +43,9 @@ export const t = {
     bookingEyebrow: 'Booking Hub', bookingTitle: 'Zwei Wege zu<br>deinem Termin',
     bookingText: 'Buch direkt online über unsere Buchungs-App, für Piercing, Walk-ins und alles, was du selbst terminieren kannst. Oder teile deine Idee für ein individuelles Projekt, ein großes Motiv oder ein Cover-up, und wir melden uns innerhalb von 24 Stunden für eine kostenlose Beratung. Wähl den Weg, der zu dir passt.',
     bookingBtn: 'Termin buchen', bookingMore: 'Beide Wege ansehen →',
+    firstTattooEyebrow: 'Erstes Tattoo', firstTattooTitle: 'Dein erstes<br>Tattoo',
+    firstTattooText: 'Erstes Tattoo und noch unsicher wegen Schmerz, Preis oder dem richtigen Artist? Wir geben ehrliche Antworten, bevor du buchst, und zeigen Schritt für Schritt, wie dein erster Termin bei uns wirklich abläuft. Nichts beginnt, bevor du dein Motiv als Live-Skizze auf deiner Haut gesehen und zugestimmt hast.',
+    firstTattooBtn: 'Erstes Tattoo entdecken',
     footStudio: 'Studio', footFollow: 'Folgen',
     legal: 'Impressum · Datenschutz',
     bookNow: 'Jetzt buchen', portfolio: 'Portfolio',
@@ -55,7 +58,7 @@ export const t = {
   },
   en: {
     label: 'English',
-    nav: { home: 'Home', artists: 'Artists', styles: 'Styles', services: 'Services', consultation: 'Consultation', walkin: 'Walk-In', piercing: 'Piercing', coverup: 'Cover-up', events: 'Events', about: 'About', faq: 'FAQ', contact: 'Contact', booking: 'Booking Hub' },
+    nav: { home: 'Home', artists: 'Artists', styles: 'Styles', services: 'Services', consultation: 'Consultation', walkin: 'Walk-In', piercing: 'Piercing', coverup: 'Cover-up', events: 'Events', about: 'About', faq: 'FAQ', contact: 'Contact', booking: 'Booking Hub', firstTattoo: 'First Tattoo' },
     navGuestArtists: 'Guest Artists', navPastEvents: 'Past Events',
     book: 'Book',
     bookConsult: 'Book a consultation',
@@ -95,6 +98,9 @@ export const t = {
     bookingEyebrow: 'Booking Hub', bookingTitle: 'Two ways to<br>book your visit',
     bookingText: "Book directly online through our booking app, for piercing, walk-ins and anything you can schedule yourself. Or share your idea for a custom project, a large piece or a cover-up, and we'll get back to you within 24 hours for a free consultation. Pick the path that fits you.",
     bookingBtn: 'Book your visit', bookingMore: 'See both ways →',
+    firstTattooEyebrow: 'First Tattoo', firstTattooTitle: 'Your first<br>tattoo',
+    firstTattooText: "First tattoo and still unsure about pain, price or the right artist? We give honest answers before you book, and show step by step how your first appointment with us really goes. Nothing begins until you've seen your design as a live sketch on your skin and approved it.",
+    firstTattooBtn: 'Explore first tattoo',
     footStudio: 'Studio', footFollow: 'Follow',
     legal: 'Imprint · Privacy',
     bookNow: 'Book now', portfolio: 'Portfolio',

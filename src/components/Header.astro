@@ -25,6 +25,7 @@ const base = `/${lang}`;
             {styles.map((s) => <li><a href={`${base}/styles/${s.slug}`}>{s.name[lang]}</a></li>)}
           </ul>
         </li>
+        <li><a href={`${base}/erstes-tattoo`}>{L.nav.firstTattoo}</a></li>
         <li class="has-sub">
           <a class="sub-parent" role="button" tabindex="0">{L.nav.services}<span class="sub-caret" aria-hidden="true">+</span></a>
           <ul class="submenu">

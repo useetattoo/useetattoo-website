@@ -1,0 +1,178 @@
+---
+import Base from '../../layouts/Base.astro';
+import { langs } from '../../data/i18n.js';
+import { site } from '../../data/site.js';
+
+export function getStaticPaths() {
+  return langs.map((lang) => ({ params: { lang } }));
+}
+const { lang } = Astro.params;
+const heroImg = '/images/experience/Tattoo_Experience_3.webp';
+const sketchImg = '/images/experience/Tattoo_Experience_2.webp';
+const closeImg = '/images/experience/Tattoo_Experience_4.webp';
+
+const c = {
+  de: {
+    title: 'Erstes Tattoo in Berlin? Was dich bei Usee Tattoo erwartet',
+    description: 'Erstes Tattoo, aber unsicher wegen Schmerz, Preis oder dem richtigen Artist? So läuft dein erster Termin bei Usee Tattoo Berlin wirklich ab, Schritt für Schritt.',
+    eyebrow: '/ Erstes Tattoo',
+    h1: 'Dein erstes Tattoo, ohne die Unsicherheit',
+    lead: 'Die meisten Fragen vor einem ersten Tattoo drehen sich nicht um das Motiv. Sie drehen sich um das, was niemand vorher genau erklärt: Wie sehr tut es weh, was kostet es am Ende wirklich, und was, wenn das Ergebnis nicht das wird, was du dir vorgestellt hast. Hier bekommst du ehrliche Antworten, bevor du überhaupt einen Termin buchst.',
+    ctaBook: 'Beratung buchen', ctaWalkin: 'Walk-In Verfügbarkeit prüfen',
+    featTitle: 'Was, wenn mir das Ergebnis am Ende nicht gefällt?',
+    feat: 'Deshalb kommt bei uns nichts aus einer Vorlage. Jedes Tattoo beginnt mit einer kostenlosen Beratung, in der dein Artist eine Live-Skizze direkt mit dir entwickelt, nicht im Nachhinein per E-Mail geschickt. Du siehst die Platzierung als Stencil auf deiner Haut, aus mehreren Winkeln, bevor eine Nadel im Spiel ist. Nichts beginnt, bevor du wirklich zustimmst.',
+    qaTitle: 'Ehrliche Antworten, bevor du buchst',
+    qa: [
+      ['„Tut es weh?" Die ehrliche Antwort.', 'Es tut weh, unterschiedlich stark je nach Körperstelle. Rippen, Ellenbogen und Fußknöchel spüren die meisten stärker als Oberarm oder Wade. Was hilft: gut geschlafen, nicht auf leeren Magen, kein Alkohol vorher. Bei deinem ersten Termin erklärt dir dein Artist genau, was du an der gewählten Stelle erwarten kannst, bevor die Nadel überhaupt ansetzt.'],
+      ['„Was kostet das am Ende wirklich?"', 'Bevor du einen Termin bestätigst, kennst du den Preisrahmen. Kleinere Walk-In-Motive starten ab 100 €, größere Projekte bekommen nach der Beratung ein klares Angebot auf Basis von Größe, Detailgrad und Sitzungsanzahl, kein Schätzpreis, der sich am Tag selbst plötzlich ändert.'],
+      ['„Was, wenn ich den falschen Artist erwische?"', 'Du wählst nicht blind. In der Beratung ordnen wir dein Motiv dem Artist zu, dessen Stil dazu passt, Realismus und Black & Grey bei Josef, Fine Line und Micro Realism bei Cali und Jvd. Willst du zuerst sehen, wessen Handschrift zu deiner Idee passt, sag uns einfach, was dir vorschwebt.'],
+      ['„Wie schlimm ist die Heilung?"', 'Die ersten Tage sind empfindlich, das ist normal. Du bekommst eine klare Pflegeanleitung, bevor du das Studio verlässt, keine Zettel-Suche zuhause. Und falls nach vollständiger Heilung noch eine kleine Nachbesserung nötig ist, machen wir die kostenlos, das ist bei uns Standard, kein Bonus.'],
+      ['„Muss ich schon genau wissen, was ich will?"', 'Nein. Ein grobes Gefühl reicht für den Start, eine Farbe, ein Ort am Körper, ein Wort, das dir wichtig ist. Referenzfotos helfen, müssen aber nicht perfekt sein. Der Rest entsteht gemeinsam mit deinem Artist in der Beratung.'],
+    ],
+    stepsTitle: 'So läuft dein erster Termin ab',
+    steps: [
+      ['Idee teilen', 'Ein Referenzbild oder nur ein Gefühl im Kopf, beides reicht als Start.'],
+      ['Beratung', 'Persönlich im Studio oder online, dein Artist bespricht Platzierung, Größe und Stil mit dir.'],
+      ['Live-Skizze & Stencil', 'Du siehst dein Motiv auf deiner Haut, bevor irgendetwas final ist.'],
+      ['Klarer Preis', 'Du weißt vor dem Tätowieren, was es kostet.'],
+      ['Tätowieren', 'Mit sterilem Einwegmaterial, durchgehend.'],
+      ['Nachsorge', 'Klare Anleitung direkt mit auf den Weg.'],
+    ],
+    closeTitle: 'Kein Termin, sondern erstmal nur Fragen?',
+    close: 'Manche kommen mit einer festen Idee, andere nur mit einer Unsicherheit, die sie loswerden wollen. Beides ist ein guter Grund für eine kostenlose Beratung, persönlich im Studio in Charlottenburg oder online per Video, wenn du nicht aus Berlin anreisen kannst.',
+    ctaOnline: 'Online-Beratung', ctaWa: 'Schreib uns per WhatsApp',
+    reviewNote: 'Basierend auf über 690 Google-Bewertungen mit 4,9 Sternen.',
+  },
+  en: {
+    title: 'First Tattoo in Berlin? What to Expect at Usee Tattoo',
+    description: 'First tattoo, but unsure about pain, price or the right artist? Here is how your first appointment at Usee Tattoo Berlin really goes, step by step.',
+    eyebrow: '/ First Tattoo',
+    h1: 'Your first tattoo, without the uncertainty',
+    lead: "Most questions before a first tattoo aren't about the design. They're about what no one explains beforehand: how much it hurts, what it really costs in the end, and what happens if the result isn't what you pictured. Here you get honest answers, before you even book an appointment.",
+    ctaBook: 'Book a consultation', ctaWalkin: 'Check walk-in availability',
+    featTitle: "What if I don't like the result in the end?",
+    feat: "That's why nothing here comes from a template. Every tattoo starts with a free consultation where your artist develops a live sketch with you, not one sent by email afterwards. You see the placement as a stencil on your skin, from several angles, before a needle is involved. Nothing starts until you truly agree.",
+    qaTitle: 'Honest answers, before you book',
+    qa: [
+      ['"Does it hurt?" The honest answer.', "It does hurt, and how much depends on the spot. Ribs, elbows and ankles are felt more than the upper arm or calf. What helps: a good night's sleep, not on an empty stomach, no alcohol beforehand. At your first appointment your artist explains exactly what to expect at your chosen spot, before the needle even touches down."],
+      ['"What does it really cost in the end?"', 'Before you confirm an appointment, you know the price range. Smaller walk-in pieces start from 100 €, larger projects get a clear quote after the consultation based on size, level of detail and number of sessions, not an estimate that suddenly changes on the day.'],
+      ['"What if I end up with the wrong artist?"', "You don't choose blind. In the consultation we match your idea to the artist whose style fits it, realism and black & grey with Josef, fine line and micro realism with Cali and Jvd. If you'd like to see whose hand suits your idea first, just tell us what you have in mind."],
+      ['"How bad is the healing?"', "The first days are sensitive, that's normal. You get clear aftercare instructions before you leave the studio, no hunting for a leaflet at home. And if a small touch-up is needed after full healing, we do it free, that's standard here, not a bonus."],
+      ['"Do I already need to know exactly what I want?"', "No. A rough feeling is enough to start, a colour, a place on your body, a word that matters to you. Reference photos help but don't have to be perfect. The rest takes shape together with your artist in the consultation."],
+    ],
+    stepsTitle: 'How your first appointment goes',
+    steps: [
+      ['Share your idea', 'A reference image or just a feeling in your head, either is enough to start.'],
+      ['Consultation', 'In person at the studio or online, your artist discusses placement, size and style with you.'],
+      ['Live sketch & stencil', 'You see your design on your skin before anything is final.'],
+      ['Clear price', 'You know what it costs before any tattooing begins.'],
+      ['Tattooing', 'With sterile single-use equipment throughout.'],
+      ['Aftercare', 'Clear instructions to take with you.'],
+    ],
+    closeTitle: 'No appointment yet, just questions for now?',
+    close: "Some come with a fixed idea, others just with an uncertainty they want to shed. Both are a good reason for a free consultation, in person at the studio in Charlottenburg or online by video if you can't travel to Berlin.",
+    ctaOnline: 'Online consultation', ctaWa: 'Message us on WhatsApp',
+    reviewNote: 'Based on over 690 Google reviews with 4.9 stars.',
+  },
+}[lang];
+---
+<Base lang={lang} title={c.title} description={c.description} ogImage={heroImg}>
+  <section class="detail-hero et-hero">
+    <div class="wrap">
+      <div class="et-hero-grid">
+        <div class="dh-txt reveal">
+          <div class="eyebrow">{c.eyebrow}</div>
+          <h1>{c.h1}</h1>
+          <p class="et-lead">{c.lead}</p>
+          <div class="cta-row">
+            <a class="cta primary" style="background:var(--ink);color:var(--paper)" href={site.booking.consultation} target="_blank" rel="noopener">{c.ctaBook}</a>
+            <a class="cta ghost" style="border-color:var(--ink);color:var(--ink)" href={site.booking.walkin} target="_blank" rel="noopener">{c.ctaWalkin}</a>
+          </div>
+        </div>
+        <div class="et-hero-img reveal"><img src={heroImg} alt="Erstes Tattoo bei Usee Tattoo Berlin" /></div>
+      </div>
+    </div>
+  </section>
+
+  <section style="padding-top:0">
+    <div class="wrap et-split">
+      <div class="et-media reveal"><img src={sketchImg} alt="Live-Skizze direkt auf der Haut" loading="lazy" /></div>
+      <div class="reveal">
+        <h2 class="et-h2">{c.featTitle}</h2>
+        <p class="et-p">{c.feat}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="artists" style="padding:90px 0">
+    <div class="wrap">
+      <h2 class="et-h2 reveal" style="margin-bottom:44px">{c.qaTitle}</h2>
+      <div class="et-qa reveal">
+        {c.qa.map(([q, a]) => (
+          <div class="et-card"><h3>{q}</h3><p>{a}</p></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <h2 class="et-h2 reveal" style="margin-bottom:44px">{c.stepsTitle}</h2>
+      <div class="et-steps reveal">
+        {c.steps.map(([t, d], i) => (
+          <div class="et-step"><span class="n">{String(i + 1).padStart(2, '0')}</span><h3>{t}</h3><p>{d}</p></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="artists" style="padding:90px 0">
+    <div class="wrap et-split et-split-rev">
+      <div class="reveal">
+        <h2 class="et-h2">{c.closeTitle}</h2>
+        <p class="et-p">{c.close}</p>
+        <div class="cta-row" style="flex-wrap:wrap;gap:16px">
+          <a class="cta primary" style="background:var(--ink);color:var(--paper)" href={site.booking.consultation} target="_blank" rel="noopener">{c.ctaBook}</a>
+          <a class="cta ghost" style="border-color:var(--ink);color:var(--ink)" href={site.booking.online} target="_blank" rel="noopener">{c.ctaOnline}</a>
+        </div>
+        <p class="et-wa"><a href={site.whatsapp} target="_blank" rel="noopener">{c.ctaWa}</a></p>
+        <p class="et-review">{c.reviewNote}</p>
+      </div>
+      <div class="et-media reveal"><img src={closeImg} alt="Beratung im Studio in Berlin Charlottenburg" loading="lazy" /></div>
+    </div>
+  </section>
+
+  <style>
+    .et-hero-grid{display:grid;grid-template-columns:1.02fr .98fr;gap:56px;align-items:center}
+    .et-hero-img{aspect-ratio:4/5;overflow:hidden;background:var(--paper-2)}
+    .et-hero-img img{width:100%;height:100%;object-fit:cover}
+    .et-lead{color:var(--ink-soft);font-size:17px;line-height:1.85;max-width:560px;margin:6px 0 26px}
+    .et-split{display:grid;grid-template-columns:.9fr 1.1fr;gap:56px;align-items:center}
+    .et-split-rev{grid-template-columns:1.1fr .9fr}
+    .et-media{aspect-ratio:3/4;overflow:hidden;background:var(--paper-2)}
+    .et-media img{width:100%;height:100%;object-fit:cover}
+    .et-h2{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(26px,3.6vw,40px);line-height:1.15;margin:0 0 20px}
+    .et-p{color:var(--ink-soft);font-size:16px;line-height:1.85;margin-bottom:16px;max-width:620px}
+    .et-qa{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line)}
+    .et-card{background:var(--paper);padding:32px 30px}
+    .et-card h3{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:21px;line-height:1.25;margin:0 0 12px}
+    .et-card p{color:var(--ink-soft);font-size:14.5px;line-height:1.75}
+    .et-steps{display:grid;grid-template-columns:repeat(6,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+    .et-step{background:var(--paper-2);padding:26px 18px}
+    .et-step .n{font-family:'Cormorant Garamond',serif;font-size:26px;color:var(--bronze)}
+    .et-step h3{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:17px;margin:8px 0 8px;line-height:1.2}
+    .et-step p{color:var(--ink-soft);font-size:13px;line-height:1.6}
+    .et-wa{margin-top:18px;font-size:14px}
+    .et-wa a{color:var(--bronze-dk);text-decoration:underline;text-underline-offset:2px}
+    .et-review{margin-top:22px;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:17px;color:var(--bronze-dk)}
+    @media(max-width:900px){
+      .et-hero-grid{grid-template-columns:1fr;gap:32px}
+      .et-hero-img{aspect-ratio:16/10;max-height:420px}
+      .et-split,.et-split-rev{grid-template-columns:1fr;gap:32px}
+      .et-media{aspect-ratio:4/3;max-height:420px}
+      .et-qa{grid-template-columns:1fr}
+      .et-steps{grid-template-columns:1fr 1fr}
+    }
+    @media(max-width:560px){.et-steps{grid-template-columns:1fr}}
+  </style>
+</Base>
