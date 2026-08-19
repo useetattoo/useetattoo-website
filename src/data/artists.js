@@ -53,7 +53,7 @@ export const artists = [
     piercing: true,
     specialties: { de: 'Piercing · Studio', en: 'Piercing · Studio' },
     meta: {
-      de: 'Nana ist unsere Piercing-Spezialistin, kuratierte, hochwertige Piercings mit Sorgfalt und Stil.',
+              de: 'Nana ist unsere Piercing-Spezialistin bei Usee Tattoo Berlin: kuratierte Piercings mit Sorgfalt und Stil.',
       en: 'Nana is our piercing specialist, curated, high-quality piercings placed with care and style.',
     },
     bio: {
