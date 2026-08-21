@@ -130,7 +130,7 @@ window.__loadGTM();
           var box = f.closest('.consent-embed'); if (box) box.classList.add('loaded');
         });
       }
-      function apply(v){ if (v === 'granted') { if (window.__loadGTM) window.__loadGTM(); loadEmbeds(); } }
+      function apply(v){ if (window.gtag) window.gtag('consent', 'update', { ad_storage: v === 'granted' ? 'granted' : 'denied', ad_user_data: v === 'granted' ? 'granted' : 'denied', ad_personalization: v === 'granted' ? 'granted' : 'denied', analytics_storage: v === 'granted' ? 'granted' : 'denied' }); if (v === 'granted') { loadEmbeds(); } }
       function hide(){ if (banner) { banner.classList.remove('show'); banner.hidden = true; } }
       function show(){ if (banner) { banner.hidden = false; requestAnimationFrame(function(){ banner.classList.add('show'); }); } }
       function setV(v){ try { localStorage.setItem(KEY, v); } catch (e) {} hide(); apply(v); }
