@@ -81,14 +81,31 @@ const localBusinessSchema = {
   <meta property="og:image" content={site.domain + og} />
   <meta name="twitter:card" content="summary_large_image" />
   <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
-  <!-- Consent-gated Google Tag Manager (loads only after opt-in, per GDPR / § 25 TDDDG) -->
+  <!-- Google Consent Mode v2: the GTM container always loads for every visitor
+       (needed so Google's own tag-detection tools and Google Ads can find our
+       tag at all), but ad/analytics storage stays "denied" by default until the
+       visitor actually accepts cookies in the banner below. -->
   <script is:inline>
     window.dataLayer = window.dataLayer || [];
-    window.__loadGTM = function () {
-      if (window.__gtmLoaded) return; window.__gtmLoaded = true;
-      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-TFXZ2D2F');
-    };
-    try { if (localStorage.getItem('usee-cookie-consent') === 'granted') window.__loadGTM(); } catch (e) {}
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('consent', 'default', {
+      ad_storage: 'denied',
+      ad_user_data: 'denied',
+      ad_personalization: 'denied',
+      analytics_storage: 'denied',
+      wait_for_update: 500,
+    });
+    try {
+      if (localStorage.getItem('usee-cookie-consent') === 'granted') {
+        gtag('consent', 'update', {
+          ad_storage: 'granted',
+          ad_user_data: 'granted',
+          ad_personalization: 'granted',
+          analytics_storage: 'granted',
+        });
+      }
+    } catch (e) {}
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);})(window,document,'script','dataLayer','GTM-TFXZ2D2F');
   </script>
   <style is:global>
     /* Cookie consent banner */
@@ -160,7 +177,14 @@ const localBusinessSchema = {
           var box = f.closest('.consent-embed'); if (box) box.classList.add('loaded');
         });
       }
-      function apply(v){ if (v === 'granted') { if (window.__loadGTM) window.__loadGTM(); loadEmbeds(); } }
+      function apply(v){
+        if (v === 'granted') {
+          if (window.gtag) window.gtag('consent', 'update', { ad_storage: 'granted', ad_user_data: 'granted', ad_personalization: 'granted', analytics_storage: 'granted' });
+          loadEmbeds();
+        } else if (v === 'denied' && window.gtag) {
+          window.gtag('consent', 'update', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'denied' });
+        }
+      }
       function hide(){ if (banner) { banner.classList.remove('show'); banner.hidden = true; } }
       function show(){ if (banner) { banner.hidden = false; requestAnimationFrame(function(){ banner.classList.add('show'); }); } }
       function setV(v){ try { localStorage.setItem(KEY, v); } catch (e) {} hide(); apply(v); }
@@ -217,11 +241,14 @@ const localBusinessSchema = {
           burger.addEventListener('click',function(ev){ ev.preventDefault(); body.classList.toggle('menu-open'); });
         }
         if(backdrop){ backdrop.addEventListener('click',closeMenu); }
-        // On mobile, tapping a parent item with a submenu toggles it instead of navigating
+        // On mobile, tapping a parent item with a submenu toggles it instead of navigating.
+        // Parents that already have a real destination (e.g. Artists -> #artists section)
+        // navigate normally; only parents without an href (pure category pickers like
+        // Styles/Services/Events) intercept the tap to open/close their submenu.
         document.querySelectorAll('.has-sub').forEach(function(hs){
           var pa=hs.querySelector(':scope > a');
-          if(pa){ pa.addEventListener('click',function(ev){
-            ev.preventDefault(); // parent (Artists/Styles) never navigates , only opens the submenu
+          if(pa && !pa.getAttribute('href')){ pa.addEventListener('click',function(ev){
+            ev.preventDefault(); // parent (Styles/Services/Events) never navigates , only opens the submenu
             if(window.matchMedia('(max-width:960px)').matches){
               var wasOpen=hs.classList.contains('open');
               document.querySelectorAll('.has-sub.open').forEach(function(o){ if(o!==hs) o.classList.remove('open'); });
