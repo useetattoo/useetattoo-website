@@ -14,7 +14,7 @@ const base = `/${lang}`;
       <ul>
         <li><a href={`${base}/`}>{L.nav.home}</a></li>
         <li class="has-sub">
-          <a class="sub-parent" role="button" tabindex="0">{L.nav.artists}<span class="sub-caret" aria-hidden="true">+</span></a>
+          <a class="sub-parent" href={`${base}/#artists`}>{L.nav.artists}<span class="sub-caret" aria-hidden="true">+</span></a>
           <ul class="submenu">
             {artists.map((a) => <li><a href={`${base}/artists/${a.slug}`}>{a.name}</a></li>)}
           </ul>
