@@ -3,7 +3,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 
 const artists = ['josef', 'nilou', 'cali', 'jvd', 'nana'];
-const styles = ['realistic', 'micro-realism', 'fine-line', 'maori', 'ornamental', 'portraits', 'color', 'dotwork'];
+  const styles = ['realistic', 'microrealism', 'fine-line', 'maori', 'ornamental', 'portraits', 'color'];
 const simple = [['events', 'events'], ['about-usee', 'about'], ['faq', 'faq'], ['contact-us', 'contact']];
 const eventsSub = ['past-events', 'flash-day', 'guest-artists', 'weekly-ink']; // → events (Weekly Ink dropped)
 const L = ['de', 'en'];
