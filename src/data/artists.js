@@ -7,12 +7,12 @@ export const artists = [
     book: 'https://book.useetattoo.com/josef',
     specialties: { de: 'Realistic · Black & Grey · Japanese', en: 'Realistic · Black & Grey · Japanese' },
     meta: {
-      de: 'Josef ist der kreative Kopf hinter Usee Tattoo, spezialisiert auf Realismus, Mikro-Realismus, Porträts, Mandalas und Maori.',
-      en: 'Josef is the creative genius behind UseeTattoo. He specializes in realism, micro-realism, portraits, mandalas, and Maori art and has a deep passion for Japanese tattoos.',
+      de: 'Josef hat Usee Tattoo mitaufgebaut und prägt bis heute die künstlerische Linie des Studios, spezialisiert auf Realismus in Schwarz-Grau, Porträts und Maori-Kunst.',
+      en: 'Josef helped build Usee Tattoo and still shapes the studio\'s artistic direction today, specializing in black & grey realism, portraits, and Maori art.',
     },
     bio: {
-      de: 'Josef ist der kreative Kopf hinter Usee Tattoo. Spezialisiert auf Realismus, Mikro-Realismus, Porträts, Mandalas und Maori-Kunst, verbindet ihn zudem eine tiefe Leidenschaft für japanische Tattoos. Josef wählt seine Kund:innen bewusst aus, damit jedes seiner einzigartigen Designs mit höchster Präzision und Handwerkskunst zum Leben erwacht. Wer ein außergewöhnliches, persönliches Tattoo sucht, das heraussticht, ist bei Josef genau richtig.',
-      en: 'Josef is the creative genius behind Usee Tattoo. Specializing in realism, micro-realism, portraits, mandalas, and Maori art, he also has a deep passion for Japanese tattoos. Josef carefully selects his clients to ensure that his unique, one-of-a-kind designs are brought to life with the utmost precision and artistry. If you are searching for an exceptional, personalized tattoo that stands out, Josef is undoubtedly the artist to choose.',
+      de: 'Josef hat Usee Tattoo mitaufgebaut und prägt bis heute die künstlerische Linie des Studios. Sein Schwerpunkt liegt auf Realismus in Schwarz-Grau, von Tierporträts über Gesichter bis zu großflächigen Sleeves, umgesetzt mit exakter Kontrolle über Licht, Schatten und Tiefe, damit ein Motiv wie eine Fotografie auf der Haut wirkt statt wie eine Zeichnung. Daneben bringt er seine Erfahrung in Maori-Kunst und seine wachsende Leidenschaft für japanische Tattoos in jede Beratung ein. Wie schon von Anfang an wählt Josef seine Projekte bewusst aus und nimmt sich für jedes ein ausführliches Beratungsgespräch, bevor der erste Entwurf entsteht. Wer ein Motiv sucht, das fotografische Tiefe und Präzision zeigt, ist bei Josef richtig.',
+      en: 'Josef helped build Usee Tattoo and still shapes the studio\'s artistic direction today. His focus is realism in black & grey, from animal portraits to faces to large-scale sleeves, executed with exact control over light, shadow and depth so a piece reads like a photograph on skin rather than a drawing. He also brings his experience in Maori art and his growing passion for Japanese tattoos into every consultation. As he has from the start, Josef chooses his projects deliberately and takes time for an in-depth conversation before any design begins. If you\'re looking for a piece with photographic depth and precision, Josef is the artist for that.',
     },
   },
   {
@@ -53,7 +53,7 @@ export const artists = [
     piercing: true,
     specialties: { de: 'Piercing · Studio', en: 'Piercing · Studio' },
     meta: {
-              de: 'Nana ist unsere Piercing-Spezialistin bei Usee Tattoo Berlin: kuratierte Piercings mit Sorgfalt und Stil.',
+      de: 'Nana ist unsere Piercing-Spezialistin bei Usee Tattoo Berlin: kuratierte Piercings mit Sorgfalt und Stil.',
       en: 'Nana is our piercing specialist, curated, high-quality piercings placed with care and style.',
     },
     bio: {
