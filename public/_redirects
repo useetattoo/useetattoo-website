@@ -1,3 +1,9 @@
+# ---- Old canonical style URL renamed 2026-08-25 (micro-realism -> microrealism) ----
+/de/styles/micro-realism /de/styles/microrealism 301
+/de/styles/micro-realism/ /de/styles/microrealism/ 301
+/en/styles/micro-realism /en/styles/microrealism 301
+/en/styles/micro-realism/ /en/styles/microrealism/ 301
+
 # ===== Usee Tattoo — 301 redirect map (legacy Joomla → clean URLs) =====
 # Root → German (default language)
 / /de/ 301!
@@ -21,8 +27,8 @@
 /de/tattoo-artists/nana /de/artists/nana 301
 /de/index.php/tatto-styles/realistic /de/styles/realistic 301
 /de/tatto-styles/realistic /de/styles/realistic 301
-/de/index.php/tatto-styles/micro-realism /de/styles/micro-realism 301
-/de/tatto-styles/micro-realism /de/styles/micro-realism 301
+/de/index.php/tatto-styles/micro-realism /de/styles/microrealism 301
+/de/tatto-styles/micro-realism /de/styles/microrealism 301
 /de/index.php/tatto-styles/fine-line /de/styles/fine-line 301
 /de/tatto-styles/fine-line /de/styles/fine-line 301
 /de/index.php/tatto-styles/maori /de/styles/maori 301
@@ -33,8 +39,8 @@
 /de/tatto-styles/portraits /de/styles/portraits 301
 /de/index.php/tatto-styles/color /de/styles/color 301
 /de/tatto-styles/color /de/styles/color 301
-/de/index.php/tatto-styles/dotwork /de/styles/micro-realism 301
-/de/tatto-styles/dotwork /de/styles/micro-realism 301
+/de/index.php/tatto-styles/dotwork /de/styles/microrealism 301
+/de/tatto-styles/dotwork /de/styles/microrealism 301
 /de/index.php/events /de/events/guest-artists 301
 /de/index.php/about-usee /de/about 301
 /de/about-usee /de/about 301
@@ -67,8 +73,8 @@
 /en/tattoo-artists/nana /en/artists/nana 301
 /en/index.php/tatto-styles/realistic /en/styles/realistic 301
 /en/tatto-styles/realistic /en/styles/realistic 301
-/en/index.php/tatto-styles/micro-realism /en/styles/micro-realism 301
-/en/tatto-styles/micro-realism /en/styles/micro-realism 301
+/en/index.php/tatto-styles/micro-realism /en/styles/microrealism 301
+/en/tatto-styles/micro-realism /en/styles/microrealism 301
 /en/index.php/tatto-styles/fine-line /en/styles/fine-line 301
 /en/tatto-styles/fine-line /en/styles/fine-line 301
 /en/index.php/tatto-styles/maori /en/styles/maori 301
@@ -79,8 +85,8 @@
 /en/tatto-styles/portraits /en/styles/portraits 301
 /en/index.php/tatto-styles/color /en/styles/color 301
 /en/tatto-styles/color /en/styles/color 301
-/en/index.php/tatto-styles/dotwork /en/styles/micro-realism 301
-/en/tatto-styles/dotwork /en/styles/micro-realism 301
+/en/index.php/tatto-styles/dotwork /en/styles/microrealism 301
+/en/tatto-styles/dotwork /en/styles/microrealism 301
 /en/index.php/events /en/events/guest-artists 301
 /en/index.php/about-usee /en/about 301
 /en/about-usee /en/about 301
@@ -123,8 +129,8 @@
 /index.php/tattoo-artists/nana /de/artists/nana 301
 /tatto-styles/realistic /de/styles/realistic 301
 /index.php/tatto-styles/realistic /de/styles/realistic 301
-/tatto-styles/micro-realism /de/styles/micro-realism 301
-/index.php/tatto-styles/micro-realism /de/styles/micro-realism 301
+/tatto-styles/micro-realism /de/styles/microrealism 301
+/index.php/tatto-styles/micro-realism /de/styles/microrealism 301
 /tatto-styles/fine-line /de/styles/fine-line 301
 /index.php/tatto-styles/fine-line /de/styles/fine-line 301
 /tatto-styles/maori /de/styles/maori 301
@@ -135,8 +141,8 @@
 /index.php/tatto-styles/portraits /de/styles/portraits 301
 /tatto-styles/color /de/styles/color 301
 /index.php/tatto-styles/color /de/styles/color 301
-/tatto-styles/dotwork /de/styles/micro-realism 301
-/index.php/tatto-styles/dotwork /de/styles/micro-realism 301
+/tatto-styles/dotwork /de/styles/microrealism 301
+/index.php/tatto-styles/dotwork /de/styles/microrealism 301
 /events /de/events/guest-artists 301
 /index.php/events /de/events/guest-artists 301
 /about-usee /de/about 301
@@ -163,12 +169,12 @@
 /tattoo-styles/realistic /de/styles/realistic 301
 /index.php/tattoo-styles/realistic /de/styles/realistic 301
 
-/de/tattoo-styles/micro-realism /de/styles/micro-realism 301
-/de/index.php/tattoo-styles/micro-realism /de/styles/micro-realism 301
-/en/tattoo-styles/micro-realism /en/styles/micro-realism 301
-/en/index.php/tattoo-styles/micro-realism /en/styles/micro-realism 301
-/tattoo-styles/micro-realism /de/styles/micro-realism 301
-/index.php/tattoo-styles/micro-realism /de/styles/micro-realism 301
+/de/tattoo-styles/micro-realism /de/styles/microrealism 301
+/de/index.php/tattoo-styles/micro-realism /de/styles/microrealism 301
+/en/tattoo-styles/micro-realism /en/styles/microrealism 301
+/en/index.php/tattoo-styles/micro-realism /en/styles/microrealism 301
+/tattoo-styles/micro-realism /de/styles/microrealism 301
+/index.php/tattoo-styles/micro-realism /de/styles/microrealism 301
 
 /de/tattoo-styles/fine-line /de/styles/fine-line 301
 /de/index.php/tattoo-styles/fine-line /de/styles/fine-line 301
@@ -205,12 +211,12 @@
 /tattoo-styles/color /de/styles/color 301
 /index.php/tattoo-styles/color /de/styles/color 301
 
-/de/tattoo-styles/dotwork /de/styles/micro-realism 301
-/de/index.php/tattoo-styles/dotwork /de/styles/micro-realism 301
-/en/tattoo-styles/dotwork /en/styles/micro-realism 301
-/en/index.php/tattoo-styles/dotwork /en/styles/micro-realism 301
-/tattoo-styles/dotwork /de/styles/micro-realism 301
-/index.php/tattoo-styles/dotwork /de/styles/micro-realism 301
+/de/tattoo-styles/dotwork /de/styles/microrealism 301
+/de/index.php/tattoo-styles/dotwork /de/styles/microrealism 301
+/en/tattoo-styles/dotwork /en/styles/microrealism 301
+/en/index.php/tattoo-styles/dotwork /en/styles/microrealism 301
+/tattoo-styles/dotwork /de/styles/microrealism 301
+/index.php/tattoo-styles/dotwork /de/styles/microrealism 301
 
 # ---- Zsofi — former artist, no longer with the studio. Recurring gap, fixed definitively here. ----
 /de/tattoo-artists/zsofi /de/ 301
@@ -227,7 +233,7 @@
 /en/style /en/ 301
 
 # ---- Dotwork removed 2026-08-25 — style dropped from the lineup, replaced by Micro Realism ----
-/de/styles/dotwork /de/styles/micro-realism 301
-/de/styles/dotwork/ /de/styles/micro-realism 301
-/en/styles/dotwork /en/styles/micro-realism 301
-/en/styles/dotwork/ /en/styles/micro-realism 301
+/de/styles/dotwork /de/styles/microrealism 301
+/de/styles/dotwork/ /de/styles/microrealism 301
+/en/styles/dotwork /en/styles/microrealism 301
+/en/styles/dotwork/ /en/styles/microrealism 301
