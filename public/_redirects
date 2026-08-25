@@ -33,8 +33,8 @@
 /de/tatto-styles/portraits /de/styles/portraits 301
 /de/index.php/tatto-styles/color /de/styles/color 301
 /de/tatto-styles/color /de/styles/color 301
-/de/index.php/tatto-styles/dotwork /de/styles/dotwork 301
-/de/tatto-styles/dotwork /de/styles/dotwork 301
+/de/index.php/tatto-styles/dotwork /de/styles/micro-realism 301
+/de/tatto-styles/dotwork /de/styles/micro-realism 301
 /de/index.php/events /de/events/guest-artists 301
 /de/index.php/about-usee /de/about 301
 /de/about-usee /de/about 301
@@ -79,8 +79,8 @@
 /en/tatto-styles/portraits /en/styles/portraits 301
 /en/index.php/tatto-styles/color /en/styles/color 301
 /en/tatto-styles/color /en/styles/color 301
-/en/index.php/tatto-styles/dotwork /en/styles/dotwork 301
-/en/tatto-styles/dotwork /en/styles/dotwork 301
+/en/index.php/tatto-styles/dotwork /en/styles/micro-realism 301
+/en/tatto-styles/dotwork /en/styles/micro-realism 301
 /en/index.php/events /en/events/guest-artists 301
 /en/index.php/about-usee /en/about 301
 /en/about-usee /en/about 301
@@ -135,8 +135,8 @@
 /index.php/tatto-styles/portraits /de/styles/portraits 301
 /tatto-styles/color /de/styles/color 301
 /index.php/tatto-styles/color /de/styles/color 301
-/tatto-styles/dotwork /de/styles/dotwork 301
-/index.php/tatto-styles/dotwork /de/styles/dotwork 301
+/tatto-styles/dotwork /de/styles/micro-realism 301
+/index.php/tatto-styles/dotwork /de/styles/micro-realism 301
 /events /de/events/guest-artists 301
 /index.php/events /de/events/guest-artists 301
 /about-usee /de/about 301
@@ -205,12 +205,12 @@
 /tattoo-styles/color /de/styles/color 301
 /index.php/tattoo-styles/color /de/styles/color 301
 
-/de/tattoo-styles/dotwork /de/styles/dotwork 301
-/de/index.php/tattoo-styles/dotwork /de/styles/dotwork 301
-/en/tattoo-styles/dotwork /en/styles/dotwork 301
-/en/index.php/tattoo-styles/dotwork /en/styles/dotwork 301
-/tattoo-styles/dotwork /de/styles/dotwork 301
-/index.php/tattoo-styles/dotwork /de/styles/dotwork 301
+/de/tattoo-styles/dotwork /de/styles/micro-realism 301
+/de/index.php/tattoo-styles/dotwork /de/styles/micro-realism 301
+/en/tattoo-styles/dotwork /en/styles/micro-realism 301
+/en/index.php/tattoo-styles/dotwork /en/styles/micro-realism 301
+/tattoo-styles/dotwork /de/styles/micro-realism 301
+/index.php/tattoo-styles/dotwork /de/styles/micro-realism 301
 
 # ---- Zsofi — former artist, no longer with the studio. Recurring gap, fixed definitively here. ----
 /de/tattoo-artists/zsofi /de/ 301
@@ -225,3 +225,9 @@
 /de/stile/ /de/ 301
 /en/stile /en/ 301
 /en/style /en/ 301
+
+# ---- Dotwork removed 2026-08-25 — style dropped from the lineup, replaced by Micro Realism ----
+/de/styles/dotwork /de/styles/micro-realism 301
+/de/styles/dotwork/ /de/styles/micro-realism 301
+/en/styles/dotwork /en/styles/micro-realism 301
+/en/styles/dotwork/ /en/styles/micro-realism 301
