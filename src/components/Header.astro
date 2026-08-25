@@ -8,49 +8,49 @@ const L = t[lang];
 const base = `/${lang}`;
 ---
 <header id="hd">
-  <div class="wrap nav">
-    <a href={`${base}/`} class="brand">Usee<span>·</span>Tattoo</a>
-    <nav>
-      <ul>
-        <li><a href={`${base}/`}>{L.nav.home}</a></li>
-        <li class="has-sub">
-          <a class="sub-parent" href={`${base}/#artists`}>{L.nav.artists}<span class="sub-caret" aria-hidden="true">+</span></a>
-          <ul class="submenu">
-            {artists.map((a) => <li><a href={`${base}/artists/${a.slug}`}>{a.name}</a></li>)}
-          </ul>
-        </li>
-        <li class="has-sub">
-          <a class="sub-parent" role="button" tabindex="0">{L.nav.styles}<span class="sub-caret" aria-hidden="true">+</span></a>
-          <ul class="submenu">
-            {styles.map((s) => <li><a href={`${base}/styles/${s.slug}`}>{s.name[lang]}</a></li>)}
-          </ul>
-        </li>
-        <li><a href={`${base}/erstes-tattoo`}>{L.nav.firstTattoo}</a></li>
-        <li class="has-sub">
-          <a class="sub-parent" role="button" tabindex="0">{L.nav.services}<span class="sub-caret" aria-hidden="true">+</span></a>
-          <ul class="submenu">
-            <li><a href={`${base}/booking`}>{L.nav.booking}</a></li>
-            <li><a href={`${base}/consultation`}>{L.nav.consultation}</a></li>
-            <li><a href={`${base}/walk-in`}>{L.nav.walkin}</a></li>
-            <li><a href={`${base}/piercing`}>{L.nav.piercing}</a></li>
-            <li><a href={`${base}/cover-up`}>{L.nav.coverup}</a></li>
-          </ul>
-        </li>
-        <li class="has-sub">
-          <a class="sub-parent" role="button" tabindex="0">{L.nav.events}<span class="sub-caret" aria-hidden="true">+</span></a>
-          <ul class="submenu">
-            <li><a href={`${base}/events/guest-artists`}>{L.navGuestArtists}</a></li>
-            <li><a href={`${base}/events/past-events`}>{L.navPastEvents}</a></li>
-          </ul>
-        </li>
-        <li><a href={`${base}/about`}>{L.nav.about}</a></li>
-        <li><a href={`${base}/faq`}>{L.nav.faq}</a></li>
-        <li><a href={`${base}/contact`}>{L.nav.contact}</a></li>
-      </ul>
-    </nav>
-    <div class="nav-right">
-      <a class="lang-switch" href={altPath} hreflang={altLabel.toLowerCase()}>{altLabel}</a>
-      <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
-    </div>
-  </div>
+<div class="wrap nav">
+<a href={`${base}/`} class="brand">Usee<span>·</span>Tattoo</a>
+<nav>
+<ul>
+<li><a href={`${base}/`}>{L.nav.home}</a></li>
+<li class="has-sub">
+<a class="sub-parent" href={`${base}/#artists`}>{L.nav.artists}<span class="sub-caret" aria-hidden="true">+</span></a>
+<ul class="submenu">
+{artists.map((a) => <li><a href={`${base}/artists/${a.slug}`}>{a.name}</a></li>)}
+</ul>
+</li>
+<li class="has-sub">
+<a class="sub-parent" href={`${base}/#styles`}>{L.nav.styles}<span class="sub-caret" aria-hidden="true">+</span></a>
+<ul class="submenu">
+{styles.map((s) => <li><a href={`${base}/styles/${s.slug}`}>{s.name[lang]}</a></li>)}
+</ul>
+</li>
+<li><a href={`${base}/erstes-tattoo`}>{L.nav.firstTattoo}</a></li>
+<li class="has-sub">
+<a class="sub-parent" role="button" tabindex="0">{L.nav.services}<span class="sub-caret" aria-hidden="true">+</span></a>
+<ul class="submenu">
+<li><a href={`${base}/booking`}>{L.nav.booking}</a></li>
+<li><a href={`${base}/consultation`}>{L.nav.consultation}</a></li>
+<li><a href={`${base}/walk-in`}>{L.nav.walkin}</a></li>
+<li><a href={`${base}/piercing`}>{L.nav.piercing}</a></li>
+<li><a href={`${base}/cover-up`}>{L.nav.coverup}</a></li>
+</ul>
+</li>
+<li class="has-sub">
+<a class="sub-parent" role="button" tabindex="0">{L.nav.events}<span class="sub-caret" aria-hidden="true">+</span></a>
+<ul class="submenu">
+<li><a href={`${base}/events/guest-artists`}>{L.navGuestArtists}</a></li>
+<li><a href={`${base}/events/past-events`}>{L.navPastEvents}</a></li>
+</ul>
+</li>
+<li><a href={`${base}/about`}>{L.nav.about}</a></li>
+<li><a href={`${base}/faq`}>{L.nav.faq}</a></li>
+<li><a href={`${base}/contact`}>{L.nav.contact}</a></li>
+</ul>
+</nav>
+<div class="nav-right">
+<a class="lang-switch" href={altPath} hreflang={altLabel.toLowerCase()}>{altLabel}</a>
+<button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+</div>
+</div>
 </header>
