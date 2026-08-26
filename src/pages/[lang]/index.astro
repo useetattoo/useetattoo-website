@@ -31,14 +31,14 @@ const description = lang === 'de'
   : 'UseeTattoo in Berlin is not just a tattoo studio! Our team consists only of qualified artists. Custom tattoos by private consultation, Charlottenburg.';
 
 const homeGallery = [
-  '/images/home/selected/SelectedWorks_1.webp',
-  '/images/home/selected/SelectedWorks_2.webp',
-  '/images/home/selected/SelectedWorks_3.webp',
-  '/images/home/selected/SelectedWorks_4.webp',
-  '/images/home/selected/SelectedWorks_5.webp',
-  '/images/home/selected/SelectedWorks_6.webp',
-  '/images/home/selected/SelectedWorks_7.webp',
-  '/images/home/selected/SelectedWorks_8.webp',
+  { src: '/images/home/selected/SelectedWorks_1.webp', altDe: 'Realistisches Schwarz-Grau-Tattoo mit Frauengesicht und Hand am Oberschenkel', altEn: "Realistic black and grey tattoo of a woman's face and hand on the thigh" },
+  { src: '/images/home/selected/SelectedWorks_2.webp', altDe: 'Ornamentales Spitzenmuster-Tattoo am Unterschenkel', altEn: 'Ornamental lace-pattern tattoo on the lower leg' },
+  { src: '/images/home/selected/SelectedWorks_3.webp', altDe: 'Fine-Line-Tattoo mit Auge und Gesichtsfragment am Oberarm', altEn: 'Fine line tattoo of an eye and face fragment on the upper arm' },
+  { src: '/images/home/selected/SelectedWorks_4.webp', altDe: 'Schwarz-Grau-Tattoo mit Totenkopf und Krone am Unterarm', altEn: 'Black and grey tattoo of a skull with a crown on the forearm' },
+  { src: '/images/home/selected/SelectedWorks_5.webp', altDe: 'Geometrisches Ornament-Tattoo mit Mandala-Mustern als Arm-Sleeve', altEn: 'Geometric ornamental tattoo with mandala patterns as a full arm sleeve' },
+  { src: '/images/home/selected/SelectedWorks_6.webp', altDe: 'Fine-Line-Tattoo mit Segelschiff und geometrischen Symbolen am Oberarm', altEn: 'Fine line tattoo of a sailing ship and geometric symbols on the upper arm' },
+  { src: '/images/home/selected/SelectedWorks_7.webp', altDe: 'Illustratives Schwarz-Grau-Tattoo mit zwei Greifvögeln und Schlüssel am Oberarm', altEn: 'Illustrative black and grey tattoo of two birds of prey and a key on the upper arm' },
+  { src: '/images/home/selected/SelectedWorks_8.webp', altDe: 'Fine-Line-Tattoo mit Rosen am Unterarm', altEn: 'Fine line tattoo of roses on the forearm' },
 ];
 
 // LocalBusiness structured data (schema.org / JSON-LD) — enables Google rich
@@ -150,8 +150,8 @@ const localBusinessSchema = {
         <a href={site.social.instagram} target="_blank" rel="noopener">@usee.tattoo →</a>
       </div>
       <div class="g-grid reveal">
-        {homeGallery.map((src) => (
-          <div class="cell"><img src={src} alt="" loading="lazy" /></div>
+        {homeGallery.map((img) => (
+          <div class="cell"><img src={img.src} alt={lang === 'de' ? img.altDe : img.altEn} loading="lazy" /></div>
         ))}
       </div>
     </div>
