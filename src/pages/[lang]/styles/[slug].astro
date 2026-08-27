@@ -23,7 +23,16 @@ const featured = (style.artists || []).map((s) => artistsBySlug[s]).filter(Boole
 const primaryBook = featured[0]?.book;
 
 const title = `${style.name[lang]} Tattoos | UseeTattoo Studio – Berlin`;
-const description = style.desc[lang].replace(/\n+/g, ' ').slice(0, 155);
+// Word-boundary-safe meta description truncation (fixes mid-word cutoffs at 155 chars).
+function truncateDescription(text, max = 155) {
+  const clean = text.replace(/\n+/g, ' ').trim();
+  if (clean.length <= max) return clean;
+  const cut = clean.slice(0, max);
+  const lastSpace = cut.lastIndexOf(' ');
+  const safe = (lastSpace > 0 ? cut.slice(0, lastSpace) : cut).replace(/[\s,;:.\-–—]+$/, '');
+  return `${safe}…`;
+}
+const description = truncateDescription(style.desc[lang]);
 const descParas = style.desc[lang].split('\n\n');
 ---
 <Base lang={lang} title={title} description={description} ogImage={heroImg}>
