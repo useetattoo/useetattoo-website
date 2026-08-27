@@ -36,10 +36,11 @@ const og = ogImage || site.heroImage;
 const localBusinessSchema = {
   '@context': 'https://schema.org',
   '@type': 'TattooParlor',
+  '@id': `${site.domain}/#business`,
   name: site.name,
   image: site.domain + site.heroImage,
   url: site.domain + '/de/',
-  telephone: site.phone.href.replace('tel:', ''),
+  telephone: site.phone.display,
   priceRange: '€€',
   address: {
     '@type': 'PostalAddress',
@@ -48,6 +49,7 @@ const localBusinessSchema = {
     postalCode: site.address.zip,
     addressCountry: 'DE',
   },
+  geo: { '@type': 'GeoCoordinates', latitude: 52.506937, longitude: 13.2919169 },
   openingHoursSpecification: {
     '@type': 'OpeningHoursSpecification',
     dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
@@ -55,11 +57,6 @@ const localBusinessSchema = {
     closes: '19:00',
   },
   sameAs: [site.social.instagram, site.social.facebook, site.social.tiktok, site.social.pinterest],
-  aggregateRating: {
-    '@type': 'AggregateRating',
-    ratingValue: '4.9',
-    reviewCount: '692',
-  },
 };
 ---
 <!doctype html>
