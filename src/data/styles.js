@@ -17,6 +17,27 @@ export const styles = [
       de: 'Micro Realism Tattoos in Berlin: feine, realistische Details im Kleinformat bei Usee Tattoo. Micro Realism verbindet realistische Bildsprache mit kleinen, klaren Formen und geometrischen Akzenten, kompakt, aber mit sichtbarer Detailtiefe. Wer ein feines Tattoo im kleineren Maßstab sucht, das trotzdem wie eine Miniatur-Fotografie wirkt, findet hier die passende Handschrift.\n\nDie eigentliche Herausforderung bei diesem Stil ist die Miniaturisierung: Realistische Schattierung und feine Linien müssen auf wenigen Zentimetern genauso präzise sitzen wie bei einem großformatigen Motiv, sonst verschwimmt das Ergebnis mit der Zeit zu einer grauen Fläche. Cali und Jvd arbeiten deshalb mit reduzierter Nadeltiefe und exakt abgestimmten Linienstärken, damit Details wie Gesichtszüge, Texturen oder kleine Symbole auch nach Jahren noch klar erkennbar bleiben.\n\nOb ein einzelnes Miniatur-Motiv oder eine Komposition aus mehreren kleinen Elementen: Cali und Jvd besprechen mit dir vorab, welche Größe und Platzierung die Details langfristig scharf hält, damit das fertige Tattoo auch aus der Nähe überzeugt.',
       en: 'Micro Realism tattoos in Berlin: fine, realistic detail at small scale at Usee Tattoo. Micro Realism blends realistic imagery with small, clean shapes and geometric accents, compact, but with real, visible detail. If you want a delicate tattoo at a smaller scale that still reads like a miniature photograph, this is the style built for it.\n\nThe real challenge with this style is the miniaturization itself: realistic shading and fine linework have to stay just as precise across a few centimeters as they would on a large-scale piece, otherwise the result blurs into a flat grey shape over time. That\'s why Cali and Jvd work with reduced needle depth and carefully matched line weights, so details like facial features, textures or small symbols stay clearly readable years later.\n\nWhether it\'s a single miniature motif or a composition of several small elements, Cali and Jvd talk through size and placement with you beforehand, so the details hold up long-term, and the finished tattoo still convinces up close.',
     },
+    metaDescription: {
+      de: 'Micro Realism Tattoos in Berlin: realistische Miniatur-Details, die dank reduzierter Nadeltiefe auch nach Jahren scharf bleiben. Jetzt Termin sichern.',
+      en: 'Micro Realism tattoos in Berlin: realistic detail at miniature scale that stays sharp for years instead of blurring. Book a consultation at Usee Tattoo.',
+    },
+    faq: [
+      {
+        q: { de: 'Was ist der Unterschied zwischen Micro Realism und Fine Line?', en: "What's the difference between Micro Realism and Fine Line?" },
+        a: {
+          de: 'Fine Line arbeitet mit sehr dünnen, gleichmäßigen Linien und wenig bis keiner Schattierung — das Ergebnis wirkt eher wie eine präzise Zeichnung. Micro Realism baut dagegen auf realistischer Schattierung und Tiefenwirkung im Miniaturformat auf, damit das Motiv wie eine kleine Fotografie wirkt statt wie eine Linienzeichnung. Beide Stile sind kompakt, aber die Technik dahinter ist unterschiedlich.',
+          en: 'Fine Line uses very thin, even linework with little to no shading, so the result reads more like a precise drawing. Micro Realism is built on realistic shading and depth at a small scale, so the piece looks like a miniature photograph rather than a line drawing. Both styles are compact, but the technique behind them is different.',
+        },
+      },
+      {
+        q: { de: 'Was ist der Unterschied zwischen Micro Realism und Concept?', en: "What's the difference between Micro Realism and Concept?" },
+        a: {
+          de: 'Micro Realism ist ein kleines, realistisches Motiv für sich. Wenn weitere Elemente — etwa ornamentale Linien oder Symbole — so mit dem realistischen Kern kombiniert werden, dass alles zusammen eine einzige Komposition ergibt, nennt man das Concept. Ein Großteil der Arbeiten von Cali ist in diesem Concept-Stil entstanden — ihre Arbeiten zeigen gut, wie das in der Praxis aussieht.',
+          en: "Micro Realism is one small, realistic design on its own. Concept goes a step further: additional elements — ornamental linework or symbols — are combined with the realistic core into one unified composition. Much of Cali's work is done in this Concept style, and it's a good place to see what that looks like in practice.",
+        },
+        link: { artist: 'cali', anchorDe: 'ihre Arbeiten', anchorEn: "Cali's work" },
+      },
+    ],
   },
   {
     slug: 'fine-line', built: true, folder: 'FineLine', artists: ['cali', 'jvd'], hero: 'FineLine_Cover.webp',
