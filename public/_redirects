@@ -237,3 +237,46 @@
 /de/styles/dotwork/ /de/styles/microrealism 301
 /en/styles/dotwork /en/styles/microrealism 301
 /en/styles/dotwork/ /en/styles/microrealism 301
+
+# ---- taetowierer-innen — real German legacy path segment, found via GSC Pages report
+# (2026-08-27, filtered by "*taetowierer-innen", 16-month window: 1,060 impressions /
+# 24 clicks across 7 artist slugs, none previously redirected). The earlier "tattoo-artists"
+# rules above were guesses based on the English URL structure and never matched the real
+# indexed Joomla path, which used this German segment instead. This closes that gap.
+/de/index.php/taetowierer-innen/josef /de/artists/josef 301
+/de/taetowierer-innen/josef /de/artists/josef 301
+/index.php/taetowierer-innen/josef /de/artists/josef 301
+/taetowierer-innen/josef /de/artists/josef 301
+
+/de/index.php/taetowierer-innen/cali /de/artists/cali 301
+/de/taetowierer-innen/cali /de/artists/cali 301
+/index.php/taetowierer-innen/cali /de/artists/cali 301
+/taetowierer-innen/cali /de/artists/cali 301
+
+/de/index.php/taetowierer-innen/jvd /de/artists/jvd 301
+/de/taetowierer-innen/jvd /de/artists/jvd 301
+/index.php/taetowierer-innen/jvd /de/artists/jvd 301
+/taetowierer-innen/jvd /de/artists/jvd 301
+
+/de/index.php/taetowierer-innen/nana /de/artists/nana 301
+/de/taetowierer-innen/nana /de/artists/nana 301
+/index.php/taetowierer-innen/nana /de/artists/nana 301
+/taetowierer-innen/nana /de/artists/nana 301
+
+# Nilou temporarily inactive — see note above.
+/de/index.php/taetowierer-innen/nilou /de/ 301
+/de/taetowierer-innen/nilou /de/ 301
+/index.php/taetowierer-innen/nilou /de/ 301
+/taetowierer-innen/nilou /de/ 301
+
+# Zsofi — former artist, no longer with the studio.
+/de/index.php/taetowierer-innen/zsofi /de/ 301
+/de/taetowierer-innen/zsofi /de/ 301
+/index.php/taetowierer-innen/zsofi /de/ 301
+/taetowierer-innen/zsofi /de/ 301
+
+# Alex — not in current roster, no dedicated page exists; treated as former artist.
+/de/index.php/taetowierer-innen/alex /de/ 301
+/de/taetowierer-innen/alex /de/ 301
+/index.php/taetowierer-innen/alex /de/ 301
+/taetowierer-innen/alex /de/ 301
