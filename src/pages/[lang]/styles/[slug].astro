@@ -32,7 +32,28 @@ function truncateDescription(text, max = 155) {
   const safe = (lastSpace > 0 ? cut.slice(0, lastSpace) : cut).replace(/[\s,;:.\-–—]+$/, '');
   return `${safe}…`;
 }
-const description = truncateDescription(style.desc[lang]);
+const description = style.metaDescription?.[lang] || truncateDescription(style.desc[lang]);
+const faq = style.faq || [];
+function faqAnswerHtml(item) {
+  let text = item.a[lang];
+  if (item.link) {
+    const anchor = lang === 'de' ? item.link.anchorDe : item.link.anchorEn;
+    const href = `/${lang}/artists/${item.link.artist}/`;
+    if (anchor && text.includes(anchor)) {
+      text = text.replace(anchor, `<a href="${href}">${anchor}</a>`);
+    }
+  }
+  return text;
+}
+const faqSchema = faq.length > 0 ? {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faq.map((item) => ({
+    '@type': 'Question',
+    name: item.q[lang],
+    acceptedAnswer: { '@type': 'Answer', text: item.a[lang] },
+  })),
+} : null;
 const descParas = style.desc[lang].split('\n\n');
 ---
 <Base lang={lang} title={title} description={description} ogImage={heroImg}>
@@ -77,5 +98,25 @@ const descParas = style.desc[lang].split('\n\n');
 </div>
 </div>
 </section>
+)}
+{faq.length > 0 && (
+<section class="s-faq" style="padding-top:60px">
+<div class="wrap">
+<div class="sec-head reveal">
+<h2>FAQ</h2>
+</div>
+<div class="faq-list reveal">
+{faq.map((item) => (
+<div class="faq-item" style="padding:20px 0;border-top:1px solid var(--line, #e5e5e5)">
+<h3>{item.q[lang]}</h3>
+<p set:html={faqAnswerHtml(item)} />
+</div>
+))}
+</div>
+</div>
+</section>
+)}
+{faqSchema && (
+<script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 )}
 </Base>
