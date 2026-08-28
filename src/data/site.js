@@ -34,7 +34,7 @@ export const site = {
     instagram: 'https://www.instagram.com/usee.tattoo',
     instagramHandle: '@usee.tattoo',
     facebook: 'https://www.facebook.com/useetattooo/',
-    pinterest: 'https://www.pinterest.co.uk/usmejdar/',
+    pinterest: 'https://de.pinterest.com/usee_tattoo/',
     tiktok: 'https://www.tiktok.com/@useetattoofamily',
   },
 };
