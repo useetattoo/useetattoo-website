@@ -1,7 +1,7 @@
 # ---- Old canonical style URL renamed 2026-08-25 (micro-realism -> microrealism) ----
-/de/styles/micro-realism /de/styles/microrealism 301
+/de/styles/micro-realism /de/styles/microrealism/ 301
 /de/styles/micro-realism/ /de/styles/microrealism/ 301
-/en/styles/micro-realism /en/styles/microrealism 301
+/en/styles/micro-realism /en/styles/microrealism/ 301
 /en/styles/micro-realism/ /en/styles/microrealism/ 301
 
 # ===== Usee Tattoo — 301 redirect map (legacy Joomla → clean URLs) =====
@@ -11,100 +11,100 @@
 # ---- DE ----
 /de/index.php /de/ 301
 /de/index.php/ /de/ 301
-/de/index.php/tattoo-artists/josef /de/artists/josef 301
-/de/tattoo-artists/josef /de/artists/josef 301
+/de/index.php/tattoo-artists/josef /de/artists/josef/ 301
+/de/tattoo-artists/josef /de/artists/josef/ 301
 # Nilou is temporarily inactive (on leave, expected back within 1-2 months).
 # Her dedicated page will return when she rejoins; until then, send her old
 # profile URLs to the homepage (where the Artists section still lives)
 # instead of the non-existent /de/artists index path.
 /de/index.php/tattoo-artists/nilou /de/ 301
 /de/tattoo-artists/nilou /de/ 301
-/de/index.php/tattoo-artists/cali /de/artists/cali 301
-/de/tattoo-artists/cali /de/artists/cali 301
-/de/index.php/tattoo-artists/jvd /de/artists/jvd 301
-/de/tattoo-artists/jvd /de/artists/jvd 301
-/de/index.php/tattoo-artists/nana /de/artists/nana 301
-/de/tattoo-artists/nana /de/artists/nana 301
-/de/index.php/tatto-styles/realistic /de/styles/realistic 301
-/de/tatto-styles/realistic /de/styles/realistic 301
-/de/index.php/tatto-styles/micro-realism /de/styles/microrealism 301
-/de/tatto-styles/micro-realism /de/styles/microrealism 301
-/de/index.php/tatto-styles/fine-line /de/styles/fine-line 301
-/de/tatto-styles/fine-line /de/styles/fine-line 301
-/de/index.php/tatto-styles/maori /de/styles/maori 301
-/de/tatto-styles/maori /de/styles/maori 301
-/de/index.php/tatto-styles/ornamental /de/styles/ornamental 301
-/de/tatto-styles/ornamental /de/styles/ornamental 301
-/de/index.php/tatto-styles/portraits /de/styles/portraits 301
-/de/tatto-styles/portraits /de/styles/portraits 301
-/de/index.php/tatto-styles/color /de/styles/color 301
-/de/tatto-styles/color /de/styles/color 301
-/de/index.php/tatto-styles/dotwork /de/styles/microrealism 301
-/de/tatto-styles/dotwork /de/styles/microrealism 301
-/de/index.php/events /de/events/guest-artists 301
-/de/index.php/about-usee /de/about 301
-/de/about-usee /de/about 301
-/de/index.php/faq /de/faq 301
-/de/index.php/contact-us /de/contact 301
-/de/contact-us /de/contact 301
-/de/index.php/past-events /de/events/past-events 301
-/de/past-events /de/events/past-events 301
-/de/index.php/flash-day /de/events/guest-artists 301
-/de/flash-day /de/events/guest-artists 301
-/de/index.php/guest-artists /de/events/guest-artists 301
-/de/guest-artists /de/events/guest-artists 301
-/de/index.php/weekly-ink /de/events/guest-artists 301
-/de/weekly-ink /de/events/guest-artists 301
-/de/beratung /de/consultation 301
+/de/index.php/tattoo-artists/cali /de/artists/cali/ 301
+/de/tattoo-artists/cali /de/artists/cali/ 301
+/de/index.php/tattoo-artists/jvd /de/artists/jvd/ 301
+/de/tattoo-artists/jvd /de/artists/jvd/ 301
+/de/index.php/tattoo-artists/nana /de/artists/nana/ 301
+/de/tattoo-artists/nana /de/artists/nana/ 301
+/de/index.php/tatto-styles/realistic /de/styles/realistic/ 301
+/de/tatto-styles/realistic /de/styles/realistic/ 301
+/de/index.php/tatto-styles/micro-realism /de/styles/microrealism/ 301
+/de/tatto-styles/micro-realism /de/styles/microrealism/ 301
+/de/index.php/tatto-styles/fine-line /de/styles/fine-line/ 301
+/de/tatto-styles/fine-line /de/styles/fine-line/ 301
+/de/index.php/tatto-styles/maori /de/styles/maori/ 301
+/de/tatto-styles/maori /de/styles/maori/ 301
+/de/index.php/tatto-styles/ornamental /de/styles/ornamental/ 301
+/de/tatto-styles/ornamental /de/styles/ornamental/ 301
+/de/index.php/tatto-styles/portraits /de/styles/portraits/ 301
+/de/tatto-styles/portraits /de/styles/portraits/ 301
+/de/index.php/tatto-styles/color /de/styles/color/ 301
+/de/tatto-styles/color /de/styles/color/ 301
+/de/index.php/tatto-styles/dotwork /de/styles/microrealism/ 301
+/de/tatto-styles/dotwork /de/styles/microrealism/ 301
+/de/index.php/events /de/events/guest-artists/ 301
+/de/index.php/about-usee /de/about/ 301
+/de/about-usee /de/about/ 301
+/de/index.php/faq /de/faq/ 301
+/de/index.php/contact-us /de/contact/ 301
+/de/contact-us /de/contact/ 301
+/de/index.php/past-events /de/events/past-events/ 301
+/de/past-events /de/events/past-events/ 301
+/de/index.php/flash-day /de/events/guest-artists/ 301
+/de/flash-day /de/events/guest-artists/ 301
+/de/index.php/guest-artists /de/events/guest-artists/ 301
+/de/guest-artists /de/events/guest-artists/ 301
+/de/index.php/weekly-ink /de/events/guest-artists/ 301
+/de/weekly-ink /de/events/guest-artists/ 301
+/de/beratung /de/consultation/ 301
 
 # ---- EN ----
 /en/index.php /en/ 301
 /en/index.php/ /en/ 301
-/en/index.php/tattoo-artists/josef /en/artists/josef 301
-/en/tattoo-artists/josef /en/artists/josef 301
+/en/index.php/tattoo-artists/josef /en/artists/josef/ 301
+/en/tattoo-artists/josef /en/artists/josef/ 301
 # Nilou temporarily inactive — see DE note above.
 /en/index.php/tattoo-artists/nilou /en/ 301
 /en/tattoo-artists/nilou /en/ 301
-/en/index.php/tattoo-artists/cali /en/artists/cali 301
-/en/tattoo-artists/cali /en/artists/cali 301
-/en/index.php/tattoo-artists/jvd /en/artists/jvd 301
-/en/tattoo-artists/jvd /en/artists/jvd 301
-/en/index.php/tattoo-artists/nana /en/artists/nana 301
-/en/tattoo-artists/nana /en/artists/nana 301
-/en/index.php/tatto-styles/realistic /en/styles/realistic 301
-/en/tatto-styles/realistic /en/styles/realistic 301
-/en/index.php/tatto-styles/micro-realism /en/styles/microrealism 301
-/en/tatto-styles/micro-realism /en/styles/microrealism 301
-/en/index.php/tatto-styles/fine-line /en/styles/fine-line 301
-/en/tatto-styles/fine-line /en/styles/fine-line 301
-/en/index.php/tatto-styles/maori /en/styles/maori 301
-/en/tatto-styles/maori /en/styles/maori 301
-/en/index.php/tatto-styles/ornamental /en/styles/ornamental 301
-/en/tatto-styles/ornamental /en/styles/ornamental 301
-/en/index.php/tatto-styles/portraits /en/styles/portraits 301
-/en/tatto-styles/portraits /en/styles/portraits 301
-/en/index.php/tatto-styles/color /en/styles/color 301
-/en/tatto-styles/color /en/styles/color 301
-/en/index.php/tatto-styles/dotwork /en/styles/microrealism 301
-/en/tatto-styles/dotwork /en/styles/microrealism 301
-/en/index.php/events /en/events/guest-artists 301
-/en/index.php/about-usee /en/about 301
-/en/about-usee /en/about 301
-/en/index.php/faq /en/faq 301
-/en/index.php/contact-us /en/contact 301
-/en/contact-us /en/contact 301
-/en/index.php/past-events /en/events/past-events 301
-/en/past-events /en/events/past-events 301
-/en/index.php/flash-day /en/events/guest-artists 301
-/en/flash-day /en/events/guest-artists 301
-/en/index.php/guest-artists /en/events/guest-artists 301
-/en/guest-artists /en/events/guest-artists 301
-/en/index.php/weekly-ink /en/events/guest-artists 301
-/en/weekly-ink /en/events/guest-artists 301
+/en/index.php/tattoo-artists/cali /en/artists/cali/ 301
+/en/tattoo-artists/cali /en/artists/cali/ 301
+/en/index.php/tattoo-artists/jvd /en/artists/jvd/ 301
+/en/tattoo-artists/jvd /en/artists/jvd/ 301
+/en/index.php/tattoo-artists/nana /en/artists/nana/ 301
+/en/tattoo-artists/nana /en/artists/nana/ 301
+/en/index.php/tatto-styles/realistic /en/styles/realistic/ 301
+/en/tatto-styles/realistic /en/styles/realistic/ 301
+/en/index.php/tatto-styles/micro-realism /en/styles/microrealism/ 301
+/en/tatto-styles/micro-realism /en/styles/microrealism/ 301
+/en/index.php/tatto-styles/fine-line /en/styles/fine-line/ 301
+/en/tatto-styles/fine-line /en/styles/fine-line/ 301
+/en/index.php/tatto-styles/maori /en/styles/maori/ 301
+/en/tatto-styles/maori /en/styles/maori/ 301
+/en/index.php/tatto-styles/ornamental /en/styles/ornamental/ 301
+/en/tatto-styles/ornamental /en/styles/ornamental/ 301
+/en/index.php/tatto-styles/portraits /en/styles/portraits/ 301
+/en/tatto-styles/portraits /en/styles/portraits/ 301
+/en/index.php/tatto-styles/color /en/styles/color/ 301
+/en/tatto-styles/color /en/styles/color/ 301
+/en/index.php/tatto-styles/dotwork /en/styles/microrealism/ 301
+/en/tatto-styles/dotwork /en/styles/microrealism/ 301
+/en/index.php/events /en/events/guest-artists/ 301
+/en/index.php/about-usee /en/about/ 301
+/en/about-usee /en/about/ 301
+/en/index.php/faq /en/faq/ 301
+/en/index.php/contact-us /en/contact/ 301
+/en/contact-us /en/contact/ 301
+/en/index.php/past-events /en/events/past-events/ 301
+/en/past-events /en/events/past-events/ 301
+/en/index.php/flash-day /en/events/guest-artists/ 301
+/en/flash-day /en/events/guest-artists/ 301
+/en/index.php/guest-artists /en/events/guest-artists/ 301
+/en/guest-artists /en/events/guest-artists/ 301
+/en/index.php/weekly-ink /en/events/guest-artists/ 301
+/en/weekly-ink /en/events/guest-artists/ 301
 
 # events hub removed -> guest artists
-/de/events /de/events/guest-artists 301
-/en/events /en/events/guest-artists 301
+/de/events /de/events/guest-artists/ 301
+/en/events /en/events/guest-artists/ 301
 
 # ===== Cleanup pass (2026-08-24) — definitive fix for recurring legacy-URL reports =====
 # Root cause: the rules above only ever covered /de/... and /en/... prefixed paths,
@@ -117,106 +117,106 @@
 # ---- Bare (no /de or /en prefix) legacy fallbacks -> default language (DE) ----
 /index.php /de/ 301
 /index.php/ /de/ 301
-/tattoo-artists/josef /de/artists/josef 301
-/index.php/tattoo-artists/josef /de/artists/josef 301
+/tattoo-artists/josef /de/artists/josef/ 301
+/index.php/tattoo-artists/josef /de/artists/josef/ 301
 /tattoo-artists/nilou /de/ 301
 /index.php/tattoo-artists/nilou /de/ 301
-/tattoo-artists/cali /de/artists/cali 301
-/index.php/tattoo-artists/cali /de/artists/cali 301
-/tattoo-artists/jvd /de/artists/jvd 301
-/index.php/tattoo-artists/jvd /de/artists/jvd 301
-/tattoo-artists/nana /de/artists/nana 301
-/index.php/tattoo-artists/nana /de/artists/nana 301
-/tatto-styles/realistic /de/styles/realistic 301
-/index.php/tatto-styles/realistic /de/styles/realistic 301
-/tatto-styles/micro-realism /de/styles/microrealism 301
-/index.php/tatto-styles/micro-realism /de/styles/microrealism 301
-/tatto-styles/fine-line /de/styles/fine-line 301
-/index.php/tatto-styles/fine-line /de/styles/fine-line 301
-/tatto-styles/maori /de/styles/maori 301
-/index.php/tatto-styles/maori /de/styles/maori 301
-/tatto-styles/ornamental /de/styles/ornamental 301
-/index.php/tatto-styles/ornamental /de/styles/ornamental 301
-/tatto-styles/portraits /de/styles/portraits 301
-/index.php/tatto-styles/portraits /de/styles/portraits 301
-/tatto-styles/color /de/styles/color 301
-/index.php/tatto-styles/color /de/styles/color 301
-/tatto-styles/dotwork /de/styles/microrealism 301
-/index.php/tatto-styles/dotwork /de/styles/microrealism 301
-/events /de/events/guest-artists 301
-/index.php/events /de/events/guest-artists 301
-/about-usee /de/about 301
-/index.php/about-usee /de/about 301
-/faq /de/faq 301
-/index.php/faq /de/faq 301
-/contact-us /de/contact 301
-/index.php/contact-us /de/contact 301
-/past-events /de/events/past-events 301
-/index.php/past-events /de/events/past-events 301
-/flash-day /de/events/guest-artists 301
-/index.php/flash-day /de/events/guest-artists 301
-/guest-artists /de/events/guest-artists 301
-/index.php/guest-artists /de/events/guest-artists 301
-/weekly-ink /de/events/guest-artists 301
-/index.php/weekly-ink /de/events/guest-artists 301
-/beratung /de/consultation 301
+/tattoo-artists/cali /de/artists/cali/ 301
+/index.php/tattoo-artists/cali /de/artists/cali/ 301
+/tattoo-artists/jvd /de/artists/jvd/ 301
+/index.php/tattoo-artists/jvd /de/artists/jvd/ 301
+/tattoo-artists/nana /de/artists/nana/ 301
+/index.php/tattoo-artists/nana /de/artists/nana/ 301
+/tatto-styles/realistic /de/styles/realistic/ 301
+/index.php/tatto-styles/realistic /de/styles/realistic/ 301
+/tatto-styles/micro-realism /de/styles/microrealism/ 301
+/index.php/tatto-styles/micro-realism /de/styles/microrealism/ 301
+/tatto-styles/fine-line /de/styles/fine-line/ 301
+/index.php/tatto-styles/fine-line /de/styles/fine-line/ 301
+/tatto-styles/maori /de/styles/maori/ 301
+/index.php/tatto-styles/maori /de/styles/maori/ 301
+/tatto-styles/ornamental /de/styles/ornamental/ 301
+/index.php/tatto-styles/ornamental /de/styles/ornamental/ 301
+/tatto-styles/portraits /de/styles/portraits/ 301
+/index.php/tatto-styles/portraits /de/styles/portraits/ 301
+/tatto-styles/color /de/styles/color/ 301
+/index.php/tatto-styles/color /de/styles/color/ 301
+/tatto-styles/dotwork /de/styles/microrealism/ 301
+/index.php/tatto-styles/dotwork /de/styles/microrealism/ 301
+/events /de/events/guest-artists/ 301
+/index.php/events /de/events/guest-artists/ 301
+/about-usee /de/about/ 301
+/index.php/about-usee /de/about/ 301
+/faq /de/faq/ 301
+/index.php/faq /de/faq/ 301
+/contact-us /de/contact/ 301
+/index.php/contact-us /de/contact/ 301
+/past-events /de/events/past-events/ 301
+/index.php/past-events /de/events/past-events/ 301
+/flash-day /de/events/guest-artists/ 301
+/index.php/flash-day /de/events/guest-artists/ 301
+/guest-artists /de/events/guest-artists/ 301
+/index.php/guest-artists /de/events/guest-artists/ 301
+/weekly-ink /de/events/guest-artists/ 301
+/index.php/weekly-ink /de/events/guest-artists/ 301
+/beratung /de/consultation/ 301
 
 # ---- Correct-spelling "tattoo-styles" old variant (DE / EN / bare) ----
-/de/tattoo-styles/realistic /de/styles/realistic 301
-/de/index.php/tattoo-styles/realistic /de/styles/realistic 301
-/en/tattoo-styles/realistic /en/styles/realistic 301
-/en/index.php/tattoo-styles/realistic /en/styles/realistic 301
-/tattoo-styles/realistic /de/styles/realistic 301
-/index.php/tattoo-styles/realistic /de/styles/realistic 301
+/de/tattoo-styles/realistic /de/styles/realistic/ 301
+/de/index.php/tattoo-styles/realistic /de/styles/realistic/ 301
+/en/tattoo-styles/realistic /en/styles/realistic/ 301
+/en/index.php/tattoo-styles/realistic /en/styles/realistic/ 301
+/tattoo-styles/realistic /de/styles/realistic/ 301
+/index.php/tattoo-styles/realistic /de/styles/realistic/ 301
 
-/de/tattoo-styles/micro-realism /de/styles/microrealism 301
-/de/index.php/tattoo-styles/micro-realism /de/styles/microrealism 301
-/en/tattoo-styles/micro-realism /en/styles/microrealism 301
-/en/index.php/tattoo-styles/micro-realism /en/styles/microrealism 301
-/tattoo-styles/micro-realism /de/styles/microrealism 301
-/index.php/tattoo-styles/micro-realism /de/styles/microrealism 301
+/de/tattoo-styles/micro-realism /de/styles/microrealism/ 301
+/de/index.php/tattoo-styles/micro-realism /de/styles/microrealism/ 301
+/en/tattoo-styles/micro-realism /en/styles/microrealism/ 301
+/en/index.php/tattoo-styles/micro-realism /en/styles/microrealism/ 301
+/tattoo-styles/micro-realism /de/styles/microrealism/ 301
+/index.php/tattoo-styles/micro-realism /de/styles/microrealism/ 301
 
-/de/tattoo-styles/fine-line /de/styles/fine-line 301
-/de/index.php/tattoo-styles/fine-line /de/styles/fine-line 301
-/en/tattoo-styles/fine-line /en/styles/fine-line 301
-/en/index.php/tattoo-styles/fine-line /en/styles/fine-line 301
-/tattoo-styles/fine-line /de/styles/fine-line 301
-/index.php/tattoo-styles/fine-line /de/styles/fine-line 301
+/de/tattoo-styles/fine-line /de/styles/fine-line/ 301
+/de/index.php/tattoo-styles/fine-line /de/styles/fine-line/ 301
+/en/tattoo-styles/fine-line /en/styles/fine-line/ 301
+/en/index.php/tattoo-styles/fine-line /en/styles/fine-line/ 301
+/tattoo-styles/fine-line /de/styles/fine-line/ 301
+/index.php/tattoo-styles/fine-line /de/styles/fine-line/ 301
 
-/de/tattoo-styles/maori /de/styles/maori 301
-/de/index.php/tattoo-styles/maori /de/styles/maori 301
-/en/tattoo-styles/maori /en/styles/maori 301
-/en/index.php/tattoo-styles/maori /en/styles/maori 301
-/tattoo-styles/maori /de/styles/maori 301
-/index.php/tattoo-styles/maori /de/styles/maori 301
+/de/tattoo-styles/maori /de/styles/maori/ 301
+/de/index.php/tattoo-styles/maori /de/styles/maori/ 301
+/en/tattoo-styles/maori /en/styles/maori/ 301
+/en/index.php/tattoo-styles/maori /en/styles/maori/ 301
+/tattoo-styles/maori /de/styles/maori/ 301
+/index.php/tattoo-styles/maori /de/styles/maori/ 301
 
-/de/tattoo-styles/ornamental /de/styles/ornamental 301
-/de/index.php/tattoo-styles/ornamental /de/styles/ornamental 301
-/en/tattoo-styles/ornamental /en/styles/ornamental 301
-/en/index.php/tattoo-styles/ornamental /en/styles/ornamental 301
-/tattoo-styles/ornamental /de/styles/ornamental 301
-/index.php/tattoo-styles/ornamental /de/styles/ornamental 301
+/de/tattoo-styles/ornamental /de/styles/ornamental/ 301
+/de/index.php/tattoo-styles/ornamental /de/styles/ornamental/ 301
+/en/tattoo-styles/ornamental /en/styles/ornamental/ 301
+/en/index.php/tattoo-styles/ornamental /en/styles/ornamental/ 301
+/tattoo-styles/ornamental /de/styles/ornamental/ 301
+/index.php/tattoo-styles/ornamental /de/styles/ornamental/ 301
 
-/de/tattoo-styles/portraits /de/styles/portraits 301
-/de/index.php/tattoo-styles/portraits /de/styles/portraits 301
-/en/tattoo-styles/portraits /en/styles/portraits 301
-/en/index.php/tattoo-styles/portraits /en/styles/portraits 301
-/tattoo-styles/portraits /de/styles/portraits 301
-/index.php/tattoo-styles/portraits /de/styles/portraits 301
+/de/tattoo-styles/portraits /de/styles/portraits/ 301
+/de/index.php/tattoo-styles/portraits /de/styles/portraits/ 301
+/en/tattoo-styles/portraits /en/styles/portraits/ 301
+/en/index.php/tattoo-styles/portraits /en/styles/portraits/ 301
+/tattoo-styles/portraits /de/styles/portraits/ 301
+/index.php/tattoo-styles/portraits /de/styles/portraits/ 301
 
-/de/tattoo-styles/color /de/styles/color 301
-/de/index.php/tattoo-styles/color /de/styles/color 301
-/en/tattoo-styles/color /en/styles/color 301
-/en/index.php/tattoo-styles/color /en/styles/color 301
-/tattoo-styles/color /de/styles/color 301
-/index.php/tattoo-styles/color /de/styles/color 301
+/de/tattoo-styles/color /de/styles/color/ 301
+/de/index.php/tattoo-styles/color /de/styles/color/ 301
+/en/tattoo-styles/color /en/styles/color/ 301
+/en/index.php/tattoo-styles/color /en/styles/color/ 301
+/tattoo-styles/color /de/styles/color/ 301
+/index.php/tattoo-styles/color /de/styles/color/ 301
 
-/de/tattoo-styles/dotwork /de/styles/microrealism 301
-/de/index.php/tattoo-styles/dotwork /de/styles/microrealism 301
-/en/tattoo-styles/dotwork /en/styles/microrealism 301
-/en/index.php/tattoo-styles/dotwork /en/styles/microrealism 301
-/tattoo-styles/dotwork /de/styles/microrealism 301
-/index.php/tattoo-styles/dotwork /de/styles/microrealism 301
+/de/tattoo-styles/dotwork /de/styles/microrealism/ 301
+/de/index.php/tattoo-styles/dotwork /de/styles/microrealism/ 301
+/en/tattoo-styles/dotwork /en/styles/microrealism/ 301
+/en/index.php/tattoo-styles/dotwork /en/styles/microrealism/ 301
+/tattoo-styles/dotwork /de/styles/microrealism/ 301
+/index.php/tattoo-styles/dotwork /de/styles/microrealism/ 301
 
 # ---- Zsofi — former artist, no longer with the studio. Recurring gap, fixed definitively here. ----
 /de/tattoo-artists/zsofi /de/ 301
@@ -233,35 +233,35 @@
 /en/style /en/ 301
 
 # ---- Dotwork removed 2026-08-25 — style dropped from the lineup, replaced by Micro Realism ----
-/de/styles/dotwork /de/styles/microrealism 301
-/de/styles/dotwork/ /de/styles/microrealism 301
-/en/styles/dotwork /en/styles/microrealism 301
-/en/styles/dotwork/ /en/styles/microrealism 301
+/de/styles/dotwork /de/styles/microrealism/ 301
+/de/styles/dotwork/ /de/styles/microrealism/ 301
+/en/styles/dotwork /en/styles/microrealism/ 301
+/en/styles/dotwork/ /en/styles/microrealism/ 301
 
 # ---- taetowierer-innen — real German legacy path segment, found via GSC Pages report
 # (2026-08-27, filtered by "*taetowierer-innen", 16-month window: 1,060 impressions /
 # 24 clicks across 7 artist slugs, none previously redirected). The earlier "tattoo-artists"
 # rules above were guesses based on the English URL structure and never matched the real
 # indexed Joomla path, which used this German segment instead. This closes that gap.
-/de/index.php/taetowierer-innen/josef /de/artists/josef 301
-/de/taetowierer-innen/josef /de/artists/josef 301
-/index.php/taetowierer-innen/josef /de/artists/josef 301
-/taetowierer-innen/josef /de/artists/josef 301
+/de/index.php/taetowierer-innen/josef /de/artists/josef/ 301
+/de/taetowierer-innen/josef /de/artists/josef/ 301
+/index.php/taetowierer-innen/josef /de/artists/josef/ 301
+/taetowierer-innen/josef /de/artists/josef/ 301
 
-/de/index.php/taetowierer-innen/cali /de/artists/cali 301
-/de/taetowierer-innen/cali /de/artists/cali 301
-/index.php/taetowierer-innen/cali /de/artists/cali 301
-/taetowierer-innen/cali /de/artists/cali 301
+/de/index.php/taetowierer-innen/cali /de/artists/cali/ 301
+/de/taetowierer-innen/cali /de/artists/cali/ 301
+/index.php/taetowierer-innen/cali /de/artists/cali/ 301
+/taetowierer-innen/cali /de/artists/cali/ 301
 
-/de/index.php/taetowierer-innen/jvd /de/artists/jvd 301
-/de/taetowierer-innen/jvd /de/artists/jvd 301
-/index.php/taetowierer-innen/jvd /de/artists/jvd 301
-/taetowierer-innen/jvd /de/artists/jvd 301
+/de/index.php/taetowierer-innen/jvd /de/artists/jvd/ 301
+/de/taetowierer-innen/jvd /de/artists/jvd/ 301
+/index.php/taetowierer-innen/jvd /de/artists/jvd/ 301
+/taetowierer-innen/jvd /de/artists/jvd/ 301
 
-/de/index.php/taetowierer-innen/nana /de/artists/nana 301
-/de/taetowierer-innen/nana /de/artists/nana 301
-/index.php/taetowierer-innen/nana /de/artists/nana 301
-/taetowierer-innen/nana /de/artists/nana 301
+/de/index.php/taetowierer-innen/nana /de/artists/nana/ 301
+/de/taetowierer-innen/nana /de/artists/nana/ 301
+/index.php/taetowierer-innen/nana /de/artists/nana/ 301
+/taetowierer-innen/nana /de/artists/nana/ 301
 
 # Nilou temporarily inactive — see note above.
 /de/index.php/taetowierer-innen/nilou /de/ 301
