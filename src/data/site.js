@@ -14,7 +14,7 @@ export const site = {
         fresha: 'https://www.fresha.com/de/a/usee-tattoo-studio-berlin-neue-kantstrasse-6-hrwzrip0/all-offer?menu=true&pId=1394031',
   },
   // Live-review claim, kept in one place so it is easy to update.
-  reviews: { count: '690+', de: 'Google-Bewertungen', en: 'Google reviews' },
+  reviews: { count: '692+', de: 'Google-Bewertungen', en: 'Google reviews' },
   // All bookable services (mirrors the old site's 6 booking buttons).
   bookingServices: [
     { de: 'Persönliche Beratung', en: 'Personal consultation', service: 'consultation', url: 'https://book.useetattoo.com/Consultation' },
