@@ -38,9 +38,9 @@ const bio = artist.bio[lang];
           ? <p class="bio">{bio}</p>
           : <p class="bio placeholder">{lang === 'de' ? 'Biografie folgt in Kürze.' : 'Biography coming soon.'}</p>}
         <div class="cta-row" style="margin-top:0">
-          <a class="cta primary" style="background:var(--ink);color:var(--paper)" href={artist.book} target="_blank" rel="noopener">{L.bookNow}</a>
-          <a class="cta ghost" style="border-color:var(--ink);color:var(--ink)" href={base + '/consultation'}>{L.freeConsultBtn}</a>
+          <a class="cta primary" style="background:var(--ink);color:var(--paper)" href={artist.book} target="_blank" rel="noopener">{L.bookConsult}</a>
         </div>
+          <p style="margin-top:14px;font-size:14.5px"><a href="#quick-form" style="color:var(--ink);font-weight:600;text-decoration:underline;text-underline-offset:3px">{L.jumpForm}</a> · <a href={site.whatsapp} target="_blank" rel="noopener" style="color:var(--bronze-dk);text-decoration:underline;text-underline-offset:2px">{L.whatsappCta}</a></p>
       </div>
     </div>
   </section>
@@ -51,7 +51,7 @@ const bio = artist.bio[lang];
         <div class="sec-head reveal">
           <span class="idx">{L.portfolio}</span>
           <h2>{artist.name}</h2>
-          <a href={artist.book} target="_blank" rel="noopener">{L.bookNow} →</a>
+          <a href={artist.book} target="_blank" rel="noopener">{L.bookConsult}→</a>
         </div>
         <div class="pf-masonry reveal">
           {imgs.map((src) => (
