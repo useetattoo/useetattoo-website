@@ -3,7 +3,7 @@ export const langs = ['de', 'en'];
 export const t = {
   de: {
     label: 'Deutsch',
-    nav: { home: 'Start', artists: 'Artists', styles: 'Stile', services: 'Services', consultation: 'Beratung', walkin: 'Walk-In', piercing: 'Piercing', coverup: 'Cover-up', events: 'Events', about: 'Über', faq: 'FAQ', contact: 'Kontakt', booking: 'Booking Hub', firstTattoo: 'Erstes Tattoo' },
+  nav: { home: 'Start', artists: 'Artists', styles: 'Stile', services: 'Services', consultation: 'Beratung', walkin: 'Walk-In', piercing: 'Piercing', coverup: 'Cover-up', events: 'Events', about: 'Über', faq: 'FAQ', contact: 'Kontakt', booking: 'Booking Hub', firstTattoo: 'Erstes Tattoo' },
     navGuestArtists: 'Guest Artists', navPastEvents: 'Vergangene Events',
     book: 'Beratung',
     bookConsult: 'Beratung buchen',
@@ -48,7 +48,7 @@ export const t = {
     firstTattooBtn: 'Erstes Tattoo entdecken',
     footStudio: 'Studio', footFollow: 'Folgen',
     legal: 'Impressum · Datenschutz',
-    bookNow: 'Jetzt buchen', portfolio: 'Portfolio',
+    bookNow: 'Jetzt buchen', portfolio: 'Portfolio', freeConsultBtn: 'Kostenlose Beratung',
     faqItems: [
       { q: 'Was kostet ein Tattoo?', a: 'Jedes Stück wird individuell kalkuliert. Nach einer persönlichen Beratung erhältst du ein klares Angebot, das Größe, Detailgrad und Zeitaufwand widerspiegelt, damit du vor der Session genau weißt, was dich erwartet.' },
       { q: 'Ich komme nicht aus Berlin. Muss ich für die Beratung anreisen?', a: 'Nein. Wir bieten Online-Beratungen an, um dein Projekt vorab zu besprechen und zu planen.' },
@@ -103,7 +103,7 @@ export const t = {
     firstTattooBtn: 'Explore first tattoo',
     footStudio: 'Studio', footFollow: 'Follow',
     legal: 'Imprint · Privacy',
-    bookNow: 'Book now', portfolio: 'Portfolio',
+    bookNow: 'Book now', portfolio: 'Portfolio', freeConsultBtn: 'Free Consultation',
     faqItems: [
       { q: 'How much does a tattoo cost?', a: 'Every piece is quoted individually. After a private consultation you receive a clear quote reflecting size, detail and time, so you know exactly what to expect before the session.' },
       { q: "I'm not from Berlin. Do I need to travel for a consultation?", a: 'No. We offer online consultations to discuss and plan your project in advance.' },
