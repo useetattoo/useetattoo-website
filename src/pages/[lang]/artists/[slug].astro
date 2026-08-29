@@ -39,6 +39,7 @@ const bio = artist.bio[lang];
           : <p class="bio placeholder">{lang === 'de' ? 'Biografie folgt in Kürze.' : 'Biography coming soon.'}</p>}
         <div class="cta-row" style="margin-top:0">
           <a class="cta primary" style="background:var(--ink);color:var(--paper)" href={artist.book} target="_blank" rel="noopener">{L.bookNow}</a>
+          <a class="cta ghost" style="border-color:var(--ink);color:var(--ink)" href={base + '/consultation'}>{L.freeConsultBtn}</a>
         </div>
       </div>
     </div>
