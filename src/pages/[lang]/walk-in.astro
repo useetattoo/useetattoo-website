@@ -1,6 +1,6 @@
 ---
 import Base from '../../layouts/Base.astro';
-import { langs } from '../../data/i18n.js';
+import { langs, t } from '../../data/i18n.js';
 import { site } from '../../data/site.js';
 import { gallery } from '../../lib/gallery.js';
 
@@ -8,6 +8,7 @@ export function getStaticPaths() {
   return langs.map((lang) => ({ params: { lang } }));
 }
 const { lang } = Astro.params;
+const L = t[lang];
 const bookUrl = site.booking.walkin;
 const imgs = gallery('/images/walkin/gallery');
 
@@ -179,6 +180,7 @@ const c = {
           <p class="wk-p">{c.intro}</p>
           <p class="wk-p">{c.intro2}</p>
           <div class="cta-row"><a class="cta primary" style="background:var(--ink);color:var(--paper)" href={bookUrl} target="_blank" rel="noopener">{c.ctaBook}</a></div>
+        <p style="margin-top:14px;font-size:14.5px"><a href="#quick-form" style="color:var(--ink);font-weight:600;text-decoration:underline;text-underline-offset:3px">{L.jumpForm}</a> · <a href={site.whatsapp} target="_blank" rel="noopener" style="color:var(--bronze-dk);text-decoration:underline;text-underline-offset:2px">{L.whatsappCta}</a></p>
         </div>
         <div class="wk-hero-img reveal"><img src="/images/walkin/Hero.webp" alt="Fine line walk-in tattoo, Usee Tattoo Berlin" /></div>
       </div>
