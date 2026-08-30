@@ -1,89 +1,185 @@
 // Every style is built. Galleries auto-populate from public/images/TattooStyle/<folder>.
 export const styles = [
   {
-    slug: 'realistic', built: true, folder: 'Realistic', artists: ['josef'], hero: 'Realistic_Cover.webp',
-    name: { de: 'Realistic', en: 'Realistic' },
-    tagline: { de: 'Lebensechte Bilder mit feinsten Details', en: 'Creating lifelike images with fine details' },
-    desc: {
-      de: 'Realistische Tattoos zählen zu den anspruchsvollsten Stilen: Das Ziel ist ein Bild, das so wirkt wie eine Fotografie, Porträts, Tiere, Objekte, jedes Motiv mit exakter, detailreicher Umsetzung. Die berechtigte Sorge dabei ist immer dieselbe: Wirkt das Ergebnis am Ende wirklich fotografisch, oder eher wie eine flache Zeichnung mit hartem Kontrast? Der Unterschied entscheidet sich nicht beim letzten Schritt, sondern in der Kontrolle über Licht und Schatten von Anfang an.\n\nJosef arbeitet Realismus konsequent in Schwarz-Grau: dunkle Kernbereiche, weiche Übergänge und bewusst freigelassene Haut, damit Tiefe entsteht, ohne dass das Motiv nach wenigen Jahren zu einer grauen Fläche verschwimmt. Ob Tierporträt, Gesicht oder ein großflächiges Sleeve, entscheidend ist immer dieselbe Sorgfalt bei Perspektive, Textur und Tiefenwirkung.\n\nJosef bespricht vor jedem Projekt, welches Referenzmaterial die beste Grundlage bietet und wie Platzierung und Körperform die Schattierung beeinflussen, damit das fertige Tattoo auch nach Jahren noch wie ein Bild wirkt und nicht wie eine verblasste Skizze.',
-      en: 'Realistic tattoos are one of the most demanding styles: the goal is an image that reads like a photograph, portraits, animals, objects, each rendered with exact, detailed precision. The fair question is always the same: does the result actually look photographic, or does it end up as a flat drawing with hard contrast? That difference isn\'t decided in the final session, it\'s decided by how light and shadow are controlled from the very first line.\n\nJosef works realism consistently in black & grey: dark core areas, soft transitions, and skin deliberately left bare, so depth builds up without the piece blurring into a flat grey shape after a few years. Whether it\'s an animal portrait, a face, or a large-scale sleeve, the same care around perspective, texture and depth applies every time.\n\nBefore any project starts, Josef talks through which reference material gives the strongest foundation and how placement and body shape affect shading, so the finished tattoo still reads as an image years later, not a faded sketch.',
-    },
-  },
-  {
-    slug: 'microrealism', built: true, folder: 'MicroRealism', artists: ['cali', 'jvd'], hero: 'MicroReal_Cover.webp',
-    name: { de: 'Micro Realism', en: 'Micro Realism' },
-    tagline: { de: 'Realistische Details im kleinen Maßstab', en: 'Realistic detail at a small scale' },
-    desc: {
-      de: 'Micro Realism Tattoos in Berlin: feine, realistische Details im Kleinformat bei Usee Tattoo. Micro Realism verbindet realistische Bildsprache mit kleinen, klaren Formen und geometrischen Akzenten, kompakt, aber mit sichtbarer Detailtiefe. Wer ein feines Tattoo im kleineren Maßstab sucht, das trotzdem wie eine Miniatur-Fotografie wirkt, findet hier die passende Handschrift.\n\nDie eigentliche Herausforderung bei diesem Stil ist die Miniaturisierung: Realistische Schattierung und feine Linien müssen auf wenigen Zentimetern genauso präzise sitzen wie bei einem großformatigen Motiv, sonst verschwimmt das Ergebnis mit der Zeit zu einer grauen Fläche. Cali und Jvd arbeiten deshalb mit reduzierter Nadeltiefe und exakt abgestimmten Linienstärken, damit Details wie Gesichtszüge, Texturen oder kleine Symbole auch nach Jahren noch klar erkennbar bleiben.\n\nOb ein einzelnes Miniatur-Motiv oder eine Komposition aus mehreren kleinen Elementen: Cali und Jvd besprechen mit dir vorab, welche Größe und Platzierung die Details langfristig scharf hält, damit das fertige Tattoo auch aus der Nähe überzeugt.',
-      en: 'Micro Realism tattoos in Berlin: fine, realistic detail at small scale at Usee Tattoo. Micro Realism blends realistic imagery with small, clean shapes and geometric accents, compact, but with real, visible detail. If you want a delicate tattoo at a smaller scale that still reads like a miniature photograph, this is the style built for it.\n\nThe real challenge with this style is the miniaturization itself: realistic shading and fine linework have to stay just as precise across a few centimeters as they would on a large-scale piece, otherwise the result blurs into a flat grey shape over time. That\'s why Cali and Jvd work with reduced needle depth and carefully matched line weights, so details like facial features, textures or small symbols stay clearly readable years later.\n\nWhether it\'s a single miniature motif or a composition of several small elements, Cali and Jvd talk through size and placement with you beforehand, so the details hold up long-term, and the finished tattoo still convinces up close.',
-    },
-    metaDescription: {
-      de: 'Micro Realism Tattoos in Berlin: realistische Miniatur-Details, die dank reduzierter Nadeltiefe auch nach Jahren scharf bleiben. Jetzt Termin sichern.',
-      en: 'Micro Realism tattoos in Berlin: realistic detail at miniature scale that stays sharp for years instead of blurring. Book a consultation at Usee Tattoo.',
-    },
-    faq: [
-      {
-        q: { de: 'Was ist der Unterschied zwischen Micro Realism und Fine Line?', en: "What's the difference between Micro Realism and Fine Line?" },
-        a: {
-          de: 'Fine Line arbeitet mit sehr dünnen, gleichmäßigen Linien und wenig bis keiner Schattierung — das Ergebnis wirkt eher wie eine präzise Zeichnung. Micro Realism baut dagegen auf realistischer Schattierung und Tiefenwirkung im Miniaturformat auf, damit das Motiv wie eine kleine Fotografie wirkt statt wie eine Linienzeichnung. Beide Stile sind kompakt, aber die Technik dahinter ist unterschiedlich.',
-          en: 'Fine Line uses very thin, even linework with little to no shading, so the result reads more like a precise drawing. Micro Realism is built on realistic shading and depth at a small scale, so the piece looks like a miniature photograph rather than a line drawing. Both styles are compact, but the technique behind them is different.',
+        slug: 'realistic', built: true, folder: 'Realistic', artists: ['josef'], hero: 'Realistic_Cover.webp',
+        name: { de: 'Realistic', en: 'Realistic' },
+        tagline: { de: 'Lebensechte Bilder mit feinsten Details', en: 'Creating lifelike images with fine details' },
+        desc: {
+                de: 'Realistische Tattoos zählen zu den anspruchsvollsten Stilen: Das Ziel ist ein Bild, das so wirkt wie eine Fotografie, Porträts, Tiere, Objekte, jedes Motiv mit exakter, detailreicher Umsetzung. Die berechtigte Sorge dabei ist immer dieselbe: Wirkt das Ergebnis am Ende wirklich fotografisch, oder eher wie eine flache Zeichnung mit hartem Kontrast? Der Unterschied entscheidet sich nicht beim letzten Schritt, sondern in der Kontrolle über Licht und Schatten von Anfang an.\n\nJosef arbeitet Realismus konsequent in Schwarz-Grau: dunkle Kernbereiche, weiche Übergänge und bewusst freigelassene Haut, damit Tiefe entsteht, ohne dass das Motiv nach wenigen Jahren zu einer grauen Fläche verschwimmt. Ob Tierporträt, Gesicht oder ein großflächiges Sleeve, entscheidend ist immer dieselbe Sorgfalt bei Perspektive, Textur und Tiefenwirkung.\n\nJosef bespricht vor jedem Projekt, welches Referenzmaterial die beste Grundlage bietet und wie Platzierung und Körperform die Schattierung beeinflussen, damit das fertige Tattoo auch nach Jahren noch wie ein Bild wirkt und nicht wie eine verblasste Skizze.',
+                en: 'Realistic tattoos are one of the most demanding styles: the goal is an image that reads like a photograph, portraits, animals, objects, each rendered with exact, detailed precision. The fair question is always the same: does the result actually look photographic, or does it end up as a flat drawing with hard contrast? That difference isn\'t decided in the final session, it\'s decided by how light and shadow are controlled from the very first line.\n\nJosef works realism consistently in black & grey: dark core areas, soft transitions, and skin deliberately left bare, so depth builds up without the piece blurring into a flat grey shape after a few years. Whether it\'s an animal portrait, a face, or a large-scale sleeve, the same care around perspective, texture and depth applies every time.\n\nBefore any project starts, Josef talks through which reference material gives the strongest foundation and how placement and body shape affect shading, so the finished tattoo still reads as an image years later, not a faded sketch.',
         },
-      },
-      {
-        q: { de: 'Was ist der Unterschied zwischen Micro Realism und Concept?', en: "What's the difference between Micro Realism and Concept?" },
-        a: {
-          de: 'Micro Realism ist ein kleines, realistisches Motiv für sich. Wenn weitere Elemente — etwa ornamentale Linien oder Symbole — so mit dem realistischen Kern kombiniert werden, dass alles zusammen eine einzige Komposition ergibt, nennt man das Concept. Ein Großteil der Arbeiten von Cali ist in diesem Concept-Stil entstanden — ihre Arbeiten zeigen gut, wie das in der Praxis aussieht.',
-          en: "Micro Realism is one small, realistic design on its own. Concept goes a step further: additional elements — ornamental linework or symbols — are combined with the realistic core into one unified composition. Much of Cali's work is done in this Concept style, and it's a good place to see what that looks like in practice.",
+        faq: [
+          {
+                    q: { de: 'Wie plant ihr große Projekte wie ein Sleeve, ein Bein-Sleeve oder den ganzen Rücken?', en: 'How do you plan large projects like a sleeve, a leg sleeve or a full back?' },
+                    a: {
+                                de: 'Die eigentliche Herausforderung bei großen Flächen ist nicht ein einzelnes Motiv, sondern das Zusammenspiel mehrerer realistischer Elemente. Josef plant die Anordnung vorab entlang der Körperform, lässt gezielt Hautflächen frei, damit das Motiv atmen kann statt zu ersticken, und arbeitet Licht, Schatten und Tiefe so ab, dass alle Elemente wie ein durchgehendes Bild wirken statt wie mehrere zufällig aneinandergereihte Tattoos. Genau diese Planung ist Teil der Beratung, bevor die erste Sitzung beginnt.',
+                                en: "The real challenge with large areas isn't a single motif, it's how several realistic elements work together. Josef plans the layout against body shape beforehand, deliberately leaves areas of skin bare so the piece can breathe instead of feeling crowded, and works light, shadow and depth so every element reads as one continuous image rather than several tattoos placed side by side. That planning is part of the consultation, before the first session ever starts.",
+                    },
+          },
+          {
+                    q: { de: 'Was ist der Unterschied zwischen Realistic und Conceptual?', en: "What's the difference between Realistic and Conceptual?" },
+                    a: {
+                                de: 'Realistic konzentriert sich auf das realistische Bild selbst, ein Gesicht, ein Tier, ein Objekt. Manchmal ordnet Josef innerhalb eines Realistic-Projekts zusätzlich symbolische oder dekorative Elemente um das Hauptmotiv an, sodass eine bedeutungsvolle Gesamtkomposition entsteht. Das eigenständige Conceptual (bei Cali) baut dagegen auf Micro Realism und Fine Line auf, nicht auf einem großflächigen realistischen Bild. Suchst du eine zarte Komposition aus Symbolen und geometrischen Formen, ist Conceptual die passendere Richtung.',
+                                en: "Realistic focuses on the realistic image itself, a face, an animal, an object. Within a Realistic project, Josef sometimes also arranges symbolic or decorative elements around the main motif so the whole composition carries meaning. The standalone Conceptual style (Cali's work) is built on Micro Realism and Fine Line instead, not a large-scale realistic image. If you're after a delicate composition of symbols and geometric shapes, Conceptual is the better fit.",
+                    },
+          },
+              ],
+  },
+  {
+        slug: 'microrealism', built: true, folder: 'MicroRealism', artists: ['cali', 'jvd'], hero: 'MicroReal_Cover.webp',
+        name: { de: 'Micro Realism', en: 'Micro Realism' },
+        tagline: { de: 'Realistische Details im kleinen Maßstab', en: 'Realistic detail at a small scale' },
+        desc: {
+                de: 'Micro Realism Tattoos in Berlin: feine, realistische Details im Kleinformat bei Usee Tattoo. Micro Realism verbindet realistische Bildsprache mit kleinen, klaren Formen und geometrischen Akzenten, kompakt, aber mit sichtbarer Detailtiefe. Wer ein feines Tattoo im kleineren Maßstab sucht, das trotzdem wie eine Miniatur-Fotografie wirkt, findet hier die passende Handschrift.\n\nDie eigentliche Herausforderung bei diesem Stil ist die Miniaturisierung: Realistische Schattierung und feine Linien müssen auf wenigen Zentimetern genauso präzise sitzen wie bei einem großformatigen Motiv, sonst verschwimmt das Ergebnis mit der Zeit zu einer grauen Fläche. Cali und Jvd arbeiten deshalb mit reduzierter Nadeltiefe und exakt abgestimmten Linienstärken, damit Details wie Gesichtszüge, Texturen oder kleine Symbole auch nach Jahren noch klar erkennbar bleiben.\n\nOb ein einzelnes Miniatur-Motiv oder eine Komposition aus mehreren kleinen Elementen: Cali und Jvd besprechen mit dir vorab, welche Größe und Platzierung die Details langfristig scharf hält, damit das fertige Tattoo auch aus der Nähe überzeugt.',
+                en: 'Micro Realism tattoos in Berlin: fine, realistic detail at small scale at Usee Tattoo. Micro Realism blends realistic imagery with small, clean shapes and geometric accents, compact, but with real, visible detail. If you want a delicate tattoo at a smaller scale that still reads like a miniature photograph, this is the style built for it.\n\nThe real challenge with this style is the miniaturization itself: realistic shading and fine linework have to stay just as precise across a few centimeters as they would on a large-scale piece, otherwise the result blurs into a flat grey shape over time. That\'s why Cali and Jvd work with reduced needle depth and carefully matched line weights, so details like facial features, textures or small symbols stay clearly readable years later.\n\nWhether it\'s a single miniature motif or a composition of several small elements, Cali and Jvd talk through size and placement with you beforehand, so the details hold up long-term, and the finished tattoo still convinces up close.',
         },
-        link: { artist: 'cali', anchorDe: 'ihre Arbeiten', anchorEn: "Cali's work" },
-      },
-    ],
+        metaDescription: {
+                de: 'Micro Realism Tattoos in Berlin: realistische Miniatur-Details, die dank reduzierter Nadeltiefe auch nach Jahren scharf bleiben. Jetzt Termin sichern.',
+                en: 'Micro Realism tattoos in Berlin: realistic detail at miniature scale that stays sharp for years instead of blurring. Book a consultation at Usee Tattoo.',
+        },
+        faq: [
+          {
+                    q: { de: 'Was ist der Unterschied zwischen Micro Realism und Fine Line?', en: "What's the difference between Micro Realism and Fine Line?" },
+                    a: {
+                                de: 'Fine Line arbeitet mit sehr dünnen, gleichmäßigen Linien und wenig bis keiner Schattierung — das Ergebnis wirkt eher wie eine präzise Zeichnung. Micro Realism baut dagegen auf realistischer Schattierung und Tiefenwirkung im Miniaturformat auf, damit das Motiv wie eine kleine Fotografie wirkt statt wie eine Linienzeichnung. Beide Stile sind kompakt, aber die Technik dahinter ist unterschiedlich.',
+                                en: 'Fine Line uses very thin, even linework with little to no shading, so the result reads more like a precise drawing. Micro Realism is built on realistic shading and depth at a small scale, so the piece looks like a miniature photograph rather than a line drawing. Both styles are compact, but the technique behind them is different.',
+                    },
+          },
+          {
+                    q: { de: 'Was ist der Unterschied zwischen Micro Realism und Concept?', en: "What's the difference between Micro Realism and Concept?" },
+                    a: {
+                                de: 'Micro Realism ist ein kleines, realistisches Motiv für sich. Concept geht einen Schritt weiter: Micro Realism, Fine Line und Symbole oder geometrische Formen werden zu einer einzigen, durchgehenden Komposition kombiniert, mit feinen Details, die hinter den Formen verborgen liegen. Ein Großteil der Arbeiten von Cali ist in diesem Concept-Stil entstanden, ihre Arbeiten zeigen gut, wie das in der Praxis aussieht.',
+                                en: "Micro Realism is one small, realistic design on its own. Concept goes a step further: Micro Realism, Fine Line and symbols or geometric shapes are combined into one continuous composition, with fine detail hidden behind the shapes. Much of Cali's work is done in this Concept style, and it's a good place to see what that looks like in practice.",
+                    },
+                    link: { artist: 'cali', anchorDe: 'ihre Arbeiten', anchorEn: "Cali's work" },
+          },
+              ],
   },
   {
-    slug: 'fine-line', built: true, folder: 'FineLine', artists: ['cali', 'jvd'], hero: 'FineLine_Cover.webp',
-    name: { de: 'Fine Line', en: 'Fine Line' },
-    tagline: { de: 'Zarte, präzise Designs mit feinen Linien', en: 'Delicate and precise designs with thin lines' },
-    desc: {
-      de: 'Fine-Line-Tattoos leben von sehr dünnen, präzisen Linien, Blumen, Tiere, geometrische Formen oder kleine Schriftzüge, reduziert auf das Wesentliche. Die häufigste Sorge ist berechtigt: Dünne Linien verlieren als erstes an Schärfe, wenn Nadeltiefe oder Führung nicht exakt stimmen. Genau hier zeigt sich der Unterschied zwischen einem Fine-Line-Tattoo, das nach Jahren noch klar aussieht, und einem, das zu einem verschwommenen Strich verläuft.\n\nCali und Jvd arbeiten mit gleichmäßigem Nadeldruck und bewusst gewählten Liniendicken, dünn genug für die zarte Optik, aber stark genug, um in der Haut zu halten. Auch die Platzierung spielt eine Rolle: Bereiche mit viel Bewegung oder Sonneneinstrahlung verzeihen weniger, deshalb ist die Wahl der Körperstelle Teil der Beratung, nicht nur des Designs.\n\nOb kleines Einzelmotiv oder mehrere zarte Linien zu einer Komposition kombiniert: Cali und Jvd besprechen mit dir vorab, welche Linienstärke und Platzierung dein Motiv langfristig scharf hält, damit das Ergebnis auch nach Jahren noch so fein wirkt wie am ersten Tag.',
-      en: 'Fine line tattoos live on very thin, precise lines, flowers, animals, geometric shapes or small lettering, reduced to the essentials. The most common concern is a fair one: thin lines are the first to lose sharpness if needle depth or control isn\'t exact. That\'s exactly what separates a fine line tattoo that still reads clean years later from one that fades into a blurred stroke.\n\nCali and Jvd work with even needle pressure and deliberately chosen line weights, thin enough for the delicate look, strong enough to hold in the skin long-term. Placement matters too: areas with a lot of movement or sun exposure hold up less well, so choosing the right spot on the body is part of the consultation, not just the design itself.\n\nWhether it\'s a small single motif or several fine lines combined into one composition, Cali and Jvd talk through which line weight and placement will keep your piece sharp long-term, so the result still looks as delicate years from now as it did on day one.',
-    },
+        slug: 'fine-line', built: true, folder: 'FineLine', artists: ['cali', 'jvd'], hero: 'FineLine_Cover.webp',
+        name: { de: 'Fine Line', en: 'Fine Line' },
+        tagline: { de: 'Zarte, präzise Designs mit feinen Linien', en: 'Delicate and precise designs with thin lines' },
+        desc: {
+                de: 'Fine-Line-Tattoos leben von sehr dünnen, präzisen Linien, Blumen, Tiere, geometrische Formen oder kleine Schriftzüge, reduziert auf das Wesentliche. Die häufigste Sorge ist berechtigt: Dünne Linien verlieren als erstes an Schärfe, wenn Nadeltiefe oder Führung nicht exakt stimmen. Genau hier zeigt sich der Unterschied zwischen einem Fine-Line-Tattoo, das nach Jahren noch klar aussieht, und einem, das zu einem verschwommenen Strich verläuft.\n\nCali und Jvd arbeiten mit gleichmäßigem Nadeldruck und bewusst gewählten Liniendicken, dünn genug für die zarte Optik, aber stark genug, um in der Haut zu halten. Auch die Platzierung spielt eine Rolle: Bereiche mit viel Bewegung oder Sonneneinstrahlung verzeihen weniger, deshalb ist die Wahl der Körperstelle Teil der Beratung, nicht nur des Designs.\n\nOb kleines Einzelmotiv oder mehrere zarte Linien zu einer Komposition kombiniert: Cali und Jvd besprechen mit dir vorab, welche Linienstärke und Platzierung dein Motiv langfristig scharf hält, damit das Ergebnis auch nach Jahren noch so fein wirkt wie am ersten Tag.',
+                en: 'Fine line tattoos live on very thin, precise lines, flowers, animals, geometric shapes or small lettering, reduced to the essentials. The most common concern is a fair one: thin lines are the first to lose sharpness if needle depth or control isn\'t exact. That\'s exactly what separates a fine line tattoo that still reads clean years later from one that fades into a blurred stroke.\n\nCali and Jvd work with even needle pressure and deliberately chosen line weights, thin enough for the delicate look, strong enough to hold in the skin long-term. Placement matters too: areas with a lot of movement or sun exposure hold up less well, so choosing the right spot on the body is part of the consultation, not just the design itself.\n\nWhether it\'s a small single motif or several fine lines combined into one composition, Cali and Jvd talk through which line weight and placement will keep your piece sharp long-term, so the result still looks as delicate years from now as it did on day one.',
+        },
+        faq: [
+          {
+                    q: { de: 'Mit welcher Technik wird Fine Line gestochen?', en: 'What technique is used for Fine Line?' },
+                    a: {
+                                de: 'Mit sehr dünnen Nadeln und einer ruhigen, präzisen Führung, der sogenannten Finesse-Technik. So bleibt die Linie dünn, sitzt aber tief und gleichmäßig genug in der Haut, um langfristig scharf zu bleiben.',
+                                en: "Very thin needles and a controlled, precise hand, what's often called finesse technique. That keeps the line thin while still sitting deep and even enough in the skin to stay sharp long-term.",
+                    },
+          },
+          {
+                    q: { de: 'Ist Lettering dasselbe wie Fine Line?', en: 'Is lettering the same as Fine Line?' },
+                    a: {
+                                de: 'Nicht zwangsläufig. Fine Line beschreibt eine Linienstärke, unabhängig vom Motiv. Lettering beschreibt ein Motiv, Wörter, Zitate, Namen, das manchmal sehr fein und in Fine-Line-Technik gestochen wird, und bei dem, besonders bei Kalligrafie-Schriftzügen, teils mehrere Techniken und Nadelgrößen kombiniert werden, um die beste Mischung aus dünnen und kräftigen Linien mit optimaler Haltbarkeit zu erreichen.',
+                                en: "Not necessarily. Fine Line describes a line weight, independent of subject. Lettering describes a subject, words, quotes, names, which is sometimes done very fine in Fine Line technique, and for which, especially with calligraphy-style pieces, several techniques and needle sizes are sometimes combined to get the best mix of thin and bold lines with excellent durability.",
+                    },
+          },
+          {
+                    q: { de: 'Ist die Nachbesserung bei Fine Line kostenlos?', en: 'Is touch-up included with Fine Line?' },
+                    a: {
+                                de: 'Bei Fine-Line-Tattoos ist eine Nachbesserung im Preis enthalten. Präzision und feine Linien reagieren empfindlicher auf den Heilungsprozess, deshalb ist uns ein sauberes Endergebnis wichtiger als ein schneller Abschluss, und genau dafür ist die Nachbesserung von Anfang an Teil des Ablaufs, kein nachträgliches Extra.',
+                                en: "Fine Line tattoos include a touch-up session in the price. Precision and fine lines are more sensitive to the healing process, so a clean final result matters more to us than a quick finish, and that's exactly why the touch-up is built into the process from the start, not an extra added on later.",
+                    },
+          },
+          {
+                    q: { de: 'Kann ich ein Fine-Line-Tattoo auch als Walk-In bekommen?', en: 'Can I get a Fine Line tattoo as a walk-in?' },
+                    a: {
+                                de: 'Für kleinere Fine-Line-Motive ist das oft möglich, ganz ohne vorherigen Termin, immer gestochen von einem erfahrenen Resident-Artist. Mehr dazu auf unserer <a href="/de/walk-in/">Walk-In-Seite</a>.',
+                                en: 'For smaller Fine Line pieces, that\'s often possible without a prior appointment, always done by an experienced resident artist. More on our <a href="/en/walk-in/">walk-in page</a>.',
+                    },
+          },
+              ],
   },
   {
-    slug: 'maori', built: true, folder: 'Maori', artists: ['josef'], hero: 'Maori_5.webp',
-    name: { de: 'Maori', en: 'Maori' },
-    tagline: { de: 'Kunstvolle Designs mit tiefer kultureller Bedeutung', en: 'Intricate designs with rich cultural meanings' },
-    desc: {
-      de: 'Maori-Tattoos gehen auf die traditionelle Tā-Moko-Kunst der indigenen Maori Neuseelands zurück: komplexe, geometrische Muster, bei denen jedes Element eine eigene Bedeutung trägt, oft Status, Herkunft oder persönliche Geschichte. Die berechtigte Frage dabei ist, wie man ein Design bekommt, das diese Tradition ernst nimmt statt sie nur als Dekor zu kopieren.\n\nJosef arbeitet mit den klassischen Bausteinen dieser Formensprache, kraftvolle Schwarzflächen im Wechsel mit feiner Linienführung, und passt die Komposition an die Form des Körperteils an, damit das Muster mit der Bewegung des Arms, Beins oder Rückens mitläuft statt dagegen zu wirken. Diese Anpassung an die Körperform entscheidet, ob ein Maori-Tattoo wie aus einem Guss wirkt oder wie aufgesetzt.\n\nJosef bespricht vorab, welche Symbole und Formen zur persönlichen Geschichte passen und wie sich das Muster über die gewählte Körperstelle entwickelt, damit das fertige Tattoo sowohl handwerklich stimmig als auch persönlich bedeutungsvoll ist.',
-      en: 'Maori tattoos trace back to the traditional Tā moko art of the indigenous Maori people of New Zealand: complex, geometric patterns where every element carries its own meaning, often status, lineage or personal history. The fair question is how to get a design that takes this tradition seriously instead of copying it as pure decoration.\n\nJosef works with the classic building blocks of this visual language, bold black areas balanced against fine linework, and adapts the composition to the shape of the body part so the pattern moves with the arm, leg or back instead of sitting against it. That adaptation to body shape is what decides whether a Maori tattoo reads as one continuous piece or as something layered on top.\n\nJosef talks through which symbols and shapes fit your personal story beforehand, and how the pattern will develop across the chosen area, so the finished tattoo is both technically sound and personally meaningful.',
-    },
+        slug: 'maori', built: true, folder: 'Maori', artists: ['josef'], hero: 'Maori_5.webp',
+        name: { de: 'Maori', en: 'Maori' },
+        tagline: { de: 'Kunstvolle Designs mit tiefer kultureller Bedeutung', en: 'Intricate designs with rich cultural meanings' },
+        desc: {
+                de: 'Maori-Tattoos gehen auf die traditionelle Tā-Moko-Kunst der indigenen Maori Neuseelands zurück: komplexe, geometrische Muster, bei denen jedes Element eine eigene Bedeutung trägt, oft Status, Herkunft oder persönliche Geschichte. Die berechtigte Frage dabei ist, wie man ein Design bekommt, das diese Tradition ernst nimmt statt sie nur als Dekor zu kopieren.\n\nJosef arbeitet dieses Muster komplett freihand direkt auf der Haut, nicht von einem vorgefertigten Stencil, mit den klassischen Bausteinen dieser Formensprache: kraftvolle Schwarzflächen im Wechsel mit feiner Linienführung. Weil das Design freihand entsteht, passt sich die Komposition exakt an die Form deines Körperteils an, sodass das Muster mit der Bewegung des Arms, Beins oder Rückens mitläuft statt dagegen zu wirken. Genau diese freihändige Anpassung an die Körperform entscheidet, ob ein Maori-Tattoo wie aus einem Guss wirkt oder wie aufgesetzt.\n\nJosef bespricht vorab, welche Symbole und Formen zur persönlichen Geschichte passen und wie sich das Muster über die gewählte Körperstelle entwickelt, damit das fertige Tattoo sowohl handwerklich stimmig als auch persönlich bedeutungsvoll ist. Weil alles freihand direkt auf deiner Haut entsteht, ist genau diese Beratung der Ausgangspunkt für jedes Maori-Projekt.',
+                en: "Maori tattoos trace back to the traditional Tā moko art of the indigenous Maori people of New Zealand: complex, geometric patterns where every element carries its own meaning, often status, lineage or personal history. The fair question is how to get a design that takes this tradition seriously instead of copying it as pure decoration.\n\nJosef works this pattern entirely freehand, directly on the skin, not from a pre-made stencil, using the classic building blocks of this visual language: bold black areas balanced against fine linework. Because the design is drawn freehand, the composition adapts exactly to the shape of your body part, so the pattern moves with the arm, leg or back instead of sitting against it. That freehand adaptation to body shape is exactly what decides whether a Maori tattoo reads as one continuous piece or as something layered on top.\n\nJosef talks through which symbols and shapes fit your personal story beforehand, and how the pattern will develop across the chosen area, so the finished tattoo is both technically sound and personally meaningful. Because everything is drawn freehand directly on your skin, that consultation is the starting point for every Maori project.",
+        },
+        faq: [
+          {
+                    q: { de: 'Wird das Maori-Muster vorher fertig gezeichnet oder direkt auf der Haut?', en: 'Is the Maori pattern drawn beforehand or directly on the skin?' },
+                    a: {
+                                de: 'Josef zeichnet das Muster freihand direkt auf deine Haut, abgestimmt auf deine Körperform und deine Wünsche, nicht von einem vorgefertigten Stencil.',
+                                en: 'Josef draws the pattern freehand directly onto your skin, matched to your body shape and your wishes, not from a pre-made stencil.',
+                    },
+          },
+              ],
   },
   {
-    slug: 'ornamental', built: true, folder: 'Ornamental', artists: ['josef'], hero: 'Ornamental_Cover.webp',
-    name: { de: 'Ornamental', en: 'Ornamental' },
-    tagline: { de: 'Dekorative Designs mit atemberaubenden Details', en: 'Decorative designs with stunning details' },
-    desc: {
-      de: 'Ornamentale Tattoos leben von Symmetrie: Mandalas, Blüten und geometrische Muster, bei denen jedes Element im Gleichgewicht zum nächsten stehen muss. Die größte Sorge bei diesem Stil ist berechtigt, denn ein Körper ist nicht flach: Was auf dem Zeichenblatt perfekt symmetrisch aussieht, kann sich über einen gewölbten Arm oder eine Schulter verzogen anfühlen, wenn die Übertragung nicht sauber geplant ist.\n\nJosef entwickelt ornamentale Designs deshalb direkt an der Körperform, nicht erst auf dem Papier: Er testet Radien und Achsen, bevor die erste Linie sitzt, damit Muster und Wölbung zusammenpassen und das Motiv aus jedem Blickwinkel im Gleichgewicht bleibt.\n\nOb feines Mandala oder große dekorative Fläche: Josef bespricht mit dir vorab, wie Symmetrie und Körperform zusammenwirken, damit das fertige Ornament auch in Bewegung stimmig wirkt und nicht nur im Stillstand.',
-      en: 'Ornamental tattoos live on symmetry: mandalas, florals and geometric patterns where every element has to balance against the next. The biggest concern with this style is a fair one, because a body isn\'t flat: something that looks perfectly symmetrical on paper can end up feeling skewed across a curved arm or shoulder if the transfer isn\'t planned carefully.\n\nThat\'s why Josef develops ornamental designs directly against body shape rather than on paper first: testing radii and axes before the first line is set, so the pattern and the curve of the body work together and the piece stays balanced from every angle.\n\nWhether it\'s a delicate mandala or a large decorative piece, Josef talks through how symmetry and body shape interact before the design is finalized, so the finished ornament still reads as balanced in motion, not just standing still.',
-    },
+        slug: 'ornamental', built: true, folder: 'Ornamental', artists: ['josef'], hero: 'Ornamental_Cover.webp',
+        name: { de: 'Ornamental', en: 'Ornamental' },
+        tagline: { de: 'Dekorative Designs mit atemberaubenden Details', en: 'Decorative designs with stunning details' },
+        desc: {
+                de: 'Ornamentale Tattoos leben von Symmetrie: Mandalas, Blüten und geometrische Muster, bei denen jedes Element im Gleichgewicht zum nächsten stehen muss. Die größte Sorge bei diesem Stil ist berechtigt, denn ein Körper ist nicht flach: Was auf dem Zeichenblatt perfekt symmetrisch aussieht, kann sich über einen gewölbten Arm oder eine Schulter verzogen anfühlen, wenn die Übertragung nicht sauber geplant ist.\n\nJosef entwickelt ornamentale Designs deshalb direkt an der Körperform, nicht erst auf dem Papier: Er testet Radien und Achsen, bevor die erste Linie sitzt, damit Muster und Wölbung zusammenpassen und das Motiv aus jedem Blickwinkel im Gleichgewicht bleibt.\n\nOb feines Mandala oder große dekorative Fläche: Josef bespricht mit dir vorab, wie Symmetrie und Körperform zusammenwirken, damit das fertige Ornament auch in Bewegung stimmig wirkt und nicht nur im Stillstand.',
+                en: "Ornamental tattoos live on symmetry: mandalas, florals and geometric patterns where every element has to balance against the next. The biggest concern with this style is a fair one, because a body isn't flat: something that looks perfectly symmetrical on paper can end up feeling skewed across a curved arm or shoulder if the transfer isn't planned carefully.\n\nThat's why Josef develops ornamental designs directly against body shape rather than on paper first: testing radii and axes before the first line is set, so the pattern and the curve of the body work together and the piece stays balanced from every angle.\n\nWhether it's a delicate mandala or a large decorative piece, Josef talks through how symmetry and body shape interact before the design is finalized, so the finished ornament still reads as balanced in motion, not just standing still.",
+        },
+        faq: [
+          {
+                    q: { de: 'Bietet ihr auch Blackwork an?', en: 'Do you offer Blackwork?' },
+                    a: {
+                                de: 'Nein, Blackwork bieten wir nicht an, weder das vollständige Schwarzfärben eines Körperteils noch dekorative Arbeiten mit bewusst ausgesparten weißen Flächen. Wenn du dekorative, symmetrische Muster suchst, zeigt Ornamental genau diese Richtung, nur mit feineren Details und angepasst an deine Körperform.',
+                                en: "No, we don't offer Blackwork, neither solid black coverage of an entire body part nor decorative work with deliberately left-out white areas. If decorative, symmetrical patterns are what you're after, Ornamental covers exactly that direction, with finer detail and fitted to your body shape.",
+                    },
+          },
+          {
+                    q: { de: 'Was ist der Unterschied zwischen Ornamental und Maori?', en: "What's the difference between Ornamental and Maori?" },
+                    a: {
+                                de: 'Beide Stile arbeiten mit geometrischen Mustern, aber die Technik unterscheidet sich: Ornamental wird in Fine-Line-Technik gestochen, mit dünnen, leichten Linien. Maori arbeitet tiefer und kontrastreicher, kräftige Schwarzflächen im Wechsel mit feinen Linien, verwurzelt in der Tā-Moko-Tradition Neuseelands mit eigener kultureller Bedeutung. Ornamental ist freier in der Bildsprache, Mandala, Blüte, Symmetrie, ohne diesen kulturellen Ursprung.',
+                                en: "Both styles work with geometric patterns, but the technique differs: Ornamental is done in Fine Line technique, thin, light lines. Maori works deeper and with more contrast, bold black areas alternating with fine lines, rooted in New Zealand's Tā moko tradition with its own cultural meaning. Ornamental is freer in its imagery, mandalas, florals, symmetry, without that cultural origin.",
+                    },
+          },
+          {
+                    q: { de: 'Welche Naturmotive passen gut zu Ornamental?', en: 'What nature motifs work well for Ornamental?' },
+                    a: {
+                                de: 'Blatt- und Blütenmotive sowie zarte, filigrane Mandalas gehören zu den gefragtesten Motiven in diesem Stil. Auch die Sonne ist stark gefragt und wächst aktuell schnell. Leuchtturm, Baum, Berg und Landschaft sind weitere Motive mit Potenzial, hierfür steht eine Suchvolumen-Prüfung noch aus.',
+                                en: "Leaf and flower motifs, along with delicate, fine mandalas, are among the most requested designs in this style. The sun is also in strong, fast-growing demand right now. Lighthouse, tree, mountain and landscape are additional motifs with potential, though we haven't validated search volume for those yet.",
+                    },
+          },
+              ],
   },
   {
-    slug: 'portraits', built: true, folder: 'Portrait', artists: ['josef'], hero: 'Portrait_Cover.webp',
-    name: { de: 'Portraits', en: 'Portraits' },
-    tagline: { de: 'Lebensechte Darstellungen von Gesichtern und Persönlichkeiten', en: 'Lifelike depictions of faces and personalities' },
-    desc: {
-      de: 'Porträt-Tattoos gehören zu den anspruchsvollsten Motiven überhaupt, weil ein Gesicht sofort verrät, wenn Proportionen nicht stimmen. Die berechtigte Sorge fast aller Kund:innen ist dieselbe: Sieht das Tattoo am Ende wirklich wie die Person aus, oder nur ungefähr ähnlich? Genau diese Ähnlichkeit entscheidet über den Unterschied zwischen einem gelungenen Porträt und einem, das enttäuscht.\n\nJosef arbeitet Porträts über exakte Proportionsanalyse der Referenzvorlage und eine Schattierung, die Gesichtszüge auch nach Jahren noch klar erkennbar hält, statt mit der Zeit zu verschwimmen. Wichtig ist dabei die Qualität des Ausgangsfotos: Licht, Schärfe und Blickwinkel der Vorlage bestimmen mit, wie präzise sich ein Gesicht in Tinte übersetzen lässt.\n\nJosef bespricht vor dem Termin, welches Referenzfoto die beste Grundlage bietet und wo am Körper die Proportionen des Gesichts am besten zur Geltung kommen, damit das fertige Porträt die Person zeigt, die es zeigen soll.',
-      en: 'Portrait tattoos are among the most demanding subjects there are, because a face immediately shows when proportions are off. Almost every client has the same fair concern: will the tattoo actually look like the person, or just vaguely similar? That likeness is exactly what separates a portrait that works from one that disappoints.\n\nJosef builds portraits through exact proportion analysis of the reference image and shading that keeps facial features clearly readable years later instead of blurring over time. The quality of the source photo matters here too: the lighting, sharpness and angle of the reference all affect how precisely a face can be translated into ink.\n\nBefore the session, Josef talks through which reference photo gives the strongest foundation and where on the body the face\'s proportions read best, so the finished portrait shows the person it\'s meant to show.',
-    },
+        slug: 'portraits', built: true, folder: 'Portrait', artists: ['josef'], hero: 'Portrait_Cover.webp',
+        name: { de: 'Portraits', en: 'Portraits' },
+        tagline: { de: 'Lebensechte Darstellungen von Gesichtern und Persönlichkeiten', en: 'Lifelike depictions of faces and personalities' },
+        desc: {
+                de: 'Porträt-Tattoos gehören zu den anspruchsvollsten Motiven überhaupt, weil ein Gesicht sofort verrät, wenn Proportionen nicht stimmen. Die berechtigte Sorge fast aller Kund:innen ist dieselbe: Sieht das Tattoo am Ende wirklich wie die Person aus, oder nur ungefähr ähnlich? Genau diese Ähnlichkeit entscheidet über den Unterschied zwischen einem gelungenen Porträt und einem, das enttäuscht.\n\nJosef arbeitet Porträts über exakte Proportionsanalyse der Referenzvorlage und eine Schattierung, die Gesichtszüge auch nach Jahren noch klar erkennbar hält, statt mit der Zeit zu verschwimmen. Wichtig ist dabei die Qualität des Ausgangsfotos: Licht, Schärfe und Blickwinkel der Vorlage bestimmen mit, wie präzise sich ein Gesicht in Tinte übersetzen lässt.\n\nJosef bespricht vor dem Termin, welches Referenzfoto die beste Grundlage bietet und wo am Körper die Proportionen des Gesichts am besten zur Geltung kommen, damit das fertige Porträt die Person zeigt, die es zeigen soll.',
+                en: 'Portrait tattoos are among the most demanding subjects there are, because a face immediately shows when proportions are off. Almost every client has the same fair concern: will the tattoo actually look like the person, or just vaguely similar? That likeness is exactly what separates a portrait that works from one that disappoints.\n\nJosef builds portraits through exact proportion analysis of the reference image and shading that keeps facial features clearly readable years later instead of blurring over time. The quality of the source photo matters here too: the lighting, sharpness and angle of the reference all affect how precisely a face can be translated into ink.\n\nBefore the session, Josef talks through which reference photo gives the strongest foundation and where on the body the face\'s proportions read best, so the finished portrait shows the person it\'s meant to show.',
+        },
+        faq: [
+          {
+                    q: { de: 'Welche Größe braucht ein Porträt-Tattoo?', en: 'What size does a portrait tattoo need to be?' },
+                    a: {
+                                de: 'Die Technik ist immer Realistic, unabhängig von der Größe. Wie groß dein Porträt werden muss, hängt davon ab, wie viel Gesichtsdetail du willst: Josef sagt dir in der Beratung genau, welche Größe nötig ist, damit die gewünschten Details tatsächlich sichtbar bleiben. Die richtige Größe und die richtige Stelle am Körper wirken sich dabei genauso stark auf das Ergebnis aus wie die Technik selbst.',
+                                en: "The technique is always Realistic, regardless of size. How large your portrait needs to be depends on how much facial detail you want: Josef tells you in the consultation exactly what size is needed for that detail to actually read. The right size and the right spot on the body affect the result just as much as the technique itself.",
+                    },
+          },
+              ],
   },
   {
-    slug: 'color', built: true, folder: 'Colour', artists: ['josef'], hero: 'Color_Cover.webp',
-    name: { de: 'Color', en: 'Color' },
-    tagline: { de: 'Lebendige, fließende Designs mit Farbakzenten', en: 'Vibrant and fluid designs with splashes of color' },
-    desc: {
-      de: 'Watercolor-Tattoos übertragen die fließende, transparente Wirkung von Aquarellmalerei auf die Haut, abstrakte Formen, Blüten oder natürliche Elemente ohne den harten Konturstrich klassischer Tattoos. Die berechtigte Sorge ist immer dieselbe: Ohne feste schwarze Außenlinie als Anker, verläuft die Farbe dann nicht mit der Zeit?\n\nJosef begegnet dem mit gezielter Pigmentwahl und kontrollierter Schichtung: Die Farbe wird so gesetzt, dass sie den Aquarell-Effekt behält, aber genug Struktur, um über Jahre lesbar zu bleiben statt zu einem diffusen Fleck zu werden. Genau deshalb ist die Nachsorge bei Color-Tattoos kein Nebenaspekt, sondern Teil der Handwerksqualität, guter Sonnenschutz erhält die Leuchtkraft der Farben spürbar länger.\n\nJosef bespricht vor dem Termin, welche Farbkombination und Platzierung die Wirkung am längsten erhält, damit das Tattoo auch Jahre später noch die lebendige, fließende Optik zeigt, für die du dich entschieden hast.',
-      en: 'Watercolor tattoos bring the fluid, transparent look of watercolor painting to skin, abstract shapes, florals or natural elements without the hard black outline of classic tattoos. The concern is always the same, and it\'s a fair one: without a solid black line to anchor it, doesn\'t the color just blur over time?\n\nJosef addresses that through deliberate pigment choice and controlled layering: color is placed to keep the watercolor effect while holding enough structure to stay readable for years instead of turning into a diffuse blur. That\'s exactly why aftercare on color work isn\'t an afterthought but part of the craft itself, good sun protection noticeably extends how long the colors stay vivid.\n\nBefore the session, Josef talks through which color combination and placement holds up best long-term, so the tattoo still shows the vivid, fluid look you chose years down the line.',
-    },
+        slug: 'color', built: true, folder: 'Colour', artists: ['josef'], hero: 'Color_Cover.webp',
+        name: { de: 'Color', en: 'Color' },
+        tagline: { de: 'Lebendige, fließende Designs mit Farbakzenten', en: 'Vibrant and fluid designs with splashes of color' },
+        desc: {
+                de: 'Watercolor-Tattoos übertragen die fließende, transparente Wirkung von Aquarellmalerei auf die Haut, abstrakte Formen, Blüten oder natürliche Elemente ohne den harten Konturstrich klassischer Tattoos. Die berechtigte Sorge ist immer dieselbe: Ohne feste schwarze Außenlinie als Anker, verläuft die Farbe dann nicht mit der Zeit?\n\nJosef begegnet dem mit gezielter Pigmentwahl und kontrollierter Schichtung: Die Farbe wird so gesetzt, dass sie den Aquarell-Effekt behält, aber genug Struktur, um über Jahre lesbar zu bleiben statt zu einem diffusen Fleck zu werden. Genau deshalb ist die Nachsorge bei Color-Tattoos kein Nebenaspekt, sondern Teil der Handwerksqualität, guter Sonnenschutz erhält die Leuchtkraft der Farben spürbar länger.\n\nJosef bespricht vor dem Termin, welche Farbkombination und Platzierung die Wirkung am längsten erhält, damit das Tattoo auch Jahre später noch die lebendige, fließende Optik zeigt, für die du dich entschieden hast.',
+                en: "Watercolor tattoos bring the fluid, transparent look of watercolor painting to skin, abstract shapes, florals or natural elements without the hard black outline of classic tattoos. The concern is always the same, and it's a fair one: without a solid black line to anchor it, doesn't the color just blur over time?\n\nJosef addresses that through deliberate pigment choice and controlled layering: color is placed to keep the watercolor effect while holding enough structure to stay readable for years instead of turning into a diffuse blur. That's exactly why aftercare on color work isn't an afterthought but part of the craft itself, good sun protection noticeably extends how long the colors stay vivid.\n\nBefore the session, Josef talks through which color combination and placement holds up best long-term, so the tattoo still shows the vivid, fluid look you chose years down the line.",
+        },
+        faq: [
+          {
+                    q: { de: 'Verblasst die Farbe bei einem Watercolor-Tattoo mit der Zeit?', en: 'Does the color fade on a watercolor tattoo over time?' },
+                    a: {
+                                de: 'Ohne feste schwarze Konturlinie sind gezielte Pigmentwahl und kontrollierte Schichtung entscheidend, genau daran arbeitet Josef, damit der Aquarell-Effekt erhalten bleibt statt zu verlaufen. Gute Nachsorge, vor allem Sonnenschutz, verlängert spürbar, wie lange die Farben leuchtend bleiben.',
+                                en: "Without a solid black outline, deliberate pigment choice and controlled layering are what keep the watercolor effect intact instead of blurring, exactly what Josef works on for every piece. Good aftercare, especially sun protection, noticeably extends how long the colors stay vivid.",
+                    },
+          },
+              ],
   },
-];
+  ];
 
 export const stylesBySlug = Object.fromEntries(styles.map((s) => [s.slug, s]));
