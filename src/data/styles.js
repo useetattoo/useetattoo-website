@@ -181,7 +181,7 @@ export const styles = [
               ],
   },
   {
-    slug: 'black-and-grey', built: true, folder: 'BlackGrey', artists: ['josef'],
+    slug: 'black-and-grey', built: true, folder: 'BlackGrey', artists: ['josef'], hero: 'BlackGrey_5.webp',
     name: { de: 'Black & Grey', en: 'Black & Grey' },
     tagline: { de: 'Kontraste, die auch in zehn Jahren noch stimmen', en: 'Contrast and depth that still hold up years later' },
     desc: {
@@ -203,7 +203,7 @@ export const styles = [
     related: ['realistic', 'portraits'],
   },
   {
-    slug: 'conceptual', built: true, folder: 'Conceptual', artists: ['cali'],
+    slug: 'conceptual', built: true, folder: 'Conceptual', artists: ['cali'], hero: 'Conceptual_4.webp',
     name: { de: 'Conceptual', en: 'Conceptual' },
     tagline: { de: 'Wenn mehrere Elemente eine Geschichte werden', en: 'When several elements become one story' },
     desc: {
@@ -225,7 +225,7 @@ export const styles = [
     related: ['microrealism', 'fine-line', 'realistic'],
   },
   {
-    slug: 'japanese', built: true, folder: 'Japanese', artists: ['josef'],
+    slug: 'japanese', built: true, folder: 'Japanese', artists: ['josef'], hero: 'Japanese_2.webp',
     name: { de: 'Japanese', en: 'Japanese' },
     tagline: { de: 'Traditionelle Motive, die als eine durchgehende Fläche fließen', en: 'Traditional motifs that flow as one continuous piece' },
     desc: {
@@ -247,7 +247,7 @@ export const styles = [
     related: ['maori', 'ornamental'],
   },
   {
-    slug: 'lettering', built: true, folder: 'Lettering', artists: ['jvd'],
+    slug: 'lettering', built: true, folder: 'Lettering', artists: ['jvd'], hero: 'Script_3.webp',
     name: { de: 'Schriftzug', en: 'Lettering' },
     tagline: { de: 'Worte, die genauso lange halten wie ihre Bedeutung', en: 'Words that last as long as what they mean' },
     desc: {
