@@ -313,4 +313,52 @@ xmlns:xhtml="http://www.w3.org/1999/xhtml">
 <xhtml:link rel="alternate" hreflang="en" href="https://useetattoo.com/en/erstes-tattoo/"/>
 <xhtml:link rel="alternate" hreflang="x-default" href="https://useetattoo.com/de/erstes-tattoo/"/>
 </url>
+<url>
+<loc>https://useetattoo.com/de/styles/black-and-grey/</loc>
+<xhtml:link rel="alternate" hreflang="de" href="https://useetattoo.com/de/styles/black-and-grey/"/>
+<xhtml:link rel="alternate" hreflang="en" href="https://useetattoo.com/en/styles/black-and-grey/"/>
+<xhtml:link rel="alternate" hreflang="x-default" href="https://useetattoo.com/de/styles/black-and-grey/"/>
+</url>
+<url>
+<loc>https://useetattoo.com/en/styles/black-and-grey/</loc>
+<xhtml:link rel="alternate" hreflang="de" href="https://useetattoo.com/de/styles/black-and-grey/"/>
+<xhtml:link rel="alternate" hreflang="en" href="https://useetattoo.com/en/styles/black-and-grey/"/>
+<xhtml:link rel="alternate" hreflang="x-default" href="https://useetattoo.com/de/styles/black-and-grey/"/>
+</url>
+<url>
+<loc>https://useetattoo.com/de/styles/conceptual/</loc>
+<xhtml:link rel="alternate" hreflang="de" href="https://useetattoo.com/de/styles/conceptual/"/>
+<xhtml:link rel="alternate" hreflang="en" href="https://useetattoo.com/en/styles/conceptual/"/>
+<xhtml:link rel="alternate" hreflang="x-default" href="https://useetattoo.com/de/styles/conceptual/"/>
+</url>
+<url>
+<loc>https://useetattoo.com/en/styles/conceptual/</loc>
+<xhtml:link rel="alternate" hreflang="de" href="https://useetattoo.com/de/styles/conceptual/"/>
+<xhtml:link rel="alternate" hreflang="en" href="https://useetattoo.com/en/styles/conceptual/"/>
+<xhtml:link rel="alternate" hreflang="x-default" href="https://useetattoo.com/de/styles/conceptual/"/>
+</url>
+<url>
+<loc>https://useetattoo.com/de/styles/japanese/</loc>
+<xhtml:link rel="alternate" hreflang="de" href="https://useetattoo.com/de/styles/japanese/"/>
+<xhtml:link rel="alternate" hreflang="en" href="https://useetattoo.com/en/styles/japanese/"/>
+<xhtml:link rel="alternate" hreflang="x-default" href="https://useetattoo.com/de/styles/japanese/"/>
+</url>
+<url>
+<loc>https://useetattoo.com/en/styles/japanese/</loc>
+<xhtml:link rel="alternate" hreflang="de" href="https://useetattoo.com/de/styles/japanese/"/>
+<xhtml:link rel="alternate" hreflang="en" href="https://useetattoo.com/en/styles/japanese/"/>
+<xhtml:link rel="alternate" hreflang="x-default" href="https://useetattoo.com/de/styles/japanese/"/>
+</url>
+<url>
+<loc>https://useetattoo.com/de/styles/lettering/</loc>
+<xhtml:link rel="alternate" hreflang="de" href="https://useetattoo.com/de/styles/lettering/"/>
+<xhtml:link rel="alternate" hreflang="en" href="https://useetattoo.com/en/styles/lettering/"/>
+<xhtml:link rel="alternate" hreflang="x-default" href="https://useetattoo.com/de/styles/lettering/"/>
+</url>
+<url>
+<loc>https://useetattoo.com/en/styles/lettering/</loc>
+<xhtml:link rel="alternate" hreflang="de" href="https://useetattoo.com/de/styles/lettering/"/>
+<xhtml:link rel="alternate" hreflang="en" href="https://useetattoo.com/en/styles/lettering/"/>
+<xhtml:link rel="alternate" hreflang="x-default" href="https://useetattoo.com/de/styles/lettering/"/>
+</url>
 </urlset>
