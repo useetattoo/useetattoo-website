@@ -28,6 +28,14 @@ const hasOwnForm = /\/(contact|cover-up)$/.test(pathname);
 const selfPath = pathname;
 const altPath = pathname.replace(new RegExp(`^/${lang}`), `/${alt}`);
 const canonical = site.domain + selfPath + (selfPath === '/' ? '' : '/');
+// hreflang must name the canonical, non-redirecting URL. selfPath has its
+// trailing slash stripped, so /de and /en would 301 to /de/ and /en/ — and
+// Google discards hreflang entries that point at a redirect, which silently
+// unpaired the German and English versions of every page.
+const hrefLangPath = (target) => {
+  const p = selfPath.replace(new RegExp(`^/${lang}`), `/${target}`);
+  return p === '/' ? '/' : p + '/';
+};
 const og = ogImage || site.heroImage;
 
 // LocalBusiness structured data (schema.org), sitewide. Uses the same
@@ -65,11 +73,15 @@ const localBusinessSchema = {
   <meta charset="utf-8" />
   <meta name="p:domain_verify" content="ea34f2a1f57b9444b892812eb987641d"/>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <!-- Without these the site has no favicon at all: /favicon.ico returned 404,
+       so Google showed a blank grey globe next to every mobile result. -->
+  <link rel="icon" type="image/png" href="/images/brand/LOGO_black_TransparentBG.png" />
+  <link rel="apple-touch-icon" href="/images/brand/LOGO_white_TransparentBG.png" />
   <title>{title}</title>
   <meta name="description" content={description} />
   <link rel="canonical" href={canonical} />
-  <link rel="alternate" hreflang="de" href={site.domain + (selfPath.replace(new RegExp(`^/${lang}`), '/de'))} />
-  <link rel="alternate" hreflang="en" href={site.domain + (selfPath.replace(new RegExp(`^/${lang}`), '/en'))} />
+  <link rel="alternate" hreflang="de" href={site.domain + hrefLangPath('de')} />
+  <link rel="alternate" hreflang="en" href={site.domain + hrefLangPath('en')} />
   <link rel="alternate" hreflang="x-default" href={site.domain + '/de/'} />
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="UseeTattoo" />
