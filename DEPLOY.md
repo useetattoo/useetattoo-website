@@ -1,13 +1,12 @@
 # Usee Tattoo — Deploy & DNS
 
-Astro static site, bilingual DE/EN. Deploys to Netlify. The live `useetattoo.com` is **not** touched until final cutover.
+Astro static site, bilingual DE/EN. Live at `useetattoo.com`, hosted on **Cloudflare Pages**. This repo is production — every push to `main` deploys straight to the live site (see Deploy section below).
 
 ## What's in here
 - `src/` — pages, layout, components, data (all copy lives in `src/data/*`)
 - `public/images/` — all portfolios & style galleries (galleries auto-populate from these folders)
-- `public/_redirects` — complete 301 map (legacy Joomla → clean URLs), 85 rules
-- `netlify.toml` — build config (`npm run build` → `dist`)
-- Netlify inquiry form on the Contact page (`name="inquiry"`, email notifications)
+- `public/_redirects` — 301 map for legacy URLs (explicit rules only — Cloudflare's `_redirects` format does not support query-string matching)
+- `functions/index.js` — Cloudflare Pages Function. Handles the one redirect case `_redirects` can't: any request to `/` carrying a `?p=...` query string (stray crawled/linked legacy URLs) gets a real 301 to `/de/` with the query string preserved. Runs before `_redirects` on every request.
 
 ## Local preview
 ```bash
@@ -16,31 +15,23 @@ npm run dev      # http://localhost:4321/de/
 npm run build    # outputs to dist/
 ```
 
-## Deploy to staging (hossein.photography)
+## Deploy
+Cloudflare Pages is connected directly to this GitHub repo (`useetattoo/useetattoo-website`, branch `main`). Every push to `main` triggers an automatic build (`npm run build` → publish `dist`) and deploys straight to production at `useetattoo.com`. There is no staging environment and no manual deploy step — treat every commit to `main` as live within minutes.
 
-**Option A — GitHub + Netlify (recommended, auto-builds on push)**
-1. Push this folder to the GitHub repo already linked to Netlify.
-2. In Netlify: New site → import that repo. Build command `npm run build`, publish dir `dist` (already in `netlify.toml`).
-3. Netlify builds and gives you a `*.netlify.app` URL — verify it there first.
+Build settings (framework preset, build command, output directory, environment variables) are configured in the Cloudflare dashboard directly, not in a config file in this repo.
 
-**Option B — drag & drop**
-Run `npm run build` locally, then drag the `dist/` folder into Netlify → Deploys.
+## DNS
+`useetattoo.com` DNS points to Cloudflare Pages. `book.useetattoo.com` (Fresha booking system) is a separate service and is not touched by this repo or its deploys.
 
-## DNS at eukhost (point hossein.photography → Netlify)
-After the Netlify site exists, add these at eukhost (exact CNAME target is shown in Netlify → Domain settings):
-- Apex `@`  → **A**  `75.2.60.5`
-- `www`     → **CNAME** `<your-site>.netlify.app`
+## Contact form
+The Contact page and the sitewide quick-contact form (`src/components/QuickForm.astro`) submit via [Web3Forms](https://web3forms.com) (`api.web3forms.com/submit`), not Netlify Forms — Netlify is not used anywhere in this project. On success the visitor sees an inline confirmation message; there is no `?success=1` redirect page.
 
-(Or set eukhost nameservers to Netlify DNS if you prefer Netlify to manage the zone.)
-Leave `book.useetattoo.com` (Fresha) untouched.
-
-## Netlify Forms
-The Contact form is auto-detected on build (`data-netlify="true"`). In Netlify → Forms, enable an email notification to the studio address. Submissions also appear in the Netlify dashboard. On success the visitor returns to `/<lang>/contact?success=1` and sees a confirmation.
-
-## Final cutover (only on your approval)
-Repoint `useetattoo.com` DNS to Netlify and set it as the production domain. The `_redirects` file preserves SEO by 301-ing every old URL to its clean equivalent.
+## Booking
+All actual appointment booking (consultations, walk-ins, piercing, cover-up) happens through Fresha, linked from this site but hosted separately — this repo has no booking logic of its own.
 
 ## Still open
-- **Nilou's bio** — page shows "coming soon" until you supply the text.
-- **FAQ answers** — current answers are premium drafts for your review.
-- German copy for style/About text is translated from the live English.
+- **FAQ answers** — current answers are premium drafts, review periodically as the studio's offering evolves.
+- German/English copy parity — spot-check periodically; some pages were translated from the original language version.
+
+## History note
+This project briefly assumed Netlify hosting very early on. Any old references to Netlify, `netlify.toml`, `*.netlify.app`, or eukhost-to-Netlify DNS instructions (including in old commits or archived docs) are incorrect leftovers from that abandoned plan — ignore them. The site has been on Cloudflare Pages since before this file was last accurate.
