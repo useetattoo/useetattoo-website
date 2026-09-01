@@ -438,4 +438,5 @@ const stars = (n) => '★'.repeat(n) + '☆'.repeat(5 - n);
       .pc-gallery{grid-template-columns:repeat(2,1fr)}
     }
   </style>
+  <script type="application/ld+json" set:html={JSON.stringify({'@context':'https://schema.org','@type':'FAQPage',mainEntity:c.faq.map(f=>({'@type':'Question',name:f[0],acceptedAnswer:{'@type':'Answer',text:f[1]}}))})} />
 </Base>
