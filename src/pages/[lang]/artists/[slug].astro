@@ -25,6 +25,27 @@ const title = lang === 'de'
   : `Tattoo Artist ${artist.name} | UseeTattoo Studio Berlin`;
 const description = artist.meta[lang];
 const bio = artist.bio[lang];
+
+// Person schema. Until now nothing on the site said, in a machine-readable way,
+// that a given artist works here and which styles they actually do, so search
+// engines and AI assistants had no way to answer "who does realism in Berlin".
+// knowsAbout is derived from the same specialties string the page already renders,
+// so the schema and the visible text can never drift apart.
+const personSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  '@id': `${site.domain}/${lang}/artists/${artist.slug}/#person`,
+  name: artist.name,
+  url: `${site.domain}/${lang}/artists/${artist.slug}/`,
+  image: `${site.domain}${artist.portrait}`,
+  description: artist.meta[lang],
+  jobTitle: artist.piercing
+    ? (lang === 'de' ? 'Piercing-Spezialistin' : 'Piercing Specialist')
+    : (lang === 'de' ? 'Tattoo-Künstler' : 'Tattoo Artist'),
+  knowsAbout: artist.specialties[lang].split('·').map((s) => s.trim()).filter(Boolean),
+  worksFor: { '@id': `${site.domain}/#business` },
+  workLocation: { '@id': `${site.domain}/#business` },
+};
 ---
 <Base lang={lang} title={title} description={description} ogImage={artist.portrait}>
   <section class="detail-hero">
@@ -61,4 +82,6 @@ const bio = artist.bio[lang];
       </div>
     </section>
   )}
+
+  <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
 </Base>
