@@ -5,7 +5,7 @@ export const artists = [
     portrait: '/images/artists/Josef-Profile.webp',
     folder: 'Josef',
     book: 'https://book.useetattoo.com/josef',
-    specialties: { de: 'Realistic · Black & Grey · Japanese', en: 'Realistic · Black & Grey · Japanese' },
+    specialties: { de: 'Realistic · Black & Grey · Portraits · Maori · Japanese', en: 'Realistic · Black & Grey · Portraits · Maori · Japanese' },
     meta: {
       de: 'Josef hat Usee Tattoo mitaufgebaut und prägt bis heute die künstlerische Linie des Studios, spezialisiert auf Realismus in Schwarz-Grau, Porträts und Maori-Kunst.',
       en: 'Josef helped build Usee Tattoo and still shapes the studio\'s artistic direction today, specializing in black & grey realism, portraits, and Maori art.',
@@ -20,7 +20,7 @@ export const artists = [
     portrait: '/images/artists/Cali.webp',
     folder: 'Cali',
     book: 'https://book.useetattoo.com/cali',
-    specialties: { de: 'Micro Realism · Fine Line', en: 'Micro Realism · Fine Line' },
+    specialties: { de: 'Micro Realism · Fine Line · Conceptual', en: 'Micro Realism · Fine Line · Conceptual' },
     meta: {
       de: 'Cali ist seit der Eröffnung Teil von Usee Tattoo, bekannt für präzise Arbeit und feinste Details.',
       en: 'Cali began his journey at UseeTattoo when the studio first opened and has since become a standout artist. Known for his precise work and intricate details.',
@@ -35,7 +35,7 @@ export const artists = [
     portrait: '/images/artists/Javad.webp',
     folder: 'Jvd',
     book: 'https://book.useetattoo.com/jvd',
-    specialties: { de: 'Micro Realism · Fine Line', en: 'Micro Realism · Fine Line' },
+    specialties: { de: 'Micro Realism · Fine Line · Schriftzug · Dotwork', en: 'Micro Realism · Fine Line · Lettering · Dotwork' },
     meta: {
       de: 'JVD ist ein erfahrener Artist für Mikro-Realismus und Fine Line, präzise und geduldig.',
       en: 'JVD is an experienced artist specializing in micro-realism and fine line tattoos. His precise and patient approach ensures every piece is meticulously crafted.',
