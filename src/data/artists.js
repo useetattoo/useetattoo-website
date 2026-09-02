@@ -51,7 +51,7 @@ export const artists = [
     folder: 'Nana',
     book: 'https://book.useetattoo.com/piercing',
     piercing: true,
-    specialties: { de: 'Piercing', en: 'Piercing' },
+    specialties: { de: 'Piercing · Nippelpiercing · Septum · Lippe · Bauchnabel', en: 'Piercing · Nipple · Septum · Lip · Navel' },
     meta: {
       de: 'Nana ist unsere Piercing-Spezialistin bei Usee Tattoo Berlin: kuratierte Piercings mit Sorgfalt und Stil.',
       en: 'Nana is our piercing specialist, curated, high-quality piercings placed with care and style.',
