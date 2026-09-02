@@ -196,8 +196,8 @@ export const styles = [
   },
   {
             slug: 'color', built: true, folder: 'Colour', artists: ['josef'], hero: 'Color_Cover.webp',
-            name: { de: 'Color', en: 'Color' },
-            metaTitle: { de: 'Color Tattoo Berlin | Watercolor mit gezielter Pigmentwahl', en: 'Color Tattoos Berlin | Watercolor, Deliberate Pigment Choice' },
+            name: { de: 'Watercolor', en: 'Watercolor' },
+            metaTitle: { de: 'Watercolor Tattoo Berlin | Farbe, die lesbar bleibt', en: 'Watercolor Tattoos Berlin | Color That Stays Readable' },
             tagline: { de: 'Lebendige, fließende Designs mit Farbakzenten', en: 'Vibrant and fluid designs with splashes of color' },
             desc: {
                               de: 'Watercolor-Tattoos übertragen die fließende, transparente Wirkung von Aquarellmalerei auf die Haut, abstrakte Formen, Blüten oder natürliche Elemente ohne den harten Konturstrich klassischer Tattoos. Die berechtigte Sorge ist immer dieselbe: Ohne feste schwarze Außenlinie als Anker, verläuft die Farbe dann nicht mit der Zeit?\n\nJosef begegnet dem mit gezielter Pigmentwahl und kontrollierter Schichtung: Die Farbe wird so gesetzt, dass sie den Aquarell-Effekt behält, aber genug Struktur, um über Jahre lesbar zu bleiben statt zu einem diffusen Fleck zu werden. Genau deshalb ist die Nachsorge bei Color-Tattoos kein Nebenaspekt, sondern Teil der Handwerksqualität, guter Sonnenschutz erhält die Leuchtkraft der Farben spürbar länger.\n\nJosef bespricht vor dem Termin, welche Farbkombination und Platzierung die Wirkung am längsten erhält, damit das Tattoo auch Jahre später noch die lebendige, fließende Optik zeigt, für die du dich entschieden hast.',
@@ -290,7 +290,7 @@ export const styles = [
   {
         slug: 'lettering', built: true, folder: 'Lettering', artists: ['jvd'], hero: 'Script_3.webp',
         name: { de: 'Schriftzug', en: 'Lettering' },
-        metaTitle: { de: 'Schriftzug Tattoo Berlin | Schrift, die lesbar bleibt', en: 'Lettering Tattoos Berlin | Type That Stays Readable' },
+        metaTitle: { de: 'Lettering Tattoo Berlin | Schriftzug, der lesbar bleibt', en: 'Lettering Tattoos Berlin | Type That Stays Readable' },
         tagline: { de: 'Worte, die genauso lange halten wie ihre Bedeutung', en: 'Words that last as long as what they mean' },
         desc: {
                 de: `Nicht jeder Schriftzug ist Fine Line, und nicht jede Fine-Line-Arbeit ist ein Schriftzug. Fine Line beschreibt eine Linienstärke, Schriftzug beschreibt ein Motiv: Wörter, Zitate, Namen. Manche Schriftzüge werden sehr fein gestochen, andere brauchen dickere, kräftigere Linien, damit sie lesbar bleiben. Geht es dir vor allem um sehr feine, zarte Linienführung unabhängig vom Motiv, schau dir auch die Fine-Line-Seite an.\n\nEin Schriftzug-Tattoo lebt von Lesbarkeit, heute und in zehn Jahren. Die berechtigte Sorge: Verschwimmen die Buchstaben mit der Zeit zu einem unleserlichen Strich, besonders bei kleiner Schrift oder verschnörkelten Schriftarten?\n\nJvd wählt Schriftart, Linienstärke und Buchstabenabstand so, dass der Text auch nach Jahren klar lesbar bleibt, nicht nur am Tag des Stechens. Bei geschwungenen Schriftarten wird die Strichstärke gezielt variiert, damit feine Übergänge nicht als Erstes verblassen.\n\nJvd bespricht vorab, welche Schriftart und Platzierung für die Länge deines Textes am besten funktioniert, und wie sich die Körperstelle (z. B. Rippen oder Handgelenk) auf die Haltbarkeit auswirkt, damit dein Schriftzug auch Jahre später noch genauso lesbar ist wie am ersten Tag.`,
