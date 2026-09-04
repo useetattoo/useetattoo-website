@@ -73,13 +73,14 @@ const c = {
         if (data.success) {
           var el = document.getElementById('qfSent');
           if (el) { el.hidden = false; el.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+          var interestVal = (form.querySelector('[name="interest"]') || {}).value || '';
           form.reset();
           form.style.display = 'none';
           window.dataLayer = window.dataLayer || [];
           window.dataLayer.push({
             event: 'lead_consultation_form',
             form_id: 'quickForm',
-            form_interest: (form.querySelector('[name="interest"]') || {}).value || '',
+            form_interest: interestVal,
             page_path: location.pathname
           });
         } else {
