@@ -39,8 +39,8 @@
 /de/tatto-styles/portraits /de/styles/portraits/ 301
 /de/index.php/tatto-styles/color /de/styles/color/ 301
 /de/tatto-styles/color /de/styles/color/ 301
-/de/index.php/tatto-styles/dotwork /de/styles/microrealism/ 301
-/de/tatto-styles/dotwork /de/styles/microrealism/ 301
+/de/index.php/tatto-styles/dotwork /de/artists/jvd/ 301
+/de/tatto-styles/dotwork /de/artists/jvd/ 301
 /de/index.php/events /de/events/guest-artists/ 301
 /de/index.php/about-usee /de/about/ 301
 /de/about-usee /de/about/ 301
@@ -85,8 +85,8 @@
 /en/tatto-styles/portraits /en/styles/portraits/ 301
 /en/index.php/tatto-styles/color /en/styles/color/ 301
 /en/tatto-styles/color /en/styles/color/ 301
-/en/index.php/tatto-styles/dotwork /en/styles/microrealism/ 301
-/en/tatto-styles/dotwork /en/styles/microrealism/ 301
+/en/index.php/tatto-styles/dotwork /en/artists/jvd/ 301
+/en/tatto-styles/dotwork /en/artists/jvd/ 301
 /en/index.php/events /en/events/guest-artists/ 301
 /en/index.php/about-usee /en/about/ 301
 /en/about-usee /en/about/ 301
@@ -141,8 +141,8 @@
 /index.php/tatto-styles/portraits /de/styles/portraits/ 301
 /tatto-styles/color /de/styles/color/ 301
 /index.php/tatto-styles/color /de/styles/color/ 301
-/tatto-styles/dotwork /de/styles/microrealism/ 301
-/index.php/tatto-styles/dotwork /de/styles/microrealism/ 301
+/tatto-styles/dotwork /de/artists/jvd/ 301
+/index.php/tatto-styles/dotwork /de/artists/jvd/ 301
 /events /de/events/guest-artists/ 301
 /index.php/events /de/events/guest-artists/ 301
 /about-usee /de/about/ 301
@@ -211,12 +211,12 @@
 /tattoo-styles/color /de/styles/color/ 301
 /index.php/tattoo-styles/color /de/styles/color/ 301
 
-/de/tattoo-styles/dotwork /de/styles/microrealism/ 301
-/de/index.php/tattoo-styles/dotwork /de/styles/microrealism/ 301
-/en/tattoo-styles/dotwork /en/styles/microrealism/ 301
-/en/index.php/tattoo-styles/dotwork /en/styles/microrealism/ 301
-/tattoo-styles/dotwork /de/styles/microrealism/ 301
-/index.php/tattoo-styles/dotwork /de/styles/microrealism/ 301
+/de/tattoo-styles/dotwork /de/artists/jvd/ 301
+/de/index.php/tattoo-styles/dotwork /de/artists/jvd/ 301
+/en/tattoo-styles/dotwork /en/artists/jvd/ 301
+/en/index.php/tattoo-styles/dotwork /en/artists/jvd/ 301
+/tattoo-styles/dotwork /de/artists/jvd/ 301
+/index.php/tattoo-styles/dotwork /de/artists/jvd/ 301
 
 # ---- Zsofi — former artist, no longer with the studio. Recurring gap, fixed definitively here. ----
 /de/tattoo-artists/zsofi /de/ 301
@@ -232,11 +232,11 @@
 /en/stile /en/ 301
 /en/style /en/ 301
 
-# ---- Dotwork removed 2026-08-25 — style dropped from the lineup, replaced by Micro Realism ----
-/de/styles/dotwork /de/styles/microrealism/ 301
-/de/styles/dotwork/ /de/styles/microrealism/ 301
-/en/styles/dotwork /en/styles/microrealism/ 301
-/en/styles/dotwork/ /en/styles/microrealism/ 301
+# ---- Dotwork: no standalone style page since 2026-08-25; retargeted 2026-09-05 from /styles/microrealism/ to the JVD artist page, who does this work (decision 2026-08-29, confirmed by niloo 2026-09-04, ND-22) ----
+/de/styles/dotwork /de/artists/jvd/ 301
+/de/styles/dotwork/ /de/artists/jvd/ 301
+/en/styles/dotwork /en/artists/jvd/ 301
+/en/styles/dotwork/ /en/artists/jvd/ 301
 
 # ---- taetowierer-innen — real German legacy path segment, found via GSC Pages report
 # (2026-08-27, filtered by "*taetowierer-innen", 16-month window: 1,060 impressions /
