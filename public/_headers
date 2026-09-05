@@ -1,0 +1,20 @@
+# Security response headers for Cloudflare Pages (public/_headers -> dist/_headers).
+# Approved by niloo 2026-09-04 (ND-20). Committed on its own, per her condition that
+# this must not share a commit with the form work.
+#
+# X-Frame-Options is enforced: it only stops other sites from framing us and has no
+# effect on the Google Maps iframe we embed ourselves.
+#
+# CSP ships in Report-Only first, on purpose. The page loads GTM, Google Ads,
+# the Meta pixel, Web3Forms and the Fresha booking flow at runtime, and an
+# enforcing policy with one missing origin would silently break the only
+# conversion path that started working on 2026-09-04. Report-Only cannot block
+# anything; it just reports. It gets switched to enforcing after a live run with
+# zero violations, and only with niloo's explicit ok.
+#
+# Not set here on purpose: x-content-type-options and referrer-policy are already
+# served by Cloudflare, and HSTS was not part of the ND-20 approval.
+
+/*
+  X-Frame-Options: SAMEORIGIN
+  Content-Security-Policy-Report-Only: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://connect.facebook.net https://www.google.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://api.web3forms.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://*.g.doubleclick.net https://www.google.com https://www.facebook.com; frame-src 'self' https://www.google.com https://www.fresha.com https://book.useetattoo.com https://td.doubleclick.net https://www.facebook.com; form-action 'self' https://api.web3forms.com; base-uri 'self'; object-src 'none'
