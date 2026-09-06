@@ -195,9 +195,16 @@ const localBusinessSchema = {
           window.gtag('consent', 'update', { ad_storage: 'denied', ad_user_data: 'denied', ad_personalization: 'denied', analytics_storage: 'denied' });
         }
       }
-      function hide(){ if (banner) { banner.classList.remove('show'); banner.hidden = true; } }
-      function show(){ if (banner) { banner.hidden = false; requestAnimationFrame(function(){ banner.classList.add('show'); }); } }
+      // ND-27: while the banner is visible it must occupy its own space instead of
+      // covering the bottom of the page. Its height is measured from the banner
+      // itself, never hard-coded, so longer banner text cannot silently re-cover
+      // content after a future layout or copy change.
+      function reserve(){ if (banner && !banner.hidden) document.body.style.paddingBottom = banner.offsetHeight + 'px'; }
+      function release(){ document.body.style.paddingBottom = ''; }
+      function hide(){ if (banner) { banner.classList.remove('show'); banner.hidden = true; } release(); }
+      function show(){ if (banner) { banner.hidden = false; reserve(); requestAnimationFrame(function(){ banner.classList.add('show'); }); } }
       function setV(v){ try { localStorage.setItem(KEY, v); } catch (e) {} hide(); apply(v); }
+      addEventListener('resize', reserve);
       var cur = getV();
       if (cur === 'granted') apply('granted');
       else if (cur !== 'denied') show();
