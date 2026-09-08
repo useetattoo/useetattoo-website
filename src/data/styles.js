@@ -133,7 +133,7 @@ export const styles = [
         related: ['ornamental', 'japanese'],
   },
   {
-            slug: 'ornamental', built: true, folder: 'Ornamental', artists: ['josef'], hero: 'Ornamental_Cover.webp',
+            slug: 'ornamental', built: true, folder: 'Ornamental', artists: [], book: { de: 'https://book.useetattoo.com/walk-in-tattoo', en: 'https://book.useetattoo.com/walk-in-tattoo' }, hero: 'Ornamental_Cover.webp',
             name: { de: 'Ornamental', en: 'Ornamental' },
             metaTitle: { de: 'Ornamental Tattoo Berlin | Mandalas auf deine Körperform', en: 'Ornamental Tattoos Berlin | Mandalas to Your Body Shape' },
             tagline: { de: 'Dekorative Designs mit atemberaubenden Details', en: 'Decorative designs with stunning details' },
@@ -142,8 +142,8 @@ export const styles = [
                               en: "Ornamental tattoos live on symmetry: mandalas, florals and geometric patterns where every element has to balance against the next. The biggest concern with this style is a fair one, because a body isn't flat: something that looks perfectly symmetrical on paper can end up feeling skewed across a curved arm or shoulder if the transfer isn't planned carefully.\n\nThat's why Josef develops ornamental designs directly against body shape rather than on paper first: testing radii and axes before the first line is set, so the pattern and the curve of the body work together and the piece stays balanced from every angle.\n\nWhether it's a delicate mandala or a large decorative piece, Josef talks through how symmetry and body shape interact before the design is finalized, so the finished ornament still reads as balanced in motion, not just standing still.",
             },
             metaDescription: {
-                        de: `Ornamental Tattoo Berlin: Mandalas und florale Muster, symmetrisch an deine Körperform von Josef. 4,9 ★ aus 692 Google-Bewertungen. Termin anfragen.`,
-                        en: `Ornamental tattoos Berlin: mandalas and florals, designed symmetrically to your body shape by Josef. 4.9 ★ from 692 Google reviews. Book now.`,
+                        de: `Ornamental Tattoo Berlin: Mandalas und florale Muster, symmetrisch entlang deiner Körperform statt aufgesetzt. Auch ohne Termin. 4,9 ★ aus 690+ Google-Bewertungen.`,
+                        en: `Ornamental tattoos Berlin: mandalas and florals that follow your body shape instead of sitting on top of it. Also without an appointment. 4.9 ★ from 690+ Google reviews.`,
             },
             faq: [
               {
@@ -195,7 +195,7 @@ export const styles = [
         related: ['realistic', 'black-and-grey'],
   },
   {
-            slug: 'color', built: true, folder: 'Colour', artists: ['josef'], hero: 'Color_Cover.webp',
+            slug: 'color', built: true, folder: 'Colour', artists: [], book: { de: 'https://book.useetattoo.com/Consultation', en: 'https://book.useetattoo.com/Consultation' }, hero: 'Color_Cover.webp',
             name: { de: 'Watercolor', en: 'Watercolor' },
             metaTitle: { de: 'Watercolor Tattoo Berlin | Farbe, die lesbar bleibt', en: 'Watercolor Tattoos Berlin | Color That Stays Readable' },
             tagline: { de: 'Lebendige, fließende Designs mit Farbakzenten', en: 'Vibrant and fluid designs with splashes of color' },
@@ -204,8 +204,8 @@ export const styles = [
                               en: "Watercolor tattoos bring the fluid, transparent look of watercolor painting to skin, abstract shapes, florals or natural elements without the hard black outline of classic tattoos. The concern is always the same, and it's a fair one: without a solid black line to anchor it, doesn't the color just blur over time?\n\nJosef addresses that through deliberate pigment choice and controlled layering: color is placed to keep the watercolor effect while holding enough structure to stay readable for years instead of turning into a diffuse blur. That's exactly why aftercare on color work isn't an afterthought but part of the craft itself, good sun protection noticeably extends how long the colors stay vivid.\n\nBefore the session, Josef talks through which color combination and placement holds up best long-term, so the tattoo still shows the vivid, fluid look you chose years down the line.",
             },
             metaDescription: {
-                        de: `Watercolor Tattoo Berlin: fließende Farbeffekte mit gezielter Pigmentwahl von Josef. 4,9 ★ aus 692 Google-Bewertungen. Termin anfragen.`,
-                        en: `Watercolor tattoos Berlin: fluid color effects built on deliberate pigment choice by Josef. 4.9 ★ from 692 Google reviews. Book a consultation.`,
+                        de: `Watercolor Tattoo Berlin: fließende Farbeffekte mit gezielter Pigmentwahl — wir sagen dir vorher, welche Töne auf deinem Hautton langfristig halten und welche verblassen. 4,9 ★ aus 690+ Google-Bewertungen. Beratung vereinbaren.`,
+                        en: `Watercolor tattoos Berlin: fluid color effects built on deliberate pigment choice — we tell you beforehand which tones last on your skin tone and which fade. 4.9 ★ from 690+ Google reviews. Book a consultation.`,
             },
             faq: [
               {
@@ -288,7 +288,7 @@ export const styles = [
         related: ['maori', 'ornamental'],
   },
   {
-        slug: 'lettering', built: true, folder: 'Lettering', artists: ['jvd'], hero: 'Script_3.webp',
+        slug: 'lettering', built: true, folder: 'Lettering', artists: [], book: { de: 'https://book.useetattoo.com/walk-in-tattoo', en: 'https://book.useetattoo.com/walk-in-tattoo' }, hero: 'Script_3.webp',
         name: { de: 'Schriftzug', en: 'Lettering' },
         metaTitle: { de: 'Lettering Tattoo Berlin | Schriftzug, der lesbar bleibt', en: 'Lettering Tattoos Berlin | Type That Stays Readable' },
         tagline: { de: 'Worte, die genauso lange halten wie ihre Bedeutung', en: 'Words that last as long as what they mean' },
@@ -297,8 +297,8 @@ export const styles = [
                 en: `Not every lettering piece is Fine Line, and not every Fine Line piece is lettering. Fine Line describes a line weight, lettering describes a subject: words, quotes, names. Some lettering is done very fine, other pieces need thicker, stronger lines to stay readable. If delicate, thin linework in general is what you're after regardless of subject, take a look at the Fine Line page too.\n\nA lettering tattoo lives on readability, today and ten years from now. The fair concern: do the letters blur into an unreadable line over time, especially with small text or ornate fonts?\n\nJvd chooses font, line weight and letter spacing so the text stays clearly readable years later, not just on the day it's done. With flowing scripts, stroke width is deliberately varied so fine transitions aren't the first thing to fade.\n\nJvd talks through beforehand which font and placement work best for the length of your text, and how the body area (ribs vs. wrist, for example) affects durability, so your lettering still reads exactly as clearly years later as it did on day one.`,
         },
         metaDescription: {
-                de: `Schriftzug Tattoo Berlin: Schriftart und Linienstärke, die auch nach Jahren lesbar bleiben. 4,9 ★ aus 692 Google-Bewertungen. Termin anfragen.`,
-                en: `Lettering Tattoo Berlin: font and line weight that stay readable for years. 4.9 ★ from 692 Google reviews. Book a consultation at Usee Tattoo.`,
+                de: `Schriftzug Tattoo Berlin: Schriftart und Linienstärke, die auch nach Jahren lesbar bleiben. Auch ohne Termin. 4,9 ★ aus 690+ Google-Bewertungen.`,
+                en: `Lettering Tattoo Berlin: font and line weight that stay readable for years. Also without an appointment. 4.9 ★ from 690+ Google reviews.`,
         },
         faq: [
           { q: { de: `Was ist der Unterschied zwischen Schriftzug und Fine Line?`, en: `What's the difference between Lettering and Fine Line?` },
