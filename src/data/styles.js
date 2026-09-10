@@ -1,3 +1,5 @@
+import { site } from './site.js';
+
 // Every style is built. Galleries auto-populate from public/images/TattooStyle/<folder>.
 export const styles = [
   {
@@ -10,8 +12,8 @@ export const styles = [
                               en: 'Realistic tattoos are one of the most demanding styles: the goal is an image that reads like a photograph, portraits, animals, objects, each rendered with exact, detailed precision. The fair question is always the same: does the result actually look photographic, or does it end up as a flat drawing with hard contrast? That difference isn\'t decided in the final session, it\'s decided by how light and shadow are controlled from the very first line.\n\nJosef works realism consistently in black & grey: dark core areas, soft transitions, and skin deliberately left bare, so depth builds up without the piece blurring into a flat grey shape after a few years. Whether it\'s an animal portrait, a face, or a large-scale sleeve, the same care around perspective, texture and depth applies every time.\n\nBefore any project starts, Josef talks through which reference material gives the strongest foundation and how placement and body shape affect shading, so the finished tattoo still reads as an image years later, not a faded sketch.',
             },
             metaDescription: {
-                        de: `Realistic Tattoo Berlin: fotorealistische Porträts und Motive in Schwarz-Grau von Josef. 4,9 ★ aus 690+ Google-Bewertungen. Termin anfragen.`,
-                        en: `Realistic tattoos Berlin: photorealistic portraits and motifs in black & grey by Josef. 4.9 ★ from 690+ Google reviews. Book a consultation.`,
+                        de: `Realistic Tattoo Berlin: fotorealistische Porträts und Motive in Schwarz-Grau von Josef. ${site.reviews.rating.de} ★ aus ${site.reviews.count} ${site.reviews.de}. Termin anfragen.`,
+                        en: `Realistic tattoos Berlin: photorealistic portraits and motifs in black & grey by Josef. ${site.reviews.rating.en} ★ from ${site.reviews.count} ${site.reviews.en}. Book a consultation.`,
             },
             faq: [
               {
@@ -73,8 +75,8 @@ export const styles = [
                               en: 'Fine line tattoos live on very thin, precise lines, flowers, animals, geometric shapes or small lettering, reduced to the essentials. The most common concern is a fair one: thin lines are the first to lose sharpness if needle depth or control isn\'t exact. That\'s exactly what separates a fine line tattoo that still reads clean years later from one that fades into a blurred stroke.\n\nCali and Jvd work with even needle pressure and deliberately chosen line weights, thin enough for the delicate look, strong enough to hold in the skin long-term. Placement matters too: areas with a lot of movement or sun exposure hold up less well, so choosing the right spot on the body is part of the consultation, not just the design itself.\n\nWhether it\'s a small single motif or several fine lines combined into one composition, Cali and Jvd talk through which line weight and placement will keep your piece sharp long-term, so the result still looks as delicate years from now as it did on day one.',
             },
             metaDescription: {
-                        de: `Fine Line Tattoo Berlin: zarte, präzise Linien mit kostenloser Nachbesserung, auch als Walk-In. 4,9 ★ aus 690+ Google-Bewertungen. Termin anfragen.`,
-                        en: `Fine Line tattoos Berlin: delicate, precise linework with touch-up included, walk-ins welcome. 4.9 ★ from 690+ Google reviews. Book a consultation.`,
+                        de: `Fine Line Tattoo Berlin: zarte, präzise Linien mit kostenloser Nachbesserung, auch als Walk-In. ${site.reviews.rating.de} ★ aus ${site.reviews.count} ${site.reviews.de}. Termin anfragen.`,
+                        en: `Fine Line tattoos Berlin: delicate, precise linework with touch-up included, walk-ins welcome. ${site.reviews.rating.en} ★ from ${site.reviews.count} ${site.reviews.en}. Book a consultation.`,
             },
             faq: [
               {
@@ -118,8 +120,8 @@ export const styles = [
                               en: "Maori tattoos trace back to the traditional Tā moko art of the indigenous Maori people of New Zealand: complex, geometric patterns where every element carries its own meaning, often status, lineage or personal history. The fair question is how to get a design that takes this tradition seriously instead of copying it as pure decoration.\n\nJosef works this pattern entirely freehand, directly on the skin, not from a pre-made stencil, using the classic building blocks of this visual language: bold black areas balanced against fine linework. Because the design is drawn freehand, the composition adapts exactly to the shape of your body part, so the pattern moves with the arm, leg or back instead of sitting against it. That freehand adaptation to body shape is exactly what decides whether a Maori tattoo reads as one continuous piece or as something layered on top.\n\nJosef talks through which symbols and shapes fit your personal story beforehand, and how the pattern will develop across the chosen area, so the finished tattoo is both technically sound and personally meaningful. Because everything is drawn freehand directly on your skin, that consultation is the starting point for every Maori project.",
             },
             metaDescription: {
-                        de: `Maori Tattoo Berlin: traditionelle Tā-Moko-Muster, komplett freihand auf die Haut von Josef. 4,9 ★ aus 690+ Google-Bewertungen. Termin anfragen.`,
-                        en: `Maori tattoos Berlin: traditional Tā moko patterns, drawn entirely freehand by Josef. 4.9 ★ from 690+ Google reviews. Book a consultation.`,
+                        de: `Maori Tattoo Berlin: traditionelle Tā-Moko-Muster, komplett freihand auf die Haut von Josef. ${site.reviews.rating.de} ★ aus ${site.reviews.count} ${site.reviews.de}. Termin anfragen.`,
+                        en: `Maori tattoos Berlin: traditional Tā moko patterns, drawn entirely freehand by Josef. ${site.reviews.rating.en} ★ from ${site.reviews.count} ${site.reviews.en}. Book a consultation.`,
             },
             faq: [
               {
@@ -142,8 +144,8 @@ export const styles = [
                               en: "Ornamental tattoos live on symmetry: mandalas, florals and geometric patterns where every element has to balance against the next. The biggest concern with this style is a fair one, because a body isn't flat: something that looks perfectly symmetrical on paper can end up feeling skewed across a curved arm or shoulder if the transfer isn't planned carefully.\n\nThat's why Josef develops ornamental designs directly against body shape rather than on paper first: testing radii and axes before the first line is set, so the pattern and the curve of the body work together and the piece stays balanced from every angle.\n\nWhether it's a delicate mandala or a large decorative piece, Josef talks through how symmetry and body shape interact before the design is finalized, so the finished ornament still reads as balanced in motion, not just standing still.",
             },
             metaDescription: {
-                        de: `Ornamental Tattoo Berlin: Mandalas und florale Muster, symmetrisch entlang deiner Körperform statt aufgesetzt. Auch ohne Termin. 4,9 ★ aus 690+ Google-Bewertungen.`,
-                        en: `Ornamental tattoos Berlin: mandalas and florals that follow your body shape instead of sitting on top of it. Also without an appointment. 4.9 ★ from 690+ Google reviews.`,
+                        de: `Ornamental Tattoo Berlin: Mandalas und florale Muster, symmetrisch entlang deiner Körperform statt aufgesetzt. Auch ohne Termin. ${site.reviews.rating.de} ★ aus ${site.reviews.count} ${site.reviews.de}.`,
+                        en: `Ornamental tattoos Berlin: mandalas and florals that follow your body shape instead of sitting on top of it. Also without an appointment. ${site.reviews.rating.en} ★ from ${site.reviews.count} ${site.reviews.en}.`,
             },
             faq: [
               {
@@ -180,8 +182,8 @@ export const styles = [
                               en: 'Portrait tattoos are among the most demanding subjects there are, because a face immediately shows when proportions are off. Almost every client has the same fair concern: will the tattoo actually look like the person, or just vaguely similar? That likeness is exactly what separates a portrait that works from one that disappoints.\n\nJosef builds portraits through exact proportion analysis of the reference image and shading that keeps facial features clearly readable years later instead of blurring over time. The quality of the source photo matters here too: the lighting, sharpness and angle of the reference all affect how precisely a face can be translated into ink.\n\nBefore the session, Josef talks through which reference photo gives the strongest foundation and where on the body the face\'s proportions read best, so the finished portrait shows the person it\'s meant to show.',
             },
             metaDescription: {
-                        de: `Porträt-Tattoo Berlin: fotorealistische Gesichter mit exakter Proportionsanalyse von Josef. 4,9 ★ aus 690+ Google-Bewertungen. Termin anfragen.`,
-                        en: `Portrait tattoos Berlin: photorealistic faces built on exact proportion analysis by Josef. 4.9 ★ from 690+ Google reviews. Book a consultation.`,
+                        de: `Porträt-Tattoo Berlin: fotorealistische Gesichter mit exakter Proportionsanalyse von Josef. ${site.reviews.rating.de} ★ aus ${site.reviews.count} ${site.reviews.de}. Termin anfragen.`,
+                        en: `Portrait tattoos Berlin: photorealistic faces built on exact proportion analysis by Josef. ${site.reviews.rating.en} ★ from ${site.reviews.count} ${site.reviews.en}. Book a consultation.`,
             },
             faq: [
               {
@@ -204,8 +206,8 @@ export const styles = [
                               en: "Watercolor tattoos bring the fluid, transparent look of watercolor painting to skin, abstract shapes, florals or natural elements without the hard black outline of classic tattoos. The concern is always the same, and it's a fair one: without a solid black line to anchor it, doesn't the color just blur over time?\n\nJosef addresses that through deliberate pigment choice and controlled layering: color is placed to keep the watercolor effect while holding enough structure to stay readable for years instead of turning into a diffuse blur. That's exactly why aftercare on color work isn't an afterthought but part of the craft itself, good sun protection noticeably extends how long the colors stay vivid.\n\nBefore the session, Josef talks through which color combination and placement holds up best long-term, so the tattoo still shows the vivid, fluid look you chose years down the line.",
             },
             metaDescription: {
-                        de: `Watercolor Tattoo Berlin: fließende Farbeffekte mit gezielter Pigmentwahl — wir sagen dir vorher, welche Töne auf deinem Hautton langfristig halten und welche verblassen. 4,9 ★ aus 690+ Google-Bewertungen. Beratung vereinbaren.`,
-                        en: `Watercolor tattoos Berlin: fluid color effects built on deliberate pigment choice — we tell you beforehand which tones last on your skin tone and which fade. 4.9 ★ from 690+ Google reviews. Book a consultation.`,
+                        de: `Watercolor Tattoo Berlin: fließende Farbeffekte mit gezielter Pigmentwahl — wir sagen dir vorher, welche Töne auf deinem Hautton langfristig halten und welche verblassen. ${site.reviews.rating.de} ★ aus ${site.reviews.count} ${site.reviews.de}. Beratung vereinbaren.`,
+                        en: `Watercolor tattoos Berlin: fluid color effects built on deliberate pigment choice — we tell you beforehand which tones last on your skin tone and which fade. ${site.reviews.rating.en} ★ from ${site.reviews.count} ${site.reviews.en}. Book a consultation.`,
             },
             faq: [
               {
@@ -228,8 +230,8 @@ export const styles = [
                 en: `Black & Grey is a technique, not a style of its own: it means working only with black ink and its grey tones, no color. Many Realism tattoos are done in exactly this technique. If you're after a photorealistic portrait or animal piece specifically, the Realistic page is worth a look too. If it's bold black areas and hard contrast without a photographic goal, this is the right page.\n\nBlack & Grey tattoos live on control over black and its grey tones, clear transitions between deep black and lighter, deliberately open areas, with no color at all. The fair concern: does the piece lose contrast after a few years and end up reading as a flat grey patch instead of a clear image?\n\nJosef works with controlled saturation: dark core areas are deliberately packed denser than the transition tones, so the contrast between black and grey holds up years later instead of blurring into a uniform grey. That control is exactly what separates a Black & Grey tattoo that still looks sharp after ten years from one that fades.\n\nAnimal motifs with strong symbolism are especially popular, wolf, lion and eagle above all, often paired with snake or tiger motifs. Josef works these with the same controlled saturation as portraits: fur or feather texture comes from fine grey gradation, not hard outlines, so the animal still reads as alive up close.\n\nBefore any project, Josef talks through how placement and body shape affect shading and which contrast levels hold up best long-term, so the finished tattoo still shows the depth you chose, years later.`,
         },
         metaDescription: {
-                de: `Black & Grey Tattoo Berlin: kontrollierte Schattierung, die auch nach Jahren scharf bleibt. 4,9 ★ aus 690+ Google-Bewertungen. Termin anfragen.`,
-                en: `Black & Grey Tattoo Berlin: controlled shading that stays sharp for years. 4.9 ★ from 690+ Google reviews. Book a consultation at Usee Tattoo.`,
+                de: `Black & Grey Tattoo Berlin: kontrollierte Schattierung, die auch nach Jahren scharf bleibt. ${site.reviews.rating.de} ★ aus ${site.reviews.count} ${site.reviews.de}. Termin anfragen.`,
+                en: `Black & Grey Tattoo Berlin: controlled shading that stays sharp for years. ${site.reviews.rating.en} ★ from ${site.reviews.count} ${site.reviews.en}. Book a consultation at Usee Tattoo.`,
         },
         faq: [
           { q: { de: `Was ist der Unterschied zwischen Black & Grey und Realistic?`, en: `What's the difference between Black & Grey and Realistic?` },
@@ -251,8 +253,8 @@ export const styles = [
                 en: `Micro Realism is one small, realistic design on its own. When Micro Realism elements are combined with Fine Line linework and symbols or geometric shapes into one continuous composition, with fine detail hidden behind the shapes, we call that Conceptual.\n\nThe real challenge with a Conceptual tattoo: how do several elements, a symbol, geometric shapes, fine realistic detail, become one coherent composition instead of reading as several separate tattoos side by side?\n\nCali builds this style on Micro Realism and Fine Line: fine realistic detail hides behind geometric shapes, and every line knows exactly where it needs to stop to stay within the bounds of Micro Realism and Fine Line, because too much shading or one line too many would destroy exactly the delicacy that defines this style.\n\nCali talks through beforehand which symbols and shapes come together as one continuous story, and how the detail hidden behind each shape keeps the finished piece convincing up close too.`,
         },
         metaDescription: {
-                de: `Conceptual Tattoo Berlin: Micro Realism, Fine Line und Symbole in einer Komposition mit Cali. 4,9 ★ aus 690+ Google-Bewertungen. Termin anfragen.`,
-                en: `Conceptual Tattoo Berlin: Micro Realism, Fine Line and symbols in one composition with Cali. 4.9 ★ from 690+ Google reviews. Book a consultation at Usee Tattoo.`,
+                de: `Conceptual Tattoo Berlin: Micro Realism, Fine Line und Symbole in einer Komposition mit Cali. ${site.reviews.rating.de} ★ aus ${site.reviews.count} ${site.reviews.de}. Termin anfragen.`,
+                en: `Conceptual Tattoo Berlin: Micro Realism, Fine Line and symbols in one composition with Cali. ${site.reviews.rating.en} ★ from ${site.reviews.count} ${site.reviews.en}. Book a consultation at Usee Tattoo.`,
         },
         faq: [
           { q: { de: `Was ist der Unterschied zwischen Conceptual und Micro Realism?`, en: `What's the difference between Conceptual and Micro Realism?` },
@@ -274,8 +276,8 @@ export const styles = [
                 en: `Japanese and Maori are both tattoo traditions with deep roots and their own symbolism, but different origins and visual languages. Maori tattoos (Tā moko) use geometric, mostly black patterns from Polynesia. Japanese tattoos use figurative motifs, dragons, koi, the Hannya mask, samurai, tied together by flowing background elements like wind or water. Josef executes these motifs in the studio's black & grey technique. If geometric patterns with Polynesian meaning are more what you're after, take a look at the Maori page too.\n\nA Japanese tattoo lives on traditional imagery, dragons, koi, the Hannya mask, samurai, each motif carrying its own meaning. The fair concern: does a larger composition end up looking like several separate images side by side instead of one continuous piece?\n\nJosef works these motifs in the studio's own black & grey technique, not the traditional full-color, full-body variant (Irezumi/Horimono). Background elements like waves, wind or clouds connect the individual motifs into one surface that continues around the arm, leg or back, rather than reading as an isolated image. That connection to the body is what decides whether a Japanese tattoo reads as one continuous piece.\n\nJosef talks through beforehand which motifs fit your story and how they become one continuous composition across the chosen area, so the finished tattoo reads as a single surface, not a collection of separate images.`,
         },
         metaDescription: {
-                de: `Japanese Tattoo Berlin: traditionelle Motive wie Drache, Koi und Hannya-Maske in Schwarz-Grau. 4,9 ★ aus 690+ Google-Bewertungen. Termin anfragen.`,
-                en: `Japanese Tattoo Berlin: traditional motifs like dragon, koi and the Hannya mask in black & grey. 4.9 ★ from 690+ Google reviews. Book a consultation at Usee Tattoo.`,
+                de: `Japanese Tattoo Berlin: traditionelle Motive wie Drache, Koi und Hannya-Maske in Schwarz-Grau. ${site.reviews.rating.de} ★ aus ${site.reviews.count} ${site.reviews.de}. Termin anfragen.`,
+                en: `Japanese Tattoo Berlin: traditional motifs like dragon, koi and the Hannya mask in black & grey. ${site.reviews.rating.en} ★ from ${site.reviews.count} ${site.reviews.en}. Book a consultation at Usee Tattoo.`,
         },
         faq: [
           { q: { de: `Was ist der Unterschied zwischen Japanese und Maori?`, en: `What's the difference between Japanese and Maori?` },
@@ -297,8 +299,8 @@ export const styles = [
                 en: `Not every lettering piece is Fine Line, and not every Fine Line piece is lettering. Fine Line describes a line weight, lettering describes a subject: words, quotes, names. Some lettering is done very fine, other pieces need thicker, stronger lines to stay readable. If delicate, thin linework in general is what you're after regardless of subject, take a look at the Fine Line page too.\n\nA lettering tattoo lives on readability, today and ten years from now. The fair concern: do the letters blur into an unreadable line over time, especially with small text or ornate fonts?\n\nJvd chooses font, line weight and letter spacing so the text stays clearly readable years later, not just on the day it's done. With flowing scripts, stroke width is deliberately varied so fine transitions aren't the first thing to fade.\n\nJvd talks through beforehand which font and placement work best for the length of your text, and how the body area (ribs vs. wrist, for example) affects durability, so your lettering still reads exactly as clearly years later as it did on day one.`,
         },
         metaDescription: {
-                de: `Schriftzug Tattoo Berlin: Schriftart und Linienstärke, die auch nach Jahren lesbar bleiben. Auch ohne Termin. 4,9 ★ aus 690+ Google-Bewertungen.`,
-                en: `Lettering Tattoo Berlin: font and line weight that stay readable for years. Also without an appointment. 4.9 ★ from 690+ Google reviews.`,
+                de: `Schriftzug Tattoo Berlin: Schriftart und Linienstärke, die auch nach Jahren lesbar bleiben. Auch ohne Termin. ${site.reviews.rating.de} ★ aus ${site.reviews.count} ${site.reviews.de}.`,
+                en: `Lettering Tattoo Berlin: font and line weight that stay readable for years. Also without an appointment. ${site.reviews.rating.en} ★ from ${site.reviews.count} ${site.reviews.en}.`,
         },
         faq: [
           { q: { de: `Was ist der Unterschied zwischen Schriftzug und Fine Line?`, en: `What's the difference between Lettering and Fine Line?` },
