@@ -4,6 +4,7 @@ import { site } from './site.js';
 export const styles = [
   {
             slug: 'realistic', built: true, folder: 'Realistic', artists: ['josef'], hero: 'Realistic_Cover.webp',
+            h1: { de: 'Realistic Tattoo', en: 'Realistic Tattoos' },
             name: { de: 'Realistic', en: 'Realistic' },
             metaTitle: { de: 'Realistic Tattoo Berlin | Fotorealismus in Schwarz-Grau', en: 'Realistic Tattoos Berlin | Photorealism in Black & Grey' },
             tagline: { de: 'Lebensechte Bilder mit feinsten Details', en: 'Creating lifelike images with fine details' },
@@ -35,6 +36,7 @@ export const styles = [
   },
   {
             slug: 'microrealism', built: true, folder: 'MicroRealism', artists: ['cali', 'jvd'], hero: 'MicroReal_Cover.webp',
+            h1: { de: 'Micro Realism Tattoo', en: 'Micro Realism Tattoos' },
             name: { de: 'Micro Realism', en: 'Micro Realism' },
             metaTitle: { de: 'Micro Realism Tattoo Berlin | Details, die scharf bleiben', en: 'Micro Realism Tattoos Berlin | Detail That Stays Sharp' },
             tagline: { de: 'Realistische Details im kleinen Maßstab', en: 'Realistic detail at a small scale' },
@@ -67,6 +69,7 @@ export const styles = [
   },
   {
             slug: 'fine-line', built: true, folder: 'FineLine', artists: ['cali', 'jvd'], hero: 'FineLine_Cover.webp',
+            h1: { de: 'Fine Line Tattoo', en: 'Fine Line Tattoos' },
             name: { de: 'Fine Line', en: 'Fine Line' },
             metaTitle: { de: 'Fine Line Tattoo Berlin | Feine Linien, auch als Walk-In', en: 'Fine Line Tattoos Berlin | Delicate Lines, Walk-Ins Welcome' },
             tagline: { de: 'Zarte, präzise Designs mit feinen Linien', en: 'Delicate and precise designs with thin lines' },
@@ -112,6 +115,7 @@ export const styles = [
   },
   {
             slug: 'maori', built: true, folder: 'Maori', artists: ['josef'], hero: 'Maori_5.webp',
+            h1: { de: 'Maori Tattoo', en: 'Maori Tattoos' },
             name: { de: 'Maori', en: 'Maori' },
             metaTitle: { de: 'Maori Tattoo Berlin | Tā-Moko-Muster, freihand gezeichnet', en: 'Maori Tattoos Berlin | Tā Moko Patterns, Drawn Freehand' },
             tagline: { de: 'Kunstvolle Designs mit tiefer kultureller Bedeutung', en: 'Intricate designs with rich cultural meanings' },
@@ -136,6 +140,7 @@ export const styles = [
   },
   {
             slug: 'ornamental', built: true, folder: 'Ornamental', artists: [], book: { de: 'https://book.useetattoo.com/walk-in-tattoo', en: 'https://book.useetattoo.com/walk-in-tattoo' }, hero: 'Ornamental_Cover.webp',
+            h1: { de: 'Ornamental Tattoo', en: 'Ornamental Tattoos' },
             name: { de: 'Ornamental', en: 'Ornamental' },
             metaTitle: { de: 'Ornamental Tattoo Berlin | Mandalas auf deine Körperform', en: 'Ornamental Tattoos Berlin | Mandalas to Your Body Shape' },
             tagline: { de: 'Dekorative Designs mit atemberaubenden Details', en: 'Decorative designs with stunning details' },
@@ -174,6 +179,7 @@ export const styles = [
   },
   {
             slug: 'portraits', built: true, folder: 'Portrait', artists: ['josef'], hero: 'Portrait_Cover.webp',
+            h1: { de: 'Portrait-Tattoo', en: 'Portrait Tattoos' },
             name: { de: 'Portraits', en: 'Portraits' },
             metaTitle: { de: 'Porträt Tattoo Berlin | Gesichter mit exakten Proportionen', en: 'Portrait Tattoos Berlin | Faces in Exact Proportion' },
             tagline: { de: 'Lebensechte Darstellungen von Gesichtern und Persönlichkeiten', en: 'Lifelike depictions of faces and personalities' },
@@ -198,6 +204,7 @@ export const styles = [
   },
   {
             slug: 'color', built: true, folder: 'Colour', artists: [], book: { de: 'https://book.useetattoo.com/Consultation', en: 'https://book.useetattoo.com/Consultation' }, hero: 'Color_Cover.webp',
+            h1: { de: 'Watercolor Tattoo', en: 'Watercolor Tattoos' },
             name: { de: 'Watercolor', en: 'Watercolor' },
             metaTitle: { de: 'Watercolor Tattoo Berlin | Farbe, die lesbar bleibt', en: 'Watercolor Tattoos Berlin | Color That Stays Readable' },
             tagline: { de: 'Lebendige, fließende Designs mit Farbakzenten', en: 'Vibrant and fluid designs with splashes of color' },
@@ -222,6 +229,7 @@ export const styles = [
   },
   {
         slug: 'black-and-grey', built: true, folder: 'BlackGrey', artists: ['josef'], hero: 'BlackGrey_5.webp',
+        h1: { de: 'Black & Grey Tattoo', en: 'Black & Grey Tattoos' },
         name: { de: 'Black & Grey', en: 'Black & Grey' },
         metaTitle: { de: 'Black & Grey Tattoo Berlin | Kontraste, die scharf bleiben', en: 'Black & Grey Tattoos Berlin | Contrast That Stays Sharp' },
         tagline: { de: 'Kontraste, die auch in zehn Jahren noch stimmen', en: 'Contrast and depth that still hold up years later' },
@@ -245,6 +253,7 @@ export const styles = [
   },
   {
         slug: 'conceptual', built: true, folder: 'Conceptual', artists: ['cali'], hero: 'Conceptual_4.webp',
+        h1: { de: 'Conceptual Tattoo', en: 'Conceptual Tattoos' },
         name: { de: 'Conceptual', en: 'Conceptual' },
         metaTitle: { de: 'Conceptual Tattoo Berlin | Micro Realism trifft Symbolik', en: 'Conceptual Tattoos Berlin | Micro Realism Meets Symbols' },
         tagline: { de: 'Wenn mehrere Elemente eine Geschichte werden', en: 'When several elements become one story' },
@@ -268,6 +277,7 @@ export const styles = [
   },
   {
         slug: 'japanese', built: true, folder: 'Japanese', artists: ['josef'], hero: 'Japanese_2.webp',
+        h1: { de: 'Japanese Tattoo', en: 'Japanese Tattoos' },
         name: { de: 'Japanese', en: 'Japanese' },
         metaTitle: { de: 'Japanese Tattoo Berlin | Drache, Koi und Hannya-Maske', en: 'Japanese Tattoos Berlin | Dragon, Koi and Hannya Mask' },
         tagline: { de: 'Traditionelle Motive, die als eine durchgehende Fläche fließen', en: 'Traditional motifs that flow as one continuous piece' },
@@ -291,6 +301,7 @@ export const styles = [
   },
   {
         slug: 'lettering', built: true, folder: 'Lettering', artists: [], book: { de: 'https://book.useetattoo.com/walk-in-tattoo', en: 'https://book.useetattoo.com/walk-in-tattoo' }, hero: 'Script_3.webp',
+        h1: { de: 'Schriftzug-Tattoo', en: 'Lettering Tattoos' },
         name: { de: 'Schriftzug', en: 'Lettering' },
         metaTitle: { de: 'Lettering Tattoo Berlin | Schriftzug, der lesbar bleibt', en: 'Lettering Tattoos Berlin | Type That Stays Readable' },
         tagline: { de: 'Worte, die genauso lange halten wie ihre Bedeutung', en: 'Words that last as long as what they mean' },
