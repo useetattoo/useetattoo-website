@@ -49,6 +49,15 @@ function faqAnswerHtml(item) {
   }
   return text;
 }
+const h1 = style.h1?.[lang] || style.name[lang];
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: lang === 'de' ? 'Startseite' : 'Home', item: `https://useetattoo.com/${lang}/` },
+    { '@type': 'ListItem', position: 2, name: h1, item: `https://useetattoo.com/${lang}/styles/${style.slug}/` },
+  ],
+};
 const faqSchema = faq.length > 0 ? {
   '@context': 'https://schema.org',
   '@type': 'FAQPage',
@@ -66,7 +75,7 @@ const descParas = style.desc[lang].split('\n\n');
 <div class="s-feature">
 <div class="txt dh-txt reveal">
 <div class="eyebrow">{L.stylesTitle}</div>
-<h1>{style.name[lang]}</h1>
+<h1>{h1}</h1>
 <div class="spec">{style.tagline[lang]}</div>
 {descParas.map((para) => <p>{para}</p>)}
 {featured.length === 0 && primaryBook && (<p style="margin-top:24px"><a class="cta primary" style="background:var(--ink);color:var(--paper)" href={primaryBook} target="_blank" rel="noopener">{L.bookNow}</a></p>)}{featured.map((a) => (
@@ -140,4 +149,5 @@ const descParas = style.desc[lang].split('\n\n');
 {faqSchema && (
 <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 )}
+<script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
 </Base>
