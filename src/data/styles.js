@@ -71,7 +71,7 @@ export const styles = [
             slug: 'fine-line', built: true, folder: 'FineLine', artists: ['cali', 'jvd'], hero: 'FineLine_Cover.webp',
             h1: { de: 'Fine Line Tattoo', en: 'Fine Line Tattoos' },
             name: { de: 'Fine Line', en: 'Fine Line' },
-            metaTitle: { de: 'Fine Line Tattoo Berlin | Feine Linien, auch als Walk-In', en: 'Fine Line Tattoos Berlin | Delicate Lines, Walk-Ins Welcome' },
+            metaTitle: { de: 'Fineline Tattoo Berlin | Feine Linien, auch als Walk-In', en: 'Fine Line Tattoos Berlin | Delicate Lines, Walk-Ins Welcome' },
             tagline: { de: 'Zarte, präzise Designs mit feinen Linien', en: 'Delicate and precise designs with thin lines' },
             desc: {
                               de: 'Fine-Line-Tattoos leben von sehr dünnen, präzisen Linien, Blumen, Tiere, geometrische Formen oder kleine Schriftzüge, reduziert auf das Wesentliche. Die häufigste Sorge ist berechtigt: Dünne Linien verlieren als erstes an Schärfe, wenn Nadeltiefe oder Führung nicht exakt stimmen. Genau hier zeigt sich der Unterschied zwischen einem Fine-Line-Tattoo, das nach Jahren noch klar aussieht, und einem, das zu einem verschwommenen Strich verläuft.\n\nCali und Jvd arbeiten mit gleichmäßigem Nadeldruck und bewusst gewählten Liniendicken, dünn genug für die zarte Optik, aber stark genug, um in der Haut zu halten. Auch die Platzierung spielt eine Rolle: Bereiche mit viel Bewegung oder Sonneneinstrahlung verzeihen weniger, deshalb ist die Wahl der Körperstelle Teil der Beratung, nicht nur des Designs.\n\nOb kleines Einzelmotiv oder mehrere zarte Linien zu einer Komposition kombiniert: Cali und Jvd besprechen mit dir vorab, welche Linienstärke und Platzierung dein Motiv langfristig scharf hält, damit das Ergebnis auch nach Jahren noch so fein wirkt wie am ersten Tag.',
@@ -108,6 +108,13 @@ export const styles = [
                                     a: {
                                                                       de: 'Für kleinere Fine-Line-Motive ist das oft möglich, ganz ohne vorherigen Termin, immer gestochen von einem erfahrenen Resident-Artist. Mehr dazu auf unserer <a href="/de/walk-in/">Walk-In-Seite</a>.',
                                                                       en: 'For smaller Fine Line pieces, that\'s often possible without a prior appointment, always done by an experienced resident artist. More on our <a href="/en/walk-in/">walk-in page</a>.',
+                                    },
+              },
+              {
+                                    q: { de: 'Fineline oder Fine Line — gibt es einen Unterschied?', en: 'Fineline or fine line — is there a difference?' },
+                                    a: {
+                                                                      de: 'Nein, gemeint ist dieselbe Technik: sehr dünne Linien, meist mit einer einzelnen Nadel gestochen. Die Schreibweise unterscheidet sich, das Ergebnis nicht. Worauf es ankommt, ist nicht die Schreibweise, sondern ob die Linie nach dem Abheilen noch so fein ist wie am ersten Tag.',
+                                                                      en: 'No, both mean the same technique: very thin lines, usually tattooed with a single needle. The spelling differs, the result does not. What matters is not how it is written but whether the line is still as fine after healing as it was on day one.',
                                     },
               },
                             ],
