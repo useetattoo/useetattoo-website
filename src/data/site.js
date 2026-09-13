@@ -27,7 +27,7 @@ export const site = {
   phone: { display: '+49 30 27979327', href: 'tel:+493027979327' },
   mobile: { display: '+49 176 47615189', href: 'tel:+4917647615189' },
   whatsapp: 'https://wa.me/4917647615189',
-  email: { primary: 'hello@useetattoo.de', secondary: 'info@useetattoo.com' },
+  email: { primary: 'info@useetattoo.com', secondary: 'info@useetattoo.com' }, // ND-02: one official address. hello@useetattoo.de is dead; both keys are deliberately identical so no template can print the old domain.
   address: { street: 'Neue Kantstraße 6', zip: '14057', city: 'Berlin', district: 'Charlottenburg' },
   mapQuery: 'Neue+Kantstra%C3%9Fe+6,+14057+Berlin',
   social: {
