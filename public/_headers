@@ -12,9 +12,22 @@
 # anything; it just reports. It gets switched to enforcing after a live run with
 # zero violations, and only with niloo's explicit ok.
 #
+# 2026-09-14 (DEV, ND-35): that live run has now been done. Exactly one violation
+# reproduces, identically on every page tested (/de/, /de/booking/, /de/contact/,
+# /de/walk-in/):
+#     connect-src blocked https://pagead2.googlesyndication.com/ccm/collect
+# That endpoint is the Google Ads conversion ping for AW-11470641945. Flipping this
+# policy to enforcing while that origin was missing would have killed Google Ads
+# conversion measurement site-wide, silently, with no page error. The origin is
+# added to connect-src only: no script is served from it, so it is deliberately
+# NOT added to script-src. This edit cannot block anything - the policy is still
+# Report-Only. The flip to enforcing still needs niloo's explicit ok (ND-35).
+#
 # Not set here on purpose: x-content-type-options and referrer-policy are already
-# served by Cloudflare, and HSTS was not part of the ND-20 approval.
+# served by Cloudflare, and HSTS was not part of the ND-20 approval. HSTS is set at
+# the Cloudflare edge, not in this file - verified live 2026-09-14:
+# max-age=2592000, no includeSubDomains, no preload.
 
 /*
   X-Frame-Options: SAMEORIGIN
-  Content-Security-Policy-Report-Only: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://connect.facebook.net https://www.google.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://api.web3forms.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://*.g.doubleclick.net https://www.google.com https://www.facebook.com; frame-src 'self' https://www.google.com https://www.fresha.com https://book.useetattoo.com https://td.doubleclick.net https://www.facebook.com; form-action 'self' https://api.web3forms.com; base-uri 'self'; object-src 'none'
+  Content-Security-Policy-Report-Only: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://connect.facebook.net https://www.google.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://api.web3forms.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://*.g.doubleclick.net https://pagead2.googlesyndication.com https://www.google.com https://www.facebook.com; frame-src 'self' https://www.google.com https://www.fresha.com https://book.useetattoo.com https://td.doubleclick.net https://www.facebook.com; form-action 'self' https://api.web3forms.com; base-uri 'self'; object-src 'none'
