@@ -3,3 +3,13 @@ User-agent: *
 Allow: /
 
 Sitemap: https://useetattoo.com/sitemap.xml
+
+# Google- und Apple-KI-Trainingscrawler / AI-training crawlers.
+# Decision niloo 2026-09-07: site content is not opened for AI model training.
+# Google-Extended and Applebot-Extended are separate from Googlebot and Applebot -
+# this does NOT affect search indexing or ranking.
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: Applebot-Extended
+Disallow: /
