@@ -77,7 +77,7 @@ const homeGallery = [
       </div>
       <div class="artist-grid reveal">
         {artists.map((a) => (
-          <a class="artist" href={a.built ? `${base}/artists/${a.slug}` : `${base}/#artists`}>
+          <a class="artist" href={a.built ? `${base}/artists/${a.slug}/` : `${base}/#artists`}>
             <div class="ph"><img src={a.portrait} alt={a.name} loading="lazy" /></div>
             <h3>{a.name}</h3>
             <div class="spec">{a.specialties[lang]}</div>
