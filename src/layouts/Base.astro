@@ -26,7 +26,10 @@ const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
 // Pages that already have their own dedicated form: don't add the global quick form
 const hasOwnForm = /\/(contact|cover-up)$/.test(pathname);
 const selfPath = pathname;
-const altPath = pathname.replace(new RegExp(`^/${lang}`), `/${alt}`);
+// The visible DE/EN switch must point at the canonical, slashed URL.
+// pathname has its trailing slash stripped above, so /en would 308 to /en/.
+const altRaw = pathname.replace(new RegExp(`^/${lang}`), `/${alt}`);
+const altPath = altRaw === '/' ? '/' : altRaw + '/';
 const canonical = site.domain + selfPath + (selfPath === '/' ? '' : '/');
 // hreflang must name the canonical, non-redirecting URL. selfPath has its
 // trailing slash stripped, so /de and /en would 301 to /de/ and /en/ — and
