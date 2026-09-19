@@ -18,27 +18,27 @@ const year = new Date().getFullYear();
         <div>
           <h4>Artists</h4>
           <ul>
-            {artists.map((a) => <li><a href={a.built ? `${base}/artists/${a.slug}` : `${base}/#artists`}>{a.name}</a></li>)}
+            {artists.map((a) => <li><a href={a.built ? `${base}/artists/${a.slug}/` : `${base}/#artists`}>{a.name}</a></li>)}
           </ul>
         </div>
         <div>
           <h4>{L.nav.services}</h4>
           <ul>
-            <li><a href={`${base}/booking`}>{L.nav.booking}</a></li>
-            <li><a href={`${base}/consultation`}>{L.nav.consultation}</a></li>
-            <li><a href={`${base}/walk-in`}>{L.nav.walkin}</a></li>
-            <li><a href={`${base}/cover-up`}>{L.nav.coverup}</a></li>
-            <li><a href={`${base}/piercing`}>{L.nav.piercing}</a></li>
+            <li><a href={`${base}/booking/`}>{L.nav.booking}</a></li>
+            <li><a href={`${base}/consultation/`}>{L.nav.consultation}</a></li>
+            <li><a href={`${base}/walk-in/`}>{L.nav.walkin}</a></li>
+            <li><a href={`${base}/cover-up/`}>{L.nav.coverup}</a></li>
+            <li><a href={`${base}/piercing/`}>{L.nav.piercing}</a></li>
           </ul>
         </div>
         <div>
           <h4>{L.footStudio}</h4>
           <ul>
-            <li><a href={`${base}/erstes-tattoo`}>{L.nav.firstTattoo}</a></li>
-            <li><a href={`${base}/about`}>{L.nav.about}</a></li>
-            <li><a href={`${base}/events/guest-artists`}>{L.nav.events}</a></li>
-            <li><a href={`${base}/faq`}>{L.nav.faq}</a></li>
-            <li><a href={`${base}/contact`}>{L.nav.contact}</a></li>
+            <li><a href={`${base}/erstes-tattoo/`}>{L.nav.firstTattoo}</a></li>
+            <li><a href={`${base}/about/`}>{L.nav.about}</a></li>
+            <li><a href={`${base}/events/guest-artists/`}>{L.nav.events}</a></li>
+            <li><a href={`${base}/faq/`}>{L.nav.faq}</a></li>
+            <li><a href={`${base}/contact/`}>{L.nav.contact}</a></li>
           </ul>
         </div>
         <div>
@@ -55,9 +55,9 @@ const year = new Date().getFullYear();
     <div class="foot-bot">
       <span>© {year} Usee Tattoo · {site.address.street}, {site.address.city}</span>
       <span class="foot-legal">
-        <a href={`${base}/impressum`}>{lang === 'de' ? 'Impressum' : 'Imprint'}</a>
+        <a href={`${base}/impressum/`}>{lang === 'de' ? 'Impressum' : 'Imprint'}</a>
         <span aria-hidden="true">·</span>
-        <a href={`${base}/datenschutz`}>{lang === 'de' ? 'Datenschutz' : 'Privacy Policy'}</a>
+        <a href={`${base}/datenschutz/`}>{lang === 'de' ? 'Datenschutz' : 'Privacy Policy'}</a>
         <span aria-hidden="true">·</span>
         <button type="button" class="cookie-settings-link" data-cookie-settings>{lang === 'de' ? 'Cookie-Einstellungen' : 'Cookie settings'}</button>
       </span>
