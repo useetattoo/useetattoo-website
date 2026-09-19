@@ -216,7 +216,7 @@ const stars = (n) => '★'.repeat(n) + '☆'.repeat(5 - n);
       <div class="reveal pc-card">
         <h3 class="pc-col-t">{c.nanaTitle}</h3>
         <p class="pc-p">{c.nana}</p>
-        <a class="link-underline" href={`${base}/artists/nana`}>Nana →</a>
+        <a class="link-underline" href={`${base}/artists/nana/`}>Nana →</a>
       </div>
     </div>
   </section>
@@ -358,7 +358,7 @@ const stars = (n) => '★'.repeat(n) + '☆'.repeat(5 - n);
       <p class="pc-p reveal" style="margin:-30px 0 40px">{c.journalIntro}</p>
       <div class="pc-journal reveal">
         {journal.map((a) => (
-          <a class="pc-art" href={`${base}/piercing/journal/${a.slug}`}>
+          <a class="pc-art" href={`${base}/piercing/journal/${a.slug}/`}>
             <div class="pc-art-body">
               <span class="pc-art-tag">{a.tag[lang]}</span>
               <h3>{a.title[lang]}</h3>
