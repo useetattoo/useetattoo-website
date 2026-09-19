@@ -116,7 +116,7 @@ const c = {
           <h2>{c.cardB.title}</h2>
           <p class="bk-sub">{c.cardB.sub}</p>
           <p class="bk-body">{c.cardB.body}</p>
-          <a id="booking-form-cta" class="cta primary bk-cta" style="background:var(--ink);color:var(--paper)" href={`${base}/contact`}>{c.cardB.cta}</a>
+          <a id="booking-form-cta" class="cta primary bk-cta" style="background:var(--ink);color:var(--paper)" href={`${base}/contact/`}>{c.cardB.cta}</a>
           <p class="bk-direct">{c.cardB.direct}<br />
             <a id="contact-email-link" href={`mailto:${site.email.secondary}`}>{site.email.secondary}</a>
             <span class="sep"> · </span>
@@ -133,7 +133,7 @@ const c = {
       <div class="bk-trust reveal">
         <div class="bk-artists">
           {artists.map((a) => (
-            <a class="bk-artist" href={`${base}/artists/${a.slug}`}>
+            <a class="bk-artist" href={`${base}/artists/${a.slug}/`}>
               <span class="ph"><img src={a.portrait} alt={a.name} loading="lazy" /></span>
               <span class="nm">{a.name}</span>
             </a>
