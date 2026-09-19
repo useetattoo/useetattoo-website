@@ -30,7 +30,7 @@ const description = article.excerpt[lang];
 <Base lang={lang} title={title} description={description} ogImage="/images/piercing/Ear.webp">
   <article class="jn">
     <div class="wrap jn-wrap">
-      <a class="link-underline jn-crumb" href={`${base}/piercing`}>&larr; {ui.crumb}</a>
+      <a class="link-underline jn-crumb" href={`${base}/piercing/`}>&larr; {ui.crumb}</a>
       <div class="jn-tag reveal">{article.tag[lang]}</div>
       <h1 class="jn-title reveal">{article.title[lang]}</h1>
       <div class="jn-meta reveal">{ui.read}: {article.readTime[lang]}</div>
@@ -54,7 +54,7 @@ const description = article.excerpt[lang];
         <span class="jn-more-h">{ui.more}</span>
         <div class="jn-more-grid">
           {others.map((a) => (
-            <a class="jn-more-card" href={`${base}/piercing/journal/${a.slug}`}>
+            <a class="jn-more-card" href={`${base}/piercing/journal/${a.slug}/`}>
               <span class="t">{a.tag[lang]}</span>
               <h3>{a.title[lang]}</h3>
             </a>
