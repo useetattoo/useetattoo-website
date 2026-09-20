@@ -140,7 +140,7 @@ const c = {
           ))}
         </div>
         <div class="bk-meta">
-          <div class="bk-rating"><span class="stars" aria-hidden="true">★★★★★</span><span>{c.reviews}</span></div>
+          <div class="bk-rating"><span class="stars" role="img" aria-label={site.reviews.rating[lang] + " / 5"}>★★★★★<span class="stars-on" style={"width:" + site.reviews.rating.en * 20 + "%"}>★★★★★</span></span><span>{site.reviews.rating[lang]} · {c.reviews}</span></div>
           <div class="bk-addr">{site.address.street}, {site.address.zip} {site.address.city} · {site.address.district}<br />{c.hours}</div>
         </div>
       </div>
@@ -190,7 +190,8 @@ const c = {
     .bk-artist .nm{font-size:13px;letter-spacing:.04em;color:var(--ink)}
     .bk-meta{text-align:right}
     .bk-rating{display:flex;align-items:center;gap:10px;justify-content:flex-end;font-size:14px;color:var(--ink)}
-    .bk-rating .stars{color:var(--bronze);letter-spacing:2px}
+    .bk-rating .stars{position:relative;display:inline-block;color:var(--line);letter-spacing:2px;white-space:nowrap}
+.bk-rating .stars-on{position:absolute;left:0;top:0;overflow:hidden;color:var(--bronze);white-space:nowrap}
     .bk-addr{margin-top:12px;font-size:13.5px;color:var(--ink-soft);line-height:1.7}
     .bk-reassure{margin-top:40px;text-align:center;font-family:'Cormorant Garamond',serif;font-style:italic;font-size:20px;color:var(--bronze-dk)}
     .bk-reassure a{color:var(--bronze-dk);text-decoration:underline;text-underline-offset:3px}
