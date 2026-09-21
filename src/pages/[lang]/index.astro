@@ -5,6 +5,7 @@ import { site } from '../../data/site.js';
 import { artists } from '../../data/artists.js';
 import { styles } from '../../data/styles.js';
 import { gallery } from '../../lib/gallery.js';
+import { googleReviews } from '../../data/reviews.js';
 
 export function getStaticPaths() {
   return langs.map((lang) => ({ params: { lang } }));
@@ -123,6 +124,31 @@ const homeGallery = [
       <div class="g-grid reveal">
         {homeGallery.map((img) => (
           <div class="cell"><img src={img.src} alt={lang === 'de' ? img.altDe : img.altEn} loading="lazy" /></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section id="reviews" class="reviews-home">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="idx">04</span>
+        <h2>{lang === 'de' ? 'Was unsere Gäste sagen' : 'What our guests say'}</h2>
+        <a href={googleReviews.url} target="_blank" rel="noopener">{lang === 'de' ? 'Alle auf Google ansehen' : 'See all on Google'} →</a>
+      </div>
+      <div class="rv-summary reveal">
+        <span class="rv-stars" aria-hidden="true">★★★★★</span>
+        <span class="rv-score">{site.reviews.rating[lang]}</span>
+        <span class="rv-meta">{site.reviews.count} {site.reviews[lang]}</span>
+      </div>
+      <div class="rv-grid reveal">
+        {googleReviews.items.map((r) => (
+          <figure class="rv-card">
+            <div class="rv-card-stars" aria-hidden="true">★★★★★</div>
+            <blockquote>{r.text}</blockquote>
+            <figcaption>{r.author}<span class="rv-src">{lang === 'de' ? 'Google-Bewertung' : 'Google review'}</span></figcaption>
+          </figure>
         ))}
       </div>
     </div>
@@ -301,5 +327,20 @@ const homeGallery = [
   <style>
     .hero-logo{display:block;height:82px;width:auto;margin:0 auto 26px;opacity:.96}
     @media(max-width:640px){ .hero-logo{height:60px;margin-bottom:18px} }
+
+    /* Google reviews */
+    .reviews-home{padding:20px 0}
+    .rv-summary{display:flex;align-items:baseline;gap:14px;margin:0 0 34px;flex-wrap:wrap}
+    .rv-summary .rv-stars{color:var(--bronze-dk);letter-spacing:3px;font-size:18px}
+    .rv-summary .rv-score{font-family:'Cormorant Garamond',serif;font-size:34px;line-height:1;color:var(--ink)}
+    .rv-summary .rv-meta{font-family:'Inter',sans-serif;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+    .rv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
+    .rv-card{background:var(--paper);margin:0;padding:34px 30px;display:flex;flex-direction:column;gap:16px}
+    .rv-card-stars{color:var(--bronze-dk);letter-spacing:3px;font-size:13px}
+    .rv-card blockquote{margin:0;font-family:'Inter',sans-serif;font-size:15px;line-height:1.75;color:var(--ink-soft)}
+    .rv-card figcaption{margin-top:auto;font-family:'Cormorant Garamond',serif;font-size:21px;color:var(--ink);display:flex;flex-direction:column;gap:3px}
+    .rv-card .rv-src{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
+    @media(max-width:900px){ .rv-grid{grid-template-columns:1fr 1fr} }
+    @media(max-width:600px){ .rv-grid{grid-template-columns:1fr} }
   </style>
 </Base>
