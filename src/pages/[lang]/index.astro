@@ -14,9 +14,11 @@ const { lang } = Astro.params;
 const L = t[lang];
 const base = `/${lang}`;
 
-// Reviews: show the current language's reviews first, then the rest. Monogram initials for avatars.
-const rvOrdered = [...googleReviews.items].sort((a, b) => (a.lang === lang ? 0 : 1) - (b.lang === lang ? 0 : 1));
+// Reviews carousel: group into slides of `perSlide`. Monogram initials for avatars without a photo.
 const rvInitials = (name) => name.trim().split(/\s+/).filter(Boolean).map((w) => w[0]).slice(0, 2).join('').toUpperCase();
+const rvPer = googleReviews.perSlide || 6;
+const rvSlides = [];
+for (let i = 0; i < googleReviews.items.length; i += rvPer) rvSlides.push(googleReviews.items.slice(i, i + rvPer));
 
 // One example image per style for the homepage curtain tiles.
 // These styles reuse the same photo shown in their page hero.
@@ -146,20 +148,39 @@ const homeGallery = [
         <span class="rv-score">{site.reviews.rating[lang]}</span>
         <span class="rv-meta">{site.reviews.count} {site.reviews[lang]}</span>
       </div>
-      <div class="rv-grid reveal">
-        {rvOrdered.map((r) => (
-          <figure class="rv-card">
-            <div class="rv-card-stars" aria-hidden="true">★★★★★</div>
-            <blockquote>{r.text}</blockquote>
-            <figcaption class="rv-cap">
-              <span class="rv-ava" aria-hidden="true">{rvInitials(r.author)}</span>
-              <span class="rv-who">
-                <span class="rv-name">{r.author}</span>
-                <span class="rv-src">{lang === 'de' ? 'Google-Bewertung' : 'Google review'}</span>
-              </span>
-            </figcaption>
-          </figure>
-        ))}
+
+      <div class="rv-carousel reveal" data-rv>
+        <div class="rv-track" data-rv-track>
+          {rvSlides.map((slide) => (
+            <div class="rv-slide">
+              <div class="rv-grid">
+                {slide.map((r) => (
+                  <figure class="rv-card">
+                    <div class="rv-card-stars" aria-hidden="true">★★★★★</div>
+                    <blockquote>{r.text}</blockquote>
+                    <figcaption class="rv-cap">
+                      <span class="rv-ava">
+                        {r.photo
+                          ? <img src={`/images/reviews/${r.photo}`} alt={r.author} width="44" height="44" loading="lazy" />
+                          : <span aria-hidden="true">{rvInitials(r.author)}</span>}
+                      </span>
+                      <span class="rv-who">
+                        <span class="rv-name">{r.author}</span>
+                        <span class="rv-src">{lang === 'de' ? 'Google-Bewertung' : 'Google review'}</span>
+                      </span>
+                    </figcaption>
+                  </figure>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div class="rv-controls reveal">
+        <button class="rv-toggle" type="button" data-rv-toggle aria-label={lang === 'de' ? 'Pause' : 'Pause'}></button>
+        <div class="rv-dots" data-rv-dots aria-hidden="true"></div>
+        <a class="rv-all" href={googleReviews.url} target="_blank" rel="noopener">{lang === 'de' ? `Alle ${site.reviews.count} Bewertungen auf Google ansehen` : `Read all ${site.reviews.count} reviews on Google`} →</a>
       </div>
     </div>
   </section>
@@ -338,22 +359,70 @@ const homeGallery = [
     .hero-logo{display:block;height:82px;width:auto;margin:0 auto 26px;opacity:.96}
     @media(max-width:640px){ .hero-logo{height:60px;margin-bottom:18px} }
 
-    /* Google reviews */
+    /* Google reviews carousel */
     .reviews-home{padding:20px 0}
-    .rv-summary{display:flex;align-items:baseline;gap:14px;margin:0 0 34px;flex-wrap:wrap}
+    .rv-summary{display:flex;align-items:baseline;gap:14px;margin:0 0 30px;flex-wrap:wrap}
     .rv-summary .rv-stars{color:var(--bronze-dk);letter-spacing:3px;font-size:18px}
     .rv-summary .rv-score{font-family:'Cormorant Garamond',serif;font-size:34px;line-height:1;color:var(--ink)}
     .rv-summary .rv-meta{font-family:'Inter',sans-serif;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-soft)}
+    .rv-carousel{overflow:hidden;position:relative}
+    .rv-track{display:flex;transition:transform .6s var(--ease)}
+    .rv-slide{flex:0 0 100%;min-width:100%}
     .rv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border:1px solid var(--line)}
-    .rv-card{background:var(--paper);margin:0;padding:34px 30px;display:flex;flex-direction:column;gap:16px}
+    .rv-card{background:var(--paper);margin:0;padding:32px 28px;display:flex;flex-direction:column;gap:15px}
     .rv-card-stars{color:var(--bronze-dk);letter-spacing:3px;font-size:13px}
-    .rv-card blockquote{margin:0;font-family:'Inter',sans-serif;font-size:15px;line-height:1.75;color:var(--ink-soft)}
+    .rv-card blockquote{margin:0;font-family:'Inter',sans-serif;font-size:14.5px;line-height:1.7;color:var(--ink-soft)}
     .rv-cap{margin-top:auto;display:flex;align-items:center;gap:13px}
-    .rv-ava{flex:none;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:var(--paper-2);border:1px solid var(--line);color:var(--bronze-dk);font-family:'Cormorant Garamond',serif;font-size:16px;line-height:1}
+    .rv-ava{flex:none;width:44px;height:44px;border-radius:50%;overflow:hidden;display:grid;place-items:center;background:var(--paper-2);border:1px solid var(--line);color:var(--bronze-dk);font-family:'Cormorant Garamond',serif;font-size:16px;line-height:1}
+    .rv-ava img{width:100%;height:100%;object-fit:cover;display:block}
     .rv-who{display:flex;flex-direction:column;gap:2px;min-width:0}
     .rv-name{font-family:'Cormorant Garamond',serif;font-size:20px;line-height:1.1;color:var(--ink)}
     .rv-card .rv-src{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
+    .rv-controls{display:flex;align-items:center;gap:18px;margin-top:24px;flex-wrap:wrap}
+    .rv-toggle{flex:none;width:40px;height:40px;border-radius:50%;border:1px solid var(--line);background:var(--paper);color:var(--ink);cursor:pointer;font-size:12px;line-height:1;display:grid;place-items:center;transition:background .3s var(--ease)}
+    .rv-toggle:hover{background:var(--paper-2)}
+    .rv-dots{display:flex;gap:9px}
+    .rv-dot{width:8px;height:8px;padding:0;border:none;border-radius:50%;background:var(--line);cursor:pointer;transition:background .3s,transform .3s}
+    .rv-dot.active{background:var(--bronze-dk);transform:scale(1.35)}
+    .rv-all{margin-left:auto;font-family:'Inter',sans-serif;font-size:13px;letter-spacing:.03em;color:var(--bronze-dk);text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:2px}
     @media(max-width:900px){ .rv-grid{grid-template-columns:1fr 1fr} }
-    @media(max-width:600px){ .rv-grid{grid-template-columns:1fr} }
+    @media(max-width:600px){ .rv-grid{grid-template-columns:1fr} .rv-all{margin-left:0} }
   </style>
+
+  <script>
+    const PAUSE = '⏸', PLAY = '▶';
+    document.querySelectorAll('[data-rv]').forEach((car) => {
+      const track = car.querySelector('[data-rv-track]');
+      const slides = Array.from(car.querySelectorAll('.rv-slide'));
+      const wrap = car.parentElement;
+      const dotsWrap = wrap.querySelector('[data-rv-dots]');
+      const toggle = wrap.querySelector('[data-rv-toggle]');
+      if (!track || slides.length < 2) { if (toggle) toggle.style.display = 'none'; return; }
+      let idx = 0, timer = null;
+      const reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      let playing = !reduce;
+      const dots = slides.map((_, i) => {
+        const b = document.createElement('button');
+        b.className = 'rv-dot' + (i === 0 ? ' active' : '');
+        b.type = 'button';
+        b.setAttribute('aria-label', 'Slide ' + (i + 1));
+        b.addEventListener('click', () => { go(i); if (playing) start(); });
+        dotsWrap.appendChild(b);
+        return b;
+      });
+      function go(i) {
+        idx = (i + slides.length) % slides.length;
+        track.style.transform = 'translateX(-' + (idx * 100) + '%)';
+        dots.forEach((d, j) => d.classList.toggle('active', j === idx));
+      }
+      function start() { stop(); playing = true; toggle.textContent = PAUSE; timer = setInterval(() => go(idx + 1), 5500); }
+      function stop() { if (timer) clearInterval(timer); timer = null; }
+      function pauseBtn() { stop(); playing = false; toggle.textContent = PLAY; }
+      toggle.textContent = playing ? PAUSE : PLAY;
+      toggle.addEventListener('click', () => { playing ? pauseBtn() : start(); });
+      car.addEventListener('mouseenter', () => { if (playing) stop(); });
+      car.addEventListener('mouseleave', () => { if (playing) start(); });
+      if (playing) start();
+    });
+  </script>
 </Base>
