@@ -14,6 +14,10 @@ const { lang } = Astro.params;
 const L = t[lang];
 const base = `/${lang}`;
 
+// Reviews: show the current language's reviews first, then the rest. Monogram initials for avatars.
+const rvOrdered = [...googleReviews.items].sort((a, b) => (a.lang === lang ? 0 : 1) - (b.lang === lang ? 0 : 1));
+const rvInitials = (name) => name.trim().split(/\s+/).filter(Boolean).map((w) => w[0]).slice(0, 2).join('').toUpperCase();
+
 // One example image per style for the homepage curtain tiles.
 // These styles reuse the same photo shown in their page hero.
 const heroForHome = new Set(['ornamental', 'dotwork', 'maori', 'fine-line', 'black-and-grey', 'conceptual', 'japanese', 'lettering']);
@@ -143,11 +147,17 @@ const homeGallery = [
         <span class="rv-meta">{site.reviews.count} {site.reviews[lang]}</span>
       </div>
       <div class="rv-grid reveal">
-        {googleReviews.items.map((r) => (
+        {rvOrdered.map((r) => (
           <figure class="rv-card">
             <div class="rv-card-stars" aria-hidden="true">★★★★★</div>
             <blockquote>{r.text}</blockquote>
-            <figcaption>{r.author}<span class="rv-src">{lang === 'de' ? 'Google-Bewertung' : 'Google review'}</span></figcaption>
+            <figcaption class="rv-cap">
+              <span class="rv-ava" aria-hidden="true">{rvInitials(r.author)}</span>
+              <span class="rv-who">
+                <span class="rv-name">{r.author}</span>
+                <span class="rv-src">{lang === 'de' ? 'Google-Bewertung' : 'Google review'}</span>
+              </span>
+            </figcaption>
           </figure>
         ))}
       </div>
@@ -338,7 +348,10 @@ const homeGallery = [
     .rv-card{background:var(--paper);margin:0;padding:34px 30px;display:flex;flex-direction:column;gap:16px}
     .rv-card-stars{color:var(--bronze-dk);letter-spacing:3px;font-size:13px}
     .rv-card blockquote{margin:0;font-family:'Inter',sans-serif;font-size:15px;line-height:1.75;color:var(--ink-soft)}
-    .rv-card figcaption{margin-top:auto;font-family:'Cormorant Garamond',serif;font-size:21px;color:var(--ink);display:flex;flex-direction:column;gap:3px}
+    .rv-cap{margin-top:auto;display:flex;align-items:center;gap:13px}
+    .rv-ava{flex:none;width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:var(--paper-2);border:1px solid var(--line);color:var(--bronze-dk);font-family:'Cormorant Garamond',serif;font-size:16px;line-height:1}
+    .rv-who{display:flex;flex-direction:column;gap:2px;min-width:0}
+    .rv-name{font-family:'Cormorant Garamond',serif;font-size:20px;line-height:1.1;color:var(--ink)}
     .rv-card .rv-src{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft)}
     @media(max-width:900px){ .rv-grid{grid-template-columns:1fr 1fr} }
     @media(max-width:600px){ .rv-grid{grid-template-columns:1fr} }
