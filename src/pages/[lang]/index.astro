@@ -177,6 +177,16 @@ const homeGallery = [
         </div>
       </div>
 
+      <!-- ND-134 (niloo, 2026-09-21): review transparency, §5b Abs. 3 UWG. The count is read
+           from site.reviews, never typed here, so ND-46 (690+ → 700+) updates this line too.
+           The link must keep the trailing slash before the hash (AS-58). -->
+      <p class="rv-note reveal" style="margin:18px 0 0;font-family:'Inter',sans-serif;font-size:13px;line-height:1.75;color:var(--ink-soft)">
+        {lang === 'de'
+          ? `Unverändert aus unserem Google-Profil, eine Auswahl aus ${site.reviews.count} Bewertungen.`
+          : `Taken unchanged from our Google profile, a selection from ${site.reviews.count} reviews.`}
+        <a href={`${base}/faq/#bewertungen-auswahl`} style="color:var(--bronze-dk);text-decoration:none;border-bottom:1px solid currentColor;padding-bottom:1px;white-space:nowrap">{lang === 'de' ? 'Wie wir auswählen →' : 'How we select →'}</a>
+      </p>
+
       <div class="rv-controls reveal">
         <button class="rv-toggle" type="button" data-rv-toggle aria-label={lang === 'de' ? 'Pause' : 'Pause'}></button>
         <div class="rv-dots" data-rv-dots aria-hidden="true"></div>
