@@ -31,3 +31,20 @@
 /*
   X-Frame-Options: SAMEORIGIN
   Content-Security-Policy-Report-Only: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://connect.facebook.net https://www.google.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://api.web3forms.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://*.g.doubleclick.net https://pagead2.googlesyndication.com https://www.google.com https://www.facebook.com; frame-src 'self' https://www.google.com https://www.fresha.com https://book.useetattoo.com https://td.doubleclick.net https://www.facebook.com; form-action 'self' https://api.web3forms.com; base-uri 'self'; object-src 'none'
+
+# ---- ND-143 (2026-09-22): staging/preview hosts must not be indexed ----
+# This Pages project is also served on useetattoo-website.pages.dev, which
+# builds from the same branch and therefore returns a byte-identical copy of
+# the whole site. public/robots.txt is ONE static file served on every host,
+# so it cannot say "Allow" on the real domain and "Disallow" on the mirror.
+# Headers can: the rules below match on the host, so they can never apply to
+# useetattoo.com. This is the mechanism Cloudflare documents for this exact
+# case (Pages docs, "Prevent your workers.dev URLs showing in search results").
+# Second line covers <deployment-hash>.useetattoo-website.pages.dev previews.
+# Note: every page already ships a canonical built from site.domain, i.e.
+# https://useetattoo.com/..., so this is a second lock, not the only one.
+https://:project.pages.dev/*
+  X-Robots-Tag: noindex, nofollow
+
+https://:version.:project.pages.dev/*
+  X-Robots-Tag: noindex, nofollow
