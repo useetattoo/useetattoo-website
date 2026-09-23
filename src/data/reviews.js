@@ -30,12 +30,12 @@ export const googleReviews = {
           // 4 — first tattoo, age as a barrier
       { author: 'diealtedame1892', lang: 'de', photo: null, text: 'Ich habe mich mit 53 Jahren dazu entschieden, mir mein erstes Tattoo stechen zu lassen, und bin sowas von begeistert. Ich bin der glücklichste Mensch mit meinem ersten Tattoo. Vielen lieben Dank für alles.' },
           // 5 — pain, plus placement and thickness advice on the guests own anatomy
-      { author: 'Teresa Ludwig', lang: 'de', photo: 'teresa-ludwig.webp', text: 'Habe mir spontan eines der C2C-Motive während des Festivals als Walk-In stechen lassen. Kaum Schmerzen, genug Zeit um Größe und Position richtig auszuwählen, und auch eine körperbezogene Beratung zu Dicke und Position. Das Fineline von JVD ist toll.' },
+      { author: 'Teresa Ludwig', lang: 'de', photo: null, text: 'Habe mir spontan eines der C2C-Motive während des Festivals als Walk-In stechen lassen. Kaum Schmerzen, genug Zeit um Größe und Position richtig auszuwählen, und auch eine körperbezogene Beratung zu Dicke und Position. Das Fineline von JVD ist toll.' },
           // 6 — what if I do not like the design, and the online consultation route
-      { author: 'Isabel Richter', lang: 'de', photo: 'isabel-richter.webp', text: 'Online-Vorgespräch lief schnell und unkompliziert, der Termin ging ebenfalls fix. Es wird im Vorfeld alles besprochen, und es wird so lange angepasst, bis man zufrieden ist. Auch währenddessen konnten noch kleine Änderungen vorgenommen werden.' },
+      { author: 'Isabel Richter', lang: 'de', photo: null, text: 'Online-Vorgespräch lief schnell und unkompliziert, der Termin ging ebenfalls fix. Es wird im Vorfeld alles besprochen, und es wird so lange angepasst, bis man zufrieden ist. Auch währenddessen konnten noch kleine Änderungen vorgenommen werden.' },
           // Slide 2
           // 7 — walk-in without an appointment, guest brought their own design
-      { author: 'Sqax', lang: 'de', photo: 'sqax.webp', text: 'Ich bin einfach reinspaziert, ohne Termin, und trotzdem konnte es direkt losgehen. Ich hatte mein eigenes Design mitgebracht, Jvd hat dann ein paar Änderungen vorgenommen und mir hat es noch mehr gefallen.' },
+      { author: 'Sqax', lang: 'de', photo: null, text: 'Ich bin einfach reinspaziert, ohne Termin, und trotzdem konnte es direkt losgehen. Ich hatte mein eigenes Design mitgebracht, Jvd hat dann ein paar Änderungen vorgenommen und mir hat es noch mehr gefallen.' },
           // 8 — piercing. The only piercing review in the set: if it goes, piercing has no proof here
       { author: 'ImmerDerDeutsche', lang: 'de', photo: null, text: 'Usee Tattoo ist meine absolute Nummer 1 für Piercings und Tattoos. Ich liebe das Team dort total, und es hilft einem wirklich, egal wobei, und ist dabei super freundlich.' },
           // 9 — fine line precision, returning guest, and waiting time for an appointment
