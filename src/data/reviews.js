@@ -47,13 +47,14 @@ export const googleReviews = {
           // 12 — traveller with little time in Berlin
       { author: 'Aisha Evans', lang: 'en', photo: null, text: 'My husband and I took a weekend trip to Berlin for a concert. I was diligently looking for a tattoo artist who could get us both in and bring our ideas to life. Josef and the team made it happen.' },
         ],
-        // ND (niloo, 2026-09-23): /en/ shows its own English-only list, 10 reviews now, 12 later.
+        // ND (niloo, 2026-09-23): /en/ shows its own English-only list, 9 reviews now (3 slides of 3, no empty cell), 12 later.
         // Rules: no single artist named too often, variety of artists/styles/services, and the two
         // removed reviews (flash sale sign; artist no longer in the roster) stay out. Also left out
         // on purpose: Rimsha Ali and TK Munyon (would name JVD/Javad four times). Pending: one
         // English piercing review and one cover-up/realism review from the Google profile.
         // /de/ keeps using `items` above and is not affected.
-        perSlideEn: 5,
+        // niloo 2026-09-24: 9 until the two new reviews arrive; Serena Condemi left out for now (4 of 10 were travellers). With 12, set perSlideEn to 6.
+        perSlideEn: 3,
         itemsEn: [
           // 1 — travellers from abroad, a large piece from their own idea, hygiene
       { author: 'Deatharra', lang: 'en', photo: null, text: 'My husband and I are visiting Berlin from Australia and spontaneously decided to get some tattoos for our kids. We were impressed with the time that Josef and Cali took to put our ideas into tattoos. The studio is very hygienic.' },
@@ -71,9 +72,7 @@ export const googleReviews = {
       { author: 'Paul Prime', lang: 'en', photo: null, text: 'Had a very spontaneous walk in. My tattoo artist was simply amazing. From the sketch to the tattooing itself, everything smooth, friendly, welcoming, hygienic. I am more than happy with the results. Will come back for sure.' },
           // 8 — festival visitor (C2C), a tattoo as a memory
       { author: 'Trevor Thomas', lang: 'en', photo: null, text: 'Was in Berlin for C2C Festival and my wife and I decided to pop into USEE for an event related tattoo for the memories. Cannot say enough about the hospitality and professionalism of all the artists in the shop! Would recommend.' },
-          // 9 — summer visitor who chose the studio by its style
-      { author: 'Serena Condemi', lang: 'en', photo: null, text: 'My experience here was amazing! I was there for a summer vacation and I immediately noticed them from their studio, with a style very much in line with mine. They immediately welcomed me and satisfied me in every possible way.' },
-          // 10 — atmosphere, artists take time to understand the idea (verbatim guest quote)
+          // 9 — atmosphere, artists take time to understand the idea (verbatim guest quote)
       { author: 'Denni Weber', lang: 'en', photo: null, text: 'This tattoo studio is without a doubt home to the best tattoo artists in Berlin. From the moment I walked in, I knew I was in good hands. The atmosphere is welcoming and professional, and the artists take the time to truly understand your vision.' },
         ],
 };
