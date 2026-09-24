@@ -16,9 +16,12 @@ const base = `/${lang}`;
 
 // Reviews carousel: group into slides of `perSlide`. Monogram initials for avatars without a photo.
 const rvInitials = (name) => name.trim().split(/\s+/).filter(Boolean).map((w) => w[0]).slice(0, 2).join('').toUpperCase();
-const rvPer = googleReviews.perSlide || 6;
+// /en/ uses its own English-only list when present (niloo 2026-09-23); /de/ is unchanged.
+const rvUseEn = lang === 'en' && Array.isArray(googleReviews.itemsEn) && googleReviews.itemsEn.length > 0;
+const rvItems = rvUseEn ? googleReviews.itemsEn : googleReviews.items;
+const rvPer = (rvUseEn && googleReviews.perSlideEn) || googleReviews.perSlide || 6;
 const rvSlides = [];
-for (let i = 0; i < googleReviews.items.length; i += rvPer) rvSlides.push(googleReviews.items.slice(i, i + rvPer));
+for (let i = 0; i < rvItems.length; i += rvPer) rvSlides.push(rvItems.slice(i, i + rvPer));
 
 // One example image per style for the homepage curtain tiles.
 // These styles reuse the same photo shown in their page hero.
