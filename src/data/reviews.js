@@ -47,4 +47,33 @@ export const googleReviews = {
           // 12 — traveller with little time in Berlin
       { author: 'Aisha Evans', lang: 'en', photo: null, text: 'My husband and I took a weekend trip to Berlin for a concert. I was diligently looking for a tattoo artist who could get us both in and bring our ideas to life. Josef and the team made it happen.' },
         ],
+        // ND (niloo, 2026-09-23): /en/ shows its own English-only list, 10 reviews now, 12 later.
+        // Rules: no single artist named too often, variety of artists/styles/services, and the two
+        // removed reviews (flash sale sign; artist no longer in the roster) stay out. Also left out
+        // on purpose: Rimsha Ali and TK Munyon (would name JVD/Javad four times). Pending: one
+        // English piercing review and one cover-up/realism review from the Google profile.
+        // /de/ keeps using `items` above and is not affected.
+        perSlideEn: 5,
+        itemsEn: [
+          // 1 — travellers from abroad, a large piece from their own idea, hygiene
+      { author: 'Deatharra', lang: 'en', photo: null, text: 'My husband and I are visiting Berlin from Australia and spontaneously decided to get some tattoos for our kids. We were impressed with the time that Josef and Cali took to put our ideas into tattoos. The studio is very hygienic.' },
+          // 2 — walk-in that had to incorporate an existing tattoo (cover-up concern)
+      { author: 'Christiane', lang: 'en', photo: null, text: 'Absolutely wonderful experience. I had booked a walk-in tattoo with Javad, and it also had to incorporate a tattoo I already had. He very quickly had an idea of what I wanted, changed a few things around and made sure everything was done beautifully.' },
+          // 3 — first tattoo, pain and being looked after
+      { author: 'Andrea Rivadossi', lang: 'en', photo: null, text: 'It was my first tattoo. The tattoo artist is really nice and a caring person. He was worried if I was suffering and if the situation was ok. I would come again.' },
+          // 4 — consultation across several designs, two small pieces
+      { author: 'Daniel', lang: 'en', photo: null, text: 'I was welcomed warmly right away, and the consultation on the different designs was great. I got two new little tattoos. I felt very comfortable and I am super happy with each piece. I can only recommend him.' },
+          // 5 — fine line precision; compares with other studios
+      { author: 'Barrett Eidson', lang: 'en', photo: null, text: 'Worked with JVD! He was super nice, helpful, and gave me an awesome fine line tattoo that I love! Very efficient and will definitely be going back. As this is my 5th tattoo in my 5th studio, this is the best tattoo experience I have had so far. Thank you Javad!' },
+          // 6 — weekend visitor with little time in Berlin
+      { author: 'Aisha Evans', lang: 'en', photo: null, text: 'My husband and I took a weekend trip to Berlin for a concert. I was diligently looking for a tattoo artist who could get us both in and bring our ideas to life. Josef and the team made it happen.' },
+          // 7 — walk-in, sketch to tattoo, hygiene
+      { author: 'Paul Prime', lang: 'en', photo: null, text: 'Had a very spontaneous walk in. My tattoo artist was simply amazing. From the sketch to the tattooing itself, everything smooth, friendly, welcoming, hygienic. I am more than happy with the results. Will come back for sure.' },
+          // 8 — festival visitor (C2C), a tattoo as a memory
+      { author: 'Trevor Thomas', lang: 'en', photo: null, text: 'Was in Berlin for C2C Festival and my wife and I decided to pop into USEE for an event related tattoo for the memories. Cannot say enough about the hospitality and professionalism of all the artists in the shop! Would recommend.' },
+          // 9 — summer visitor who chose the studio by its style
+      { author: 'Serena Condemi', lang: 'en', photo: null, text: 'My experience here was amazing! I was there for a summer vacation and I immediately noticed them from their studio, with a style very much in line with mine. They immediately welcomed me and satisfied me in every possible way.' },
+          // 10 — atmosphere, artists take time to understand the idea (verbatim guest quote)
+      { author: 'Denni Weber', lang: 'en', photo: null, text: 'This tattoo studio is without a doubt home to the best tattoo artists in Berlin. From the moment I walked in, I knew I was in good hands. The atmosphere is welcoming and professional, and the artists take the time to truly understand your vision.' },
+        ],
 };
