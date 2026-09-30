@@ -22,6 +22,7 @@ const c = {
     h1: 'Piercing in Berlin',
     tagline: 'Präzision. Erfahrung. Für die Dauer gemacht.',
     intro: 'Jedes Piercing ist eine Entscheidung, die dich jeden Tag begleitet. Deshalb sollte sie mit Sorgfalt getroffen werden, nicht in Eile. Bei Usee Tattoo beginnt kein Piercing ohne Beratung. Zuerst sprechen wir über deine Idee, die Platzierung, deine Anatomie, die Schmuckauswahl und all deine Fragen. Wenn wir das Gefühl haben, dass ein Piercing für dich nicht die richtige Wahl ist, sagen wir es dir ehrlich, denn uns ist die richtige Entscheidung wichtiger, als einfach eine Dienstleistung auszuführen.',
+    priceLine: 'Transparenter Festpreis: 50 € pro Piercing — unabhängig von der gewählten Stelle.',
     ctaBook: 'Piercing-Termin buchen',
     expectTitle: 'Was dich erwartet',
     expect: [
@@ -101,6 +102,7 @@ const c = {
     h1: 'Piercing in Berlin',
     tagline: 'Precision. Experience. Designed to Last.',
     intro: "Every piercing is a decision you carry with you every day. That's why we believe it should be made with care, not in a rush. At Usee Tattoo, no piercing begins without a consultation. First, we talk about your idea, the placement, your anatomy, the choice of jewelry and any questions you have. If we feel a piercing isn't the right choice for you, we'll tell you honestly, because we'd rather make one right decision than simply perform a service.",
+    priceLine: 'One transparent price: €50 per piercing, whichever placement you choose.',
     ctaBook: 'Book a piercing appointment',
     expectTitle: 'What You Can Expect',
     expect: [
@@ -185,6 +187,7 @@ const stars = (n) => '★'.repeat(n) + '☆'.repeat(5 - n);
         <h1>{c.h1}</h1>
         <div class="pc-tag">{c.tagline}</div>
         <p class="bio" style="max-width:660px;font-size:18px">{c.intro}</p>
+        <p class="pc-price" style="max-width:660px">{c.priceLine}</p>
         <div class="cta-row">
           <a class="cta primary" style="background:var(--ink);color:var(--paper)" href={bookUrl} target="_blank" rel="noopener">{c.ctaBook}</a>
         </div>
@@ -374,6 +377,7 @@ const stars = (n) => '★'.repeat(n) + '☆'.repeat(5 - n);
   <style>
     .pc-hero{padding-bottom:56px}
     .pc-hero .pc-tag{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:22px;color:var(--bronze-dk);margin:2px 0 22px}
+    .pc-price{font-weight:600;color:var(--ink);font-size:15.5px;margin:0 0 4px}
     .pc-hero .cta-row{margin-top:10px}
     .pc-hero-banner{margin-top:36px}
     .pc-hero-banner img{width:100%;max-width:900px;height:auto;display:block;margin:0}
