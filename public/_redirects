@@ -495,3 +495,8 @@
 /de/taetowierer-innen/alex/ /de/ 301
 /index.php/taetowierer-innen/alex/ /de/ 301
 /taetowierer-innen/alex/ /de/ 301
+
+# ---- ND-179: legacy Joomla impressum / gastkuenstler URLs (were 404) ----
+/de/index.php/impressum /de/impressum/ 301
+/en/index.php/impressum /en/impressum/ 301
+/de/index.php/gastkuenstler /de/events/guest-artists/ 301
