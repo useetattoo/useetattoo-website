@@ -210,7 +210,7 @@ export const styles = [
         related: ['realistic', 'black-and-grey'],
   },
   {
-            slug: 'color', built: true, folder: 'Colour', artists: [], book: { de: 'https://book.useetattoo.com/Consultation', en: 'https://book.useetattoo.com/Consultation' }, hero: 'Color_Cover.webp',
+            slug: 'color', built: true, folder: 'Colour', artists: [], book: { de: '/de/consultation/', en: '/en/consultation/' }, hero: 'Color_Cover.webp',
             h1: { de: 'Watercolor Tattoo', en: 'Watercolor Tattoos' },
             name: { de: 'Watercolor', en: 'Watercolor' },
             metaTitle: { de: 'Watercolor Tattoo Berlin | Farbe, die lesbar bleibt', en: 'Watercolor Tattoos Berlin | Color That Stays Readable' },
