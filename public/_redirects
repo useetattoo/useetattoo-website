@@ -516,3 +516,18 @@
 /de/tattoo-stile/dotwork /de/artists/jvd/ 301
 /de/tattoo-stile/mikrorealismus /de/styles/microrealism 301
 /de/index.php/tattoo-stile/mikrorealismus /de/styles/microrealism 301
+# ---- SEO-14: trailing-slash variants of the ND-179 sources (were 404; canonicals carry a slash) ----
+/de/tattoo-stile/realistic/ /de/styles/realistic 301
+/de/tattoo-stile/microrealism/ /de/styles/microrealism 301
+/de/tattoo-stile/fine-line/ /de/styles/fine-line 301
+/de/tattoo-stile/maori/ /de/styles/maori 301
+/de/tattoo-stile/ornamental/ /de/styles/ornamental 301
+/de/tattoo-stile/portraits/ /de/styles/portraits 301
+/de/tattoo-stile/color/ /de/styles/color 301
+/de/tattoo-stile/black-and-grey/ /de/styles/black-and-grey 301
+/de/tattoo-stile/conceptual/ /de/styles/conceptual 301
+/de/tattoo-stile/japanese/ /de/styles/japanese 301
+/de/tattoo-stile/lettering/ /de/styles/lettering 301
+/de/tattoo-stile/dotwork/ /de/artists/jvd/ 301
+/de/tattoo-stile/mikrorealismus/ /de/styles/microrealism 301
+/de/index.php/tattoo-stile/mikrorealismus/ /de/styles/microrealism 301
