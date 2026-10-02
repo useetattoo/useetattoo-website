@@ -15,6 +15,10 @@ import { journal } from '../data/journal.js';
 
 const SITE = 'https://useetattoo.com';
 
+// lastmod = build date (UTC, YYYY-MM-DD). The site is static and rebuilt on every
+// deploy, so this is the date the sitemap's pages were last published.
+const LASTMOD = new Date().toISOString().slice(0, 10);
+
 // Pages that are not data-driven. Legal pages (impressum, datenschutz) and 404
 // are deliberately excluded, matching the previous sitemap.
 const staticPaths = [
@@ -55,6 +59,7 @@ export function GET() {
     for (const lang of langs) {
       body.push('<url>');
       body.push(`<loc>${url(lang, path)}</loc>`);
+      body.push(`<lastmod>${LASTMOD}</lastmod>`);
       for (const alt of langs) {
         body.push(`<xhtml:link rel="alternate" hreflang="${alt}" href="${url(alt, path)}"/>`);
       }
