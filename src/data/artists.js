@@ -53,8 +53,8 @@ export const artists = [
     piercing: true,
     specialties: { de: 'Piercing · Nippelpiercing · Septum · Lippe · Bauchnabel', en: 'Piercing · Nipple · Septum · Lip · Navel' },
     meta: {
-      de: 'Nana ist unsere Piercing-Spezialistin bei Usee Tattoo Berlin: kuratierte Piercings mit Sorgfalt und Stil.',
-      en: 'Nana is our piercing specialist, curated, high-quality piercings placed with care and style.',
+      de: 'Nana ist unsere Piercing-Spezialistin bei Usee Tattoo Berlin. Jedes Piercing sticht sie mit steriler Einwegnadel, nie mit einer Piercing-Gun.',
+      en: 'Nana is our piercing specialist. Every piercing is placed with a sterile single-use needle, never a gun.',
     },
     bio: {
       de: 'Nana ist unsere Piercing-Spezialistin und verbindet ihre herzliche Art mit fachkundigem Können. Von Ohr-Piercings (Helix, Tragus, Conch, Lobe) über Nasen- und Septum- bis zu Lippen- und Bauchnabel-Piercings sorgt sie für ein sicheres, stilvolles und angenehmes Erlebnis, kuratiert und nach Termin.',
