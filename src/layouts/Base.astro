@@ -24,7 +24,7 @@ const ck = {
 const alt = lang === 'de' ? 'en' : 'de';
 const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
 // Pages that already have their own dedicated form: don't add the global quick form
-const hasOwnForm = /\/(contact|cover-up)$/.test(pathname);
+const hasOwnForm = /\/(contact|cover-up|event-activations)$/.test(pathname);
 const selfPath = pathname;
 // The visible DE/EN switch must point at the canonical, slashed URL.
 // pathname has its trailing slash stripped above, so /en would 308 to /en/.
