@@ -319,6 +319,25 @@ const homeGallery = [
     </div>
   </section>
 
+  <!-- EVENT ACTIVATIONS -->
+  <section id="event-activations-home" class="artists">
+    <div class="wrap">
+      <div class="events-row home-ev-row reveal">
+        <div class="ph"><img src="/images/past_events/PopInBerlin/PopInBerlin_6.webp" alt="Usee Tattoo event activation in Berlin" loading="lazy" /></div>
+        <div class="txt">
+          <div class="eyebrow">{lang === 'de' ? 'Event Activations' : 'Event Activations'}</div>
+          <h2 set:html={lang === 'de' ? 'Bring das Studio<br>zu deinem Event' : 'Bring the studio<br>to your event'}></h2>
+          <p>{lang === 'de'
+            ? 'Du planst ein Event, ein Launch oder ein Festival? Wir bringen eine kuratierte, hygienische Live-Tattoo-Aktivierung in deine Location, ein lebendiges Kunstwerk, das deine Gäste für immer behalten. Vertraut von RÜFÜS DU SOL, C2C und Pop In Berlin.'
+            : 'Planning a party, launch or festival? We bring a curated, hygienic live-tattoo activation to your venue, a living artwork your guests keep for life. Trusted by RÜFÜS DU SOL, C2C and Pop In Berlin.'}</p>
+          <div class="cta-row" style="align-items:center;gap:24px;flex-wrap:wrap">
+            <a class="cta primary" style="background:var(--ink);color:var(--paper)" href={`${base}/events/event-activations/`}>{lang === 'de' ? 'Zum Event Activation Hub' : 'Explore event activations'}</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- FAQ -->
   <section class="faq" id="faq">
     <div class="wrap">

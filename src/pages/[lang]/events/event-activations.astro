@@ -1,0 +1,513 @@
+---
+import Base from '../../../layouts/Base.astro';
+import { langs, t } from '../../../data/i18n.js';
+import { site } from '../../../data/site.js';
+
+export function getStaticPaths() {
+  return langs.map((lang) => ({ params: { lang } }));
+}
+const { lang } = Astro.params;
+const L = t[lang];
+const base = `/${lang}`;
+const PARTNER_EMAIL = 'partnerships@useetattoo.com';
+// Web3Forms: unlimited forms are free, but each delivers to the email tied to its access key.
+// This key currently delivers to the studio inbox. To route Event Activation enquiries straight
+// to partnerships@useetattoo.com, create a free Web3Forms access key for that mailbox and swap it here.
+const FORM_KEY = '3c230d18-5a06-494a-9786-6c0a58e1d5a0';
+
+const gallery = [
+  '/images/past_events/PopInBerlin/PopInBerlin_2.webp',
+  '/images/past_events/RDS/RDS_1.webp',
+  '/images/past_events/PopInBerlin/PopInBerlin_7.webp',
+  '/images/past_events/C2C2/C2C2_1.webp',
+  '/images/past_events/opening/Opening_6.webp',
+  '/images/past_events/PopInBerlin/PopInBerlin_11.webp',
+];
+
+const c = {
+  de: {
+    title: 'Event Activation Hub | Usee Tattoo Berlin',
+    description: 'Usee Tattoo bringt das Studio zu deinem Event: kuratierte, hygienische Live-Tattoo-Aktivierungen in Berlin. Vertraut von RÜFÜS DU SOL, C2C, The Ritz-Carlton und Pop In Berlin. Anfrage an partnerships@useetattoo.com.',
+    crumb: 'Events',
+    eyebrow: 'Event Activation Hub',
+    h1: 'Bring das Studio<br>zu deinem Event',
+    lead: 'Ein lebendiges Kunstwerk, das deine Gäste mit nach Hause nehmen. Eine kuratierte, hygienische und von Artists geführte Tattoo-Aktivierung, die Teil des Abends wird, und jeden Gast mit einem echten Stück Kunst nach Hause schickt.',
+    ctaPlan: 'Aktivierung planen',
+    ctaMail: 'partnerships schreiben',
+    trustedLabel: 'Vertraut von',
+    trusted: ['RÜFÜS DU SOL', 'C2C Festival', 'The Ritz-Carlton', 'Verstehen Sie Spaß? (ARD)', 'Pop In Berlin'],
+
+    ideaEyebrow: 'Die Idee',
+    ideaTitle: 'Kein Gimmick-Stand.<br>Ein Stück Studio.',
+    ideaBody: [
+      'Ein Tattoo ist eine kleine Geschichte, die ein Gast mit nach Hause trägt: eine Erinnerung mit Puls. Usee Tattoo ist ein Custom Tattoo Studio in Berlin-Charlottenburg, bekannt für präzise, persönliche Arbeit, die bleibt.',
+      'Für dein Event bringen wir dieses Studio zu dir. Keine Jahrmarktattraktion, sondern eine kuratierte, hygienische und von Artists geführte Aktivierung, die Teil der Atmosphäre wird. Deine Gäste wählen aus einer vorbereiteten Flash-Kollektion und gehen mit einem echten Kunstwerk, einem Geschenk der Gastgeber und einem Grund, sich als Teil des Abends zu fühlen.',
+    ],
+
+    formatsEyebrow: 'Die Formate',
+    formatsTitle: 'Vier Wege, das Studio<br>in den Raum zu holen',
+    formats: [
+      ['Live Tattoo Stations', 'Das Signature-Erlebnis · 18+', 'Echte Tattoos, vor Ort von unseren Artists aus einer kuratierten Flash-Kollektion gestochen. Deine Gäste gehen mit einem bleibenden Stück. Das Herz der Aktivierung.'],
+      ['Custom Event Designs', 'Für deine Welt gemacht', 'Eine Flash-Kollektion rund um dein Event, deine Marke oder dein Thema. Tragbare Kunst, inspiriert von deiner Geschichte, nie ein Logo auf der Haut, immer etwas, das Gäste tragen wollen.'],
+      ['Private VIP Activation', 'Exklusiv · Premium', 'Ein maßgeschneidertes, gehobenes Setup: gebrandete Lounge, Senior-Artists, Content vor Ort und Keepsakes. Für besondere Momente und Gäste, die Diskretion erwarten.'],
+      ['Piercing Station', 'Optionales Add-on', 'Ein kuratiertes Piercing-Menü neben der Tattoo-Station, wo Venue und Setup es zulassen. Ein zweiter Interaktionspunkt für deine Gäste.'],
+    ],
+    formatsNote: 'Jedes Format wird nach demselben Studio-Standard für Hygiene und Handwerk umgesetzt.',
+
+    whyEyebrow: 'Warum Usee',
+    whyTitle: 'Studio-Qualität,<br>nie fürs Event reduziert',
+    why: [
+      ['Echtes Handwerk', 'Dieselbe Sorgfalt wie im Studio, von erfahrenen Resident-Artists, nie von Lehrlingen.'],
+      ['Alles aus einer Hand', 'Aufbau, Betrieb und Abbau übernimmt unser Team. Du bist Gastgeber, wir liefern.'],
+      ['Hygiene zuerst', 'Sterile Einwegmaterialien, Einverständnis- und Gesundheitsformulare, professionelle Nachsorge.'],
+      ['Flexibel & zweisprachig', 'Von einem bis vier und mehr Artists, skalierbar für deine Gästezahl. Unser Team spricht Deutsch und Englisch.'],
+    ],
+
+    stepsEyebrow: 'Der Ablauf',
+    stepsTitle: 'Einfach zu buchen.<br>Mühelos am Abend.',
+    steps: [
+      ['Erzähl uns von deinem Event', 'Datum, Location, Gästezahl und die Stimmung, die du schaffen willst.'],
+      ['Wir empfehlen das Format', 'Das passende Setup und die richtige Anzahl Artists für dein Publikum und deine Ziele.'],
+      ['Wir bereiten die Kunst vor', 'Eine kuratierte Flash-Kollektion, auf Wunsch mit Custom-Designs für Marke oder Thema.'],
+      ['Wir führen die Aktivierung durch', 'Aufbau, Hygiene und Abbau komplett durch unser Team.'],
+      ['Wir melden uns danach', 'Nachsorge für deine Gäste sowie ausgewählte Bilder und Content zum Teilen.'],
+    ],
+
+    needEyebrow: 'Was wir brauchen',
+    needTitle: 'Was wir von dir brauchen',
+    need: ['Eine Steckdose nahe der Station', 'Ca. 2 × 2 m pro Artist', 'Gutes, gleichmäßiges Licht', 'Eine ruhigere Ecke, abseits der Tanzfläche'],
+    needNote: 'Alles andere bringen wir mit.',
+
+    pkgEyebrow: 'Pakete',
+    pkgTitle: 'Wähl das Format.<br>Wir bringen das Studio.',
+    pkgIntro: 'Jede Aktivierung ist ein vollständiges, hygienisches und von Artists geführtes Setup. Das Tattoo ist dein Geschenk an deine Gäste.',
+    pkgs: [
+      ['Solo', '1 Artist · bis zu ~10 Tattoos · Events bis 30 Gäste', 'ab 1.500 €'],
+      ['Duo', '2 Artists · bis zu ~20 Tattoos · Events bis 60 Gäste', '2.700 €'],
+      ['Trio', '3 Artists · bis zu ~30 Tattoos · Events bis 100 Gäste', '3.900 €'],
+      ['Collective', '4 Artists · bis zu ~40 Tattoos · große Events, 100+ Gäste', '5.100 €'],
+      ['Private VIP', 'Maßgeschneidert · Custom-Designs · gebrandete Lounge · Content & Keepsakes', 'auf Anfrage'],
+    ],
+    pkgIncludesLabel: 'In jedem Paket enthalten',
+    pkgIncludes: ['Artist(s) & kuratierte Flash-Kollektion', 'Komplettes Setup & Abbau, gebrandete Station', 'Sterile Einwegmaterialien & Hygiene', 'Aftercare-Karten & Koordination'],
+    pkgFine: 'Innerhalb Berlins · Standard-Zeitfenster bis ca. 5 Stunden · 18+ mit gültigem Ausweis. Add-ons: Custom-Brand-Designs, Fotografie & Content, Piercing-Station, verlängerte Zeiten, Anreise außerhalb Berlins. Alle Preise netto, zzgl. 19% USt. Eine Anzahlung von 50% sichert den Termin.',
+
+    proofEyebrow: 'Erfahrung',
+    proofTitle: 'Wo wir schon aufgetaucht sind',
+    proof: [
+      ['Pop In Berlin', 'Exklusiver Tattoo-Partner der ersten Ausgabe. 107 Teams stellten sich unserer Tattoo-Challenge.'],
+      ['RÜFÜS DU SOL', 'Zwei Tage hinter den Kulissen des Konzerts in Berlin, Crew und Artists persönlich tätowiert.'],
+      ['Country to Country', 'Eine Festival-Zusammenarbeit mit exklusiven, vom Country-Stil inspirierten Designs.'],
+    ],
+    proofLink: 'Alle vergangenen Events ansehen',
+
+    contactEyebrow: 'Kontakt',
+    contactTitle: 'Planen wir deine Aktivierung',
+    contactLead: 'Nenn uns das Datum und den Raum. Den Rest gestalten wir und bringen das Studio zu dir.',
+    lblEmail: 'Anfragen', lblPhone: 'Telefon · WhatsApp', lblStudio: 'Studio',
+    formTitle: 'Event-Anfrage senden',
+    fName: 'Name', fOrg: 'Unternehmen / Veranstalter', fEmail: 'E-Mail', fPhone: 'Telefon (optional)',
+    fType: 'Format', fDate: 'Event-Datum (optional)', fCity: 'Stadt / Location', fGuests: 'Gäste (ca.)', fMessage: 'Erzähl uns von deinem Event', fSubmit: 'Anfrage senden',
+    types: ['Live Tattoo Stations', 'Custom Event Designs', 'Private VIP Activation', 'Piercing-Station', 'Noch nicht sicher'],
+    sent: 'Danke! Wir haben deine Event-Anfrage erhalten und melden uns zeitnah.',
+    errMsg: 'Etwas ist schiefgelaufen. Bitte schreib direkt an partnerships@useetattoo.com.',
+  },
+  en: {
+    title: 'Event Activation Hub | Usee Tattoo Berlin',
+    description: 'Usee Tattoo brings the studio to your event: curated, hygienic, artist-led live tattoo activations in Berlin. Trusted by RÜFÜS DU SOL, C2C, The Ritz-Carlton and Pop In Berlin. Enquiries to partnerships@useetattoo.com.',
+    crumb: 'Events',
+    eyebrow: 'Event Activation Hub',
+    h1: 'Bring the studio<br>to your event',
+    lead: 'A living artwork, gifted to your guests. A curated, hygienic, artist-led tattoo activation that becomes part of the night, and sends every guest home with a genuine piece of art.',
+    ctaPlan: 'Plan your activation',
+    ctaMail: 'Email partnerships',
+    trustedLabel: 'Trusted for',
+    trusted: ['RÜFÜS DU SOL', 'C2C Festival', 'The Ritz-Carlton', 'Verstehen Sie Spaß? (ARD)', 'Pop In Berlin'],
+
+    ideaEyebrow: 'The idea',
+    ideaTitle: 'Not a novelty booth.<br>A piece of the studio.',
+    ideaBody: [
+      'A tattoo is a small story a guest carries home: a memory with a pulse. Usee Tattoo is a custom tattoo studio in Berlin-Charlottenburg, known for precise, personal work made to last.',
+      'For your event, we bring that studio to you. This is not a novelty booth. It is a curated, hygienic, artist-led activation that becomes part of the atmosphere. Your guests choose from a prepared flash collection and leave with a genuine piece of art, a gift from the host, and a reason to feel part of the night.',
+    ],
+
+    formatsEyebrow: 'The formats',
+    formatsTitle: 'Four ways to bring<br>the studio into the room',
+    formats: [
+      ['Live Tattoo Stations', 'The signature experience · 18+', 'Real tattoos, applied on site by our artists from a curated flash collection. Guests leave with a permanent piece they keep for life. This is the heart of the activation.'],
+      ['Custom Event Designs', 'Made for your world', 'A flash collection designed around your event, brand or theme. Wearable art inspired by your story, never a logo on skin, always something guests want to wear.'],
+      ['Private VIP Activation', 'Exclusive · Premium', 'A bespoke, elevated setup: a branded lounge, senior artists, on-site content and keepsakes. Designed for high-profile moments and guests who expect discretion.'],
+      ['Piercing Station', 'Optional add-on', 'A curated piercing menu alongside the tattoo station, where the venue and setup allow. A second point of interaction for your guests.'],
+    ],
+    formatsNote: 'Every format is delivered to the same studio standard of hygiene and craft.',
+
+    whyEyebrow: 'Why Usee',
+    whyTitle: 'Studio quality,<br>never reduced for an event',
+    why: [
+      ['Real craft', 'The same care as in the studio, by experienced resident artists, never apprentices.'],
+      ['Fully turnkey', 'Setup, running and teardown handled by our team. You host, we deliver.'],
+      ['Hygiene first', 'Sterile single-use materials, consent and health forms, professional aftercare.'],
+      ['Flexible & bilingual', 'From one to four or more artists, scaled to your guest count. Our team speaks English and German.'],
+    ],
+
+    stepsEyebrow: 'The process',
+    stepsTitle: 'Simple to book.<br>Effortless on the night.',
+    steps: [
+      ['Share your event', 'The date, the space, your guest numbers and the mood you want to create.'],
+      ['We recommend the format', 'The right setup and number of artists for your crowd and your goals.'],
+      ['We prepare the art', 'A curated flash collection, plus custom designs for your brand or theme if you wish.'],
+      ['We run the activation', 'Full setup, hygiene and teardown handled entirely by our team.'],
+      ['We follow up', 'Aftercare for your guests, and selected images and content for you to share.'],
+    ],
+
+    needEyebrow: 'Logistics',
+    needTitle: 'What we need from you',
+    need: ['A power socket near the station', 'Roughly 2 × 2 m per artist', 'Good, even lighting', 'A calmer corner, away from the dancefloor'],
+    needNote: 'We bring everything else.',
+
+    pkgEyebrow: 'Packages',
+    pkgTitle: 'Choose the format.<br>We bring the studio.',
+    pkgIntro: 'Every activation is a complete, hygienic, artist-led setup. The tattoo is your gift to your guests.',
+    pkgs: [
+      ['Solo', '1 artist · up to ~10 tattoos · intimate events to 30 guests', 'from €1,500'],
+      ['Duo', '2 artists · up to ~20 tattoos · events to 60 guests', '€2,700'],
+      ['Trio', '3 artists · up to ~30 tattoos · events to 100 guests', '€3,900'],
+      ['Collective', '4 artists · up to ~40 tattoos · large events, 100+ guests', '€5,100'],
+      ['Private VIP', 'Bespoke · custom designs · branded lounge · content & keepsakes', 'on request'],
+    ],
+    pkgIncludesLabel: 'Every package includes',
+    pkgIncludes: ['Artist(s) & curated flash collection', 'Full setup & teardown, branded station', 'Sterile, single-use materials & hygiene', 'Aftercare cards & coordination'],
+    pkgFine: 'Within Berlin · standard window up to ~5 hours · 18+ with valid ID. Add-ons: custom brand designs, photography & content, piercing station, extended hours, travel beyond Berlin. All prices net, plus 19% VAT. A 50% deposit confirms the date.',
+
+    proofEyebrow: 'Experience',
+    proofTitle: 'Where we have popped up',
+    proof: [
+      ['Pop In Berlin', 'Exclusive tattoo partner of the first edition. 107 teams took on our Tattoo Challenge.'],
+      ['RÜFÜS DU SOL', 'Two days behind the scenes of the Berlin concert, tattooing crew and artists in person.'],
+      ['Country to Country', 'A festival collaboration offering exclusive, country-inspired designs.'],
+    ],
+    proofLink: 'See all past events',
+
+    contactEyebrow: 'Contact',
+    contactTitle: 'Let us plan your activation',
+    contactLead: 'Tell us the date and the room. We will design the rest, and bring the studio to you.',
+    lblEmail: 'Enquiries', lblPhone: 'Phone · WhatsApp', lblStudio: 'Studio',
+    formTitle: 'Send an event enquiry',
+    fName: 'Name', fOrg: 'Company / organiser', fEmail: 'Email', fPhone: 'Phone (optional)',
+    fType: 'Format', fDate: 'Event date (optional)', fCity: 'City / venue', fGuests: 'Guests (approx.)', fMessage: 'Tell us about your event', fSubmit: 'Send enquiry',
+    types: ['Live Tattoo Stations', 'Custom Event Designs', 'Private VIP Activation', 'Piercing station', 'Not sure yet'],
+    sent: 'Thank you! We have received your event enquiry and will be in touch shortly.',
+    errMsg: 'Something went wrong. Please email partnerships@useetattoo.com directly.',
+  },
+}[lang];
+---
+<Base lang={lang} title={c.title} description={c.description} ogImage="/images/past_events/PopInBerlin/PopInBerlin_2.webp">
+  <!-- HERO -->
+  <section class="detail-hero">
+    <div class="wrap">
+      <a class="link-underline" href={`${base}/events/`} style="font-size:11px">&larr; {c.crumb}</a>
+      <div class="dh-txt reveal" style="max-width:820px;margin-top:26px">
+        <div class="eyebrow">{c.eyebrow}</div>
+        <h1 set:html={c.h1}></h1>
+        <p class="bio" style="max-width:600px;font-size:19px">{c.lead}</p>
+        <div class="cta-row" style="margin-top:28px;display:flex;gap:16px;flex-wrap:wrap">
+          <a class="cta primary" style="background:var(--ink);color:var(--paper)" href="#ea-contact">{c.ctaPlan}</a>
+          <a class="cta ghost" style="border-color:var(--ink);color:var(--ink)" href={`mailto:${PARTNER_EMAIL}`}>{c.ctaMail}</a>
+        </div>
+      </div>
+      <div class="ea-trusted reveal">
+        <span class="ea-trusted-label">{c.trustedLabel}</span>
+        <div class="ea-trusted-list">
+          {c.trusted.map((n) => <span class="ea-trusted-item">{n}</span>)}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- THE IDEA -->
+  <section class="ea-sec">
+    <div class="wrap ea-split">
+      <div class="reveal">
+        <div class="eyebrow">{c.ideaEyebrow}</div>
+        <h2 class="ea-h2" set:html={c.ideaTitle}></h2>
+      </div>
+      <div class="ea-split-body reveal">
+        {c.ideaBody.map((p) => <p>{p}</p>)}
+      </div>
+    </div>
+  </section>
+
+  <!-- FORMATS -->
+  <section class="ea-sec ea-shade">
+    <div class="wrap">
+      <div class="reveal" style="max-width:720px">
+        <div class="eyebrow">{c.formatsEyebrow}</div>
+        <h2 class="ea-h2" set:html={c.formatsTitle}></h2>
+      </div>
+      <div class="ea-grid ea-grid-2 reveal">
+        {c.formats.map(([t1, t2, t3], i) => (
+          <div class="ea-card">
+            <span class="ea-num">{String(i + 1).padStart(2, '0')}</span>
+            <h3>{t1}</h3>
+            <div class="ea-card-tag">{t2}</div>
+            <p>{t3}</p>
+          </div>
+        ))}
+      </div>
+      <p class="ea-note reveal">{c.formatsNote}</p>
+    </div>
+  </section>
+
+  <!-- WHY USEE -->
+  <section class="ea-sec">
+    <div class="wrap">
+      <div class="reveal" style="max-width:720px">
+        <div class="eyebrow">{c.whyEyebrow}</div>
+        <h2 class="ea-h2" set:html={c.whyTitle}></h2>
+      </div>
+      <div class="ea-grid ea-grid-4 reveal">
+        {c.why.map(([h, p]) => (
+          <div class="ea-why"><h3>{h}</h3><p>{p}</p></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- GALLERY STRIP -->
+  <section class="ea-sec ea-shade">
+    <div class="wrap">
+      <div class="ea-gallery reveal">
+        {gallery.map((src) => (
+          <div class="ea-g-cell"><img src={src} alt="Usee Tattoo event activation" loading="lazy" /></div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section class="ea-sec">
+    <div class="wrap">
+      <div class="reveal" style="max-width:720px">
+        <div class="eyebrow">{c.stepsEyebrow}</div>
+        <h2 class="ea-h2" set:html={c.stepsTitle}></h2>
+      </div>
+      <ol class="ea-steps reveal">
+        {c.steps.map(([h, p], i) => (
+          <li><span class="ea-step-n">{i + 1}</span><div><h3>{h}</h3><p>{p}</p></div></li>
+        ))}
+      </ol>
+      <div class="ea-need reveal">
+        <div class="eyebrow">{c.needEyebrow}</div>
+        <h3 class="ea-need-title">{c.needTitle}</h3>
+        <ul class="ea-need-list">
+          {c.need.map((n) => <li>{n}</li>)}
+        </ul>
+        <p class="ea-note" style="margin-top:14px">{c.needNote}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- PACKAGES -->
+  <section class="ea-sec ea-shade">
+    <div class="wrap">
+      <div class="reveal" style="max-width:720px">
+        <div class="eyebrow">{c.pkgEyebrow}</div>
+        <h2 class="ea-h2" set:html={c.pkgTitle}></h2>
+        <p class="ea-lead">{c.pkgIntro}</p>
+      </div>
+      <div class="ea-pkgs reveal">
+        {c.pkgs.map(([name, scope, price]) => (
+          <div class="ea-pkg">
+            <div class="ea-pkg-name">{name}</div>
+            <div class="ea-pkg-scope">{scope}</div>
+            <div class="ea-pkg-price">{price}</div>
+          </div>
+        ))}
+      </div>
+      <div class="ea-includes reveal">
+        <div class="ea-inc-label">{c.pkgIncludesLabel}</div>
+        <ul>{c.pkgIncludes.map((x) => <li>{x}</li>)}</ul>
+      </div>
+      <p class="ea-fine reveal">{c.pkgFine}</p>
+    </div>
+  </section>
+
+  <!-- PROOF -->
+  <section class="ea-sec">
+    <div class="wrap">
+      <div class="reveal" style="max-width:720px">
+        <div class="eyebrow">{c.proofEyebrow}</div>
+        <h2 class="ea-h2">{c.proofTitle}</h2>
+      </div>
+      <div class="ea-grid ea-grid-3 reveal">
+        {c.proof.map(([h, p]) => (
+          <div class="ea-proof"><h3>{h}</h3><p>{p}</p></div>
+        ))}
+      </div>
+      <a class="link-underline reveal" href={`${base}/events/past-events/`} style="display:inline-block;margin-top:28px">{c.proofLink} &rarr;</a>
+    </div>
+  </section>
+
+  <!-- CONTACT + FORM -->
+  <section class="ea-sec ea-shade" id="ea-contact">
+    <div class="wrap ea-contact">
+      <div class="ea-contact-info reveal">
+        <div class="eyebrow">{c.contactEyebrow}</div>
+        <h2 class="ea-h2">{c.contactTitle}</h2>
+        <p class="ea-lead">{c.contactLead}</p>
+        <div class="ea-detail"><div class="k">{c.lblEmail}</div><div class="v"><a href={`mailto:${PARTNER_EMAIL}`}>{PARTNER_EMAIL}</a></div></div>
+        <div class="ea-detail"><div class="k">{c.lblPhone}</div><div class="v"><a href={site.phone.href}>{site.phone.display}</a> · <a href={site.whatsapp} target="_blank" rel="noopener">{site.mobile.display}</a></div></div>
+        <div class="ea-detail"><div class="k">{c.lblStudio}</div><div class="v">{site.address.street}, {site.address.zip} {site.address.city}</div></div>
+      </div>
+      <div class="ea-form-wrap reveal">
+        <h3 class="form-title">{c.formTitle}</h3>
+        <p class="form-sent" id="eaSent" hidden>{c.sent}</p>
+        <form id="eaForm" method="POST" action="https://api.web3forms.com/submit">
+          <input type="hidden" name="access_key" value={FORM_KEY} />
+          <input type="hidden" name="subject" value="New website enquiry: Event Activation Hub (useetattoo.com)" />
+          <input type="hidden" name="from_name" value="Usee Tattoo Website" />
+          <input type="hidden" name="lang" value={lang} />
+          <input type="checkbox" name="botcheck" style="display:none" tabindex="-1" autocomplete="off" />
+          <div class="grid2">
+            <label>{c.fName}<input type="text" name="name" required /></label>
+            <label>{c.fOrg}<input type="text" name="organisation" /></label>
+            <label>{c.fEmail}<input type="email" name="email" required /></label>
+            <label>{c.fPhone}<input type="tel" name="phone" /></label>
+            <label>{c.fType}
+              <select name="format">{c.types.map((i) => <option value={i}>{i}</option>)}</select>
+            </label>
+            <label>{c.fDate}<input type="text" name="event_date" /></label>
+            <label>{c.fCity}<input type="text" name="city_venue" /></label>
+            <label>{c.fGuests}<input type="text" name="guests" /></label>
+          </div>
+          <label>{c.fMessage}<textarea name="message" rows="5" required></textarea></label>
+          <button type="submit" class="cta primary" style="background:var(--ink);color:var(--paper);border:0;cursor:pointer">{c.fSubmit}</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <script is:inline define:vars={{ errMsg: c.errMsg }}>
+    (function () {
+      var form = document.getElementById('eaForm');
+      if (!form) return;
+      form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+        var btn = form.querySelector('button[type="submit"]');
+        var original = btn ? btn.textContent : '';
+        if (btn) { btn.disabled = true; btn.textContent = '…'; }
+        try {
+          var res = await fetch(form.action, { method: 'POST', body: new FormData(form) });
+          var data = await res.json();
+          if (data.success) {
+            var fmt = (form.querySelector('[name="format"]') || {}).value || '';
+            var lng = (form.querySelector('[name="lang"]') || {}).value || '';
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({ event: 'lead_event_activation', lead_type: fmt, lead_lang: lng });
+            var el = document.getElementById('eaSent');
+            if (el) { el.hidden = false; el.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
+            form.reset(); form.style.display = 'none';
+          } else {
+            if (btn) { btn.disabled = false; btn.textContent = original; }
+            alert(errMsg);
+          }
+        } catch (err) {
+          if (btn) { btn.disabled = false; btn.textContent = original; }
+          alert(errMsg);
+        }
+      });
+    })();
+  </script>
+
+  <style>
+    .ea-sec{padding:84px 0}
+    .ea-shade{background:var(--paper-2)}
+    .ea-h2{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(28px,4vw,42px);line-height:1.12;margin:12px 0 0}
+    .ea-lead{color:var(--ink-soft);font-size:16px;line-height:1.8;max-width:620px;margin:18px 0 0}
+    .ea-note{color:var(--ink-soft);font-size:13.5px;font-style:italic;margin-top:26px}
+    /* idea split */
+    .ea-split{display:grid;grid-template-columns:1fr 1fr;gap:56px;align-items:start}
+    .ea-split-body p{color:var(--ink-soft);font-size:16px;line-height:1.85;margin:0 0 20px}
+    .ea-split-body p:last-child{margin-bottom:0}
+    /* trusted strip */
+    .ea-trusted{margin-top:54px;border-top:1px solid var(--line);padding-top:24px}
+    .ea-trusted-label{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-soft)}
+    .ea-trusted-list{display:flex;flex-wrap:wrap;gap:10px 28px;margin-top:14px}
+    .ea-trusted-item{font-family:'Cormorant Garamond',serif;font-size:21px;color:var(--ink)}
+    /* generic grids */
+    .ea-grid{display:grid;gap:1px;background:var(--line);border:1px solid var(--line);margin-top:44px}
+    .ea-grid-2{grid-template-columns:1fr 1fr}
+    .ea-grid-3{grid-template-columns:repeat(3,1fr)}
+    .ea-grid-4{grid-template-columns:repeat(4,1fr)}
+    .ea-card{background:var(--paper);padding:34px 30px}
+    .ea-card .ea-num{font-family:'Cormorant Garamond',serif;font-size:15px;color:var(--bronze-dk)}
+    .ea-card h3{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:25px;color:var(--ink);margin:8px 0 4px}
+    .ea-card-tag{font-size:10.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--bronze-dk);margin-bottom:14px}
+    .ea-card p{color:var(--ink-soft);font-size:14.5px;line-height:1.7;margin:0}
+    .ea-why{background:var(--paper);padding:30px 26px}
+    .ea-why h3{font-family:'Inter',sans-serif;font-size:14px;color:var(--ink);margin:0 0 10px}
+    .ea-why p{font-family:'Inter',sans-serif;font-size:14px;line-height:1.7;color:var(--ink-soft);margin:0}
+    .ea-proof{background:var(--paper);padding:30px 26px}
+    .ea-proof h3{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:23px;color:var(--ink);margin:0 0 10px}
+    .ea-proof p{font-family:'Inter',sans-serif;font-size:14px;line-height:1.7;color:var(--ink-soft);margin:0}
+    /* gallery */
+    .ea-gallery{display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+    .ea-g-cell{aspect-ratio:3/4;overflow:hidden;background:var(--paper)}
+    .ea-g-cell img{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease)}
+    .ea-g-cell:hover img{transform:scale(1.05)}
+    /* steps */
+    .ea-steps{list-style:none;margin:44px 0 0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:28px 56px;counter-reset:none}
+    .ea-steps li{display:flex;gap:18px;align-items:flex-start}
+    .ea-step-n{flex:none;width:38px;height:38px;border-radius:50%;border:1px solid var(--line);display:grid;place-items:center;font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--bronze-dk)}
+    .ea-steps h3{font-family:'Inter',sans-serif;font-size:15px;color:var(--ink);margin:6px 0 6px}
+    .ea-steps p{font-size:14px;line-height:1.7;color:var(--ink-soft);margin:0}
+    .ea-need{margin-top:54px;border-top:1px solid var(--line);padding-top:30px}
+    .ea-need-title{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:24px;margin:10px 0 18px}
+    .ea-need-list{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,1fr);gap:10px 40px}
+    .ea-need-list li{position:relative;padding-left:20px;color:var(--ink-soft);font-size:15px;line-height:1.6}
+    .ea-need-list li::before{content:'·';position:absolute;left:4px;color:var(--bronze-dk);font-weight:700}
+    /* packages */
+    .ea-pkgs{margin-top:40px;border-top:1px solid var(--line)}
+    .ea-pkg{display:grid;grid-template-columns:150px 1fr auto;gap:24px;align-items:baseline;padding:20px 0;border-bottom:1px solid var(--line)}
+    .ea-pkg-name{font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--ink)}
+    .ea-pkg-scope{font-family:'Inter',sans-serif;font-size:14px;color:var(--ink-soft);line-height:1.6}
+    .ea-pkg-price{font-family:'Inter',sans-serif;font-size:14px;letter-spacing:.04em;color:var(--bronze-dk);white-space:nowrap}
+    .ea-includes{margin-top:34px}
+    .ea-inc-label{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:14px}
+    .ea-includes ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,1fr);gap:8px 40px}
+    .ea-includes li{position:relative;padding-left:20px;font-size:14.5px;color:var(--ink-soft)}
+    .ea-includes li::before{content:'·';position:absolute;left:4px;color:var(--bronze-dk);font-weight:700}
+    .ea-fine{margin-top:28px;font-size:12.5px;line-height:1.7;color:var(--ink-soft);max-width:860px}
+    /* contact */
+    .ea-contact{display:grid;grid-template-columns:0.9fr 1.1fr;gap:64px;align-items:start}
+    .ea-detail{border-top:1px solid var(--line);padding:16px 0}
+    .ea-detail .k{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:6px}
+    .ea-detail .v{font-size:15px;color:var(--ink)}
+    .ea-detail .v a{color:var(--bronze-dk);text-decoration:underline;text-underline-offset:2px}
+    .ea-form-wrap{background:var(--paper);border:1px solid var(--line);padding:34px 32px}
+    .form-title{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(24px,3vw,32px);margin:0 0 24px}
+    .form-sent{background:var(--paper-2);border:1px solid var(--line);padding:16px 20px;margin-bottom:22px;color:var(--bronze-dk)}
+    .ea-form-wrap label{display:block;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--bronze-dk);margin-bottom:18px}
+    .ea-form-wrap .grid2{display:grid;grid-template-columns:1fr 1fr;gap:0 26px}
+    .ea-form-wrap input,.ea-form-wrap select,.ea-form-wrap textarea{width:100%;margin-top:8px;padding:13px 15px;border:1px solid var(--line);background:var(--white);font-family:'Inter',sans-serif;font-size:15px;color:var(--ink);letter-spacing:normal;text-transform:none;border-radius:0;transition:border-color .4s var(--ease)}
+    .ea-form-wrap input:focus,.ea-form-wrap select:focus,.ea-form-wrap textarea:focus{outline:none;border-color:var(--bronze)}
+    .ea-form-wrap textarea{resize:vertical}
+    .ea-form-wrap button{margin-top:6px}
+    @media(max-width:900px){
+      .ea-grid-4{grid-template-columns:repeat(2,1fr)}
+      .ea-gallery{grid-template-columns:repeat(3,1fr)}
+    }
+    @media(max-width:760px){
+      .ea-sec{padding:60px 0}
+      .ea-split{grid-template-columns:1fr;gap:26px}
+      .ea-grid-2,.ea-grid-3{grid-template-columns:1fr}
+      .ea-steps{grid-template-columns:1fr;gap:22px}
+      .ea-need-list,.ea-includes ul{grid-template-columns:1fr}
+      .ea-pkg{grid-template-columns:1fr;gap:4px}
+      .ea-pkg-price{margin-top:4px}
+      .ea-contact{grid-template-columns:1fr;gap:34px}
+      .ea-form-wrap .grid2{grid-template-columns:1fr}
+      .ea-gallery{grid-template-columns:repeat(2,1fr)}
+    }
+  </style>
+</Base>
