@@ -83,15 +83,20 @@ const c = {
     pkgTitle: 'Wähl das Format.<br>Wir bringen das Studio.',
     pkgIntro: 'Jede Aktivierung ist ein vollständiges, hygienisches und von Artists geführtes Setup. Das Tattoo ist dein Geschenk an deine Gäste.',
     pkgs: [
-      ['Solo', '1 Artist · bis zu ~10 Tattoos · Events bis 30 Gäste', 'ab 1.500 €'],
-      ['Duo', '2 Artists · bis zu ~20 Tattoos · Events bis 60 Gäste', '2.700 €'],
-      ['Trio', '3 Artists · bis zu ~30 Tattoos · Events bis 100 Gäste', '3.900 €'],
-      ['Collective', '4 Artists · bis zu ~40 Tattoos · große Events, 100+ Gäste', '5.100 €'],
-      ['Private VIP', 'Maßgeschneidert · Custom-Designs · gebrandete Lounge · Content & Keepsakes', 'auf Anfrage'],
+      ['Solo', '1 Artist · bis zu ~10 Tattoos · intime Events bis 30 Gäste'],
+      ['Duo', '2 Artists · bis zu ~20 Tattoos · Events bis 60 Gäste'],
+      ['Trio', '3 Artists · bis zu ~30 Tattoos · Events bis 100 Gäste'],
+      ['Collective', '4 Artists · bis zu ~40 Tattoos · große Events, 100+ Gäste'],
+      ['Private VIP', 'Maßgeschneidert · Custom-Designs · gebrandete Lounge · Content & Keepsakes'],
     ],
+    pkgCta: 'Komplettes Paket & Preise anfragen',
     pkgIncludesLabel: 'In jedem Paket enthalten',
     pkgIncludes: ['Artist(s) & kuratierte Flash-Kollektion', 'Komplettes Setup & Abbau, gebrandete Station', 'Sterile Einwegmaterialien & Hygiene', 'Aftercare-Karten & Koordination'],
-    pkgFine: 'Innerhalb Berlins · Standard-Zeitfenster bis ca. 5 Stunden · 18+ mit gültigem Ausweis. Add-ons: Custom-Brand-Designs, Fotografie & Content, Piercing-Station, verlängerte Zeiten, Anreise außerhalb Berlins. Alle Preise netto, zzgl. 19% USt. Eine Anzahlung von 50% sichert den Termin.',
+    pkgFine: 'Innerhalb Berlins · Standard-Zeitfenster bis ca. 5 Stunden · 18+ mit gültigem Ausweis. Add-ons: Custom-Brand-Designs, Fotografie & Content, Piercing-Station, verlängerte Zeiten, Anreise außerhalb Berlins. Das passende Paket und ein individuelles Angebot stellen wir dir gern nach deiner Anfrage zusammen.',
+    brochureEyebrow: 'Broschüre',
+    brochureTitle: 'Lade unsere Event-Broschüre herunter',
+    brochureText: 'Formate, Ablauf und Pakete auf einen Blick, als PDF zum Teilen mit deinem Team.',
+    brochureEN: 'English (PDF)', brochureDE: 'Deutsch (PDF)',
 
     proofEyebrow: 'Erfahrung',
     proofTitle: 'Wo wir schon aufgetaucht sind',
@@ -170,15 +175,20 @@ const c = {
     pkgTitle: 'Choose the format.<br>We bring the studio.',
     pkgIntro: 'Every activation is a complete, hygienic, artist-led setup. The tattoo is your gift to your guests.',
     pkgs: [
-      ['Solo', '1 artist · up to ~10 tattoos · intimate events to 30 guests', 'from €1,500'],
-      ['Duo', '2 artists · up to ~20 tattoos · events to 60 guests', '€2,700'],
-      ['Trio', '3 artists · up to ~30 tattoos · events to 100 guests', '€3,900'],
-      ['Collective', '4 artists · up to ~40 tattoos · large events, 100+ guests', '€5,100'],
-      ['Private VIP', 'Bespoke · custom designs · branded lounge · content & keepsakes', 'on request'],
+      ['Solo', '1 artist · up to ~10 tattoos · intimate events to 30 guests'],
+      ['Duo', '2 artists · up to ~20 tattoos · events to 60 guests'],
+      ['Trio', '3 artists · up to ~30 tattoos · events to 100 guests'],
+      ['Collective', '4 artists · up to ~40 tattoos · large events, 100+ guests'],
+      ['Private VIP', 'Bespoke · custom designs · branded lounge · content & keepsakes'],
     ],
+    pkgCta: 'Request the full package & pricing',
     pkgIncludesLabel: 'Every package includes',
     pkgIncludes: ['Artist(s) & curated flash collection', 'Full setup & teardown, branded station', 'Sterile, single-use materials & hygiene', 'Aftercare cards & coordination'],
-    pkgFine: 'Within Berlin · standard window up to ~5 hours · 18+ with valid ID. Add-ons: custom brand designs, photography & content, piercing station, extended hours, travel beyond Berlin. All prices net, plus 19% VAT. A 50% deposit confirms the date.',
+    pkgFine: 'Within Berlin · standard window up to ~5 hours · 18+ with valid ID. Add-ons: custom brand designs, photography & content, piercing station, extended hours, travel beyond Berlin. We put together the right package and a tailored quote once you get in touch.',
+    brochureEyebrow: 'Brochure',
+    brochureTitle: 'Download our event brochure',
+    brochureText: 'Formats, process and packages at a glance, as a PDF to share with your team.',
+    brochureEN: 'English (PDF)', brochureDE: 'Deutsch (PDF)',
 
     proofEyebrow: 'Experience',
     proofTitle: 'Where we have popped up',
@@ -317,11 +327,10 @@ const c = {
         <p class="ea-lead">{c.pkgIntro}</p>
       </div>
       <div class="ea-pkgs reveal">
-        {c.pkgs.map(([name, scope, price]) => (
+        {c.pkgs.map(([name, scope]) => (
           <div class="ea-pkg">
             <div class="ea-pkg-name">{name}</div>
             <div class="ea-pkg-scope">{scope}</div>
-            <div class="ea-pkg-price">{price}</div>
           </div>
         ))}
       </div>
@@ -330,11 +339,29 @@ const c = {
         <ul>{c.pkgIncludes.map((x) => <li>{x}</li>)}</ul>
       </div>
       <p class="ea-fine reveal">{c.pkgFine}</p>
+      <a class="cta primary reveal" style="background:var(--ink);color:var(--paper);margin-top:26px" href="#ea-contact">{c.pkgCta}</a>
+    </div>
+  </section>
+
+  <!-- BROCHURE -->
+  <section class="ea-sec">
+    <div class="wrap">
+      <div class="ea-brochure reveal">
+        <div>
+          <div class="eyebrow">{c.brochureEyebrow}</div>
+          <h2 class="ea-h2">{c.brochureTitle}</h2>
+          <p class="ea-lead">{c.brochureText}</p>
+        </div>
+        <div class="ea-brochure-btns">
+          <a class="cta ghost ea-dl" style="border-color:var(--ink);color:var(--ink)" href="/brochures/usee-event-activations-en.pdf" download>{c.brochureEN}</a>
+          <a class="cta ghost ea-dl" style="border-color:var(--ink);color:var(--ink)" href="/brochures/usee-event-activations-de.pdf" download>{c.brochureDE}</a>
+        </div>
+      </div>
     </div>
   </section>
 
   <!-- PROOF -->
-  <section class="ea-sec">
+  <section class="ea-sec ea-shade">
     <div class="wrap">
       <div class="reveal" style="max-width:720px">
         <div class="eyebrow">{c.proofEyebrow}</div>
@@ -469,16 +496,21 @@ const c = {
     .ea-need-list li::before{content:'·';position:absolute;left:4px;color:var(--bronze-dk);font-weight:700}
     /* packages */
     .ea-pkgs{margin-top:40px;border-top:1px solid var(--line)}
-    .ea-pkg{display:grid;grid-template-columns:150px 1fr auto;gap:24px;align-items:baseline;padding:20px 0;border-bottom:1px solid var(--line)}
+    .ea-pkg{display:grid;grid-template-columns:150px 1fr;gap:24px;align-items:baseline;padding:20px 0;border-bottom:1px solid var(--line)}
     .ea-pkg-name{font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--ink)}
     .ea-pkg-scope{font-family:'Inter',sans-serif;font-size:14px;color:var(--ink-soft);line-height:1.6}
-    .ea-pkg-price{font-family:'Inter',sans-serif;font-size:14px;letter-spacing:.04em;color:var(--bronze-dk);white-space:nowrap}
     .ea-includes{margin-top:34px}
     .ea-inc-label{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:14px}
     .ea-includes ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,1fr);gap:8px 40px}
     .ea-includes li{position:relative;padding-left:20px;font-size:14.5px;color:var(--ink-soft)}
     .ea-includes li::before{content:'·';position:absolute;left:4px;color:var(--bronze-dk);font-weight:700}
     .ea-fine{margin-top:28px;font-size:12.5px;line-height:1.7;color:var(--ink-soft);max-width:860px}
+    /* brochure */
+    .ea-brochure{display:flex;justify-content:space-between;align-items:center;gap:40px;border:1px solid var(--line);padding:40px 44px;flex-wrap:wrap}
+    .ea-brochure .ea-lead{margin-top:12px;max-width:520px}
+    .ea-brochure-btns{display:flex;gap:14px;flex-wrap:wrap}
+    .ea-dl{white-space:nowrap}
+    @media(max-width:760px){.ea-brochure{padding:28px 24px;gap:24px}}
     /* contact */
     .ea-contact{display:grid;grid-template-columns:0.9fr 1.1fr;gap:64px;align-items:start}
     .ea-detail{border-top:1px solid var(--line);padding:16px 0}
