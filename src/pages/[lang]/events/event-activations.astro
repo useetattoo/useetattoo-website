@@ -83,11 +83,11 @@ const c = {
     pkgTitle: 'Wähl das Format.<br>Wir bringen das Studio.',
     pkgIntro: 'Jede Aktivierung ist ein vollständiges, hygienisches und von Artists geführtes Setup. Das Tattoo ist dein Geschenk an deine Gäste.',
     pkgs: [
-      ['Solo', '1 Artist · bis zu ~10 Tattoos · intime Events bis 30 Gäste'],
-      ['Duo', '2 Artists · bis zu ~20 Tattoos · Events bis 60 Gäste'],
-      ['Trio', '3 Artists · bis zu ~30 Tattoos · Events bis 100 Gäste'],
-      ['Collective', '4 Artists · bis zu ~40 Tattoos · große Events, 100+ Gäste'],
-      ['Private VIP', 'Maßgeschneidert · Custom-Designs · gebrandete Lounge · Content & Keepsakes'],
+      ['Solo', '1 Artist · bis zu ~10 Tattoos · intime Events bis 30 Gäste', 'Private Dinner & Salons'],
+      ['Duo', '2 Artists · bis zu ~20 Tattoos · Events bis 60 Gäste', 'Brand-Partys & Openings'],
+      ['Trio', '3 Artists · bis zu ~30 Tattoos · Events bis 100 Gäste', 'Konferenzen & Festivals'],
+      ['Collective', '4 Artists · bis zu ~40 Tattoos · große Events, 100+ Gäste', 'Große Festivals & Galas'],
+      ['Private VIP', 'Maßgeschneidert · Custom-Designs · gebrandete Lounge · Content & Keepsakes', 'VIP & Highlight-Momente'],
     ],
     pkgCta: 'Komplettes Paket & Preise anfragen',
     pkgIncludesLabel: 'In jedem Paket enthalten',
@@ -175,11 +175,11 @@ const c = {
     pkgTitle: 'Choose the format.<br>We bring the studio.',
     pkgIntro: 'Every activation is a complete, hygienic, artist-led setup. The tattoo is your gift to your guests.',
     pkgs: [
-      ['Solo', '1 artist · up to ~10 tattoos · intimate events to 30 guests'],
-      ['Duo', '2 artists · up to ~20 tattoos · events to 60 guests'],
-      ['Trio', '3 artists · up to ~30 tattoos · events to 100 guests'],
-      ['Collective', '4 artists · up to ~40 tattoos · large events, 100+ guests'],
-      ['Private VIP', 'Bespoke · custom designs · branded lounge · content & keepsakes'],
+      ['Solo', '1 artist · up to ~10 tattoos · intimate events to 30 guests', 'Private dinners & salons'],
+      ['Duo', '2 artists · up to ~20 tattoos · events to 60 guests', 'Brand parties & openings'],
+      ['Trio', '3 artists · up to ~30 tattoos · events to 100 guests', 'Conferences & festivals'],
+      ['Collective', '4 artists · up to ~40 tattoos · large events, 100+ guests', 'Large festivals & galas'],
+      ['Private VIP', 'Bespoke · custom designs · branded lounge · content & keepsakes', 'VIP & headline moments'],
     ],
     pkgCta: 'Request the full package & pricing',
     pkgIncludesLabel: 'Every package includes',
@@ -327,10 +327,11 @@ const c = {
         <p class="ea-lead">{c.pkgIntro}</p>
       </div>
       <div class="ea-pkgs reveal">
-        {c.pkgs.map(([name, scope]) => (
+        {c.pkgs.map(([name, scope, best]) => (
           <div class="ea-pkg">
             <div class="ea-pkg-name">{name}</div>
             <div class="ea-pkg-scope">{scope}</div>
+            <div class="ea-pkg-for">{best}</div>
           </div>
         ))}
       </div>
@@ -496,9 +497,10 @@ const c = {
     .ea-need-list li::before{content:'·';position:absolute;left:4px;color:var(--bronze-dk);font-weight:700}
     /* packages */
     .ea-pkgs{margin-top:40px;border-top:1px solid var(--line)}
-    .ea-pkg{display:grid;grid-template-columns:150px 1fr;gap:24px;align-items:baseline;padding:20px 0;border-bottom:1px solid var(--line)}
+    .ea-pkg{display:grid;grid-template-columns:160px 1.4fr 1fr;gap:28px;align-items:baseline;padding:20px 0;border-bottom:1px solid var(--line)}
     .ea-pkg-name{font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--ink)}
     .ea-pkg-scope{font-family:'Inter',sans-serif;font-size:14px;color:var(--ink-soft);line-height:1.6}
+    .ea-pkg-for{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--bronze-dk);text-align:right;line-height:1.5}
     .ea-includes{margin-top:34px}
     .ea-inc-label{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-soft);margin-bottom:14px}
     .ea-includes ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,1fr);gap:8px 40px}
@@ -537,7 +539,7 @@ const c = {
       .ea-steps{grid-template-columns:1fr;gap:22px}
       .ea-need-list,.ea-includes ul{grid-template-columns:1fr}
       .ea-pkg{grid-template-columns:1fr;gap:4px}
-      .ea-pkg-price{margin-top:4px}
+      .ea-pkg-for{text-align:left;margin-top:4px}
       .ea-contact{grid-template-columns:1fr;gap:34px}
       .ea-form-wrap .grid2{grid-template-columns:1fr}
       .ea-gallery{grid-template-columns:repeat(2,1fr)}
