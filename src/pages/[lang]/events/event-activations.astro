@@ -340,7 +340,7 @@ const c = {
         <ul>{c.pkgIncludes.map((x) => <li>{x}</li>)}</ul>
       </div>
       <p class="ea-fine reveal">{c.pkgFine}</p>
-      <a class="cta primary reveal" style="background:var(--ink);color:var(--paper);margin-top:26px" href="#ea-contact">{c.pkgCta}</a>
+      <a class="cta primary reveal" style="display:inline-block;background:var(--ink);color:var(--paper);margin-top:30px" href="#ea-contact">{c.pkgCta}</a>
     </div>
   </section>
 
@@ -511,6 +511,8 @@ const c = {
     .ea-brochure{display:flex;justify-content:space-between;align-items:center;gap:40px;border:1px solid var(--line);padding:40px 44px;flex-wrap:wrap}
     .ea-brochure .ea-lead{margin-top:12px;max-width:520px}
     .ea-brochure-btns{display:flex;gap:14px;flex-wrap:wrap}
+    .ea-dl{transition:background .4s var(--ease),color .4s var(--ease),border-color .4s var(--ease)}
+    .ea-dl:hover{background:var(--ink)!important;color:var(--paper)!important;border-color:var(--ink)!important}
     .ea-dl{white-space:nowrap}
     @media(max-width:760px){.ea-brochure{padding:28px 24px;gap:24px}}
     /* contact */
