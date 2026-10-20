@@ -46,6 +46,18 @@ const personSchema = {
   worksFor: { '@id': `${site.domain}/#business` },
   workLocation: { '@id': `${site.domain}/#business` },
 };
+
+// BreadcrumbList (ND-245). There is no /artists/ index page, so the middle crumb
+// points at the homepage #artists section, the same target the site nav uses.
+const breadcrumbSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'BreadcrumbList',
+  itemListElement: [
+    { '@type': 'ListItem', position: 1, name: 'Usee Tattoo', item: `${site.domain}/${lang}/` },
+    { '@type': 'ListItem', position: 2, name: L.nav.artists, item: `${site.domain}/${lang}/#artists` },
+    { '@type': 'ListItem', position: 3, name: artist.name, item: `${site.domain}/${lang}/artists/${artist.slug}/` },
+  ],
+};
 ---
 <Base lang={lang} title={title} description={description} ogImage={artist.portrait}>
   <section class="detail-hero">
@@ -84,4 +96,5 @@ const personSchema = {
   )}
 
   <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
 </Base>
