@@ -27,6 +27,9 @@ const past = [
     en: 'Two weeks of heartfelt, personal designs.' },
 ];
 
+const monthDe = { May: 'Mai', June: 'Juni', July: 'Juli', October: 'Oktober', December: 'Dezember', March: 'März' };
+const whenLabel = (w) => (lang === 'de' ? w.replace(/^\w+/, (m) => monthDe[m] || m) : w);
+
 const c = {
   de: { title: 'Guest Artists | UseeTattoo Studio – Berlin', description: 'Guest Artist Residencies bei Usee Tattoo Berlin. Artists aus aller Welt, limitierte Plätze.',
     crumb: 'Events', eyebrow: 'Events', h1: 'Guest Artist<br>Residencies',
@@ -71,7 +74,7 @@ const c = {
           <article class="guest">
             <div class="ph"><img src={g.img} alt={g.name} loading="lazy" /></div>
             <h3>{g.name}</h3>
-            <div class="meta">{g.when} · {c.fromLabel} {lang === 'de' ? g.fromDe : g.fromEn}</div>
+            <div class="meta">{whenLabel(g.when)} · {c.fromLabel} {lang === 'de' ? g.fromDe : g.fromEn}</div>
             <p>{g[lang]}</p>
             <a href={`https://www.instagram.com/${g.ig}`} target="_blank" rel="noopener">@{g.ig}</a>
           </article>
