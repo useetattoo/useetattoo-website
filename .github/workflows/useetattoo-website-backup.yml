@@ -1,0 +1,69 @@
+name: Usee Tattoo - Website Backup
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: useetattoo-website-backup
+  cancel-in-progress: false
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Check out all Git history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Prepare website and repository backups
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s package.json
+          test -d src
+          test -d public/images
+          mkdir -p "$RUNNER_TEMP/site-backup/current"
+          rsync -a --exclude='.git/' ./ "$RUNNER_TEMP/site-backup/current/"
+          git bundle create "$RUNNER_TEMP/site-backup/git-history.bundle" --all
+          git bundle verify "$RUNNER_TEMP/site-backup/git-history.bundle"
+          test "$(find "$RUNNER_TEMP/site-backup/current" -type f | wc -l)" -gt 20
+          printf '%s\n' "$GITHUB_SHA" > "$RUNNER_TEMP/site-backup/commit.txt"
+
+      - name: Install rclone
+        run: sudo apt-get update -qq && sudo apt-get install -y rclone
+
+      - name: Sync to designated Google Drive folder
+        shell: bash
+        env:
+          RCLONE_CONFIG_B64: ${{ secrets.RCLONE_CONFIG_B64 }}
+          DEST_FOLDER_ID: 1wUc5k7p0KqIl4kjtZGdlq2NqYh1CZ5p5
+        run: |
+          set -euo pipefail
+          umask 077
+          printf '%s' "$RCLONE_CONFIG_B64" | base64 --decode > "$RUNNER_TEMP/rclone.conf"
+          export RCLONE_CONFIG="$RUNNER_TEMP/rclone.conf"
+
+          # The folder ID anchors sync to this website's destination only.
+          rclone lsf useetattoo-gdrive: --drive-root-folder-id "$DEST_FOLDER_ID" --max-depth 1 > /dev/null
+
+          # Stop if the source unexpectedly loses more than 25% of its files.
+          old_count="$(rclone lsf useetattoo-gdrive: --drive-root-folder-id "$DEST_FOLDER_ID" --recursive --files-only | wc -l)"
+          new_count="$(find "$RUNNER_TEMP/site-backup" -type f | wc -l)"
+          if [ "$old_count" -gt 0 ] && [ "$((new_count * 100))" -lt "$((old_count * 75))" ]; then
+            echo '::error::Source file count unexpectedly low; refusing to sync.'
+            exit 1
+          fi
+
+          rclone sync "$RUNNER_TEMP/site-backup" useetattoo-gdrive: \
+            --drive-root-folder-id "$DEST_FOLDER_ID" \
+            --max-delete 50 --max-delete-size 50M
+          rclone check "$RUNNER_TEMP/site-backup" useetattoo-gdrive: \
+            --drive-root-folder-id "$DEST_FOLDER_ID"
