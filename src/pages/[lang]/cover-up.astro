@@ -10,6 +10,9 @@ const { lang } = Astro.params;
 const gallery = ['coverup_1', 'coverup_2', 'coverup_3', 'coverup_4', 'coverup_5', 'coverup_6', 'coverup_7', 'coverup_8'].map((n) => `/images/coverup/${n}.webp`);
 const bookUrl = site.booking.coverup;
 const photoUrl = `mailto:${site.email.primary}?subject=Cover-Up%20Assessment`;
+// Optional photo upload is shown only once Cloudinary is configured in site.js.
+const up = site.cloudinary || {};
+const uploadOn = !!(up.cloudName && up.cloudName !== 'YOUR_CLOUD_NAME' && up.uploadPreset && up.uploadPreset !== 'YOUR_UNSIGNED_PRESET');
 
 const c = {
   de: {
@@ -58,7 +61,16 @@ const c = {
     sendBtn: 'Meine Fotos senden',
     fName: 'Name', fEmail: 'E-Mail', fPhone: 'Telefon (optional)',
     fMsg: 'Erzähl uns von deinem Tattoo (Größe, Alter, Platzierung, Idee)',
-    fFile: 'Fotos anhängen (bis zu 5)', fSubmit: 'Anfrage senden',
+    uLabel: 'Foto deines aktuellen Tattoos hochladen (optional)',
+    uHelp: 'Ein klares Foto des Tattoos, das du überdecken möchtest, hilft uns, das Cover-up zu planen. Lade es hier hoch.',
+    uBtn: 'Bilder auswählen', uBtnMore: 'Bilder ändern',
+    uHint: 'Bis zu 3 Bilder, max. 10 MB pro Bild. JPG, PNG, WEBP oder HEIC.',
+    uTooMany: 'Bitte wähle maximal 3 Bilder.',
+    uTooBig: 'Jedes Bild darf höchstens 10 MB groß sein.',
+    uBadType: 'Bitte lade nur Bilddateien hoch (JPG, PNG, WEBP, HEIC).',
+    uUploading: 'Bilder werden hochgeladen …',
+    uUploadErr: 'Die Bilder konnten nicht hochgeladen werden. Bitte entferne sie und sende erneut, oder versuche es noch einmal.',
+    fSubmit: 'Anfrage senden',
     sent: 'Danke! Deine Anfrage ist eingegangen. Wir melden uns, sobald wir deine Fotos gesichtet haben.',
     talkTitle: 'Lieber erst darüber sprechen?',
     talk: 'Wenn du bereits weißt, dass du eine Beratung möchtest, kannst du direkt buchen, unser Team sichtet deine Fotos vorab.',
@@ -121,7 +133,16 @@ const c = {
     sendBtn: 'Send my photos',
     fName: 'Name', fEmail: 'Email', fPhone: 'Phone (optional)',
     fMsg: 'Tell us about your tattoo (size, age, placement, idea)',
-    fFile: 'Attach photos (up to 5)', fSubmit: 'Send request',
+    uLabel: 'Upload a photo of your current tattoo (optional)',
+    uHelp: 'A clear photo of the tattoo you want covered helps us plan the cover-up. Add it here.',
+    uBtn: 'Choose images', uBtnMore: 'Change images',
+    uHint: 'Up to 3 images, max 10 MB each. JPG, PNG, WEBP or HEIC.',
+    uTooMany: 'Please choose up to 3 images.',
+    uTooBig: 'Each image must be 10 MB or smaller.',
+    uBadType: 'Please upload image files only (JPG, PNG, WEBP, HEIC).',
+    uUploading: 'Uploading images …',
+    uUploadErr: 'We could not upload your images. Please remove them and send, or try again.',
+    fSubmit: 'Send request',
     sent: "Thank you! Your request has been received. We'll get back to you after reviewing your photos.",
     talkTitle: 'Prefer to talk it through?',
     talk: "If you already know you want a consultation, you can book directly, our team will review your photos beforehand.",
@@ -233,7 +254,7 @@ const c = {
         <h2 class="cu-h2">{c.sendTitle}</h2>
         <p class="cu-p">{c.send}</p>
         <p class="cu-form-sent" hidden>{c.sent}</p>
-        <form id="coverupForm" class="cu-form" method="POST" enctype="multipart/form-data" action="https://api.web3forms.com/submit">
+        <form id="coverupForm" class="cu-form" method="POST" action="https://api.web3forms.com/submit" data-cloud={uploadOn ? up.cloudName : ''} data-preset={uploadOn ? up.uploadPreset : ''}>
           <input type="hidden" name="access_key" value="3c230d18-5a06-494a-9786-6c0a58e1d5a0" />
           <input type="hidden" name="subject" value="New website enquiry: Cover-up photos (useetattoo.com)" />
           <input type="hidden" name="from_name" value="Usee Tattoo Website" />
@@ -245,7 +266,21 @@ const c = {
           </div>
           <label>{c.fPhone}<input type="tel" name="phone" /></label>
           <label>{c.fMsg}<textarea name="message" rows="4"></textarea></label>
-          <label class="cu-file">{c.fFile}<input type="file" name="photos" accept="image/*" multiple /></label>
+          {uploadOn && (
+            <div class="cu-up">
+              <span class="cu-up-label">{c.uLabel}</span>
+              <p class="cu-up-help">{c.uHelp}</p>
+              <div class="cu-up-row">
+                <label class="cu-up-btn" for="cuFiles">{c.uBtn}</label>
+                <span class="cu-up-names" id="cuNames"></span>
+              </div>
+              <input type="file" id="cuFiles" accept="image/png,image/jpeg,image/jpg,image/webp,image/heic,image/heif,.heic,.heif" multiple hidden
+                data-more={c.uBtnMore} data-toomany={c.uTooMany} data-toobig={c.uTooBig} data-badtype={c.uBadType}
+                data-uploading={c.uUploading} data-uploaderr={c.uUploadErr} />
+              <span class="cu-up-hint">{c.uHint}</span>
+              <input type="hidden" name="Current tattoo photos" value="" />
+            </div>
+          )}
           <button type="submit" class="cta primary" style="background:var(--ink);color:var(--paper);border:0;cursor:pointer">{c.fSubmit}</button>
         </form>
       </div>
@@ -312,6 +347,15 @@ const c = {
     .cu-file input{padding:11px;background:var(--paper-2);cursor:pointer}
     .cu-form button{margin-top:4px}
     .cu-form-sent{background:var(--paper-2);border:1px solid var(--bronze);padding:14px 18px;margin-bottom:20px;color:var(--bronze-dk)}
+    .cu-up{margin-bottom:18px}
+    .cu-up-label{display:block;font-size:12.5px;letter-spacing:.12em;text-transform:uppercase;font-weight:600;color:var(--ink)}
+    .cu-up-help{margin:8px 0 14px;max-width:560px;color:var(--ink-soft);font-size:14px;line-height:1.6;letter-spacing:normal;text-transform:none;font-weight:400}
+    .cu-up-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+    .cu-form .cu-up-btn{display:inline-block;margin:0;width:auto;cursor:pointer;border:1px solid var(--ink);background:transparent;color:var(--ink);
+      padding:12px 22px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;font-weight:600;transition:background .4s var(--ease),color .4s var(--ease)}
+    .cu-form .cu-up-btn:hover{background:var(--ink);color:var(--paper)}
+    .cu-up-names{font-family:'Inter',sans-serif;font-size:13px;color:var(--ink-soft);letter-spacing:normal;text-transform:none;word-break:break-word;font-weight:400}
+    .cu-up-hint{display:block;margin-top:10px;font-size:12px;color:var(--ink-soft);letter-spacing:normal;text-transform:none;font-weight:400}
     @media(max-width:560px){.cu-grid2{grid-template-columns:1fr}}
     @media(max-width:860px){
       .cu-split{grid-template-columns:1fr;gap:36px}
@@ -328,11 +372,63 @@ const c = {
     (function () {
       var form = document.getElementById('coverupForm');
       if (!form) return;
+
+      // Optional image upload (Cloudinary). The file input has no name, so the file itself is
+      // never POSTed to Web3Forms; only the resulting links go in the "Current tattoo photos" field.
+      var fileInput = document.getElementById('cuFiles');
+      var namesEl = document.getElementById('cuNames');
+      var MAX_FILES = 3, MAX_BYTES = 10 * 1024 * 1024;
+      if (fileInput) {
+        fileInput.addEventListener('change', function () {
+          var files = Array.prototype.slice.call(fileInput.files || []);
+          if (namesEl) namesEl.textContent = files.map(function (f) { return f.name; }).join(', ');
+          var lbl = form.querySelector('.cu-up-btn');
+          if (lbl && files.length) lbl.textContent = fileInput.getAttribute('data-more');
+        });
+      }
+      async function uploadImages() {
+        var files = fileInput ? Array.prototype.slice.call(fileInput.files || []) : [];
+        if (!files.length) return true;
+        if (files.length > MAX_FILES) { alert(fileInput.getAttribute('data-toomany')); return false; }
+        var okType = /\.(png|jpe?g|webp|heic|heif)$/i;
+        for (var i = 0; i < files.length; i++) {
+          if (files[i].size > MAX_BYTES) { alert(fileInput.getAttribute('data-toobig')); return false; }
+          if (!(files[i].type && files[i].type.indexOf('image/') === 0) && !okType.test(files[i].name)) { alert(fileInput.getAttribute('data-badtype')); return false; }
+        }
+        var cloud = form.getAttribute('data-cloud'), preset = form.getAttribute('data-preset');
+        if (!cloud || !preset) return true;
+        var urls = [];
+        for (var j = 0; j < files.length; j++) {
+          var fd = new FormData();
+          fd.append('file', files[j]);
+          fd.append('upload_preset', preset);
+          var r = await fetch('https://api.cloudinary.com/v1_1/' + cloud + '/image/upload', { method: 'POST', body: fd });
+          var jr = await r.json();
+          if (!r.ok || !jr.secure_url) throw new Error('cloudinary upload failed');
+          urls.push(jr.secure_url);
+        }
+        var hidden = form.querySelector('input[name="Current tattoo photos"]');
+        if (hidden) hidden.value = urls.map(function (u, k) { return 'Image ' + (k + 1) + ': ' + u; }).join('\n');
+        return true;
+      }
+
       form.addEventListener('submit', async function (e) {
         e.preventDefault();
         var btn = form.querySelector('button[type="submit"]');
         var original = btn ? btn.textContent : '';
         if (btn) { btn.disabled = true; btn.textContent = '…'; }
+        if (fileInput && fileInput.files && fileInput.files.length) {
+          if (btn) btn.textContent = fileInput.getAttribute('data-uploading');
+          try {
+            var ok = await uploadImages();
+            if (!ok) { if (btn) { btn.disabled = false; btn.textContent = original; } return; }
+          } catch (upErr) {
+            if (btn) { btn.disabled = false; btn.textContent = original; }
+            alert(fileInput.getAttribute('data-uploaderr'));
+            return;
+          }
+          if (btn) btn.textContent = '…';
+        }
         try {
           var res = await fetch(form.action, { method: 'POST', body: new FormData(form) });
           var data = await res.json();
