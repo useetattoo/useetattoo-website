@@ -64,6 +64,6 @@ jobs:
 
           rclone sync "$RUNNER_TEMP/site-backup" useetattoo-gdrive: \
             --drive-root-folder-id "$DEST_FOLDER_ID" \
-            --max-delete 50 --max-delete-size 50M
+            --max-delete 50
           rclone check "$RUNNER_TEMP/site-backup" useetattoo-gdrive: \
             --drive-root-folder-id "$DEST_FOLDER_ID"
