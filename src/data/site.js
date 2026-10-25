@@ -30,6 +30,11 @@ export const site = {
   email: { primary: 'info@useetattoo.com', secondary: 'info@useetattoo.com' }, // ND-02: one official address. hello@useetattoo.de is dead; both keys are deliberately identical so no template can print the old domain.
   address: { street: 'Neue Kantstraße 6', zip: '14057', city: 'Berlin', district: 'Charlottenburg' },
   mapQuery: 'Neue+Kantstra%C3%9Fe+6,+14057+Berlin',
+  // Cloudinary unsigned upload for the optional design-image field on the contact forms.
+  // Both values are PUBLIC and safe in client-side code. Create an UNSIGNED upload preset
+  // in the Cloudinary dashboard (Settings > Upload > Upload presets). Until both are filled
+  // with real values, the upload field stays hidden and the forms work exactly as before.
+  cloudinary: { cloudName: 'YOUR_CLOUD_NAME', uploadPreset: 'YOUR_UNSIGNED_PRESET' },
   social: {
     instagram: 'https://www.instagram.com/usee.tattoo',
     instagramHandle: '@usee.tattoo',

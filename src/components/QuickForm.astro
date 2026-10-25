@@ -2,6 +2,9 @@
 import { site } from '../data/site.js';
 const { lang = 'de' } = Astro.props;
 const pageUrl = site.domain + Astro.url.pathname;
+// Optional design-image upload is shown only once Cloudinary is configured in site.js.
+const up = site.cloudinary || {};
+const uploadOn = !!(up.cloudName && up.cloudName !== 'YOUR_CLOUD_NAME' && up.uploadPreset && up.uploadPreset !== 'YOUR_UNSIGNED_PRESET');
 
 const c = {
   de: {
@@ -10,6 +13,15 @@ const c = {
     sub: 'Eine Frage, eine Idee oder ein Projekt? Schreib uns, wir melden uns zeitnah.',
     fName: 'Name', fEmail: 'E-Mail', fPhone: 'Telefon (optional)', fInterest: 'Interesse', fMessage: 'Deine Nachricht', fSubmit: 'Anfrage senden',
     interests: ['Allgemeine Frage', 'Tattoo-Beratung (großes Projekt)', 'Persönliche Beratung', 'Online-Beratung', 'Walk-In Tattoo', 'Piercing', 'Cover-up', 'Sleeve Tattoo', 'Guest Artist / Event'],
+    uLabel: 'Foto oder Entwurf hochladen (optional)',
+    uHelp: 'Du hast einen bestimmten Entwurf oder ein Referenzfoto, das uns hilft, deine Idee besser zu verstehen? Lade es hier hoch.',
+    uBtn: 'Bilder auswählen', uBtnMore: 'Bilder ändern',
+    uHint: 'Bis zu 3 Bilder, max. 10 MB pro Bild. JPG, PNG, WEBP oder HEIC.',
+    uTooMany: 'Bitte wähle maximal 3 Bilder.',
+    uTooBig: 'Jedes Bild darf höchstens 10 MB groß sein.',
+    uBadType: 'Bitte lade nur Bilddateien hoch (JPG, PNG, WEBP, HEIC).',
+    uUploading: 'Bilder werden hochgeladen …',
+    uUploadErr: 'Die Bilder konnten nicht hochgeladen werden. Bitte entferne sie und sende erneut, oder versuche es noch einmal.',
     sent: 'Danke! Wir haben deine Anfrage erhalten und melden uns zeitnah.',
   },
   en: {
@@ -18,6 +30,15 @@ const c = {
     sub: 'A question, an idea or a project? Write to us and we will get back to you shortly.',
     fName: 'Name', fEmail: 'Email', fPhone: 'Phone (optional)', fInterest: 'Interest', fMessage: 'Your message', fSubmit: 'Send enquiry',
     interests: ['General question', 'Tattoo consultation (large project)', 'In-person consultation', 'Online consultation', 'Walk-in tattoo', 'Piercing', 'Cover-up', 'Sleeve tattoo', 'Guest artist / event'],
+    uLabel: 'Upload a photo or design (optional)',
+    uHelp: 'Got a specific design, or a reference photo that helps us understand your idea? Add it here.',
+    uBtn: 'Choose images', uBtnMore: 'Change images',
+    uHint: 'Up to 3 images, max 10 MB each. JPG, PNG, WEBP or HEIC.',
+    uTooMany: 'Please choose up to 3 images.',
+    uTooBig: 'Each image must be 10 MB or smaller.',
+    uBadType: 'Please upload image files only (JPG, PNG, WEBP, HEIC).',
+    uUploading: 'Uploading images …',
+    uUploadErr: 'We could not upload your images. Please remove them and send, or try again.',
     sent: "Thank you! We've received your enquiry and will be in touch shortly.",
   },
 }[lang];
@@ -31,7 +52,7 @@ const c = {
         <p>{c.sub}</p>
       </div>
       <p class="qform-sent" id="qfSent" hidden>{c.sent}</p>
-      <form id="quickForm" method="POST" action="https://api.web3forms.com/submit">
+      <form id="quickForm" method="POST" action="https://api.web3forms.com/submit" data-cloud={uploadOn ? up.cloudName : ''} data-preset={uploadOn ? up.uploadPreset : ''}>
         <input type="hidden" name="access_key" value="3c230d18-5a06-494a-9786-6c0a58e1d5a0" />
         <input type="hidden" name="subject" value="New website enquiry: Quick contact form (useetattoo.com)" />
         <input type="hidden" name="from_name" value="Usee Tattoo Website" />
@@ -46,6 +67,21 @@ const c = {
           </label>
         </div>
         <label>{c.fMessage}<textarea name="message" rows="4" required></textarea></label>
+        {uploadOn && (
+          <div class="qf-up">
+            <span class="qf-up-label">{c.uLabel}</span>
+            <p class="qf-up-help">{c.uHelp}</p>
+            <div class="qf-up-row">
+              <label class="qf-up-btn" for="qfFiles">{c.uBtn}</label>
+              <span class="qf-up-names" id="qfNames"></span>
+            </div>
+            <input type="file" id="qfFiles" accept="image/png,image/jpeg,image/jpg,image/webp,image/heic,image/heif,.heic,.heif" multiple hidden
+              data-more={c.uBtnMore} data-toomany={c.uTooMany} data-toobig={c.uTooBig} data-badtype={c.uBadType}
+              data-uploading={c.uUploading} data-uploaderr={c.uUploadErr} />
+            <span class="qf-up-hint">{c.uHint}</span>
+            <input type="hidden" name="Design images" value="" />
+          </div>
+        )}
         <input type="hidden" name="Submitted from" value={pageUrl} />
         <button type="submit" class="cta primary" style="background:var(--ink);color:var(--paper);border:0;cursor:pointer">{c.fSubmit}</button>
       </form>
@@ -57,6 +93,46 @@ const c = {
   (function () {
     var form = document.getElementById('quickForm');
     if (!form) return;
+
+    // Optional image upload (Cloudinary). File input has no name, so the file itself is
+    // never POSTed to Web3Forms; only the resulting links go in the "Design images" field.
+    var fileInput = document.getElementById('qfFiles');
+    var namesEl = document.getElementById('qfNames');
+    var MAX_FILES = 3, MAX_BYTES = 10 * 1024 * 1024;
+    if (fileInput) {
+      fileInput.addEventListener('change', function () {
+        var files = Array.prototype.slice.call(fileInput.files || []);
+        if (namesEl) namesEl.textContent = files.map(function (f) { return f.name; }).join(', ');
+        var lbl = form.querySelector('.qf-up-btn');
+        if (lbl && files.length) lbl.textContent = fileInput.getAttribute('data-more');
+      });
+    }
+    async function uploadImages() {
+      var files = fileInput ? Array.prototype.slice.call(fileInput.files || []) : [];
+      if (!files.length) return true;
+      if (files.length > MAX_FILES) { alert(fileInput.getAttribute('data-toomany')); return false; }
+      var okType = /\.(png|jpe?g|webp|heic|heif)$/i;
+      for (var i = 0; i < files.length; i++) {
+        if (files[i].size > MAX_BYTES) { alert(fileInput.getAttribute('data-toobig')); return false; }
+        if (!(files[i].type && files[i].type.indexOf('image/') === 0) && !okType.test(files[i].name)) { alert(fileInput.getAttribute('data-badtype')); return false; }
+      }
+      var cloud = form.getAttribute('data-cloud'), preset = form.getAttribute('data-preset');
+      if (!cloud || !preset) return true;
+      var urls = [];
+      for (var j = 0; j < files.length; j++) {
+        var fd = new FormData();
+        fd.append('file', files[j]);
+        fd.append('upload_preset', preset);
+        var r = await fetch('https://api.cloudinary.com/v1_1/' + cloud + '/image/upload', { method: 'POST', body: fd });
+        var jr = await r.json();
+        if (!r.ok || !jr.secure_url) throw new Error('cloudinary upload failed');
+        urls.push(jr.secure_url);
+      }
+      var hidden = form.querySelector('input[name="Design images"]');
+      if (hidden) hidden.value = urls.map(function (u, k) { return 'Image ' + (k + 1) + ': ' + u; }).join('\n');
+      return true;
+    }
+
     form.addEventListener('submit', async function (e) {
       e.preventDefault();
       var btn = form.querySelector('button[type="submit"]');
@@ -67,6 +143,19 @@ const c = {
       var em = form.querySelector('input[name="email"]');
       if (rt && em) rt.value = em.value;
       if (btn) { btn.disabled = true; btn.textContent = '…'; }
+      // Upload any selected images first; abort the send if that fails.
+      if (fileInput && fileInput.files && fileInput.files.length) {
+        if (btn) btn.textContent = fileInput.getAttribute('data-uploading');
+        try {
+          var ok = await uploadImages();
+          if (!ok) { if (btn) { btn.disabled = false; btn.textContent = original; } return; }
+        } catch (upErr) {
+          if (btn) { btn.disabled = false; btn.textContent = original; }
+          alert(fileInput.getAttribute('data-uploaderr'));
+          return;
+        }
+        if (btn) btn.textContent = '…';
+      }
       try {
         var res = await fetch(form.action, { method: 'POST', body: new FormData(form) });
         var data = await res.json();
@@ -109,5 +198,14 @@ const c = {
   .qform input:focus,.qform select:focus,.qform textarea:focus{outline:none;border-color:var(--bronze)}
   .qform textarea{resize:vertical}
   .qform form button{margin-top:6px}
+  .qform .qf-up{margin-bottom:22px}
+  .qform .qf-up-label{display:block;font-size:11.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--bronze-dk)}
+  .qform .qf-up-help{margin:8px 0 14px;max-width:560px;color:var(--ink-soft);font-size:14px;line-height:1.6;letter-spacing:normal;text-transform:none}
+  .qform .qf-up-row{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
+  .qform .qf-up-btn{display:inline-block;margin:0;width:auto;cursor:pointer;border:1px solid var(--ink);background:transparent;color:var(--ink);
+    padding:12px 22px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;transition:background .4s var(--ease),color .4s var(--ease)}
+  .qform .qf-up-btn:hover{background:var(--ink);color:var(--paper)}
+  .qform .qf-up-names{font-family:'Inter',sans-serif;font-size:13px;color:var(--ink-soft);letter-spacing:normal;text-transform:none;word-break:break-word}
+  .qform .qf-up-hint{display:block;margin-top:10px;font-size:12px;color:var(--ink-soft);letter-spacing:normal;text-transform:none}
   @media(max-width:640px){.qform{padding:60px 0}.qform .qgrid{grid-template-columns:1fr}}
 </style>
