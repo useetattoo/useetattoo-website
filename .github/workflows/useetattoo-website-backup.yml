@@ -55,7 +55,7 @@ jobs:
           rclone lsf useetattoo-gdrive: --drive-root-folder-id "$DEST_FOLDER_ID" --max-depth 1 > /dev/null
 
           # Stop if the source unexpectedly loses more than 25% of its files.
-          old_count="$(rclone lsf useetattoo-gdrive: --drive-root-folder-id "$DEST_FOLDER_ID" --recursive --files-only | wc -l)"
+          old_count="$(rclone lsf useetattoo-gdrive: --drive-root-folder-id "$DEST_FOLDER_ID" --recursive --files-only --exclude "/Cloudflare Configuration/**" | wc -l)"
           new_count="$(find "$RUNNER_TEMP/site-backup" -type f | wc -l)"
           if [ "$old_count" -gt 0 ] && [ "$((new_count * 100))" -lt "$((old_count * 75))" ]; then
             echo '::error::Source file count unexpectedly low; refusing to sync.'
@@ -64,6 +64,8 @@ jobs:
 
           rclone sync "$RUNNER_TEMP/site-backup" useetattoo-gdrive: \
             --drive-root-folder-id "$DEST_FOLDER_ID" \
-            --max-delete 50
+            --max-delete 50 \
+            --exclude "/Cloudflare Configuration/**"
           rclone check "$RUNNER_TEMP/site-backup" useetattoo-gdrive: \
-            --drive-root-folder-id "$DEST_FOLDER_ID"
+            --drive-root-folder-id "$DEST_FOLDER_ID" \
+            --exclude "/Cloudflare Configuration/**"
