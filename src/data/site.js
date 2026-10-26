@@ -34,7 +34,7 @@ export const site = {
   // Both values are PUBLIC and safe in client-side code. Create an UNSIGNED upload preset
   // in the Cloudinary dashboard (Settings > Upload > Upload presets). Until both are filled
   // with real values, the upload field stays hidden and the forms work exactly as before.
-  cloudinary: { cloudName: 'YOUR_CLOUD_NAME', uploadPreset: 'YOUR_UNSIGNED_PRESET' },
+  cloudinary: { cloudName: 'lhc8yl1d', uploadPreset: 'useetattoo_web' },
   social: {
     instagram: 'https://www.instagram.com/usee.tattoo',
     instagramHandle: '@usee.tattoo',
