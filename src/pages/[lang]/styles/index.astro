@@ -1,0 +1,57 @@
+---
+// ND-277 styles hub. PREVIEW: German only until niloo approves the German draft
+// (SEO Content 2026-10-24). Texts are the approved draft verbatim; no artist names,
+// no Dotwork (ND-278). Schema (CollectionPage/BreadcrumbList) is a separate, later approval.
+import Base from '../../../layouts/Base.astro';
+import { stylesBySlug } from '../../../data/styles.js';
+
+export function getStaticPaths() {
+  return [{ params: { lang: 'de' } }];
+}
+const { lang } = Astro.params;
+
+const cards = [
+  ['realistic', 'Realistic', 'Licht und Schatten werden in mehreren Nadelgängen aufgebaut, damit das Motiv nach Jahren räumlich bleibt.'],
+  ['microrealism', 'Micro Realism', 'Reduzierte Nadeltiefe, damit kleine Details nicht zu einer grauen Fläche verschwimmen.'],
+  ['fine-line', 'Fine Line', 'Gleichmäßiger Nadeldruck, und die Linie wird nach vollständiger Abheilung geprüft; Nachstechen gehört zum Ablauf.'],
+  ['black-and-grey', 'Black & Grey', 'Dunkle Kernbereiche zuerst, weiche Übergänge danach, damit Kontraste scharf bleiben.'],
+  ['portraits', 'Portrait', 'Die Proportionen der Vorlage werden ausgemessen, bevor das Stencil entsteht.'],
+  ['maori', 'Maori', 'Tā-Moko-Muster werden freihand auf die Haut gezeichnet, weil Linien auf Papier an jeder Rundung auseinanderlaufen.'],
+  ['japanese', 'Japanese', 'Die gesamte Fläche wird festgelegt, bevor die erste Sitzung beginnt.'],
+  ['ornamental', 'Ornamental', 'Die Mittelachse wird auf der Haut gesucht, nicht angenommen.'],
+  ['color', 'Watercolor', 'Im Entwurf steht zuerst, was das Motiv trägt, wenn die hellsten Töne nachlassen.'],
+  ['conceptual', 'Conceptual', 'Mehrere Elemente, die sich als eine einzige Geschichte lesen.'],
+  ['lettering', 'Schriftzug', 'Erst wird die Textlänge gegen die Körperstelle gerechnet, dann die Schriftart.'],
+].filter(([slug]) => stylesBySlug[slug]?.built);
+
+const title = 'Tattoo-Stile in Berlin: Welcher Stil trägt dein Motiv?';
+const description = 'Elf Tattoo-Stile in Berlin-Charlottenburg, von Realistic bis Schriftzug. Wir klären zuerst, welcher Stil dein Motiv trägt. 4,9 ★ aus 700+ Bewertungen.';
+---
+<Base lang={lang} title={title} description={description}>
+<section class="detail-hero">
+<div class="wrap">
+<div class="txt dh-txt reveal">
+<h1>Tattoo-Stile in Berlin</h1>
+<p>Ein Motiv im falschen Stil gesetzt altert falsch, nicht am ersten Tag, sondern nach Jahren. Deshalb wird bei uns zuerst geklärt, welcher Stil dein Motiv trägt, und danach, wer ihn im Studio arbeitet. Hier siehst du, was jeder der elf Stile technisch verlangt.</p>
+</div>
+</div>
+</section>
+<section class="related-styles" style="padding:30px 0 40px">
+<div class="wrap">
+<div class="reveal" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1px;background:var(--line, #e5e5e5);border:1px solid var(--line, #e5e5e5)">
+{cards.map(([slug, name, line]) => (
+<a href={`/${lang}/styles/${slug}/`} style="background:var(--paper, #fff);padding:26px;text-decoration:none;display:flex;flex-direction:column;gap:8px">
+<span style="font-family:'Cormorant Garamond',serif;font-size:24px;line-height:1.2;color:var(--ink, #1a1a1a)">{name}</span>
+<span style="font-family:'Inter',sans-serif;font-size:13.5px;line-height:1.6;color:var(--ink-soft, #666)">{line}</span>
+</a>
+))}
+</div>
+</div>
+</section>
+<section style="padding:10px 0 80px">
+<div class="wrap reveal">
+<p>Du weißt nicht, welcher Stil passt? Das klärt die Beratung. Entwurf und Festpreis stehen fest, bevor ein Termin vergeben wird.</p>
+<p style="margin-top:24px"><a class="cta primary" style="background:var(--ink);color:var(--paper)" href={`/${lang}/consultation/`}>Beratung</a></p>
+</div>
+</section>
+</Base>
