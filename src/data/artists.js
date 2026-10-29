@@ -37,12 +37,12 @@ export const artists = [
     book: 'https://book.useetattoo.com/jvd',
     specialties: { de: 'Micro Realism · Fine Line · Schriftzug · Dotwork', en: 'Micro Realism · Fine Line · Lettering · Dotwork' },
     meta: {
-      de: 'JVD ist ein erfahrener Artist für Mikro-Realismus und Fine Line, präzise und geduldig.',
-      en: 'JVD is an experienced artist specializing in micro-realism and fine line tattoos. His precise and patient approach ensures every piece is meticulously crafted.',
+      de: 'Jvd ist ein erfahrener Artist für Mikro-Realismus und Fine Line, präzise und geduldig.',
+      en: 'Jvd is an experienced artist specializing in micro-realism and fine line tattoos. His precise and patient approach ensures every piece is meticulously crafted.',
     },
     bio: {
-      de: 'JVD ist ein erfahrener Artist, spezialisiert auf Mikro-Realismus und Fine-Line-Tattoos. Sein präziser und geduldiger Ansatz sorgt dafür, dass jedes Stück ebenso eindrucksvoll wie sorgfältig gearbeitet ist. JVD nimmt sich Zeit für jeden Schritt des Prozesses und liefert für seine Kund:innen bestmögliche Ergebnisse.',
-      en: 'JVD is an experienced artist specializing in micro-realism and fine line tattoos. His precise and patient approach ensures that every piece he creates is both impressive and meticulously crafted. JVD takes the time to focus on each step of the tattooing process, delivering the best possible results for his clients.',
+      de: 'Jvd ist ein erfahrener Artist, spezialisiert auf Mikro-Realismus und Fine-Line-Tattoos. Sein präziser und geduldiger Ansatz sorgt dafür, dass jedes Stück ebenso eindrucksvoll wie sorgfältig gearbeitet ist. Jvd nimmt sich Zeit für jeden Schritt des Prozesses und liefert für seine Kund:innen bestmögliche Ergebnisse.',
+      en: 'Jvd is an experienced artist specializing in micro-realism and fine line tattoos. His precise and patient approach ensures that every piece he creates is both impressive and meticulously crafted. Jvd takes the time to focus on each step of the tattooing process, delivering the best possible results for his clients.',
     },
   },
   {

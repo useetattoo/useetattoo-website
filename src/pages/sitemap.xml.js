@@ -32,9 +32,13 @@ const staticPaths = [
   'walk-in/',
   'events/guest-artists/',
   'events/past-events/',
+  'events/event-activations/',
   'consultation/',
   'erstes-tattoo/',
 ];
+
+// German-only pages (EN version is a separate, later approval): listed for `de` only.
+const deOnlyPaths = ['styles/'];
 
 function allPaths() {
   return [
@@ -67,6 +71,15 @@ export function GET() {
       body.push(`<xhtml:link rel="alternate" hreflang="x-default" href="${url('de', path)}"/>`);
       body.push('</url>');
     }
+  }
+
+  for (const path of deOnlyPaths) {
+    body.push('<url>');
+    body.push(`<loc>${url('de', path)}</loc>`);
+    body.push(`<lastmod>${LASTMOD}</lastmod>`);
+    body.push(`<xhtml:link rel="alternate" hreflang="de" href="${url('de', path)}"/>`);
+    body.push(`<xhtml:link rel="alternate" hreflang="x-default" href="${url('de', path)}"/>`);
+    body.push('</url>');
   }
 
   body.push('</urlset>');

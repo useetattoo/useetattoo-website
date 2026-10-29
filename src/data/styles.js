@@ -269,8 +269,8 @@ export const styles = [
                 en: `Micro Realism is one small, realistic design on its own. When Micro Realism elements are combined with Fine Line linework and symbols or geometric shapes into one continuous composition, with fine detail hidden behind the shapes, we call that Conceptual.\n\nThe real challenge with a Conceptual tattoo: how do several elements, a symbol, geometric shapes, fine realistic detail, become one coherent composition instead of reading as several separate tattoos side by side?\n\nCali builds this style on Micro Realism and Fine Line: fine realistic detail hides behind geometric shapes, and every line knows exactly where it needs to stop to stay within the bounds of Micro Realism and Fine Line, because too much shading or one line too many would destroy exactly the delicacy that defines this style.\n\nCali talks through beforehand which symbols and shapes come together as one continuous story, and how the detail hidden behind each shape keeps the finished piece convincing up close too.`,
         },
         metaDescription: {
-                de: `Conceptual Tattoo Berlin: Micro Realism, Fine Line und Symbole in einer Komposition mit Cali. ${site.reviews.rating.de} ★ aus ${site.reviews.count} ${site.reviews.de}. Termin anfragen.`,
-                en: `Conceptual Tattoo Berlin: Micro Realism, Fine Line and symbols in one composition with Cali. ${site.reviews.rating.en} ★ from ${site.reviews.count} ${site.reviews.en}. Book a consultation at Usee Tattoo.`,
+                de: `Conceptual Tattoo Berlin: Micro Realism, Fine Line und Symbole in einer Komposition. ${site.reviews.rating.de} ★ aus ${site.reviews.count} ${site.reviews.de}. Termin anfragen.`,
+                en: `Conceptual Tattoo Berlin: Micro Realism, Fine Line and symbols in one composition. ${site.reviews.rating.en} ★ from ${site.reviews.count} ${site.reviews.en}. Book a consultation at Usee Tattoo.`,
         },
         faq: [
           { q: { de: `Was ist der Unterschied zwischen Conceptual und Micro Realism?`, en: `What's the difference between Conceptual and Micro Realism?` },
