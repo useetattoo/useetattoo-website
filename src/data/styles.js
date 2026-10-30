@@ -35,7 +35,7 @@ export const styles = [
         related: ['black-and-grey', 'portraits', 'conceptual'],
   },
   {
-            slug: 'microrealism', built: true, folder: 'MicroRealism', artists: ['cali', 'jvd'], hero: 'MicroReal_Cover.webp',
+            slug: 'microrealism', built: true, folder: 'MicroRealism', artists: ['cali', 'jvd'], consultBook: true, hero: 'MicroReal_Cover.webp',
             h1: { de: 'Micro Realism Tattoo', en: 'Micro Realism Tattoos' },
             name: { de: 'Micro Realism', en: 'Micro Realism' },
             metaTitle: { de: 'Micro Realism Tattoo Berlin | Details, die scharf bleiben', en: 'Micro Realism Tattoos Berlin | Detail That Stays Sharp' },
@@ -68,7 +68,7 @@ export const styles = [
         related: ['conceptual', 'fine-line'],
   },
   {
-            slug: 'fine-line', built: true, folder: 'FineLine', artists: ['cali', 'jvd'], hero: 'FineLine_Cover.webp',
+            slug: 'fine-line', built: true, folder: 'FineLine', artists: ['cali', 'jvd'], consultBook: true, hero: 'FineLine_Cover.webp',
             h1: { de: 'Fine Line Tattoo', en: 'Fine Line Tattoos' },
             name: { de: 'Fine Line', en: 'Fine Line' },
             metaTitle: { de: 'Fineline Tattoo Berlin | Feine Linien, auch als Walk-In', en: 'Fine Line Tattoos Berlin | Delicate Lines, Walk-Ins Welcome' },
@@ -146,7 +146,7 @@ export const styles = [
         related: ['ornamental', 'japanese'],
   },
   {
-            slug: 'ornamental', built: true, folder: 'Ornamental', artists: [], book: { de: 'https://book.useetattoo.com/walk-in-tattoo', en: 'https://book.useetattoo.com/walk-in-tattoo' }, hero: 'Ornamental_Cover.webp',
+            slug: 'ornamental', built: true, folder: 'Ornamental', artists: [], consultBook: true, book: { de: 'https://book.useetattoo.com/walk-in-tattoo', en: 'https://book.useetattoo.com/walk-in-tattoo' }, hero: 'Ornamental_Cover.webp',
             h1: { de: 'Ornamental Tattoo', en: 'Ornamental Tattoos' },
             name: { de: 'Ornamental', en: 'Ornamental' },
             metaTitle: { de: 'Ornamental Tattoo Berlin | Mandalas auf deine Körperform', en: 'Ornamental Tattoos Berlin | Mandalas to Your Body Shape' },
@@ -259,7 +259,7 @@ export const styles = [
         related: ['realistic', 'portraits'],
   },
   {
-        slug: 'conceptual', built: true, folder: 'Conceptual', artists: ['cali'], hero: 'Conceptual_4.webp',
+        slug: 'conceptual', built: true, folder: 'Conceptual', artists: ['cali', 'jvd'], consultBook: true, hero: 'Conceptual_4.webp',
         h1: { de: 'Conceptual Tattoo', en: 'Conceptual Tattoos' },
         name: { de: 'Conceptual', en: 'Conceptual' },
         metaTitle: { de: 'Conceptual Tattoo Berlin | Micro Realism trifft Symbolik', en: 'Conceptual Tattoos Berlin | Micro Realism Meets Symbols' },
