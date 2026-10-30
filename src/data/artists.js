@@ -35,7 +35,7 @@ export const artists = [
     portrait: '/images/artists/Javad.webp',
     folder: 'Jvd',
     book: 'https://book.useetattoo.com/jvd',
-    specialties: { de: 'Micro Realism · Fine Line · Schriftzug · Dotwork', en: 'Micro Realism · Fine Line · Lettering · Dotwork' },
+    specialties: { de: 'Micro Realism · Fine Line · Schriftzug', en: 'Micro Realism · Fine Line · Lettering' },
     meta: {
       de: 'Jvd ist ein erfahrener Artist für Mikro-Realismus und Fine Line, präzise und geduldig.',
       en: 'Jvd is an experienced artist specializing in micro-realism and fine line tattoos. His precise and patient approach ensures every piece is meticulously crafted.',
