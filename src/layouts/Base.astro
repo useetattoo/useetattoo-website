@@ -6,7 +6,7 @@ import Footer from '../components/Footer.astro';
 import QuickForm from '../components/QuickForm.astro';
 import { site } from '../data/site.js';
 
-const { lang = 'de', title, description, ogImage } = Astro.props;
+const { lang = 'de', title, description, ogImage, noAlternate = false } = Astro.props;
 const ck = {
   de: {
     text: 'Wir verwenden Cookies. Technisch notwendige sind immer aktiv. Andere Dienste (z. B. Google Tag Manager, Google Maps) laden wir nur mit deiner Einwilligung. Mehr in unserer',
@@ -84,9 +84,11 @@ const localBusinessSchema = {
   <title>{title}</title>
   <meta name="description" content={description} />
   <link rel="canonical" href={canonical} />
-  <link rel="alternate" hreflang="de" href={site.domain + hrefLangPath('de')} />
-  <link rel="alternate" hreflang="en" href={site.domain + hrefLangPath('en')} />
-  <link rel="alternate" hreflang="x-default" href={site.domain + '/de/'} />
+  {/* noAlternate: page has no counterpart in the other language yet (e.g. /de/styles/ hub,
+       /en/styles/ is a 404) — emit no hreflang pair rather than one pointing at a 404. */}
+  {!noAlternate && <link rel="alternate" hreflang="de" href={site.domain + hrefLangPath('de')} />}
+  {!noAlternate && <link rel="alternate" hreflang="en" href={site.domain + hrefLangPath('en')} />}
+  {!noAlternate && <link rel="alternate" hreflang="x-default" href={site.domain + '/de/'} />}
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="UseeTattoo" />
   <meta property="og:title" content={title} />
