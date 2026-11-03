@@ -48,7 +48,7 @@ export const t = {
     firstTattooBtn: 'Erstes Tattoo entdecken',
     footStudio: 'Studio', footFollow: 'Folgen',
     legal: 'Impressum · Datenschutz',
-    bookNow: 'Jetzt buchen', portfolio: 'Portfolio', freeConsultBtn: 'Kostenlose Beratung', jumpForm: 'Zum Kontaktformular springen', whatsappCta: 'Per WhatsApp schreiben',
+    bookNow: 'Jetzt buchen', portfolio: 'Portfolio', freeConsultBtn: 'Kostenlose Beratung', ablaufCta: 'Wie läuft die Beratung ab?', jumpForm: 'Zum Kontaktformular springen', whatsappCta: 'Per WhatsApp schreiben',
     faqItems: [
       { q: 'Was kostet ein Tattoo?', a: 'Ein großes Tattoo hat keinen Listenpreis. Nach der Beratung nennen wir dir einen festen Preis, der Größe, Detailgrad und Zeitaufwand abbildet. Er steht fest, bevor die erste Linie deine Haut berührt.' },
       { q: 'Ich komme nicht aus Berlin. Muss ich für die Beratung anreisen?', a: 'Nein. Wir bieten Online-Beratungen an, um dein Projekt vorab zu besprechen und zu planen.' },
@@ -103,7 +103,7 @@ export const t = {
     firstTattooBtn: 'Explore first tattoo',
     footStudio: 'Studio', footFollow: 'Follow',
     legal: 'Imprint · Privacy',
-    bookNow: 'Book now', portfolio: 'Portfolio', freeConsultBtn: 'Free Consultation', jumpForm: 'Jump to contact form', whatsappCta: 'Message us on WhatsApp',
+    bookNow: 'Book now', portfolio: 'Portfolio', freeConsultBtn: 'Free Consultation', ablaufCta: 'How does the consultation work?', jumpForm: 'Jump to contact form', whatsappCta: 'Message us on WhatsApp',
     faqItems: [
       { q: 'How much does a tattoo cost?', a: 'Every piece is quoted individually. After a private consultation you receive a clear quote reflecting size, detail and time, so you know exactly what to expect before the session.' },
       { q: "I'm not from Berlin. Do I need to travel for a consultation?", a: 'No. We offer online consultations to discuss and plan your project in advance.' },
