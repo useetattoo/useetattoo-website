@@ -18,7 +18,7 @@ return paths;
 const { lang } = Astro.params;
 const { style } = Astro.props;
 const L = t[lang];
-const imgs = gallery(`/images/TattooStyle/${style.folder}`, { exclude: ['Highlight'] });
+const imgs = [style.folder, ...(style.extraFolders || [])].flatMap((f) => gallery(`/images/TattooStyle/${f}`, { exclude: ['Highlight'] }));
 const heroImg = style.hero ? `/images/TattooStyle/${style.folder}/${style.hero}` : imgs[0];
 // Don't repeat the hero/cover image inside the gallery grid below it.
 const galleryImgs = imgs.filter((src) => src !== heroImg);

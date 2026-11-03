@@ -35,7 +35,7 @@ export const styles = [
         related: ['black-and-grey', 'portraits', 'conceptual'],
   },
   {
-            slug: 'microrealism', built: true, folder: 'MicroRealism', artists: ['cali', 'jvd'], consultBook: true, hero: 'MicroReal_Cover.webp',
+            slug: 'microrealism', built: true, folder: 'MicroRealism', extraFolders: ['microrealism-new'], artists: ['cali', 'jvd'], consultBook: true, hero: 'MicroReal_Cover.webp',
             h1: { de: 'Micro Realism Tattoo', en: 'Micro Realism Tattoos' },
             name: { de: 'Micro Realism', en: 'Micro Realism' },
             metaTitle: { de: 'Micro Realism Tattoo Berlin | Details, die scharf bleiben', en: 'Micro Realism Tattoos Berlin | Detail That Stays Sharp' },
@@ -259,7 +259,7 @@ export const styles = [
         related: ['realistic', 'portraits'],
   },
   {
-        slug: 'conceptual', built: true, folder: 'Conceptual', artists: ['cali', 'jvd'], consultBook: true, hero: 'Conceptual_4.webp',
+        slug: 'conceptual', built: true, folder: 'Conceptual', extraFolders: ['conceptual-jvd-new'], artists: ['cali', 'jvd'], consultBook: true, hero: 'Conceptual_4.webp',
         h1: { de: 'Conceptual Tattoo', en: 'Conceptual Tattoos' },
         name: { de: 'Conceptual', en: 'Conceptual' },
         metaTitle: { de: 'Conceptual Tattoo Berlin | Micro Realism trifft Symbolik', en: 'Conceptual Tattoos Berlin | Micro Realism Meets Symbols' },
