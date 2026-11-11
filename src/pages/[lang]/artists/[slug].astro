@@ -25,6 +25,7 @@ const title = lang === 'de'
   : `Tattoo Artist ${artist.name} | UseeTattoo Studio Berlin`;
 const description = artist.meta[lang];
 const bio = artist.bio[lang];
+const firstWorks = artist.firstWorks; // mobile-only first screen (Josef), see artists.js
 
 // Person schema. Until now nothing on the site said, in a machine-readable way,
 // that a given artist works here and which styles they actually do, so search
@@ -59,14 +60,24 @@ const breadcrumbSchema = {
   ],
 };
 ---
-<Base lang={lang} title={title} description={description} ogImage={artist.portrait}>
-  <section class="detail-hero">
+<Base lang={lang} title={title} description={description} ogImage={artist.portrait} noLoader={!!firstWorks}>
+  <section class={firstWorks ? 'detail-hero dh-first' : 'detail-hero'}>
     <div class="wrap dh-grid">
       <div class="portrait reveal"><img src={artist.portrait} alt={artist.name} /></div>
       <div class="dh-txt reveal">
         <div class="eyebrow">{L.nav.artists}</div>
         <h1>{artist.name}</h1>
         <div class="spec">{artist.specialties[lang]}</div>
+        {firstWorks && (
+          <div class="dh-mfirst">
+            <div class="dh-works">
+              {firstWorks.map((w, i) => (
+                <a data-lb={w.full}><img src={w.src} alt={w.alt[lang]} width="400" height="500" loading={i < 3 ? 'eager' : 'lazy'} fetchpriority={i === 0 ? 'high' : undefined} decoding="async" /></a>
+              ))}
+            </div>
+            <a class="cta primary dh-mbook" id="dhMBook" href={artist.book} target="_blank" rel="noopener">{L.bookConsult}</a>
+          </div>
+        )}
         {bio
           ? <p class="bio">{bio}</p>
           : <p class="bio placeholder">{lang === 'de' ? 'Biografie folgt in Kürze.' : 'Biography coming soon.'}</p>}
@@ -96,6 +107,52 @@ const breadcrumbSchema = {
         </div>
       </div>
     </section>
+  )}
+
+  {firstWorks && (
+    <>
+      <a class="dh-sticky" id="dhSticky" href={artist.book} target="_blank" rel="noopener" aria-hidden="true" tabindex="-1">{L.bookConsult}</a>
+      <style is:global>
+        /* Josef mobile first screen (2026-11-11). Desktop (>960px) is untouched:
+           the block and the sticky button only exist below the 960px breakpoint. */
+        .dh-mfirst,.dh-sticky{display:none}
+        @media(max-width:960px){
+          .dh-first{padding-top:84px}
+          .dh-first .dh-grid{gap:32px}
+          .dh-first .dh-txt{order:1}
+          .dh-first .portrait{order:2}
+          .dh-first .dh-txt.reveal,.dh-first .portrait.reveal{opacity:1;transform:none}
+          .dh-first .dh-txt .eyebrow{margin-bottom:10px}
+          .dh-first .dh-txt h1{margin-bottom:8px}
+          .dh-first .dh-txt .spec{margin-bottom:16px}
+          .dh-mfirst{display:block;margin-bottom:28px}
+          .dh-works{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+          .dh-works a{display:block;cursor:zoom-in;background:#e3ddd1}
+          .dh-works img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover}
+          .dh-mfirst .cta.dh-mbook{display:block;width:100%;text-align:center;margin-top:14px;background:var(--ink);color:var(--paper)}
+          .dh-sticky{display:block;position:fixed;left:14px;right:76px;bottom:14px;z-index:79;height:48px;line-height:48px;text-align:center;
+            background:var(--ink);color:var(--paper);font-family:'Inter',sans-serif;font-size:12.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+            text-decoration:none;box-shadow:0 6px 24px rgba(0,0,0,.25);transform:translateY(160%);transition:transform .35s cubic-bezier(.22,1,.36,1)}
+          .dh-sticky.on{transform:none}
+        }
+      </style>
+      <script is:inline>
+        (function(){
+          // Sticky "Beratung buchen" on phones: only once the in-page button has
+          // scrolled out of view, and never while the cookie banner is open (it
+          // would sit on top of the banner's buttons). Left of the call/WhatsApp
+          // buttons (right:76px), so it never covers them either.
+          try{
+            var st=document.getElementById('dhSticky'),btn=document.getElementById('dhMBook'),ck=document.getElementById('cookieBanner');
+            if(!st||!btn) return;
+            var past=false;
+            var upd=function(){ var on=past&&!(ck&&!ck.hidden); st.classList.toggle('on',on); st.setAttribute('aria-hidden',on?'false':'true'); st.tabIndex=on?0:-1; };
+            new IntersectionObserver(function(es){ es.forEach(function(e){ past=!e.isIntersecting&&e.boundingClientRect.top<0; upd(); }); }).observe(btn);
+            if(ck) new MutationObserver(upd).observe(ck,{attributes:true,attributeFilter:['hidden']});
+          }catch(e){}
+        })();
+      </script>
+    </>
   )}
 
   <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
