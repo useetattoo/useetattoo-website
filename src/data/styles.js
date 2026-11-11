@@ -236,6 +236,16 @@ export const styles = [
   },
   {
         slug: 'black-and-grey', built: true, folder: 'BlackGrey', artists: ['josef'], hero: 'BlackGrey_5.webp',
+        // Mobile first screen (prepared 2026-11-11 for the Josef Black & Grey test; live
+        // only after niloo's approval via ADS-KOORD). 400x500 crops, originals open in the lightbox.
+        firstWorks: [
+          { src: '/images/TattooStyle/blackgrey-first/blackgrey-work-1.webp', full: '/images/TattooStyle/BlackGrey/BlackGrey_5.webp', alt: { de: 'Black & Grey Tattoo, Totenkopf', en: 'Black & grey tattoo, skull' } },
+          { src: '/images/TattooStyle/blackgrey-first/blackgrey-work-2.webp', full: '/images/TattooStyle/BlackGrey/BlackGrey_6.webp', alt: { de: 'Black & Grey Tattoo, Adler', en: 'Black & grey tattoo, eagle' } },
+          { src: '/images/TattooStyle/blackgrey-first/blackgrey-work-3.webp', full: '/images/TattooStyle/BlackGrey/BlackGrey_7.webp', alt: { de: 'Black & Grey Tattoo, Leuchtturm', en: 'Black & grey tattoo, lighthouse' } },
+          { src: '/images/TattooStyle/blackgrey-first/blackgrey-work-4.webp', full: '/images/TattooStyle/BlackGrey/BlackGrey_11.webp', alt: { de: 'Black & Grey Tattoo, Elefant', en: 'Black & grey tattoo, elephant' } },
+          { src: '/images/TattooStyle/blackgrey-first/blackgrey-work-5.webp', full: '/images/TattooStyle/BlackGrey/BlackGrey_2.webp', alt: { de: 'Black & Grey Tattoo, Tiger', en: 'Black & grey tattoo, tiger' } },
+          { src: '/images/TattooStyle/blackgrey-first/blackgrey-work-6.webp', full: '/images/TattooStyle/BlackGrey/BlackGrey_9.webp', alt: { de: 'Black & Grey Tattoo, Wald und Bus', en: 'Black & grey tattoo, forest and van' } },
+        ],
         h1: { de: 'Black & Grey Tattoo', en: 'Black & Grey Tattoos' },
         name: { de: 'Black & Grey', en: 'Black & Grey' },
         metaTitle: { de: 'Black & Grey Tattoo Berlin | Kontraste, die scharf bleiben', en: 'Black & Grey Tattoos Berlin | Contrast That Stays Sharp' },
