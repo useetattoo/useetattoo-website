@@ -6,7 +6,10 @@ import Footer from '../components/Footer.astro';
 import QuickForm from '../components/QuickForm.astro';
 import { site } from '../data/site.js';
 
-const { lang = 'de', title, description, ogImage, noAlternate = false } = Astro.props;
+const { lang = 'de', title, description, ogImage, noAlternate = false, noLoader = false } = Astro.props;
+// noLoader: skip the full-screen USEE splash on this page only (Josef mobile,
+// 2026-11-11: the splash held the first screen for 3-6 s on phones). The splash
+// stays on every other page; the loader script below already tolerates its absence.
 const ck = {
   de: {
     text: 'Wir verwenden Cookies. Technisch notwendige sind immer aktiv. Andere Dienste (z. B. Google Tag Manager, Google Maps) laden wir nur mit deiner Einwilligung. Mehr in unserer',
@@ -162,7 +165,7 @@ const localBusinessSchema = {
   </style>
 </head>
 <body class={lang}>
-  <div id="page-loader"><span class="pl-mark">Usee<span>·</span>Tattoo</span></div>
+  {!noLoader && <div id="page-loader"><span class="pl-mark">Usee<span>·</span>Tattoo</span></div>}
   <div class="backdrop" id="backdrop"></div>
   <Header lang={lang} altPath={altPath} altLabel={alt.toUpperCase()} />
   <main>

@@ -5,6 +5,19 @@ export const artists = [
     portrait: '/images/artists/Josef-Profile.webp',
     folder: 'Josef',
     book: 'https://book.useetattoo.com/josef',
+    // Josef mobile (2026-11-11, niloo CRITICAL): on phones the first screen shows his
+    // work + the booking button instead of a full-screen portrait. Small 400x500
+    // crops of real portfolio pieces (originals in /images/portfolio/Josef/, opened
+    // in the lightbox on tap). Only artists with firstWorks get the mobile block,
+    // so the other artist pages stay unchanged.
+    firstWorks: [
+      { src: '/images/artists/josef-first/josef-work-1.webp', full: '/images/portfolio/Josef/Josef_19.webp', alt: { de: 'Black & Grey Realistic Sleeve, Poseidon', en: 'Black & grey realistic sleeve, Poseidon' } },
+      { src: '/images/artists/josef-first/josef-work-2.webp', full: '/images/portfolio/Josef/IMG_9567.webp', alt: { de: 'Black & Grey Realistic, Statue', en: 'Black & grey realistic, statue' } },
+      { src: '/images/artists/josef-first/josef-work-3.webp', full: '/images/portfolio/Josef/Josef_47.webp', alt: { de: 'Black & Grey Realistic, Statuenkopf', en: 'Black & grey realistic, statue head' } },
+      { src: '/images/artists/josef-first/josef-work-4.webp', full: '/images/portfolio/Josef/Josef_35.webp', alt: { de: 'Black & Grey Realistic, Gesicht und Hände', en: 'Black & grey realistic, face and hands' } },
+      { src: '/images/artists/josef-first/josef-work-5.webp', full: '/images/portfolio/Josef/Josef_49.webp', alt: { de: 'Black & Grey Realistic, Totenkopf', en: 'Black & grey realistic, skull' } },
+      { src: '/images/artists/josef-first/josef-work-6.webp', full: '/images/portfolio/Josef/Josef_15.webp', alt: { de: 'Black & Grey Realistic, Eule', en: 'Black & grey realistic, owl' } },
+    ],
     specialties: { de: 'Realistic · Black & Grey · Portraits · Maori · Japanese', en: 'Realistic · Black & Grey · Portraits · Maori · Japanese' },
     meta: {
       de: 'Josef hat Usee Tattoo mitaufgebaut und prägt bis heute die künstlerische Linie des Studios, spezialisiert auf Realismus in Schwarz-Grau, Porträts und Maori-Kunst.',
