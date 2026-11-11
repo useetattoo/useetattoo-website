@@ -22,6 +22,7 @@ const imgs = gallery(`/images/TattooStyle/${style.folder}`, { exclude: ['Highlig
 const heroImg = style.hero ? `/images/TattooStyle/${style.folder}/${style.hero}` : imgs[0];
 // Don't repeat the hero/cover image inside the gallery grid below it.
 const galleryImgs = imgs.filter((src) => src !== heroImg);
+const firstWorks = style.firstWorks; // mobile-only first screen, see styles.js
 const featured = (style.artists || []).map((s) => artistsBySlug[s]).filter(Boolean);
 // consultBook: the visitor must not pick an artist from the style page (ND-309..312), so every booking button goes to the shared consultation.
 const primaryBook = style.consultBook ? site.booking.consultation : (style.book?.[lang] || featured[0]?.book);
@@ -71,14 +72,24 @@ const faqSchema = faq.length > 0 ? {
 } : null;
 const descParas = style.desc[lang].split('\n\n');
 ---
-<Base lang={lang} title={metaTitle} description={description} ogImage={heroImg}>
-<section class="detail-hero">
+<Base lang={lang} title={metaTitle} description={description} ogImage={heroImg} noLoader={!!firstWorks}>
+<section class={firstWorks ? 'detail-hero s-first' : 'detail-hero'}>
 <div class="wrap">
 <div class="s-feature">
 <div class="txt dh-txt reveal">
 <div class="eyebrow">{L.stylesTitle}</div>
 <h1>{h1}</h1>
 <div class="spec">{style.tagline[lang]}</div>
+{firstWorks && (
+<div class="s-mfirst">
+<div class="s-works">
+{firstWorks.map((w, i) => (
+<a data-lb={w.full}><img src={w.src} alt={w.alt[lang]} width="400" height="500" loading={i < 3 ? 'eager' : 'lazy'} fetchpriority={i === 0 ? 'high' : undefined} decoding="async" /></a>
+))}
+</div>
+<a class="cta primary s-mbook" id="sMBook" href={featured[0]?.book || primaryBook} target="_blank" rel="noopener">{L.bookNow}</a>
+</div>
+)}
 {descParas.map((para) => <p>{para}</p>)}
 {featured.length === 0 && primaryBook && (<p style="margin-top:24px"><a class="cta primary" style="background:var(--ink);color:var(--paper)" href={primaryBook} target="_blank" rel="noopener">{L.bookNow}</a></p>)}{featured.map((a) => (
 <div class="s-artist-card">
@@ -154,6 +165,46 @@ const descParas = style.desc[lang].split('\n\n');
 )}
 {lang === 'de' && (
 <p class="all-styles-link" style="padding:0 0 40px;text-align:center"><a href="/de/styles/">Alle Stile</a></p>
+)}
+{firstWorks && (
+<>
+<a class="s-sticky" id="sSticky" href={featured[0]?.book || primaryBook} target="_blank" rel="noopener" aria-hidden="true" tabindex="-1">{L.bookNow}</a>
+<style is:global>
+/* Mobile first screen for styles with firstWorks (same pattern as the Josef page).
+   Desktop (>960px) is untouched: block and sticky exist only below 960px. */
+.s-mfirst,.s-sticky{display:none}
+@media(max-width:960px){
+  .s-first{padding-top:84px}
+  .s-first .dh-txt.reveal{opacity:1;transform:none}
+  .s-first .dh-txt .eyebrow{margin-bottom:10px}
+  .s-first .dh-txt h1{margin-bottom:8px}
+  .s-first .dh-txt .spec{margin-bottom:16px}
+  .s-mfirst{display:block;margin-bottom:28px}
+  .s-works{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+  .s-works a{display:block;cursor:zoom-in;background:#e3ddd1}
+  .s-works img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover}
+  .s-mfirst .cta.s-mbook{display:block;width:100%;text-align:center;margin-top:14px;background:var(--ink);color:var(--paper)}
+  .s-sticky{display:block;position:fixed;left:14px;right:76px;bottom:14px;z-index:79;height:48px;line-height:48px;text-align:center;
+    background:var(--ink);color:var(--paper);font-family:'Inter',sans-serif;font-size:12.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+    text-decoration:none;box-shadow:0 6px 24px rgba(0,0,0,.25);transform:translateY(160%);transition:transform .35s cubic-bezier(.22,1,.36,1)}
+  .s-sticky.on{transform:none}
+}
+</style>
+<script is:inline>
+(function(){
+  // Sticky booking button on phones: only after the in-page button scrolled away,
+  // never while the cookie banner is open, left of the call/WhatsApp buttons.
+  try{
+    var st=document.getElementById('sSticky'),btn=document.getElementById('sMBook'),ck=document.getElementById('cookieBanner');
+    if(!st||!btn) return;
+    var past=false;
+    var upd=function(){ var on=past&&!(ck&&!ck.hidden); st.classList.toggle('on',on); st.setAttribute('aria-hidden',on?'false':'true'); st.tabIndex=on?0:-1; };
+    new IntersectionObserver(function(es){ es.forEach(function(e){ past=!e.isIntersecting&&e.boundingClientRect.top<0; upd(); }); }).observe(btn);
+    if(ck) new MutationObserver(upd).observe(ck,{attributes:true,attributeFilter:['hidden']});
+  }catch(e){}
+})();
+</script>
+</>
 )}
 {faqSchema && (
 <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
