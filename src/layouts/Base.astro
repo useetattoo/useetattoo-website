@@ -6,7 +6,10 @@ import Footer from '../components/Footer.astro';
 import QuickForm from '../components/QuickForm.astro';
 import { site } from '../data/site.js';
 
-const { lang = 'de', title, description, ogImage, noAlternate = false, noLoader = false } = Astro.props;
+const { lang = 'de', title, description, ogImage, noAlternate = false, noLoader = false, alternates = null } = Astro.props;
+// alternates: { de: '/de/…/', en: '/en/…/' } for pages whose slug differs per language
+// (Tattoo Journal, ND-377). Overrides the default "swap the /de|/en prefix" pairing
+// for hreflang and the visible DE/EN switch. Paths must be canonical (trailing slash).
 // noLoader: skip the full-screen USEE splash on this page only (Josef mobile,
 // 2026-11-11: the splash held the first screen for 3-6 s on phones). The splash
 // stays on every other page; the loader script below already tolerates its absence.
@@ -32,13 +35,14 @@ const selfPath = pathname;
 // The visible DE/EN switch must point at the canonical, slashed URL.
 // pathname has its trailing slash stripped above, so /en would 308 to /en/.
 const altRaw = pathname.replace(new RegExp(`^/${lang}`), `/${alt}`);
-const altPath = altRaw === '/' ? '/' : altRaw + '/';
+const altPath = alternates ? alternates[alt] : (altRaw === '/' ? '/' : altRaw + '/');
 const canonical = site.domain + selfPath + (selfPath === '/' ? '' : '/');
 // hreflang must name the canonical, non-redirecting URL. selfPath has its
 // trailing slash stripped, so /de and /en would 301 to /de/ and /en/ — and
 // Google discards hreflang entries that point at a redirect, which silently
 // unpaired the German and English versions of every page.
 const hrefLangPath = (target) => {
+  if (alternates) return alternates[target];
   const p = selfPath.replace(new RegExp(`^/${lang}`), `/${target}`);
   return p === '/' ? '/' : p + '/';
 };
