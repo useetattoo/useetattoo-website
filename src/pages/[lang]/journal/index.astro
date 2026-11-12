@@ -10,10 +10,10 @@ export function getStaticPaths() {
 }
 const { lang } = Astro.params;
 const ui = {
-  de: { title: 'Journal: Tattoo-Nachsorge, Second-Skin und Heilung | Usee Tattoo Berlin', h1: 'Journal', read: 'Lesezeit' },
-  en: { title: 'Journal: Tattoo Aftercare, Second Skin and Healing | Usee Tattoo Berlin', h1: 'Journal', read: 'Reading time' },
+  de: { title: 'Tattoo Journal | Usee Tattoo Berlin', h1: 'Journal', read: 'Lesezeit' },
+  en: { title: 'Tattoo Journal | Usee Tattoo Berlin', h1: 'Journal', read: 'Reading time' },
 }[lang];
-const description = tattooJournal.map((a) => a.h1[lang]).join(' · ');
+const description = tattooJournal.map((a) => a.label[lang]).join(' · ') + ' — Usee Tattoo, Berlin-Charlottenburg.';
 ---
 <Base lang={lang} title={ui.title} description={description}>
   <section class="jx">

@@ -4,7 +4,7 @@
 import Base from '../../../layouts/Base.astro';
 import { langs } from '../../../data/i18n.js';
 import { site } from '../../../data/site.js';
-import { tattooJournal, tattooJournalById, tattooArticlePath, HEALED_PAGE_LIVE } from '../../../data/tattooJournal.js';
+import { tattooJournal, tattooJournalById, tattooArticlePath, HEALED_PAGE_LIVE, KLAERUNG_OPEN } from '../../../data/tattooJournal.js';
 
 export function getStaticPaths() {
   const paths = [];
@@ -17,7 +17,7 @@ export function getStaticPaths() {
 }
 const { lang } = Astro.params;
 const { article } = Astro.props;
-const others = tattooJournal.filter((a) => a.id !== article.id);
+const others = tattooJournal.filter((a) => a.id !== article.id && a.series === article.series);
 const alternates = { de: tattooArticlePath(article, 'de'), en: tattooArticlePath(article, 'en') };
 
 const ui = {
@@ -27,8 +27,15 @@ const ui = {
 
 const esc = (s) => s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 // [[a2|anchor]] -> link to that article in the same language
-const rich = (s) => esc(s).replace(/\[\[(a\d)\|([^\]]+)\]\]/g, (_, id, text) =>
-  `<a class="jn-inline" href="${tattooArticlePath(tattooJournalById[id], lang)}">${text}</a>`);
+const rich = (s) => esc(s)
+  .replace(/\[\[([^|\]]+)\|([^\]]+)\]\]/g, (_, to, text) =>
+    `<a class="jn-inline" href="${to.startsWith('/') ? to : tattooArticlePath(tattooJournalById[to], lang)}">${text}</a>`)
+  .replace(/\*\*([^*]+)\*\*/g, '<strong>$1</strong>');
+
+// Proof line for the price article: rating and count only from site.js, never typed.
+const proof = lang === 'de'
+  ? `${site.reviews.rating.de} ★ aus ${site.reviews.count} ${site.reviews.de} · Neue Kantstraße 6, Charlottenburg · seit 2020`
+  : `${site.reviews.rating.en} ★ from ${site.reviews.count} ${site.reviews.en} · Neue Kantstraße 6, Charlottenburg · since 2020`;
 
 const faqSchema = {
   '@context': 'https://schema.org',
@@ -36,13 +43,14 @@ const faqSchema = {
   mainEntity: article.faq[lang].map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
 };
 ---
-<Base lang={lang} title={article.metaTitle[lang]} description={article.metaDesc[lang]} alternates={alternates}>
+<Base lang={lang} title={article.metaTitle[lang]} description={article.metaDesc[lang]} alternates={alternates} ogImage={article.hero}>
   <article class="jn">
     <div class="wrap jn-wrap">
       <a class="link-underline jn-crumb" href={`/${lang}/journal/`}>&larr; {ui.crumb}</a>
       <div class="jn-tag reveal">{article.label[lang]}</div>
       <h1 class="jn-title reveal">{article.h1[lang]}</h1>
       <div class="jn-meta reveal">{ui.read}: {article.readTime[lang]}</div>
+      {article.hero && <img class="jn-hero" src={article.hero} alt="" width="768" height="1024" loading="eager" />}
 
       <div class="jn-body">
         {article.body[lang].map((blk) => (
@@ -50,6 +58,7 @@ const faqSchema = {
             {blk.h && <h2>{blk.h}</h2>}
             {blk.c.map((item) =>
               typeof item === 'string' ? <p set:html={rich(item)} /> :
+              item.klaerung ? (KLAERUNG_OPEN && <p class="jn-klaerung">[{item.klaerung}]</p>) :
               item.ul ? <ul>{item.ul.map((li) => <li set:html={rich(li)} />)}</ul> :
               <ol>{item.ol.map((li) => <li set:html={rich(li)} />)}</ol>
             )}
@@ -62,8 +71,8 @@ const faqSchema = {
       )}
 
       <div class="jn-cta reveal">
-        <a class="cta primary" style="background:var(--ink);color:var(--paper)" href={`/${lang}/consultation/`}>{ui.cta}</a>
-        <p class="jn-wa">{ui.waPre}<a href={site.whatsapp} target="_blank" rel="noopener">{ui.wa}</a></p>
+        <a class="cta primary" style="background:var(--ink);color:var(--paper)" href={`/${lang}/consultation/`}>{article.cta ? article.cta[lang] : ui.cta}</a>
+        {!article.noWhatsApp && <p class="jn-wa">{ui.waPre}<a href={site.whatsapp} target="_blank" rel="noopener">{ui.wa}</a></p>}
       </div>
 
       <section class="jn-faq reveal">
@@ -74,11 +83,12 @@ const faqSchema = {
             <p>{a}</p>
           </details>
         ))}
+        {KLAERUNG_OPEN && article.faqKlaerung && <p class="jn-klaerung">[{article.faqKlaerung[lang]}]</p>}
       </section>
 
-      <p class="jn-signoff">{ui.signoff}</p>
+      <p class="jn-signoff">{article.proofLine ? proof : ui.signoff}</p>
 
-      <div class="jn-more reveal">
+      {(others.length > 0 || article.extraLinks.length > 0) && <div class="jn-more reveal">
         <span class="jn-more-h">{ui.more}</span>
         <div class="jn-more-grid">
           {others.map((a) => (
@@ -93,7 +103,7 @@ const faqSchema = {
             </a>
           ))}
         </div>
-      </div>
+      </div>}
     </div>
   </article>
   <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
@@ -112,6 +122,8 @@ const faqSchema = {
     .jn-block li{color:var(--ink-soft);font-size:16px;line-height:1.7;margin-bottom:8px}
     .jn-block :global(.jn-inline){color:var(--bronze-dk);text-decoration:underline;text-underline-offset:2px;font-style:italic}
     .jn-healed{margin:0 0 30px}
+    .jn-hero{display:block;width:100%;height:auto;max-height:460px;object-fit:cover;margin:0 0 34px}
+    .jn-klaerung{background:#fff4c2;color:#5a4500 !important;border-left:3px solid #d9a400;padding:10px 14px;font-size:14px !important}
     .jn-cta{border:1px solid var(--line);background:var(--paper-2);padding:38px 34px;text-align:center;margin:50px 0}
     .jn-wa{color:var(--ink-soft);font-size:15px;line-height:1.7;margin:20px 0 0}
     .jn-wa a{color:var(--bronze-dk);text-decoration:underline;text-underline-offset:2px}

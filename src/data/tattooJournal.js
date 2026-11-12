@@ -7,16 +7,192 @@
 // slug.de and slug.en and the pages pass explicit alternates to Base.
 //
 // Body format: array of sections { h?, c: [ 'paragraph' | { ul: [] } | { ol: [] } ] }.
-// Inline links inside a paragraph: [[a1|anchor text]] / [[a2|…]] / [[a3|…]] point at
-// the other article in the same language.
+// Inline links inside a paragraph: [[a1|anchor text]] points at another article in the
+// same language; [[/de/walk-in/|anchor]] at a site path. **x** = bold lead-in.
+// { klaerung: '…' } = open question for niloo, rendered in the PREVIEW ONLY: it must be
+// answered or deleted before merge (KLAERUNG_OPEN below then becomes false).
 //
 // Links to /de/verheilte-tattoos/ and /en/healed-tattoos/ stay INACTIVE until that
 // page is live (v2.3 "Technische Punkte"): flip HEALED_PAGE_LIVE then.
 export const HEALED_PAGE_LIVE = false;
+export const KLAERUNG_OPEN = true;
 
 export const tattooJournal = [
   {
+    // Calendar article 1 (ND-380), SEO Content v1 12.11.2026. The two [KLÄRUNG] items
+    // are shown in the PREVIEW ONLY (klaerung blocks); before merge they are either
+    // filled with niloo's answer or deleted (the text works without them).
+    id: 'p1',
+    series: 'price',
+    slug: { de: 'was-kostet-ein-tattoo', en: 'tattoo-cost-berlin' },
+    metaTitle: {
+      de: 'Was kostet ein Tattoo in Berlin? So entsteht der Festpreis',
+      en: 'How Much Does a Tattoo Cost in Berlin? The Fixed Price',
+    },
+    metaDesc: {
+      de: 'Stundensatz, Mindestpreis, Aufpreis am Tag selbst? Wie der Preis eines Tattoos entsteht, was ihn bestimmt und warum er bei uns vor der ersten Linie steht.',
+      en: 'Hourly rate, minimum charge, extras on the day? How a tattoo price is built, what drives it, and why ours is fixed before the first line is drawn.',
+    },
+    label: { de: 'Preis', en: 'Price' },
+    h1: {
+      de: 'Was kostet ein Tattoo? Die Antwort steht vor der ersten Linie.',
+      en: 'What does a tattoo cost? The answer comes before the first line.',
+    },
+    readTime: { de: '6–7 Min.', en: '6–7 min' },
+    hero: '/images/experience/Tattoo_Experience_2.webp',
+    cta: { de: 'Beratung buchen', en: 'Book a consultation' },
+    noWhatsApp: true,
+    proofLine: true,
+    extraLinks: [],
+    body: {
+      de: [
+        { h: '„Was kostet das am Ende wirklich?“', c: [
+          'Das ist die Frage hinter fast jeder Preisanfrage. Nicht: Was kostet ein Tattoo. Sondern: Was kostet es, wenn die Sitzung länger dauert als geplant. Wenn am Tag selbst etwas dazukommt. Wenn das günstige Angebot sich als Anfang einer Rechnung herausstellt.',
+          'Bei uns hat diese Frage eine feste Antwort. Der Preis steht, bevor die Nadel ansetzt. Am Tag selbst kommt nichts dazu.',
+        ] },
+        { h: 'Warum es keine Preisliste gibt', c: [
+          'Ein Tattoo ist kein Produkt mit Etikett. Zwei Motive in derselben Größe können sehr unterschiedlich viel Arbeit sein. Eine Linie aus drei Strichen und ein Porträt mit Hautstruktur füllen dieselbe Fläche. Der Aufwand liegt Welten auseinander.',
+          'Deshalb gibt es für größere Motive keine Preisliste, sondern einen Festpreis. Er wird in der Beratung festgelegt, zusammen mit dem Entwurf. Bei Projekten über mehrere Termine mit Sitzungsplan.',
+        ] },
+        { h: 'Was den Preis bestimmt', c: [
+          'Vier Dinge, und nur diese:',
+          { ul: [
+            '**Größe.** Mehr Fläche heißt mehr Zeit an der Haut.',
+            '**Detailgrad.** Feine Übergänge, Hautstruktur, Lichtkanten in Realism oder Micro Realism brauchen mehr Durchgänge als klare Linien.',
+            '**Körperstelle.** Manche Stellen lassen sich nur langsam stechen: Rippen, Ellenbogen, Knöchel, Hände. Die Haut dort verlangt eine andere Arbeitsweise.',
+            '**Anzahl der Sitzungen.** Ein Sleeve oder ein großes Rückenstück wird über mehrere Termine aufgebaut. Der Sitzungsplan steht vorher fest.',
+          ] },
+          'Was den Preis nicht bestimmt: wie lange du am Tag überlegst, ob alles richtig sitzt. Den Sitz des Stencils gibst du frei, bevor die erste Linie gezogen wird. Diese Zeit gehört zur Arbeit.',
+        ] },
+        { h: 'Stundensatz oder Festpreis', c: [
+          'Viele Studios rechnen nach Stunden. Das klingt transparent. Für dich heißt es: Der Endpreis ist offen, bis die Maschine ausgeht. Jede Pause, jede Korrektur, jede langsame Stelle verschiebt ihn.',
+          'Ein Festpreis legt dieses Risiko dorthin, wo es hingehört. Zum Artist, der den Aufwand vorher einschätzen kann. Nicht zu dir.',
+        ] },
+        { h: 'Was das günstige Angebot oft ist', c: [
+          'Ein niedriger Preis am Telefon, ohne Foto, ohne Gespräch, ist meist kein Preis. Er ist eine Schätzung für ein Motiv, das noch niemand gesehen hat.',
+          'Bei uns gibt es diese Zahl nicht. Erst das Gespräch, dann der Entwurf, dann der Preis. Ein Preis ohne Entwurf hätte keine Grundlage.',
+        ] },
+        { h: 'Kleine Motive: ab 100 €', c: [
+          'Kleinere Motive stechen wir auch als Walk-in, Montag bis Samstag von 11 bis 19 Uhr, je nach Auslastung des Tages. Sie beginnen bei 100 €. Der genaue Preis richtet sich nach Größe und Detailgrad und steht fest, bevor gestochen wird.',
+          'Begonnen wird nur, was in derselben Sitzung fertig wird. Gestochen wird nur von Resident-Artists. → [[/de/walk-in/|Walk-in Tattoo Berlin]]',
+        ] },
+        { h: 'Was die Beratung kostet', c: [
+          'Nichts. Ein Entwurf ohne Gespräch hat keine Grundlage. Deshalb steht das Gespräch am Anfang und nicht auf der Rechnung.',
+          'Die Beratung dauert 30 bis 120 Minuten, im Studio in Charlottenburg oder per Video. Du gehst mit einer Live-Skizze, einem Preisrahmen und einer geschätzten Zahl an Sitzungen. → [[/de/consultation/|Tattoo-Beratung]]',
+        ] },
+        { h: 'Die Anzahlung', c: [
+          'Bezahlt wird ab dem Tattoo-Termin, nicht ab dem Gespräch. Buchst du einen Termin, sichert ihn eine Anzahlung. Danach arbeitet dein Artist den finalen Entwurf aus, und diese Zeit ist für dich reserviert.',
+          { ul: [
+            '**Du kommst:** Die volle Anzahlung wird vom Endpreis abgezogen.',
+            '**Du verschiebst:** Sie bleibt auf deinen neuen Termin gutgeschrieben.',
+            '**Du erscheinst ohne Absage nicht:** Sie verfällt, weil die Arbeit am Entwurf schon getan ist.',
+          ] },
+          { klaerung: 'KLÄRUNG niloo — Frage 2: Höhe der Anzahlung nennen oder nicht?' },
+        ] },
+        { h: 'Was nach dem Stechen im Preis liegt', c: [
+          'Jede Haut nimmt Farbe anders an. Das zeigt sich erst nach der Heilung. Deshalb sehen wir uns das Motiv nach der Abheilung gemeinsam an. Wo die Farbe nicht gleichmäßig angenommen wurde, wird nachgestochen. Das gehört zur Arbeit am Motiv, ohne Aufpreis.',
+          'Die Pflegeanleitung bekommst du, bevor du das Studio verlässt. → [[a1|Tattoo-Nachsorge]]',
+        ] },
+        { h: 'Wenn die Idee über dem Budget liegt', c: [
+          'Das ist ein normaler Teil des Gesprächs. Wir schauen, was sich anpassen lässt: Größe, Detail, Anzahl der Sitzungen. Ohne das Stück zu kompromittieren. Und wenn ein Motiv in deiner Wunschgröße nicht lesbar bliebe, sagen wir das, bevor es auf der Haut ist.',
+        ] },
+        { h: 'Der Ablauf, kurz', c: [
+          { ol: [
+            'Idee schicken — Foto, Referenz oder nur ein Gefühl.',
+            'Beratung — Stelle, Größe, Stil, Live-Skizze.',
+            'Entwurf und Festpreis — bevor du einen Termin bestätigst.',
+            'Termin — Stencil auf der Haut, Freigabe, dann die erste Linie.',
+            'Nachkontrolle nach der Heilung — und wenn nötig Nachstechen.',
+          ] },
+        ] },
+      ],
+      en: [
+        { h: '“What will it actually cost in the end?”', c: [
+          'That is the question behind almost every price enquiry. Not: what does a tattoo cost. But: what does it cost if the session runs long. If something is added on the day. If the cheap quote turns out to be the start of a bill.',
+          'Here that question has a fixed answer. The price is set before the needle touches skin. Nothing is added on the day.',
+        ] },
+        { h: 'Why there is no price list', c: [
+          'A tattoo is not a product with a tag. Two designs of the same size can be very different amounts of work. Three clean lines and a portrait with skin texture cover the same area. The effort is worlds apart.',
+          'That is why larger pieces get a fixed price instead of a price list. It is set in the consultation, together with the design. For projects across several sessions, with a session plan.',
+        ] },
+        { h: 'What sets the price', c: [
+          'Four things, and only these:',
+          { ul: [
+            '**Size.** More area means more time on the skin.',
+            '**Detail.** Soft transitions, skin texture and highlights in realism or micro realism take more passes than clean lines.',
+            '**Placement.** Some areas can only be tattooed slowly: ribs, elbows, ankles, hands. The skin there asks for a different way of working.',
+            '**Number of sessions.** A sleeve or a large back piece is built across several appointments. The session plan is set beforehand.',
+          ] },
+          'What does not set the price: how long you take on the day to check that everything sits right. You approve the stencil placement before the first line is drawn. That time is part of the work.',
+        ] },
+        { h: 'Hourly rate or fixed price', c: [
+          'Many studios charge by the hour. It sounds transparent. For you it means the final price stays open until the machine stops. Every break, every correction, every slow area moves it.',
+          'A fixed price puts that risk where it belongs. With the artist, who can judge the effort in advance. Not with you.',
+        ] },
+        { h: 'What the cheap quote usually is', c: [
+          'A low number on the phone, with no photo and no conversation, is rarely a price. It is an estimate for a design nobody has seen yet.',
+          "We don't give that number. First the conversation, then the design, then the price. A price without a design would have nothing to stand on.",
+        ] },
+        { h: 'Small pieces: from €100', c: [
+          'Smaller pieces are also available as walk-ins, Monday to Saturday, 11:00 to 19:00, depending on the day. They start at €100. The exact price depends on size and detail and is set before we start.',
+          'We only begin what can be finished in the same session. Walk-ins are tattooed by resident artists only. → [[/en/walk-in/|Walk-in tattoo Berlin]]',
+        ] },
+        { h: 'What the consultation costs', c: [
+          'Nothing. A design without a conversation has no foundation. That is why the conversation comes first, not on the invoice.',
+          'It takes 30 to 120 minutes, at the studio in Charlottenburg or by video. You leave with a live sketch, a price range and an estimated number of sessions. → [[/en/consultation/|Tattoo consultation]]',
+        ] },
+        { h: 'The deposit', c: [
+          'Payment starts with the tattoo appointment, not with the conversation. When you book a session, a deposit secures it. Your artist then works out the final design, and that time is reserved for you.',
+          { ul: [
+            '**You show up:** the full deposit comes off your final price.',
+            '**You reschedule:** it stays credited to your new date.',
+            "**You don't show up without cancelling:** it is forfeited, because the design work is already done.",
+          ] },
+          { klaerung: 'KLÄRUNG niloo — question 2: state the deposit amount or not?' },
+        ] },
+        { h: 'What is included after the session', c: [
+          "Every skin takes ink differently. That only shows after healing. So we look at the piece together once it has healed. Where the ink didn't settle evenly, we touch it up. It is part of the work on the piece, at no extra cost.",
+          'You get the aftercare instructions before you leave the studio. → [[a1|Tattoo aftercare]]',
+        ] },
+        { h: 'If the idea is above your budget', c: [
+          'That is a normal part of the conversation. We look at what can be adjusted: size, detail, number of sessions. Without compromising the piece. And if a design would not stay readable at the size you want, we tell you before it is on your skin.',
+        ] },
+        { h: 'The process, briefly', c: [
+          { ol: [
+            'Send your idea — a photo, a reference or just a feeling.',
+            'Consultation — placement, size, style, live sketch.',
+            'Design and fixed price — before you confirm an appointment.',
+            'Appointment — stencil on the skin, your approval, then the first line.',
+            'Check after healing — and a touch-up if it needs one.',
+          ] },
+        ] },
+      ],
+    },
+    faqKlaerung: { de: 'KLÄRUNG niloo — Frage 3 (FAQ Sleeve): Festpreis für das ganze Projekt oder pro Sitzung?', en: 'KLÄRUNG niloo — question 3 (FAQ sleeve): fixed price for the whole project or per session?' },
+    faq: {
+      de: [
+        ['Was kostet ein kleines Tattoo?', 'Kleine Walk-in-Motive beginnen bei 100 €. Der genaue Preis richtet sich nach Größe und Detailgrad und steht fest, bevor gestochen wird.'],
+        ['Rechnet ihr nach Stunden?', 'Nein. Größere Motive bekommen einen Festpreis, festgelegt in der Beratung zusammen mit dem Entwurf. Dauert die Sitzung länger, ändert sich der Preis nicht.'],
+        ['Kann sich der Preis am Tag des Termins noch ändern?', 'Nein. Der Preis steht, bevor du den Termin bestätigst. Am Tag selbst kommt nichts dazu.'],
+        ['Bekomme ich einen Preis per Nachricht, ohne Beratung?', 'Für Walk-in-Motive bekommst du den Preis im Studio, bevor gestochen wird. Für größere Motive nicht: Ein Preis ohne Entwurf hätte keine Grundlage. Die Beratung kostet nichts und geht auch per Video.'],
+        ['Ist das Nachstechen im Preis enthalten?', 'Ja. Nach der Heilung sehen wir uns das Motiv an. Wo die Farbe nicht gleichmäßig angenommen wurde, wird nachgestochen, ohne Aufpreis.'],
+        ['Was passiert mit der Anzahlung, wenn ich verschieben muss?', 'Sie bleibt vollständig auf deinen neuen Termin gutgeschrieben.'],
+        ['Wie wird ein Sleeve berechnet?', 'Über einen Festpreis mit Sitzungsplan. Wie viele Termine nötig sind, erfährst du in der Beratung.'],
+      ],
+      en: [
+        ['What does a small tattoo cost?', 'Small walk-in pieces start at €100. The exact price depends on size and detail and is set before we start.'],
+        ['Do you charge by the hour?', "No. Larger pieces get a fixed price, set in the consultation together with the design. If the session runs longer, the price doesn't change."],
+        ['Can the price change on the day of the appointment?', 'No. The price is set before you confirm the appointment. Nothing is added on the day.'],
+        ['Can I get a price by message, without a consultation?', 'For walk-in pieces, you get the price at the studio before we start. For larger pieces, no: a price without a design would have nothing to stand on. The consultation costs nothing and also works by video.'],
+        ['Is the touch-up included?', "Yes. Once it has healed, we look at the piece. Where the ink didn't settle evenly, we touch it up, at no extra cost."],
+        ['What happens to my deposit if I need to reschedule?', 'It stays fully credited to your new date.'],
+        ['How is a sleeve priced?', 'With a fixed price and a session plan. How many sessions it needs, you find out in the consultation.'],
+      ],
+    },
+  },
+  {
     id: 'a1',
+    series: 'aftercare',
     slug: { de: 'tattoo-nachsorge', en: 'tattoo-aftercare' },
     metaTitle: {
       de: 'Tattoo-Nachsorge Berlin: die ersten vier Wochen | Usee Tattoo',
@@ -140,6 +316,7 @@ export const tattooJournal = [
   },
   {
     id: 'a2',
+    series: 'aftercare',
     slug: { de: 'second-skin-tattoo', en: 'second-skin-tattoo' },
     metaTitle: {
       de: 'Second-Skin nach dem Tattoo: was sie macht | Usee Tattoo Berlin',
@@ -279,6 +456,7 @@ export const tattooJournal = [
   },
   {
     id: 'a3',
+    series: 'aftercare',
     slug: { de: 'tattoo-beurteilen', en: 'judging-your-tattoo' },
     metaTitle: {
       de: 'Wann du dein Tattoo beurteilen darfst | Usee Tattoo Berlin',
