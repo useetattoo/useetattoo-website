@@ -35,10 +35,11 @@ const staticPaths = [
   'events/event-activations/',
   'consultation/',
   'erstes-tattoo/',
+  'styles/',
 ];
 
 // German-only pages (EN version is a separate, later approval): listed for `de` only.
-const deOnlyPaths = ['styles/'];
+const deOnlyPaths = [];
 
 function allPaths() {
   return [
