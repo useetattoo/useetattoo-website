@@ -233,16 +233,55 @@ const localBusinessSchema = {
         j.src = 'https://www.googletagmanager.com/gtm.js?id=' + GTM_ID;
         document.head.appendChild(j);
       }
-      // Remove Google Analytics, Google Ads and Meta cookies on this host and the parent domain.
-      function clearTrackingCookies(){
-        var host = location.hostname, doms = ['', host, '.' + host.replace(/^www\./, '')];
+      // ND-390 c (fix 15.11.): remove the cookies of every category that is not (or no
+      // longer) allowed. gtag and the Meta pixel write them on the widest parent domain
+      // they can (e.g. .useetattoo.com, or .useetattoo-website.pages.dev on previews),
+      // so try the bare host and every parent domain down to (but not including) the TLD.
+      var GA_RE = /^(_ga|_gid|_gat)/, ADS_RE = /^(_gcl|_fbp|_fbc)/;
+      function cookieDomains(){
+        var parts = location.hostname.split('.'), out = [''];
+        for (var i = 0; i < parts.length - 1; i++) { var d = parts.slice(i).join('.'); out.push(d, '.' + d); }
+        return out;
+      }
+      function clearTrackingCookies(a, m){
+        var doms = cookieDomains();
         document.cookie.split(';').forEach(function (p) {
           var n = p.split('=')[0].trim();
-          if (/^(_ga|_gid|_gat|_gcl|_fbp|_fbc)/.test(n)) doms.forEach(function (d) {
+          if ((!a && GA_RE.test(n)) || (!m && ADS_RE.test(n))) doms.forEach(function (d) {
             document.cookie = n + '=; Max-Age=0; path=/' + (d ? '; domain=' + d : '');
           });
         });
       }
+      // ND-408 (niloo 14.11.2026): hidden form fields so a lead shows where it came from.
+      // "page" = path the form was sent from, "landing_page" = first path of this visit
+      // (sessionStorage, path only, no query string). Google click IDs (gclid/gbraid/wbraid)
+      // are kept only with Marketing consent; without it they are never stored or sent.
+      var CLICK = ['gclid', 'gbraid', 'wbraid'], SKEY = 'usee-visit';
+      function visit(){ try { return JSON.parse(sessionStorage.getItem(SKEY)) || {}; } catch (e) { return {}; } }
+      function putVisit(v){ try { sessionStorage.setItem(SKEY, JSON.stringify(v)); } catch (e) {} }
+      (function(){ var v = visit(); if (!v.landing) { v.landing = location.pathname; putVisit(v); } })();
+      function keepClickIds(){
+        var q = new URLSearchParams(location.search), v = visit(), hit = false;
+        CLICK.forEach(function (k) { var x = q.get(k); if (x) { v[k] = x.slice(0, 200); hit = true; } });
+        if (hit) putVisit(v);
+      }
+      function dropClickIds(){ var v = visit(); CLICK.forEach(function (k) { delete v[k]; }); putVisit(v); }
+      function setHidden(form, name, val){
+        var el = form.querySelector('input[type="hidden"][name="' + name + '"]');
+        if (!val) { if (el) el.remove(); return; }
+        if (!el) { el = document.createElement('input'); el.type = 'hidden'; el.name = name; form.appendChild(el); }
+        el.value = val;
+      }
+      function stampForm(form){
+        if (!form || !/web3forms\.com/.test(form.getAttribute('action') || '')) return;
+        var v = visit(), c = getC() || {};
+        setHidden(form, 'page', location.pathname);
+        setHidden(form, 'landing_page', v.landing || location.pathname);
+        CLICK.forEach(function (k) { setHidden(form, k, c.m ? v[k] : ''); });
+      }
+      // Capture phase: runs before each form's own submit handler builds its FormData.
+      document.addEventListener('submit', function (e) { stampForm(e.target); }, true);
+      document.querySelectorAll('form').forEach(stampForm);
       function apply(c){
         gtag('consent', 'update', {
           analytics_storage: c.a ? 'granted' : 'denied',
@@ -250,8 +289,10 @@ const localBusinessSchema = {
           ad_user_data: c.m ? 'granted' : 'denied',
           ad_personalization: c.m ? 'granted' : 'denied',
         });
+        clearTrackingCookies(c.a, c.m);
         if (c.a || c.m) loadGtm();
         if (c.maps) loadEmbeds();
+        if (c.m) keepClickIds();
       }
       // ND-27: while the banner is visible it occupies its own space at the bottom.
       function reserve(){ if (banner && !banner.hidden) document.body.style.paddingBottom = banner.offsetHeight + 'px'; }
@@ -277,13 +318,15 @@ const localBusinessSchema = {
         if (withdrawn) {
           // Tags that already ran cannot be unloaded: clear their cookies and reload
           // so the page starts again without them.
-          clearTrackingCookies();
+          clearTrackingCookies(c.a, c.m);
+          if (!c.m) dropClickIds();
           gtag('consent', 'update', { analytics_storage: c.a ? 'granted' : 'denied', ad_storage: c.m ? 'granted' : 'denied', ad_user_data: c.m ? 'granted' : 'denied', ad_personalization: c.m ? 'granted' : 'denied' });
           if (gtmLoaded) { location.reload(); return; }
         }
         apply(c);
       }
       addEventListener('resize', reserve);
+      if (banner && window.ResizeObserver) new ResizeObserver(reserve).observe(banner);
       var cur = getC();
       if (cur) apply(cur); else show(false);
       if (banner) banner.querySelectorAll('[data-ck]').forEach(function (b) {
