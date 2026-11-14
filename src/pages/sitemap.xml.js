@@ -12,6 +12,7 @@ import { langs } from '../data/i18n.js';
 import { styles } from '../data/styles.js';
 import { artists } from '../data/artists.js';
 import { journal } from '../data/journal.js';
+import { tattooJournal } from '../data/tattooJournal.js';
 
 const SITE = 'https://useetattoo.com';
 
@@ -35,6 +36,7 @@ const staticPaths = [
   'events/event-activations/',
   'consultation/',
   'erstes-tattoo/',
+  'journal/',
 ];
 
 // German-only pages (EN version is a separate, later approval): listed for `de` only.
@@ -80,6 +82,21 @@ export function GET() {
     body.push(`<xhtml:link rel="alternate" hreflang="de" href="${url('de', path)}"/>`);
     body.push(`<xhtml:link rel="alternate" hreflang="x-default" href="${url('de', path)}"/>`);
     body.push('</url>');
+  }
+
+  // Tattoo Journal (ND-377): the slug differs per language, so each article is
+  // paired by its own de/en paths rather than by swapping the language prefix.
+  for (const a of tattooJournal) {
+    for (const lang of langs) {
+      body.push('<url>');
+      body.push(`<loc>${url(lang, `journal/${a.slug[lang]}/`)}</loc>`);
+      body.push(`<lastmod>${LASTMOD}</lastmod>`);
+      for (const alt of langs) {
+        body.push(`<xhtml:link rel="alternate" hreflang="${alt}" href="${url(alt, `journal/${a.slug[alt]}/`)}"/>`);
+      }
+      body.push(`<xhtml:link rel="alternate" hreflang="x-default" href="${url('de', `journal/${a.slug.de}/`)}"/>`);
+      body.push('</url>');
+    }
   }
 
   body.push('</urlset>');
