@@ -1,6 +1,6 @@
 ---
-// Tattoo Journal overview (ND-346c). Title/description are PREVIEW PLACEHOLDERS built
-// only from the approved article titles: final wording comes from SEO Content.
+// Tattoo Journal overview (ND-346c). ND-392: simple title until SEO Content sends the
+// final title/meta; the description is built only from the approved article labels.
 import Base from '../../../layouts/Base.astro';
 import { langs } from '../../../data/i18n.js';
 import { tattooJournal, tattooArticlePath } from '../../../data/tattooJournal.js';
@@ -10,8 +10,8 @@ export function getStaticPaths() {
 }
 const { lang } = Astro.params;
 const ui = {
-  de: { title: 'Tattoo Journal | Usee Tattoo Berlin', h1: 'Journal', read: 'Lesezeit' },
-  en: { title: 'Tattoo Journal | Usee Tattoo Berlin', h1: 'Journal', read: 'Reading time' },
+  de: { title: 'Journal | Usee Tattoo Berlin', h1: 'Journal', read: 'Lesezeit' },
+  en: { title: 'Journal | Usee Tattoo Berlin', h1: 'Journal', read: 'Reading time' },
 }[lang];
 const description = tattooJournal.map((a) => a.label[lang]).join(' · ') + ' — Usee Tattoo, Berlin-Charlottenburg.';
 ---

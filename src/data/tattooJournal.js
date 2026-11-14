@@ -17,12 +17,16 @@
 export const HEALED_PAGE_LIVE = false;
 export const KLAERUNG_OPEN = true;
 
-export const tattooJournal = [
+// published: false keeps an article out of every page, the overview and the sitemap.
+// ND-392 (niloo 13.11.2026): the price article p1 waits for SEO Content v2 (ND-391);
+// the three aftercare articles go live first.
+const allTattooJournal = [
   {
     // Calendar article 1 (ND-380), SEO Content v1 12.11.2026. The two [KLÄRUNG] items
     // are shown in the PREVIEW ONLY (klaerung blocks); before merge they are either
     // filled with niloo's answer or deleted (the text works without them).
     id: 'p1',
+    published: false,
     series: 'price',
     slug: { de: 'was-kostet-ein-tattoo', en: 'tattoo-cost-berlin' },
     metaTitle: {
@@ -568,5 +572,6 @@ export const tattooJournal = [
   },
 ];
 
+export const tattooJournal = allTattooJournal.filter((a) => a.published !== false);
 export const tattooJournalById = Object.fromEntries(tattooJournal.map((a) => [a.id, a]));
 export const tattooArticlePath = (a, lang) => `/${lang}/journal/${a.slug[lang]}/`;
