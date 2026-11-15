@@ -152,9 +152,7 @@ const descParas = style.desc[lang].split('\n\n');
 </div>
 </section>
 )}
-{lang === 'de' && (
-<p class="all-styles-link" style="padding:0 0 40px;text-align:center"><a href="/de/styles/">Alle Stile</a></p>
-)}
+<p class="all-styles-link" style="padding:0 0 40px;text-align:center"><a href={`/${lang}/styles/`}>{lang === 'de' ? 'Alle Stile' : 'All styles'}</a></p>
 {faqSchema && (
 <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
 )}

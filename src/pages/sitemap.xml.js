@@ -37,10 +37,11 @@ const staticPaths = [
   'consultation/',
   'erstes-tattoo/',
   'journal/',
+  'styles/',
 ];
 
 // German-only pages (EN version is a separate, later approval): listed for `de` only.
-const deOnlyPaths = ['styles/'];
+const deOnlyPaths = [];
 
 function allPaths() {
   return [
