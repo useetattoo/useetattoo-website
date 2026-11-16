@@ -259,7 +259,10 @@ const localBusinessSchema = {
       var CLICK = ['gclid', 'gbraid', 'wbraid'], SKEY = 'usee-visit';
       function visit(){ try { return JSON.parse(sessionStorage.getItem(SKEY)) || {}; } catch (e) { return {}; } }
       function putVisit(v){ try { sessionStorage.setItem(SKEY, JSON.stringify(v)); } catch (e) {} }
-      (function(){ var v = visit(); if (!v.landing) { v.landing = location.pathname; putVisit(v); } })();
+      // ND-406 (16.11.): landing path is written to the device only after Statistik or
+      // Marketing consent (§ 25 TDDDG; "Notwendig" stores only the cookie choice).
+      function keepLanding(){ var v = visit(); if (!v.landing) { v.landing = location.pathname; putVisit(v); } }
+      function dropVisit(){ try { sessionStorage.removeItem(SKEY); } catch (e) {} }
       function keepClickIds(){
         var q = new URLSearchParams(location.search), v = visit(), hit = false;
         CLICK.forEach(function (k) { var x = q.get(k); if (x) { v[k] = x.slice(0, 200); hit = true; } });
@@ -276,7 +279,7 @@ const localBusinessSchema = {
         if (!form || !/web3forms\.com/.test(form.getAttribute('action') || '')) return;
         var v = visit(), c = getC() || {};
         setHidden(form, 'page', location.pathname);
-        setHidden(form, 'landing_page', v.landing || location.pathname);
+        setHidden(form, 'landing_page', (c.a || c.m) ? (v.landing || location.pathname) : '');
         CLICK.forEach(function (k) { setHidden(form, k, c.m ? v[k] : ''); });
       }
       // Capture phase: runs before each form's own submit handler builds its FormData.
@@ -292,6 +295,7 @@ const localBusinessSchema = {
         clearTrackingCookies(c.a, c.m);
         if (c.a || c.m) loadGtm();
         if (c.maps) loadEmbeds();
+        if (c.a || c.m) keepLanding();
         if (c.m) keepClickIds();
       }
       // ND-27: while the banner is visible it occupies its own space at the bottom.
@@ -319,7 +323,7 @@ const localBusinessSchema = {
           // Tags that already ran cannot be unloaded: clear their cookies and reload
           // so the page starts again without them.
           clearTrackingCookies(c.a, c.m);
-          if (!c.m) dropClickIds();
+          if (!c.a && !c.m) dropVisit(); else if (!c.m) dropClickIds();
           gtag('consent', 'update', { analytics_storage: c.a ? 'granted' : 'denied', ad_storage: c.m ? 'granted' : 'denied', ad_user_data: c.m ? 'granted' : 'denied', ad_personalization: c.m ? 'granted' : 'denied' });
           if (gtmLoaded) { location.reload(); return; }
         }
