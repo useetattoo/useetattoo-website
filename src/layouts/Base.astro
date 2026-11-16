@@ -13,10 +13,12 @@ const { lang = 'de', title, description, ogImage, noAlternate = false, noLoader 
 // noLoader: skip the full-screen USEE splash on this page only (Josef mobile,
 // 2026-11-11: the splash held the first screen for 3-6 s on phones). The splash
 // stays on every other page; the loader script below already tolerates its absence.
-// ND-390 (niloo 13.11.2026): Basic Consent Mode. PREVIEW TEXT — needs niloo's OK.
+// ND-390 (niloo 13.11.2026): Basic Consent Mode. First-layer text = ND-420 version 1
+// (niloo 16.11.2026); the Google Maps sentence lives in the Einstellungen layer.
 const ck = {
   de: {
-    text: 'Technisch notwendige Speicherung ist immer aktiv. Statistik (Google Analytics) und Marketing (Google Ads, Meta Pixel) laden wir über den Google Tag Manager nur, wenn du zustimmst. Google Maps lädt erst mit „Alle akzeptieren“ oder wenn du die Karte selbst lädst. Deine Auswahl kannst du jederzeit unter „Cookie-Einstellungen“ im Footer ändern. Mehr in unserer',
+    text: 'Statistik (Google Analytics) und Marketing (Google Ads, Meta) nutzen wir nur mit deiner Zustimmung – du kannst sie jederzeit im Footer ändern. Mehr in der',
+    mapsNote: 'Google Maps lädt erst mit „Alle akzeptieren“ oder wenn du die Karte selbst lädst.',
     privacy: 'Datenschutzerklärung',
     acceptAll: 'Alle akzeptieren',
     rejectAll: 'Alle ablehnen',
@@ -30,8 +32,9 @@ const ck = {
     marketingNote: 'Google Ads und Meta Pixel (über Google Tag Manager): Messung von Anzeigen.',
   },
   en: {
-    text: 'Technically necessary storage is always active. Statistics (Google Analytics) and marketing (Google Ads, Meta Pixel) are loaded through Google Tag Manager only if you agree. Google Maps loads only with "Accept all" or when you load the map yourself. You can change your choice at any time under "Cookie settings" in the footer. More in our',
-    privacy: 'Privacy Policy',
+    text: 'We use statistics (Google Analytics) and marketing (Google Ads, Meta) only with your consent – you can change it any time in the footer. More in our',
+    mapsNote: 'Google Maps loads only with "Accept all" or when you load the map yourself.',
+    privacy: 'privacy policy',
     acceptAll: 'Accept all',
     rejectAll: 'Reject all',
     settings: 'Settings',
@@ -154,6 +157,7 @@ const localBusinessSchema = {
     .ck-row input{margin-top:3px;width:18px;height:18px;flex-shrink:0;accent-color:var(--bronze)}
     .ck-row b{display:block;color:var(--paper);font-weight:600}
     .ck-prefs .ck-actions{margin-top:12px}
+    .ck-note{margin:0}
     @media(max-width:640px){.ck-inner{padding:16px 18px;gap:14px}.ck-prefs{padding:0 18px 16px}.ck-actions{width:100%;gap:8px}.ck-btn{flex:1 1 100%;min-width:0;padding:12px 10px}
       .cookie-banner{max-height:100vh;overflow-y:auto}}
     /* Footer legal links */
@@ -169,6 +173,13 @@ const localBusinessSchema = {
     .legal-wrap p{font-family:'Inter',sans-serif;font-size:15.5px;line-height:1.8;color:var(--ink-soft);margin:0 0 14px}
     .legal-wrap a{color:var(--bronze-dk);text-decoration:underline;text-underline-offset:2px;word-break:break-word}
     .legal-wrap .lg-block{color:var(--ink)}
+    .legal-wrap .lg-list{font-family:'Inter',sans-serif;font-size:15.5px;line-height:1.8;color:var(--ink-soft);margin:0 0 14px;padding-left:22px}
+    .legal-wrap .lg-list li{margin:0 0 6px}
+    .legal-wrap .lg-list b{color:var(--ink);font-weight:600}
+    .legal-wrap .lg-table{overflow-x:auto;margin:0 0 18px;-webkit-overflow-scrolling:touch}
+    .legal-wrap .lg-table table{width:100%;border-collapse:collapse;font-family:'Inter',sans-serif;font-size:14px;line-height:1.55;color:var(--ink-soft)}
+    .legal-wrap .lg-table th,.legal-wrap .lg-table td{text-align:left;vertical-align:top;padding:9px 12px 9px 0;border-bottom:1px solid var(--line)}
+    .legal-wrap .lg-table th{color:var(--ink);font-weight:600}
     .legal-wrap .lg-lead{font-size:17px;color:var(--ink)}
     .legal-wrap .lg-stand{font-size:13px;color:var(--bronze-dk);margin-bottom:8px}
     .legal-wrap .lg-note{margin-top:34px;padding-top:20px;border-top:1px solid var(--line);font-size:14px}
@@ -203,6 +214,7 @@ const localBusinessSchema = {
       <label class="ck-row"><input type="checkbox" checked disabled /><span><b>{ck.necessary}</b>{ck.necessaryNote}</span></label>
       <label class="ck-row"><input type="checkbox" id="ckAnalytics" /><span><b>{ck.analytics}</b>{ck.analyticsNote}</span></label>
       <label class="ck-row"><input type="checkbox" id="ckMarketing" /><span><b>{ck.marketing}</b>{ck.marketingNote}</span></label>
+      <p class="ck-row ck-note">{ck.mapsNote}</p>
       <div class="ck-actions">
         <button type="button" class="ck-btn" data-ck="save">{ck.save}</button>
       </div>
