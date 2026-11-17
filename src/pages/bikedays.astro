@@ -1,6 +1,7 @@
 ---
 import '../styles/fonts.css';
 import '../styles/global.css';
+import Header from '../components/Header.astro';
 import { site } from '../data/site.js';
 
 // Standalone bilingual (DE + EN) landing page for the BIKE DAYS BERLIN activation.
@@ -35,10 +36,13 @@ const og = site.domain + '/images/bikedays/bikedays-hero.webp';
   <meta name="twitter:card" content="summary_large_image" />
 </head>
 <body>
+{/* Main site header/menu, added so visitors can navigate the rest of the site */}
+<Header lang="de" altPath="/en/" altLabel="EN" />
+<div class="backdrop" id="backdrop"></div>
 <div class="bd-page">
 
   <!-- ================= HERO ================= -->
-  <header class="bd-hero">
+  <div class="bd-hero">
     <img class="bd-hero-img" src="/images/bikedays/bikedays-hero.webp"
          srcset="/images/bikedays/bikedays-hero-sm.webp 1200w, /images/bikedays/bikedays-hero.webp 1920w"
          sizes="100vw" alt="Usee Tattoo Artist bei der Arbeit im Studio" />
@@ -72,7 +76,7 @@ const og = site.domain + '/images/bikedays/bikedays-hero.webp';
         <span>Appointments at the stand: Fri 27 to Sun 29 November, daily 10:00 to 17:00. Bookable online up to 2 hours before. Walk-ins subject to availability.</span>
       </p>
     </div>
-  </header>
+  </div>
 
   <!-- ================= WHAT WE DO ================= -->
   <section class="bd-sec">
@@ -210,6 +214,36 @@ const og = site.domain + '/images/bikedays/bikedays-hero.webp';
 
 <script is:inline>
   document.documentElement.classList.add('bd-js');
+  // Site header: mobile burger menu + submenu accordion + scroll state (ported from Base)
+  (function () {
+    var body = document.body;
+    try {
+      var hd = document.querySelector('header');
+      addEventListener('scroll', function () { if (hd) hd.classList.toggle('scrolled', scrollY > 20); });
+    } catch (e) {}
+    try {
+      var burger = document.getElementById('burger');
+      var backdrop = document.getElementById('backdrop');
+      var closeMenu = function () { body.classList.remove('menu-open'); };
+      if (burger) { burger.addEventListener('click', function (ev) { ev.preventDefault(); body.classList.toggle('menu-open'); }); }
+      if (backdrop) { backdrop.addEventListener('click', closeMenu); }
+      document.querySelectorAll('.has-sub').forEach(function (hs) {
+        var pa = hs.querySelector(':scope > a');
+        if (pa && !pa.getAttribute('href')) {
+          pa.addEventListener('click', function (ev) {
+            ev.preventDefault();
+            if (window.matchMedia('(max-width:960px)').matches) {
+              var wasOpen = hs.classList.contains('open');
+              document.querySelectorAll('.has-sub.open').forEach(function (o) { if (o !== hs) o.classList.remove('open'); });
+              hs.classList.toggle('open', !wasOpen);
+            }
+          });
+        }
+      });
+      addEventListener('hashchange', closeMenu);
+      addEventListener('keydown', function (e) { if (e.key === 'Escape') closeMenu(); });
+    } catch (e) {}
+  })();
   (function () {
     try {
       var io = new IntersectionObserver(function (es) {
@@ -269,6 +303,9 @@ const og = site.domain + '/images/bikedays/bikedays-hero.webp';
   .bd-btn-light:hover{background:#fff}
   .bd-btn-ghostlight{background:transparent;color:var(--paper);border-color:rgba(244,241,234,.45)}
   .bd-btn-ghostlight:hover{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+  /* breathing room between a text block and the button that follows it */
+  .bd-sub + .bd-btn{margin-top:34px}
+  .bd-lead + .bd-btn{margin-top:28px}
 
   .bd-note{font-family:'Inter',sans-serif;font-size:13.5px;line-height:1.6;color:var(--ink-soft);margin-top:18px;max-width:640px}
   .bd-note span{display:block;color:var(--bronze-dk);opacity:.9;margin-top:3px}
