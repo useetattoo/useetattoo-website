@@ -173,14 +173,14 @@ const c = {
   <section class="detail-hero wk-hero">
     <div class="wrap">
       <div class="wk-hero-grid">
-        <div class="dh-txt reveal">
+        <div class="dh-txt wk-txt reveal">
           <div class="eyebrow">{c.eyebrow}</div>
           <h1>{c.h1}</h1>
           <div class="wk-tag">{c.tagline}</div>
           <p class="wk-p">{c.intro}</p>
           <p class="wk-p">{c.intro2}</p>
           <div class="cta-row"><a class="cta primary" style="background:var(--ink);color:var(--paper)" href={bookUrl} target="_blank" rel="noopener">{c.ctaBook}</a></div>
-        <p style="margin-top:14px;font-size:14.5px"><a href="#quick-form" style="color:var(--ink);font-weight:600;text-decoration:underline;text-underline-offset:3px">{L.jumpForm}</a> · <a href={site.whatsapp} target="_blank" rel="noopener" style="color:var(--bronze-dk);text-decoration:underline;text-underline-offset:2px">{L.whatsappCta}</a></p>
+        <p class="wk-links" style="margin-top:14px;font-size:14.5px"><a href="#quick-form" style="color:var(--ink);font-weight:600;text-decoration:underline;text-underline-offset:3px">{L.jumpForm}</a> · <a href={site.whatsapp} target="_blank" rel="noopener" style="color:var(--bronze-dk);text-decoration:underline;text-underline-offset:2px">{L.whatsappCta}</a></p>
         </div>
         <div class="wk-hero-img reveal"><img src="/images/walkin/Hero.webp" alt="Fine line walk-in tattoo, Usee Tattoo Berlin" /></div>
       </div>
@@ -330,6 +330,17 @@ const c = {
     .wk-gallery img{width:100%;height:100%;object-fit:cover;transition:transform 1s var(--ease)}
     .wk-gallery .cell:hover img{transform:scale(1.06)}
     @media(max-width:900px){
+      /* ND-418: on phones the booking button and the form link come right after the
+         H1 (tagline and intro paragraphs follow), so both sit above the cookie banner. */
+      .wk-hero{padding-top:12px}
+      .wk-txt{display:flex;flex-direction:column}
+      .wk-txt .eyebrow{margin-bottom:6px}
+      .wk-txt h1{margin-bottom:14px}
+      .wk-txt .cta-row,.wk-txt .wk-links{order:1}
+      .wk-txt .wk-tag{order:2;margin:0 0 14px}
+      .wk-txt .wk-p{order:3}
+      .wk-txt .cta-row{margin-top:0}
+      .wk-txt .wk-links{margin:12px 0 22px!important}
       .wk-hero-grid{grid-template-columns:1fr;gap:32px}
       .wk-hero-img{max-width:360px}
       .wk-split{grid-template-columns:1fr;gap:32px}
