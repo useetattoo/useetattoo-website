@@ -71,6 +71,44 @@ const homeGallery = [
     <a class="scrolldown" href={`${base}/#studio`}>{L.discover}<span class="line"></span></a>
   </section>
 
+  {/* ===== BIKE DAYS BERLIN promo band (temporary, remove after 29 Nov 2026) ===== */}
+  <section class="bd-home" aria-label="Bike Days Berlin">
+    <img class="bd-home-bg" src="/images/bikedays/bikedays-hero.webp"
+         srcset="/images/bikedays/bikedays-hero-sm.webp 1200w, /images/bikedays/bikedays-hero.webp 1920w"
+         sizes="100vw" alt="" aria-hidden="true" />
+    <div class="bd-home-shade"></div>
+    <div class="wrap bd-home-inner">
+      <img class="bd-home-logo" src="/images/bikedays/bikedays-logo.webp" alt="BIKE DAYS BERLIN" width="120" height="120" />
+      <div class="bd-home-text">
+        <h2 class="bd-home-title">Live-Tattoos auf den BIKE DAYS BERLIN<span>Live tattoos at BIKE DAYS BERLIN</span></h2>
+        <p class="bd-home-sub">27.–29. November 2026, Messe Berlin, Halle 26c, Stand 208. Flash-Tattoos ab 80 €, jetzt Termin sichern.<span>27–29 November 2026, Messe Berlin, Hall 26c, Stand 208. Flash tattoos from €80, book your slot now.</span></p>
+        <div class="bd-home-cta">
+          <a class="bd-home-btn ghost" href="/bikedays">Mehr erfahren / Learn more</a>
+          <a class="bd-home-btn red" href="https://l.fresha.com/11qtmwxhq" target="_blank" rel="noopener">Termin buchen / Book a slot</a>
+        </div>
+      </div>
+    </div>
+  </section>
+  <style>
+    .bd-home{position:relative;overflow:hidden;background:#0e0d0d;padding:64px 0}
+    .bd-home-bg{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 28%;opacity:.5}
+    .bd-home-shade{position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,9,9,.94),rgba(10,9,9,.62) 58%,rgba(10,9,9,.42))}
+    .bd-home-inner{position:relative;z-index:2;display:flex;align-items:center;gap:42px}
+    .bd-home-logo{width:120px;height:120px;border-radius:14px;box-shadow:0 8px 26px rgba(0,0,0,.5);flex-shrink:0}
+    .bd-home-title{font-family:'Cormorant Garamond',serif;font-weight:500;color:var(--paper);font-size:clamp(26px,3.4vw,40px);line-height:1.08}
+    .bd-home-title span{display:block;font-weight:300;font-size:.6em;color:rgba(244,241,234,.72);margin-top:4px}
+    .bd-home-sub{font-family:'Inter',sans-serif;color:rgba(244,241,234,.9);font-size:15.5px;line-height:1.6;margin:14px 0 22px;max-width:640px}
+    .bd-home-sub span{display:block;color:rgba(244,241,234,.6);margin-top:4px}
+    .bd-home-cta{display:flex;gap:14px;flex-wrap:wrap}
+    .bd-home-btn{display:inline-block;font-family:'Inter',sans-serif;font-size:12.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;text-decoration:none;padding:14px 28px;border-radius:3px;border:1px solid transparent;transition:transform .3s var(--ease),background .4s var(--ease),color .4s var(--ease)}
+    .bd-home-btn.red{background:#e60000;color:#fff}
+    .bd-home-btn.red:hover{background:#c90000}
+    .bd-home-btn.ghost{border-color:rgba(244,241,234,.5);color:var(--paper)}
+    .bd-home-btn.ghost:hover{background:var(--paper);color:var(--ink)}
+    .bd-home-btn:hover{transform:translateY(-2px)}
+    @media(max-width:760px){.bd-home-inner{flex-direction:column;align-items:flex-start;gap:24px}.bd-home-logo{width:86px;height:86px}}
+  </style>
+
   <!-- STATEMENT -->
   <section class="statement wrap reveal" id="studio">
     <div class="eyebrow">{L.statementEyebrow}</div>
