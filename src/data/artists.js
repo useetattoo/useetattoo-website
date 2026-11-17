@@ -5,6 +5,26 @@ export const artists = [
     portrait: '/images/artists/Josef-Profile.webp',
     folder: 'Josef',
     book: 'https://book.useetattoo.com/josef',
+    // ND-432 (niloo 16.11, prerequisite 2): on Josef's own page every booking button
+    // opens Fresha with Josef pre-selected (employeeId=3319240), the same link as the
+    // approved Google Ads sitelink (ND-428). Elsewhere `book` stays unchanged.
+    pageBook: 'https://www.fresha.com/a/usee-tattoo-studio-berlin-neue-kantstrasse-6-hrwzrip0/booking?menu=true&pId=1394031&dppub=true&employeeId=3319240',
+    // ND-432 consultation block (DE only). Text = ADS-CRO HANDOFF 30.10, section 6,
+    // lines 1-5 verbatim; line 6 (rating) omitted until niloo supplies a sourced figure.
+    consult: {
+      de: {
+        h: 'Foto-Realismus in Schwarz-Grau. Erst das Gespräch, dann der Entwurf.',
+        intro: 'Das Gespräch kostet nichts. Abgerechnet wird ab dem Tattoo-Termin.',
+        lines: [
+          'Ein Entwurf ohne Gespräch hat keine Grundlage. Deshalb steht das Gespräch am Anfang und nicht auf der Rechnung.',
+          'Vor Ort in Charlottenburg oder per Video, wenn du nicht in Berlin bist.',
+          'Die Skizze entsteht im Gespräch, vor deinen Augen. Nicht später per Mail.',
+          'Am Ende kennst du Preisrahmen und Zahl der Sitzungen.',
+          'Die Anzahlung kommt erst nach dem Entwurf und wird von deinem Endpreis abgezogen.',
+        ],
+        cta: 'Beratung anfragen',
+      },
+    },
     // Josef mobile (2026-11-11, niloo CRITICAL): on phones the first screen shows his
     // work + the booking button instead of a full-screen portrait. Small 400x500
     // crops of real portfolio pieces (originals in /images/portfolio/Josef/, opened

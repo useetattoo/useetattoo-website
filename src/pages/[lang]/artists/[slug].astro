@@ -30,6 +30,8 @@ const title = lang === 'de'
 const description = artist.meta[lang];
 const bio = artist.bio[lang];
 const firstWorks = artist.firstWorks; // mobile-only first screen (Josef), see artists.js
+const book = artist.pageBook || artist.book; // ND-432: Josef -> Fresha with Josef pre-selected
+const consult = artist.consult?.[lang]; // ND-432 consultation block (DE only)
 
 // Person schema. Until now nothing on the site said, in a machine-readable way,
 // that a given artist works here and which styles they actually do, so search
@@ -74,19 +76,31 @@ const breadcrumbSchema = {
         <div class="spec">{artist.specialties[lang]}</div>
         {firstWorks && (
           <div class="dh-mfirst">
+            {/* ND-418: button above the work grid so it stays visible above the cookie banner */}
+            <a class="cta primary dh-mbook" id="dhMBook" href={book} target="_blank" rel="noopener">{L.bookConsult}</a>
             <div class="dh-works">
               {firstWorks.map((w, i) => (
                 <a data-lb={w.full}><img src={w.src} alt={w.alt[lang]} width="400" height="500" loading={i < 3 ? 'eager' : 'lazy'} fetchpriority={i === 0 ? 'high' : undefined} decoding="async" /></a>
               ))}
             </div>
-            <a class="cta primary dh-mbook" id="dhMBook" href={artist.book} target="_blank" rel="noopener">{L.bookConsult}</a>
+          </div>
+        )}
+        {consult && (
+          <div class="dh-consult" id="beratung">
+            <h2>{consult.h}</h2>
+            <p class="dh-consult-intro">{consult.intro}</p>
+            <ul>{consult.lines.map((x) => <li>{x}</li>)}</ul>
+            <div class="dh-consult-cta">
+              <a class="cta primary" style="background:var(--ink);color:var(--paper)" href="#quick-form">{consult.cta}</a>
+              <a class="dh-consult-wa" href={site.whatsapp} target="_blank" rel="noopener">{L.whatsappCta}</a>
+            </div>
           </div>
         )}
         {bio
           ? <p class="bio">{bio}</p>
           : <p class="bio placeholder">{lang === 'de' ? 'Biografie folgt in Kürze.' : 'Biography coming soon.'}</p>}
         <div class="cta-row" style="margin-top:0">
-          <a class="cta primary" style="background:var(--ink);color:var(--paper)" href={artist.book} target="_blank" rel="noopener">{L.bookConsult}</a>
+          <a class="cta primary" style="background:var(--ink);color:var(--paper)" href={book} target="_blank" rel="noopener">{L.bookConsult}</a>
         </div>
         {['josef', 'cali', 'jvd'].includes(artist.slug) && (
           <p style="margin-top:12px;font-size:14px"><a href={`/${lang}/consultation/#ablauf-section`} style="color:var(--bronze-dk);text-decoration:underline;text-underline-offset:2px">&#9432; {L.ablaufCta}</a></p>
@@ -102,7 +116,7 @@ const breadcrumbSchema = {
         <div class="sec-head reveal">
           <span class="idx">{L.portfolio}</span>
           <h2>{artist.name}</h2>
-          <a href={artist.book} target="_blank" rel="noopener">{L.bookConsult}→</a>
+          <a href={book} target="_blank" rel="noopener">{L.bookConsult}→</a>
         </div>
         {freshImgs.length > 0 && (
           <div class="pf-fresh reveal" style={`--fresh-cols:${Math.min(freshImgs.length, 5)}`}>
@@ -122,25 +136,25 @@ const breadcrumbSchema = {
 
   {firstWorks && (
     <>
-      <a class="dh-sticky" id="dhSticky" href={artist.book} target="_blank" rel="noopener" aria-hidden="true" tabindex="-1">{L.bookConsult}</a>
+      <a class="dh-sticky" id="dhSticky" href={book} target="_blank" rel="noopener" aria-hidden="true" tabindex="-1">{L.bookConsult}</a>
       <style is:global>
         /* Josef mobile first screen (2026-11-11). Desktop (>960px) is untouched:
            the block and the sticky button only exist below the 960px breakpoint. */
         .dh-mfirst,.dh-sticky{display:none}
         @media(max-width:960px){
-          .dh-first{padding-top:84px}
+          .dh-first{padding-top:12px}
           .dh-first .dh-grid{gap:32px}
           .dh-first .dh-txt{order:1}
           .dh-first .portrait{order:2}
           .dh-first .dh-txt.reveal,.dh-first .portrait.reveal{opacity:1;transform:none}
-          .dh-first .dh-txt .eyebrow{margin-bottom:10px}
+          .dh-first .dh-txt .eyebrow{margin-bottom:6px}
           .dh-first .dh-txt h1{margin-bottom:8px}
-          .dh-first .dh-txt .spec{margin-bottom:16px}
+          .dh-first .dh-txt .spec{margin-bottom:12px}
           .dh-mfirst{display:block;margin-bottom:28px}
           .dh-works{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
           .dh-works a{display:block;cursor:zoom-in;background:#e3ddd1}
           .dh-works img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover}
-          .dh-mfirst .cta.dh-mbook{display:block;width:100%;text-align:center;margin-top:14px;background:var(--ink);color:var(--paper)}
+          .dh-mfirst .cta.dh-mbook{display:block;width:100%;text-align:center;margin-bottom:14px;background:var(--ink);color:var(--paper)}
           .dh-sticky{display:block;position:fixed;left:14px;right:76px;bottom:14px;z-index:79;height:48px;line-height:48px;text-align:center;
             background:var(--ink);color:var(--paper);font-family:'Inter',sans-serif;font-size:12.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
             text-decoration:none;box-shadow:0 6px 24px rgba(0,0,0,.25);transform:translateY(160%);transition:transform .35s cubic-bezier(.22,1,.36,1)}
@@ -166,6 +180,20 @@ const breadcrumbSchema = {
     </>
   )}
 
+  {consult && (
+    <style>
+      .dh-consult{border:1px solid var(--line);background:var(--paper);padding:26px 24px;margin:0 0 30px}
+      .dh-consult h2{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(24px,3vw,30px);line-height:1.2;margin:0 0 10px}
+      .dh-consult-intro{color:var(--ink);font-weight:600;font-size:15.5px;margin:0 0 14px}
+      .dh-consult ul{list-style:none;margin:0 0 20px;padding:0}
+      .dh-consult li{position:relative;padding:8px 0 8px 22px;color:var(--ink-soft);font-size:15px;line-height:1.6;border-bottom:1px solid rgba(216,210,198,.55)}
+      .dh-consult li:last-child{border-bottom:0}
+      .dh-consult li::before{content:'✓';position:absolute;left:0;top:8px;color:var(--bronze);font-weight:600}
+      .dh-consult-cta{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px}
+      .dh-consult-wa{color:var(--bronze-dk);text-decoration:underline;text-underline-offset:2px;font-size:14.5px}
+      @media(max-width:560px){.dh-consult{padding:22px 18px}.dh-consult-cta .cta{width:100%;text-align:center}}
+    </style>
+  )}
   <script type="application/ld+json" set:html={JSON.stringify(personSchema)} />
   <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
 </Base>
