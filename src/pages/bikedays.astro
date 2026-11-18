@@ -118,17 +118,40 @@ const og = site.domain + '/images/bikedays/bikedays-hero.webp';
     </div>
   </section>
 
-  <!-- ================= FLASH COLLECTION (placeholder) ================= -->
+  <!-- ================= FLASH COLLECTION ================= -->
   <section class="bd-sec">
     <div class="wrap">
       <div class="bd-head bd-rise">
         <div class="bd-eyebrow">Flash · Collection</div>
         <h2 class="bd-h2">Die BIKE DAYS Flash-Kollektion<span>The BIKE DAYS flash collection</span></h2>
+        <p class="bd-flash-intro">
+          Such dir dein Motiv direkt am Stand aus. Tippe auf ein Sheet, um es groß zu sehen.
+          <span>Pick your design right at the stand. Tap a sheet to view it larger.</span>
+        </p>
       </div>
-      <div class="bd-flash bd-rise">
-        <p class="bd-flash-soon">
-          Die Motive zeigen wir hier in Kürze. Komm vorbei und such dir dein Motiv direkt am Stand aus.
-          <span>Designs coming soon. Come by and pick your design right at the stand.</span>
+      <div class="bd-flash-grid bd-rise">
+        <button type="button" class="bd-flash-item" data-lb="/images/bikedays/flash/flash-rider.webp">
+          <img src="/images/bikedays/flash/flash-rider.webp" alt="Rider Flash Sheet, BIKE DAYS Berlin 2026" loading="lazy" width="1400" height="1980" />
+          <span class="bd-flash-cap">Rider Flash</span>
+        </button>
+        <button type="button" class="bd-flash-item" data-lb="/images/bikedays/flash/flash-rideinink.webp">
+          <img src="/images/bikedays/flash/flash-rideinink.webp" alt="Ride in Ink Flash Collection, Usee Tattoo" loading="lazy" width="1400" height="1980" />
+          <span class="bd-flash-cap">Ride in Ink</span>
+        </button>
+        <button type="button" class="bd-flash-item" data-lb="/images/bikedays/flash/flash-traditional.webp">
+          <img src="/images/bikedays/flash/flash-traditional.webp" alt="Old School Rider Flash Sheet, Usee Tattoo" loading="lazy" width="1400" height="1980" />
+          <span class="bd-flash-cap">Old School</span>
+        </button>
+        <button type="button" class="bd-flash-item" data-lb="/images/bikedays/flash/flash-fineline.webp">
+          <img src="/images/bikedays/flash/flash-fineline.webp" alt="Fine Line Classics Flash Sheet, Usee Tattoo Berlin" loading="lazy" width="1400" height="1980" />
+          <span class="bd-flash-cap">Fine Line Classics</span>
+        </button>
+      </div>
+      <div class="bd-ownidea bd-rise">
+        <div class="bd-eyebrow bd-eyebrow-red">Bring deine Idee mit · Bring your idea</div>
+        <p class="bd-ownidea-text">
+          Nicht nur Flashes, wir tätowieren auch deine eigenen Designs.
+          <span>Not only flashes, we also tattoo your own designs.</span>
         </p>
       </div>
     </div>
@@ -207,6 +230,9 @@ const og = site.domain + '/images/bikedays/bikedays-hero.webp';
     </div>
   </footer>
 
+  {/* Lightbox for flash sheets */}
+  <div class="bd-lb" id="bdLb" role="dialog" aria-label="Flash sheet"><img id="bdLbImg" src="" alt="Flash sheet" /></div>
+
 </div>
 
 <script is:inline>
@@ -250,6 +276,18 @@ const og = site.domain + '/images/bikedays/bikedays-hero.webp';
     } catch (e) {
       document.querySelectorAll('.bd-rise').forEach(function (el) { el.classList.add('in'); });
     }
+  })();
+  // Flash-sheet lightbox
+  (function () {
+    var lb = document.getElementById('bdLb');
+    var lbImg = document.getElementById('bdLbImg');
+    if (!lb || !lbImg) return;
+    var closeLb = function () { lb.classList.remove('on'); lbImg.src = ''; };
+    document.querySelectorAll('[data-lb]').forEach(function (el) {
+      el.addEventListener('click', function () { lbImg.src = el.getAttribute('data-lb'); lb.classList.add('on'); });
+    });
+    lb.addEventListener('click', closeLb);
+    addEventListener('keydown', function (e) { if (e.key === 'Escape') closeLb(); });
   })();
 </script>
 
@@ -323,8 +361,22 @@ const og = site.domain + '/images/bikedays/bikedays-hero.webp';
   .bd-price-from{font-family:'Inter',sans-serif;font-size:13px;color:var(--bronze-dk);letter-spacing:.04em}
 
   /* ---------- FLASH PLACEHOLDER ---------- */
-  .bd-flash{border:1px dashed var(--line);background:var(--paper-2);padding:48px 40px;text-align:center}
-  .bd-flash-soon{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:clamp(20px,2.4vw,28px);color:var(--bronze-dk);max-width:720px;margin:0 auto;line-height:1.3}
+  .bd-flash-intro{font-family:'Inter',sans-serif;font-size:15px;line-height:1.7;color:var(--ink-soft);margin-top:16px;max-width:640px}
+  .bd-flash-intro span{display:block;color:var(--bronze-dk);margin-top:3px}
+  .bd-flash-grid{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+  .bd-flash-item{display:block;width:100%;margin:0;padding:0;border:1px solid var(--line);background:var(--white);
+    cursor:zoom-in;overflow:hidden;transition:border-color .4s var(--ease),transform .4s var(--ease),box-shadow .4s var(--ease);font:inherit;color:inherit}
+  .bd-flash-item:hover{border-color:var(--bd-red);box-shadow:0 12px 32px rgba(0,0,0,.09);transform:translateY(-3px)}
+  .bd-flash-item img{width:100%;height:auto;display:block}
+  .bd-flash-cap{display:block;font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;
+    color:var(--ink-soft);padding:14px;text-align:center;border-top:1px solid var(--line)}
+  .bd-ownidea{margin-top:48px;border:1px solid var(--line);border-left:3px solid var(--bd-red);background:var(--paper-2);padding:34px 38px;text-align:center}
+  .bd-ownidea-text{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(22px,2.8vw,32px);line-height:1.3;color:var(--ink);max-width:740px;margin:6px auto 0}
+  .bd-ownidea-text span{display:block;font-family:'Inter',sans-serif;font-size:15px;line-height:1.6;color:var(--ink-soft);margin-top:12px}
+  /* lightbox */
+  .bd-lb{position:fixed;inset:0;z-index:1000;background:rgba(10,9,9,.93);display:none;align-items:center;justify-content:center;padding:28px;cursor:zoom-out}
+  .bd-lb.on{display:flex}
+  .bd-lb img{max-width:100%;max-height:100%;width:auto;height:auto;box-shadow:0 14px 48px rgba(0,0,0,.55)}
   .bd-flash-soon span{display:block;font-style:normal;font-family:'Inter',sans-serif;font-size:14px;letter-spacing:.04em;color:var(--ink-soft);margin-top:8px}
 
   /* ---------- HIGHLIGHT (studio discount) ---------- */
@@ -370,6 +422,7 @@ const og = site.domain + '/images/bikedays/bikedays-hero.webp';
     .bd-logo-bd{height:74px}
     .bd-x{font-size:24px}
     .bd-prices{grid-template-columns:1fr}
+    .bd-flash-grid{grid-template-columns:1fr}
     .bd-sec{padding:64px 0}
     .bd-btn{width:100%;text-align:center}
     .bd-center .bd-btn{width:auto}
