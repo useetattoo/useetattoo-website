@@ -99,7 +99,7 @@ const descParas = style.desc[lang].split('\n\n');
 <a href="#quick-form" style="display:inline-block;border:1px solid var(--ink);padding:11px 20px;margin:12px 4px 0 0;color:var(--ink);font-weight:600;text-decoration:none;letter-spacing:.04em">{L.jumpForm}</a> · <a href={site.whatsapp} target="_blank" rel="noopener" style="color:var(--bronze-dk);text-decoration:underline;text-underline-offset:2px">{L.whatsappCta}</a>
 </p>
 </div>
-<div class="s-img reveal">
+<div class={`s-img reveal${style.heroColor ? ' s-img-color' : ''}`}>
 <img src={heroImg} alt={style.name[lang]} />
 </div>
 </div>
