@@ -43,7 +43,7 @@ const faqSchema = {
   mainEntity: article.faq[lang].map(([q, a]) => ({ '@type': 'Question', name: q, acceptedAnswer: { '@type': 'Answer', text: a } })),
 };
 ---
-<Base lang={lang} title={article.metaTitle[lang]} description={article.metaDesc[lang]} alternates={alternates} ogImage={article.hero}>
+<Base lang={lang} title={article.metaTitle[lang]} description={article.metaDesc[lang]} alternates={alternates} ogImage={article.hero || article.heroImg?.src || article.heroPair?.[0].src}>
   <article class="jn">
     <div class="wrap jn-wrap">
       <a class="link-underline jn-crumb" href={`/${lang}/journal/`}>&larr; {ui.crumb}</a>
@@ -51,6 +51,12 @@ const faqSchema = {
       <h1 class="jn-title reveal">{article.h1[lang]}</h1>
       <div class="jn-meta reveal">{ui.read}: {article.readTime[lang]}</div>
       {article.hero && <img class="jn-hero" src={article.hero} alt="" width="768" height="1024" loading="eager" />}
+      {article.heroImg && <img class="jn-hero jn-hero-wide" src={article.heroImg.src} alt={article.heroImg.alt[lang]} width={article.heroImg.w} height={article.heroImg.h} loading="eager" fetchpriority="high" />}
+      {article.heroPair && (
+        <div class="jn-pair">
+          {article.heroPair.map((im, i) => <img src={im.src} alt={im.alt[lang]} width={im.w} height={im.h} loading="eager" fetchpriority={i === 0 ? 'high' : undefined} />)}
+        </div>
+      )}
 
       <div class="jn-body">
         {article.body[lang].map((blk) => (
@@ -58,6 +64,7 @@ const faqSchema = {
             {blk.h && <h2>{blk.h}</h2>}
             {blk.c.map((item) =>
               typeof item === 'string' ? <p set:html={rich(item)} /> :
+              item.img ? <img class="jn-inline-img" src={item.img.src} alt={item.img.alt[lang]} width={item.img.w} height={item.img.h} loading="lazy" decoding="async" /> :
               item.klaerung ? (KLAERUNG_OPEN && <p class="jn-klaerung">[{item.klaerung}]</p>) :
               item.ul ? <ul>{item.ul.map((li) => <li set:html={rich(li)} />)}</ul> :
               <ol>{item.ol.map((li) => <li set:html={rich(li)} />)}</ol>
@@ -123,6 +130,10 @@ const faqSchema = {
     .jn-block :global(.jn-inline){color:var(--bronze-dk);text-decoration:underline;text-underline-offset:2px;font-style:italic}
     .jn-healed{margin:0 0 30px}
     .jn-hero{display:block;width:100%;height:auto;max-height:460px;object-fit:cover;margin:0 0 34px}
+    .jn-hero-wide{aspect-ratio:16/9;max-height:none}
+    .jn-pair{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:0 0 34px}
+    .jn-pair img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover}
+    .jn-inline-img{display:block;width:100%;max-width:420px;height:auto;aspect-ratio:4/5;object-fit:cover;margin:4px 0 16px}
     .jn-klaerung{background:#fff4c2;color:#5a4500 !important;border-left:3px solid #d9a400;padding:10px 14px;font-size:14px !important}
     .jn-cta{border:1px solid var(--line);background:var(--paper-2);padding:38px 34px;text-align:center;margin:50px 0}
     .jn-wa{color:var(--ink-soft);font-size:15px;line-height:1.7;margin:20px 0 0}
