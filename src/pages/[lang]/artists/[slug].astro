@@ -19,6 +19,10 @@ const { artist } = Astro.props;
 const L = t[lang];
 const base = `/${lang}`;
 const imgs = gallery(`/images/portfolio/${artist.folder}`, { exclude: ['Profile', 'Highlight'] });
+// Newly added work (AAA_ prefix) is shown first, in its own block at the very top,
+// so it sits above the older pieces instead of scattering down the masonry columns.
+const freshImgs = imgs.filter((s) => /AAA_/.test(s));
+const restImgs = imgs.filter((s) => !/AAA_/.test(s));
 
 const title = lang === 'de'
   ? `${artist.name}, Tattoo Artist | UseeTattoo Studio Berlin`
@@ -100,8 +104,15 @@ const breadcrumbSchema = {
           <h2>{artist.name}</h2>
           <a href={artist.book} target="_blank" rel="noopener">{L.bookConsult}→</a>
         </div>
-        <div class="pf-masonry reveal">
-          {imgs.map((src) => (
+        {freshImgs.length > 0 && (
+          <div class="pf-masonry reveal">
+            {freshImgs.map((src) => (
+              <a data-lb={src}><img src={src} alt={`${artist.name}, Usee Tattoo`} loading="lazy" /></a>
+            ))}
+          </div>
+        )}
+        <div class="pf-masonry reveal" style={freshImgs.length > 0 ? 'margin-top:14px' : ''}>
+          {restImgs.map((src) => (
             <a data-lb={src}><img src={src} alt={`${artist.name}, Usee Tattoo`} loading="lazy" /></a>
           ))}
         </div>
