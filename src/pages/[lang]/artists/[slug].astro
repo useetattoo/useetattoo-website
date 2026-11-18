@@ -105,7 +105,7 @@ const breadcrumbSchema = {
           <a href={artist.book} target="_blank" rel="noopener">{L.bookConsult}→</a>
         </div>
         {freshImgs.length > 0 && (
-          <div class="pf-fresh reveal">
+          <div class="pf-fresh reveal" style={`--fresh-cols:${Math.min(freshImgs.length, 5)}`}>
             {freshImgs.map((src) => (
               <a data-lb={src}><img src={src} alt={`${artist.name}, Usee Tattoo`} loading="lazy" /></a>
             ))}
