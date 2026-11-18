@@ -11,12 +11,12 @@ export const artists = [
     // in the lightbox on tap). Only artists with firstWorks get the mobile block,
     // so the other artist pages stay unchanged.
     firstWorks: [
-      { src: '/images/artists/josef-first/josef-work-1.webp', full: '/images/portfolio/Josef/Josef_19.webp', alt: { de: 'Black & Grey Realistic Sleeve, Poseidon', en: 'Black & grey realistic sleeve, Poseidon' } },
-      { src: '/images/artists/josef-first/josef-work-2.webp', full: '/images/portfolio/Josef/IMG_9567.webp', alt: { de: 'Black & Grey Realistic, Statue', en: 'Black & grey realistic, statue' } },
-      { src: '/images/artists/josef-first/josef-work-3.webp', full: '/images/portfolio/Josef/Josef_47.webp', alt: { de: 'Black & Grey Realistic, Statuenkopf', en: 'Black & grey realistic, statue head' } },
-      { src: '/images/artists/josef-first/josef-work-4.webp', full: '/images/portfolio/Josef/Josef_35.webp', alt: { de: 'Black & Grey Realistic, Gesicht und Hände', en: 'Black & grey realistic, face and hands' } },
+      { src: '/images/artists/josef-first/josef-work-1.webp', full: '/images/portfolio/Josef/AAA_Josef_New_1.webp', alt: { de: 'Black & Grey Realistic, griechischer Statuen-Krieger', en: 'Black & grey realistic, Greek statue warrior' } },
+      { src: '/images/artists/josef-first/josef-work-2.webp', full: '/images/portfolio/Josef/AAA_Josef_New_2.webp', alt: { de: 'Black & Grey Realistic, Statue mit Strahlenkranz', en: 'Black & grey realistic, statue with a sunburst halo' } },
+      { src: '/images/artists/josef-first/josef-work-3.webp', full: '/images/portfolio/Josef/AAA_Josef_New_3.webp', alt: { de: 'Black & Grey Realistic, Buddha-Statue', en: 'Black & grey realistic, Buddha statue' } },
+      { src: '/images/artists/josef-first/josef-work-4.webp', full: '/images/portfolio/Josef/AAA_Josef_New_4.webp', alt: { de: 'Black & Grey Realistic, Frauenporträt', en: 'Black & grey realistic, woman portrait' } },
       { src: '/images/artists/josef-first/josef-work-5.webp', full: '/images/portfolio/Josef/Josef_49.webp', alt: { de: 'Black & Grey Realistic, Totenkopf', en: 'Black & grey realistic, skull' } },
-      { src: '/images/artists/josef-first/josef-work-6.webp', full: '/images/portfolio/Josef/Josef_15.webp', alt: { de: 'Black & Grey Realistic, Eule', en: 'Black & grey realistic, owl' } },
+      { src: '/images/artists/josef-first/josef-work-6.webp', full: '/images/portfolio/Josef/AAA_Josef_New_5.webp', alt: { de: 'Black & Grey Realistic, Frauenporträt mit Drache', en: 'Black & grey realistic, woman portrait with a dragon' } },
     ],
     specialties: { de: 'Realistic · Black & Grey · Portraits · Maori · Japanese', en: 'Realistic · Black & Grey · Portraits · Maori · Japanese' },
     meta: {
