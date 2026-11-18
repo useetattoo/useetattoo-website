@@ -105,13 +105,13 @@ const breadcrumbSchema = {
           <a href={artist.book} target="_blank" rel="noopener">{L.bookConsult}→</a>
         </div>
         {freshImgs.length > 0 && (
-          <div class="pf-masonry reveal">
+          <div class="pf-fresh reveal">
             {freshImgs.map((src) => (
               <a data-lb={src}><img src={src} alt={`${artist.name}, Usee Tattoo`} loading="lazy" /></a>
             ))}
           </div>
         )}
-        <div class="pf-masonry reveal" style={freshImgs.length > 0 ? 'margin-top:14px' : ''}>
+        <div class="pf-masonry reveal">
           {restImgs.map((src) => (
             <a data-lb={src}><img src={src} alt={`${artist.name}, Usee Tattoo`} loading="lazy" /></a>
           ))}

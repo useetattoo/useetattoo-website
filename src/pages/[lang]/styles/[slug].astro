@@ -115,13 +115,13 @@ const descParas = style.desc[lang].split('\n\n');
 {primaryBook && <a href={primaryBook} target="_blank" rel="noopener">{L.bookNow} →</a>}
 </div>
 {freshImgs.length > 0 && (
-<div class="pf-masonry reveal">
+<div class="pf-fresh reveal">
 {freshImgs.map((src) => (
 <a data-lb={src}><img src={src} alt={`${style.name[lang]}, Usee Tattoo`} loading="lazy" /></a>
 ))}
 </div>
 )}
-<div class="pf-masonry reveal" style={freshImgs.length > 0 ? 'margin-top:14px' : ''}>
+<div class="pf-masonry reveal">
 {restImgs.map((src) => (
 <a data-lb={src}><img src={src} alt={`${style.name[lang]}, Usee Tattoo`} loading="lazy" /></a>
 ))}
