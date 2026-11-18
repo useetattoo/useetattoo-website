@@ -17,6 +17,12 @@
 export const HEALED_PAGE_LIVE = false;
 export const KLAERUNG_OPEN = true;
 
+// ND-425 (niloo 16.11.2026, AS-135): A1 fresh / A2 healed, same piece, client consent given.
+// Alt text style-first, no artist name (brand rule). Second-Skin (a2) stays without a photo.
+const IMG_FRESH_HERO = { src: '/images/journal/tattoo-frisch-16x9.webp', w: 1600, h: 900, alt: { de: 'Black-&-Grey-Realism-Porträt-Tattoo am Unterarm, frisch gestochen', en: 'Black and grey realism portrait tattoo on the forearm, freshly done' } };
+const IMG_FRESH = { src: '/images/journal/tattoo-frisch.webp', w: 1200, h: 1500, alt: IMG_FRESH_HERO.alt };
+const IMG_HEALED = { src: '/images/journal/tattoo-abgeheilt.webp', w: 1200, h: 1500, alt: { de: 'Dasselbe Black-&-Grey-Realism-Porträt-Tattoo am Unterarm, abgeheilt', en: 'The same black and grey realism portrait tattoo on the forearm, healed' } };
+
 // published: false keeps an article out of every page, the overview and the sitemap.
 // ND-392 (niloo 13.11.2026): the price article p1 waits for SEO Content v2 (ND-391);
 // the three aftercare articles go live first.
@@ -212,6 +218,7 @@ const allTattooJournal = [
       en: 'Tattoo aftercare: what really happens in the first four weeks',
     },
     readTime: { de: '6 Min.', en: '6 min' },
+    heroImg: IMG_FRESH_HERO,
     extraLinks: [
       { href: { de: '/de/styles/fine-line/', en: '/en/styles/fine-line/' }, text: { de: 'Fine Line Tattoo Berlin', en: 'Fine Line Tattoo Berlin' } },
     ],
@@ -251,6 +258,7 @@ const allTattooJournal = [
         { h: 'Nachkontrolle und Nachstechen: gehören dazu, ohne Zeitlimit', c: [
           'Haut hält Pigment unterschiedlich. Zwei Menschen, dieselbe Nadel, dieselbe Tiefe: Nach vier Wochen sieht es nicht gleich aus. Das ist Biologie, kein Fehler.',
           'Deshalb ist ein Tattoo erst nach der Abheilung fertig, nicht auf dem Stuhl. Nachkontrolle und, wenn eine Stelle es braucht, Nachstechen gehören bei jedem Tattoo aus unserem Studio dazu, ohne Aufpreis und ohne Zeitlimit. Nicht als Aktion, sondern als Standard, weil die Arbeit sonst nicht abgeschlossen ist.',
+          { img: IMG_HEALED },
         ] },
         { h: 'Wann du dich meldest', c: [
           'Bei zunehmenden Schmerzen, sich ausbreitender Rötung, eitrigem Ausfluss oder Fieber solltest du die Beschwerden zeitnah ärztlich abklären lassen. Das ist keine Frage der Optik und keine Aufgabe, die ein Studio übernimmt.',
@@ -292,6 +300,7 @@ const allTattooJournal = [
         { h: 'Follow-up check and touch-up: part of the work, no time limit', c: [
           'Skin holds ink differently. Two people, the same needle, the same depth: after four weeks it does not look the same. That is biology, not a mistake.',
           'That is why a tattoo is finished after it has healed, not in the chair. A follow-up check and, if a spot needs it, a touch-up are part of every tattoo from our studio, at no extra cost and with no time limit. Not as a promotion, but as the standard, because otherwise the work is not complete.',
+          { img: IMG_HEALED },
         ] },
         { h: 'When to get in touch', c: [
           'If pain increases, redness spreads, there is pus or you develop a fever, have it checked by a doctor promptly. That is not a question of looks, and not something a studio should handle.',
@@ -476,6 +485,7 @@ const allTattooJournal = [
       en: "When you can judge your tattoo — and when you can't",
     },
     readTime: { de: '5 Min.', en: '5 min' },
+    heroPair: [IMG_FRESH, IMG_HEALED],
     extraLinks: [
       { href: { de: '/de/erstes-tattoo/', en: '/en/erstes-tattoo/' }, text: { de: 'Erstes Tattoo', en: 'First tattoo' } },
     ],
