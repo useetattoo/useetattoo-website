@@ -32,6 +32,10 @@ const bio = artist.bio[lang];
 const firstWorks = artist.firstWorks; // mobile-only first screen (Josef), see artists.js
 const book = artist.pageBook || artist.book; // ND-432: Josef -> Fresha with Josef pre-selected
 const consult = artist.consult?.[lang]; // ND-432 consultation block (DE only)
+// ND-442: GTM trigger "Click - Booking Fresha CTA" = Just Links, Click ID contains
+// booking-fresha-cta. Josef's booking links get a unique id carrying that string
+// (ids must be unique per page); other artists unchanged.
+const ctaId = (k) => (artist.slug === 'josef' ? `booking-fresha-cta-josef-${k}` : undefined);
 
 // Person schema. Until now nothing on the site said, in a machine-readable way,
 // that a given artist works here and which styles they actually do, so search
@@ -77,7 +81,7 @@ const breadcrumbSchema = {
         {firstWorks && (
           <div class="dh-mfirst">
             {/* ND-418: button above the work grid so it stays visible above the cookie banner */}
-            <a class="cta primary dh-mbook" id="dhMBook" href={book} target="_blank" rel="noopener">{L.bookConsult}</a>
+            <a class="cta primary dh-mbook" id="booking-fresha-cta-josef-mbook" href={book} target="_blank" rel="noopener">{L.bookConsult}</a>
             <div class="dh-works">
               {firstWorks.map((w, i) => (
                 <a data-lb={w.full}><img src={w.src} alt={w.alt[lang]} width="400" height="500" loading={i < 3 ? 'eager' : 'lazy'} fetchpriority={i === 0 ? 'high' : undefined} decoding="async" /></a>
@@ -100,7 +104,7 @@ const breadcrumbSchema = {
           ? <p class="bio">{bio}</p>
           : <p class="bio placeholder">{lang === 'de' ? 'Biografie folgt in Kürze.' : 'Biography coming soon.'}</p>}
         <div class="cta-row" style="margin-top:0">
-          <a class="cta primary" style="background:var(--ink);color:var(--paper)" href={book} target="_blank" rel="noopener">{L.bookConsult}</a>
+          <a class="cta primary" id={ctaId('bio')} style="background:var(--ink);color:var(--paper)" href={book} target="_blank" rel="noopener">{L.bookConsult}</a>
         </div>
         {['josef', 'cali', 'jvd'].includes(artist.slug) && (
           <p style="margin-top:12px;font-size:14px"><a href={`/${lang}/consultation/#ablauf-section`} style="color:var(--bronze-dk);text-decoration:underline;text-underline-offset:2px">&#9432; {L.ablaufCta}</a></p>
@@ -116,7 +120,7 @@ const breadcrumbSchema = {
         <div class="sec-head reveal">
           <span class="idx">{L.portfolio}</span>
           <h2>{artist.name}</h2>
-          <a href={book} target="_blank" rel="noopener">{L.bookConsult}→</a>
+          <a id={ctaId('portfolio')} href={book} target="_blank" rel="noopener">{L.bookConsult}→</a>
         </div>
         {freshImgs.length > 0 && (
           <div class="pf-fresh reveal" style={`--fresh-cols:${Math.min(freshImgs.length, 5)}`}>
@@ -136,7 +140,7 @@ const breadcrumbSchema = {
 
   {firstWorks && (
     <>
-      <a class="dh-sticky" id="dhSticky" href={book} target="_blank" rel="noopener" aria-hidden="true" tabindex="-1">{L.bookConsult}</a>
+      <a class="dh-sticky" id="booking-fresha-cta-josef-sticky" href={book} target="_blank" rel="noopener" aria-hidden="true" tabindex="-1">{L.bookConsult}</a>
       <style is:global>
         /* Josef mobile first screen (2026-11-11). Desktop (>960px) is untouched:
            the block and the sticky button only exist below the 960px breakpoint. */
@@ -168,7 +172,7 @@ const breadcrumbSchema = {
           // would sit on top of the banner's buttons). Left of the call/WhatsApp
           // buttons (right:76px), so it never covers them either.
           try{
-            var st=document.getElementById('dhSticky'),btn=document.getElementById('dhMBook'),ck=document.getElementById('cookieBanner');
+            var st=document.querySelector('.dh-sticky'),btn=document.querySelector('.dh-mbook'),ck=document.getElementById('cookieBanner');
             if(!st||!btn) return;
             var past=false;
             var upd=function(){ var on=past&&!(ck&&!ck.hidden); st.classList.toggle('on',on); st.setAttribute('aria-hidden',on?'false':'true'); st.tabIndex=on?0:-1; };
