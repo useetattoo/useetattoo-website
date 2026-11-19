@@ -185,7 +185,7 @@ export const styles = [
         related: ['maori', 'fine-line'],
   },
   {
-            slug: 'portraits', built: true, folder: 'Portrait', artists: ['josef'], hero: 'Portrait_Cover.webp', heroColor: true,
+            slug: 'portraits', built: true, folder: 'Portrait', artists: ['josef'], hero: 'Portrait_Cover.webp',
             h1: { de: 'Portrait-Tattoo', en: 'Portrait Tattoos' },
             name: { de: 'Portraits', en: 'Portraits' },
             metaTitle: { de: 'Porträt Tattoo Berlin | Gesichter mit exakten Proportionen', en: 'Portrait Tattoos Berlin | Faces in Exact Proportion' },
