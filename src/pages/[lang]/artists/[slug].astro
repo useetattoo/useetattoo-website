@@ -31,6 +31,7 @@ const description = artist.meta[lang];
 const bio = artist.bio[lang];
 const firstWorks = artist.firstWorks; // mobile-only first screen (Josef), see artists.js
 const book = artist.pageBook || artist.book; // ND-432: Josef -> Fresha with Josef pre-selected
+const toForm = !!artist.toForm; // ND-485: buttons -> #quick-form on this page
 const consult = artist.consult?.[lang]; // ND-432 consultation block (DE only)
 // ND-442: GTM trigger "Click - Booking Fresha CTA" = Just Links, Click ID contains
 // booking-fresha-cta. Josef's booking links get a unique id carrying that string
@@ -104,12 +105,15 @@ const breadcrumbSchema = {
           ? <p class="bio">{bio}</p>
           : <p class="bio placeholder">{lang === 'de' ? 'Biografie folgt in Kürze.' : 'Biography coming soon.'}</p>}
         <div class="cta-row" style="margin-top:0">
-          <a class="cta primary" id={ctaId('bio')} style="background:var(--ink);color:var(--paper)" href={book} target="_blank" rel="noopener">{L.bookConsult}</a>
+          {toForm
+            ? <a class="cta primary" style="background:var(--ink);color:var(--paper)" href="#quick-form">{L.sendIdeaPhoto}</a>
+            : <a class="cta primary" id={ctaId('bio')} style="background:var(--ink);color:var(--paper)" href={book} target="_blank" rel="noopener">{L.bookConsult}</a>}
         </div>
-        {['josef', 'cali', 'jvd'].includes(artist.slug) && (
+        {toForm && <p style="margin-top:12px;font-size:14px">{L.sendIdeaNote}</p>}
+        {!toForm && ['josef', 'cali', 'jvd'].includes(artist.slug) && (
           <p style="margin-top:12px;font-size:14px"><a href={`/${lang}/consultation/#ablauf-section`} style="color:var(--bronze-dk);text-decoration:underline;text-underline-offset:2px">&#9432; {L.ablaufCta}</a></p>
         )}
-          <p style="margin-top:14px;font-size:14.5px"><a href="#quick-form" style="display:inline-block;border:1px solid var(--ink);padding:11px 20px;margin-right:4px;color:var(--ink);font-weight:600;text-decoration:none;letter-spacing:.04em">{L.jumpForm}</a> · <a href={site.whatsapp} target="_blank" rel="noopener" style="color:var(--bronze-dk);text-decoration:underline;text-underline-offset:2px">{L.whatsappCta}</a></p>
+          <p style="margin-top:14px;font-size:14.5px">{!toForm && <><a href="#quick-form" style="display:inline-block;border:1px solid var(--ink);padding:11px 20px;margin-right:4px;color:var(--ink);font-weight:600;text-decoration:none;letter-spacing:.04em">{L.jumpForm}</a> · </>}<a href={site.whatsapp} target="_blank" rel="noopener" style="color:var(--bronze-dk);text-decoration:underline;text-underline-offset:2px">{L.whatsappCta}</a></p>
       </div>
     </div>
   </section>
@@ -120,7 +124,9 @@ const breadcrumbSchema = {
         <div class="sec-head reveal">
           <span class="idx">{L.portfolio}</span>
           <h2>{artist.name}</h2>
-          <a id={ctaId('portfolio')} href={book} target="_blank" rel="noopener">{L.bookConsult}→</a>
+          {toForm
+            ? <a href="#quick-form">{L.sendIdea} →</a>
+            : <a id={ctaId('portfolio')} href={book} target="_blank" rel="noopener">{L.bookConsult}→</a>}
         </div>
         {freshImgs.length > 0 && (
           <div class="pf-fresh reveal" style={`--fresh-cols:${Math.min(freshImgs.length, 5)}`}>
