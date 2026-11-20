@@ -1,0 +1,70 @@
+---
+// ND-482 (niloo 19.11.2026): the Josef mobile first screen as one shared pattern.
+// part="block": booking button + small 3x2 preview of the page's own work, placed
+//   right under the H1 so it shows above the cookie banner on phones.
+// part="sticky": the fixed button that appears once the in-page one scrolled away
+//   (never while the cookie banner is open). Must sit outside any .reveal ancestor.
+// Desktop (>960px) is untouched: both parts only display below 960px.
+// works: [{ src (400x500 thumb), full (lightbox), alt }]
+const { part = 'block', works = [], href, label, id } = Astro.props;
+const ext = /^https?:/.test(href || '');
+const target = ext ? '_blank' : undefined;
+const rel = ext ? 'noopener' : undefined;
+---
+{part === 'block' && (
+  <div class="dh-mfirst">
+    <a class="cta primary dh-mbook" id={id ? `${id}-mbook` : undefined} href={href} target={target} rel={rel}>{label}</a>
+    <div class="dh-works">
+      {works.map((w, i) => (
+        <a data-lb={w.full}><img src={w.src} alt={w.alt} width="400" height="500" loading={i < 3 ? 'eager' : 'lazy'} fetchpriority={i === 0 ? 'high' : undefined} decoding="async" /></a>
+      ))}
+    </div>
+  </div>
+)}
+{part === 'sticky' && (
+  <>
+    <a class="dh-sticky" id={id ? `${id}-sticky` : undefined} href={href} target={target} rel={rel} aria-hidden="true" tabindex="-1">{label}</a>
+    <style is:global>
+      .dh-mfirst,.dh-sticky{display:none}
+      @media(max-width:960px){
+        .dh-first{padding-top:12px}
+        .dh-first .dh-grid{gap:32px}
+        .dh-first .dh-txt{order:1}
+        .dh-first .portrait,.dh-first .s-feature .s-img,.dh-first .cs-hero-grid .cs-hero-img{order:2}
+        .dh-first .s-feature .dh-txt,.dh-first .cs-hero-grid .dh-txt{order:1}
+        .dh-first .dh-txt.reveal,.dh-first .portrait.reveal,.dh-first .s-img.reveal,.dh-first .cs-hero-img.reveal{opacity:1;transform:none}
+        .dh-first .dh-txt .eyebrow{margin-bottom:6px}
+        .dh-first .dh-txt h1{margin-bottom:8px}
+        .dh-first .dh-txt .spec{margin-bottom:12px}
+        .dh-mfirst{display:block;margin-bottom:28px}
+        .dh-works{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+        .dh-works a{display:block;cursor:zoom-in;background:#e3ddd1}
+        .dh-works img{display:block;width:100%;height:auto;aspect-ratio:4/5;object-fit:cover}
+        .dh-mfirst .cta.dh-mbook{display:block;width:100%;text-align:center;margin-bottom:14px;background:var(--ink);color:var(--paper)}
+        .dh-sticky{display:block;position:fixed;left:14px;right:76px;bottom:14px;z-index:79;height:48px;line-height:48px;text-align:center;
+          background:var(--ink);color:var(--paper);font-family:'Inter',sans-serif;font-size:12.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;
+          text-decoration:none;box-shadow:0 6px 24px rgba(0,0,0,.25);transform:translateY(160%);transition:transform .35s cubic-bezier(.22,1,.36,1)}
+        .dh-sticky.on{transform:none}
+      }
+      /* Narrow phones (360px): long two-line H1s on style/consultation pages pushed the
+         button under the cookie banner; slightly smaller H1 and tighter top spacing. */
+      @media(max-width:380px){
+        .dh-first{padding-top:4px}
+        .dh-first .dh-txt h1{font-size:34px;line-height:1.02}
+        .dh-first .dh-txt .spec,.dh-first .cs-lead{margin-bottom:10px}
+      }
+    </style>
+    <script is:inline>
+      (function(){
+        try{
+          var st=document.querySelector('.dh-sticky'),btn=document.querySelector('.dh-mbook'),ck=document.getElementById('cookieBanner');
+          if(!st||!btn) return;
+          var past=false;
+          var upd=function(){ var on=past&&!(ck&&!ck.hidden); st.classList.toggle('on',on); st.setAttribute('aria-hidden',on?'false':'true'); st.tabIndex=on?0:-1; };
+          new IntersectionObserver(function(es){ es.forEach(function(e){ past=!e.isIntersecting&&e.boundingClientRect.top<0; upd(); }); }).observe(btn);
+          if(ck) new MutationObserver(upd).observe(ck,{attributes:true,attributeFilter:['hidden']});
+        }catch(e){}
+      })();
+    </script>
+  </>
+)}
