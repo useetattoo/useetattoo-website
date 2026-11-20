@@ -53,6 +53,8 @@ export const artists = [
     portrait: '/images/artists/Cali.webp',
     folder: 'Cali',
     book: 'https://book.useetattoo.com/cali',
+    // ND-485 (niloo 19.11): Cali's buttons go to the on-page quick form, not Fresha.
+    toForm: true,
     specialties: { de: 'Micro Realism · Fine Line · Conceptual', en: 'Micro Realism · Fine Line · Conceptual' },
     meta: {
       de: 'Cali ist seit der Eröffnung Teil von Usee Tattoo, bekannt für präzise Arbeit und feinste Details.',
