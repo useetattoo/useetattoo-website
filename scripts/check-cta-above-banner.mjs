@@ -15,7 +15,10 @@ import { spawn } from 'node:child_process';
 const require = createRequire(import.meta.url);
 const { chromium } = require('playwright');
 
-const PAGES = ['/de/artists/josef/', '/de/walk-in/', '/de/consultation/', '/de/'];
+// ND-482: every artist page, every style page and /consultation/ (DE+EN) carry the Josef pattern.
+const ARTISTS = ['josef', 'cali', 'jvd', 'nana'];
+const STYLES = ['realistic', 'microrealism', 'fine-line', 'maori', 'ornamental', 'portraits', 'color', 'black-and-grey', 'conceptual', 'japanese', 'lettering'];
+const PAGES = ['/de/', '/de/walk-in/', ...['de', 'en'].flatMap((l) => [`/${l}/consultation/`, ...ARTISTS.map((a) => `/${l}/artists/${a}/`), ...STYLES.map((s) => `/${l}/styles/${s}/`)])];
 const VIEWPORTS = [[360, 640], [375, 667], [390, 844]];
 
 let base = process.argv[2];
@@ -44,7 +47,7 @@ try {
       const r = await page.evaluate(() => {
         const banner = document.getElementById('cookieBanner');
         const bannerTop = banner && !banner.hidden ? banner.getBoundingClientRect().top : window.innerHeight;
-        const links = [...document.querySelectorAll('main a[href*="fresha.com"], main a[href*="book.useetattoo.com"], main a[href*="/booking/"], main .booking-fresha-cta')].filter((a) => {
+        const links = [...document.querySelectorAll('main a[href*="fresha.com"], main a[href*="book.useetattoo.com"], main a[href*="/booking/"], main .booking-fresha-cta, main .dh-mbook')].filter((a) => {
           const cs = getComputedStyle(a);
           const b = a.getBoundingClientRect();
           let fixed = false;

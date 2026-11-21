@@ -1,0 +1,392 @@
+{
+ "artist-cali": [
+  {
+   "src": "/images/first/artist-cali/artist-cali-1.webp",
+   "full": "/images/portfolio/Cali/Cali_1.webp"
+  },
+  {
+   "src": "/images/first/artist-cali/artist-cali-2.webp",
+   "full": "/images/portfolio/Cali/Cali_2.webp"
+  },
+  {
+   "src": "/images/first/artist-cali/artist-cali-3.webp",
+   "full": "/images/portfolio/Cali/Cali_3.webp"
+  },
+  {
+   "src": "/images/first/artist-cali/artist-cali-4.webp",
+   "full": "/images/portfolio/Cali/Cali_4.webp"
+  },
+  {
+   "src": "/images/first/artist-cali/artist-cali-5.webp",
+   "full": "/images/portfolio/Cali/Cali_5.webp"
+  },
+  {
+   "src": "/images/first/artist-cali/artist-cali-6.webp",
+   "full": "/images/portfolio/Cali/Cali_6.webp"
+  }
+ ],
+ "artist-jvd": [
+  {
+   "src": "/images/first/artist-jvd/artist-jvd-1.webp",
+   "full": "/images/portfolio/Jvd/Jvd_1.webp"
+  },
+  {
+   "src": "/images/first/artist-jvd/artist-jvd-2.webp",
+   "full": "/images/portfolio/Jvd/Jvd_2.webp"
+  },
+  {
+   "src": "/images/first/artist-jvd/artist-jvd-3.webp",
+   "full": "/images/portfolio/Jvd/Jvd_3.webp"
+  },
+  {
+   "src": "/images/first/artist-jvd/artist-jvd-4.webp",
+   "full": "/images/portfolio/Jvd/Jvd_4.webp"
+  },
+  {
+   "src": "/images/first/artist-jvd/artist-jvd-5.webp",
+   "full": "/images/portfolio/Jvd/Jvd_5.webp"
+  },
+  {
+   "src": "/images/first/artist-jvd/artist-jvd-6.webp",
+   "full": "/images/portfolio/Jvd/Jvd_6.webp"
+  }
+ ],
+ "artist-nana": [
+  {
+   "src": "/images/first/artist-nana/artist-nana-1.webp",
+   "full": "/images/portfolio/Nana/Nana_1.webp"
+  },
+  {
+   "src": "/images/first/artist-nana/artist-nana-2.webp",
+   "full": "/images/portfolio/Nana/Nana_2.webp"
+  },
+  {
+   "src": "/images/first/artist-nana/artist-nana-3.webp",
+   "full": "/images/portfolio/Nana/Nana_3.webp"
+  },
+  {
+   "src": "/images/first/artist-nana/artist-nana-4.webp",
+   "full": "/images/portfolio/Nana/Nana_4.webp"
+  },
+  {
+   "src": "/images/first/artist-nana/artist-nana-5.webp",
+   "full": "/images/portfolio/Nana/Nana_5.webp"
+  },
+  {
+   "src": "/images/first/artist-nana/artist-nana-6.webp",
+   "full": "/images/portfolio/Nana/Nana_6.webp"
+  }
+ ],
+ "style-realistic": [
+  {
+   "src": "/images/first/style-realistic/style-realistic-1.webp",
+   "full": "/images/TattooStyle/Realistic/AAA_Real_1.webp"
+  },
+  {
+   "src": "/images/first/style-realistic/style-realistic-2.webp",
+   "full": "/images/TattooStyle/Realistic/AAA_Real_2.webp"
+  },
+  {
+   "src": "/images/first/style-realistic/style-realistic-3.webp",
+   "full": "/images/TattooStyle/Realistic/AAA_Real_3.webp"
+  },
+  {
+   "src": "/images/first/style-realistic/style-realistic-4.webp",
+   "full": "/images/TattooStyle/Realistic/AAA_Real_4.webp"
+  },
+  {
+   "src": "/images/first/style-realistic/style-realistic-5.webp",
+   "full": "/images/TattooStyle/Realistic/AAA_Real_5.webp"
+  },
+  {
+   "src": "/images/first/style-realistic/style-realistic-6.webp",
+   "full": "/images/TattooStyle/Realistic/RealisticSample_1.webp"
+  }
+ ],
+ "style-microrealism": [
+  {
+   "src": "/images/first/style-microrealism/style-microrealism-1.webp",
+   "full": "/images/TattooStyle/MicroRealism/microrealism-47ae77f1-6349-46f5-a240-4024d7841e6f.webp"
+  },
+  {
+   "src": "/images/first/style-microrealism/style-microrealism-2.webp",
+   "full": "/images/TattooStyle/MicroRealism/microrealism-051cf4a9-74dc-42c4-85b2-1347d7ebcc32.webp"
+  },
+  {
+   "src": "/images/first/style-microrealism/style-microrealism-3.webp",
+   "full": "/images/TattooStyle/MicroRealism/microrealism-2542d5e6-6424-4e1b-83b6-a256e4900662.webp"
+  },
+  {
+   "src": "/images/first/style-microrealism/style-microrealism-4.webp",
+   "full": "/images/TattooStyle/MicroRealism/microrealism-dscf3729.webp"
+  },
+  {
+   "src": "/images/first/style-microrealism/style-microrealism-5.webp",
+   "full": "/images/TattooStyle/MicroRealism/microrealism-dscf5150.webp"
+  },
+  {
+   "src": "/images/first/style-microrealism/style-microrealism-6.webp",
+   "full": "/images/TattooStyle/MicroRealism/microrealism-dscf5337-1.webp"
+  }
+ ],
+ "style-fine-line": [
+  {
+   "src": "/images/first/style-fine-line/style-fine-line-1.webp",
+   "full": "/images/TattooStyle/FineLine/FineLine_1.webp"
+  },
+  {
+   "src": "/images/first/style-fine-line/style-fine-line-2.webp",
+   "full": "/images/TattooStyle/FineLine/FineLine_3.webp"
+  },
+  {
+   "src": "/images/first/style-fine-line/style-fine-line-3.webp",
+   "full": "/images/TattooStyle/FineLine/FineLine_5.webp"
+  },
+  {
+   "src": "/images/first/style-fine-line/style-fine-line-4.webp",
+   "full": "/images/TattooStyle/FineLine/FineLine_6.webp"
+  },
+  {
+   "src": "/images/first/style-fine-line/style-fine-line-5.webp",
+   "full": "/images/TattooStyle/FineLine/FineLine_7.webp"
+  },
+  {
+   "src": "/images/first/style-fine-line/style-fine-line-6.webp",
+   "full": "/images/TattooStyle/FineLine/FineLine_8.webp"
+  }
+ ],
+ "style-maori": [
+  {
+   "src": "/images/first/style-maori/style-maori-1.webp",
+   "full": "/images/TattooStyle/Maori/Maori_1.webp"
+  },
+  {
+   "src": "/images/first/style-maori/style-maori-2.webp",
+   "full": "/images/TattooStyle/Maori/Maori_2.webp"
+  },
+  {
+   "src": "/images/first/style-maori/style-maori-3.webp",
+   "full": "/images/TattooStyle/Maori/Maori_3.webp"
+  },
+  {
+   "src": "/images/first/style-maori/style-maori-4.webp",
+   "full": "/images/TattooStyle/Maori/Maori_4.webp"
+  },
+  {
+   "src": "/images/first/style-maori/style-maori-5.webp",
+   "full": "/images/TattooStyle/Maori/Maori_6.webp"
+  },
+  {
+   "src": "/images/first/style-maori/style-maori-6.webp",
+   "full": "/images/TattooStyle/Maori/MaoriSample_1.webp"
+  }
+ ],
+ "style-ornamental": [
+  {
+   "src": "/images/first/style-ornamental/style-ornamental-1.webp",
+   "full": "/images/TattooStyle/Ornamental/Ornamental_1.webp"
+  },
+  {
+   "src": "/images/first/style-ornamental/style-ornamental-2.webp",
+   "full": "/images/TattooStyle/Ornamental/Ornamental_2.webp"
+  },
+  {
+   "src": "/images/first/style-ornamental/style-ornamental-3.webp",
+   "full": "/images/TattooStyle/Ornamental/Ornamental_3.webp"
+  },
+  {
+   "src": "/images/first/style-ornamental/style-ornamental-4.webp",
+   "full": "/images/TattooStyle/Ornamental/Ornamental_4.webp"
+  },
+  {
+   "src": "/images/first/style-ornamental/style-ornamental-5.webp",
+   "full": "/images/TattooStyle/Ornamental/OrnamentalSample_1.webp"
+  },
+  {
+   "src": "/images/first/style-ornamental/style-ornamental-6.webp",
+   "full": "/images/TattooStyle/Ornamental/OrnamentalSample_2.webp"
+  }
+ ],
+ "style-portraits": [
+  {
+   "src": "/images/first/style-portraits/style-portraits-1.webp",
+   "full": "/images/TattooStyle/Portrait/AAA_Port_1.webp"
+  },
+  {
+   "src": "/images/first/style-portraits/style-portraits-2.webp",
+   "full": "/images/TattooStyle/Portrait/AAA_Port_2.webp"
+  },
+  {
+   "src": "/images/first/style-portraits/style-portraits-3.webp",
+   "full": "/images/TattooStyle/Portrait/AAA_Port_3.webp"
+  },
+  {
+   "src": "/images/first/style-portraits/style-portraits-4.webp",
+   "full": "/images/TattooStyle/Portrait/AAA_Port_4.webp"
+  },
+  {
+   "src": "/images/first/style-portraits/style-portraits-5.webp",
+   "full": "/images/TattooStyle/Portrait/PortraitSample_1.webp"
+  },
+  {
+   "src": "/images/first/style-portraits/style-portraits-6.webp",
+   "full": "/images/TattooStyle/Portrait/PortraitSample_2.webp"
+  }
+ ],
+ "style-color": [
+  {
+   "src": "/images/first/style-color/style-color-1.webp",
+   "full": "/images/TattooStyle/Colour/ColorSample_1.webp"
+  },
+  {
+   "src": "/images/first/style-color/style-color-2.webp",
+   "full": "/images/TattooStyle/Colour/ColorSample_2.webp"
+  },
+  {
+   "src": "/images/first/style-color/style-color-3.webp",
+   "full": "/images/TattooStyle/Colour/ColorSample_3.webp"
+  },
+  {
+   "src": "/images/first/style-color/style-color-4.webp",
+   "full": "/images/TattooStyle/Colour/ColorSample_4.webp"
+  },
+  {
+   "src": "/images/first/style-color/style-color-5.webp",
+   "full": "/images/TattooStyle/Colour/ColorSample_5.webp"
+  },
+  {
+   "src": "/images/first/style-color/style-color-6.webp",
+   "full": "/images/TattooStyle/Colour/ColorSample_6.webp"
+  }
+ ],
+ "style-black-and-grey": [
+  {
+   "src": "/images/first/style-black-and-grey/style-black-and-grey-1.webp",
+   "full": "/images/TattooStyle/BlackGrey/BlackGrey_1.webp"
+  },
+  {
+   "src": "/images/first/style-black-and-grey/style-black-and-grey-2.webp",
+   "full": "/images/TattooStyle/BlackGrey/BlackGrey_2.webp"
+  },
+  {
+   "src": "/images/first/style-black-and-grey/style-black-and-grey-3.webp",
+   "full": "/images/TattooStyle/BlackGrey/BlackGrey_3.webp"
+  },
+  {
+   "src": "/images/first/style-black-and-grey/style-black-and-grey-4.webp",
+   "full": "/images/TattooStyle/BlackGrey/BlackGrey_4.webp"
+  },
+  {
+   "src": "/images/first/style-black-and-grey/style-black-and-grey-5.webp",
+   "full": "/images/TattooStyle/BlackGrey/BlackGrey_6.webp"
+  },
+  {
+   "src": "/images/first/style-black-and-grey/style-black-and-grey-6.webp",
+   "full": "/images/TattooStyle/BlackGrey/BlackGrey_7.webp"
+  }
+ ],
+ "style-conceptual": [
+  {
+   "src": "/images/first/style-conceptual/style-conceptual-1.webp",
+   "full": "/images/TattooStyle/Conceptual/Conceptual_1.webp"
+  },
+  {
+   "src": "/images/first/style-conceptual/style-conceptual-2.webp",
+   "full": "/images/TattooStyle/Conceptual/Conceptual_2.webp"
+  },
+  {
+   "src": "/images/first/style-conceptual/style-conceptual-3.webp",
+   "full": "/images/TattooStyle/Conceptual/Conceptual_3.webp"
+  },
+  {
+   "src": "/images/first/style-conceptual/style-conceptual-4.webp",
+   "full": "/images/TattooStyle/Conceptual/Conceptual_5.webp"
+  },
+  {
+   "src": "/images/first/style-conceptual/style-conceptual-5.webp",
+   "full": "/images/TattooStyle/Conceptual/Conceptual_6.webp"
+  },
+  {
+   "src": "/images/first/style-conceptual/style-conceptual-6.webp",
+   "full": "/images/TattooStyle/Conceptual/Conceptual_7.webp"
+  }
+ ],
+ "style-japanese": [
+  {
+   "src": "/images/first/style-japanese/style-japanese-1.webp",
+   "full": "/images/TattooStyle/Japanese/Japanese_1.webp"
+  },
+  {
+   "src": "/images/first/style-japanese/style-japanese-2.webp",
+   "full": "/images/TattooStyle/Japanese/Japanese_3.webp"
+  },
+  {
+   "src": "/images/first/style-japanese/style-japanese-3.webp",
+   "full": "/images/TattooStyle/Japanese/Japanese_4.webp"
+  },
+  {
+   "src": "/images/first/style-japanese/style-japanese-4.webp",
+   "full": "/images/TattooStyle/Japanese/Japanese_5.webp"
+  },
+  {
+   "src": "/images/first/style-japanese/style-japanese-5.webp",
+   "full": "/images/TattooStyle/Japanese/Japanese_6.webp"
+  },
+  {
+   "src": "/images/first/style-japanese/style-japanese-6.webp",
+   "full": "/images/TattooStyle/Japanese/Japanese_7.webp"
+  }
+ ],
+ "style-lettering": [
+  {
+   "src": "/images/first/style-lettering/style-lettering-1.webp",
+   "full": "/images/TattooStyle/Lettering/Script_1.webp"
+  },
+  {
+   "src": "/images/first/style-lettering/style-lettering-2.webp",
+   "full": "/images/TattooStyle/Lettering/Script_2.webp"
+  },
+  {
+   "src": "/images/first/style-lettering/style-lettering-3.webp",
+   "full": "/images/TattooStyle/Lettering/Script_4.webp"
+  },
+  {
+   "src": "/images/first/style-lettering/style-lettering-4.webp",
+   "full": "/images/TattooStyle/Lettering/Script_5.webp"
+  },
+  {
+   "src": "/images/first/style-lettering/style-lettering-5.webp",
+   "full": "/images/TattooStyle/Lettering/Script_6.webp"
+  },
+  {
+   "src": "/images/first/style-lettering/style-lettering-6.webp",
+   "full": "/images/TattooStyle/Lettering/Script_7.webp"
+  }
+ ],
+ "consultation": [
+  {
+   "src": "/images/first/consultation/consultation-1.webp",
+   "full": "/images/home/selected/SelectedWorks_1.webp"
+  },
+  {
+   "src": "/images/first/consultation/consultation-2.webp",
+   "full": "/images/home/selected/SelectedWorks_2.webp"
+  },
+  {
+   "src": "/images/first/consultation/consultation-3.webp",
+   "full": "/images/home/selected/SelectedWorks_3.webp"
+  },
+  {
+   "src": "/images/first/consultation/consultation-4.webp",
+   "full": "/images/home/selected/SelectedWorks_4.webp"
+  },
+  {
+   "src": "/images/first/consultation/consultation-5.webp",
+   "full": "/images/home/selected/SelectedWorks_5.webp"
+  },
+  {
+   "src": "/images/first/consultation/consultation-6.webp",
+   "full": "/images/home/selected/SelectedWorks_6.webp"
+  }
+ ]
+}
