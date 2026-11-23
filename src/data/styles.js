@@ -177,8 +177,8 @@ export const styles = [
               {
                                     q: { de: 'Welche Naturmotive passen gut zu Ornamental?', en: 'What nature motifs work well for Ornamental?' },
                                     a: {
-                                                                      de: 'Blatt- und Blütenmotive sowie zarte, filigrane Mandalas gehören zu den gefragtesten Motiven in diesem Stil. Auch die Sonne ist stark gefragt und wächst aktuell schnell. Leuchtturm, Baum, Berg und Landschaft sind weitere Motive mit Potenzial, hierfür steht eine Suchvolumen-Prüfung noch aus.',
-                                                                      en: "Leaf and flower motifs, along with delicate, fine mandalas, are among the most requested designs in this style. The sun is also in strong, fast-growing demand right now. Lighthouse, tree, mountain and landscape are additional motifs with potential, though we haven't validated search volume for those yet.",
+                                                                      de: 'Blatt- und Blütenmotive sowie zarte, filigrane Mandalas gehören zu den gefragtesten Motiven in diesem Stil. Auch die Sonne ist stark gefragt und wächst aktuell schnell.',
+                                                                      en: "Leaf and flower motifs, along with delicate, fine mandalas, are among the most requested designs in this style. The sun is also in strong, fast-growing demand right now.",
                                     },
               },
                             ],
