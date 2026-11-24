@@ -33,13 +33,14 @@ export const GC = {
 
   // "Gift for the giver" offer: buying at least `min` gives the BUYER a separate
   // bonus card of `bonus`. Highest matching rule wins. Bonus credit is free, so it
-  // can expire earlier than paid credit.
+  // can expire earlier than paid credit. Bonus cards are personal to the buyer
+  // (not transferable) so they cannot just be handed on with the gift.
   bonus: {
     activeFrom: '2026-11-24',
     activeUntil: '2026-12-31',
     expires: '2027-06-30',
     rules: [
-      { min: 250, bonus: 50 },
+      { min: 300, bonus: 50 },
       { min: 200, bonus: 25 },
     ],
   },

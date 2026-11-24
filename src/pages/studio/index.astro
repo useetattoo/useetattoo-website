@@ -74,7 +74,7 @@ import '../../styles/global.css';
       <div class="st-box st-bonus" id="p-bonus" hidden>
         <h2 data-t="Bonus-Karte fällig|Bonus card due"></h2>
         <p><span data-t="Dieser Kauf bekommt einen Bonus von|This sale gets a bonus of"></span> <b id="bonus-amt"></b>. <span data-t="Zweite leere Karte scannen oder den Code eintippen, dann aktivieren.|Scan a second blank card or type its code, then activate."></span></p>
-        <form id="f-bonus"><input id="bonus-code" class="mono" autocomplete="off" placeholder="AB3CD-EF4GH" /><div class="st-who" data-who="bonus"></div><button class="st-btn st-big" data-t="Bonus aktivieren|Activate bonus"></button></form>
+        <form id="f-bonus"><div class="st-grid" style="margin-top:0"><label><span data-t="Code der zweiten Karte|Second card code"></span><input id="bonus-code" class="mono" autocomplete="off" placeholder="AB3CD-EF4GH" /></label><label><span data-t="Name des Käufers (Bonus ist nur für ihn/sie)|Buyer name (bonus is only for them)"></span><input id="bonus-name" maxlength="80" /></label></div><div class="st-who" data-who="bonus"></div><button class="st-btn st-big" data-t="Bonus aktivieren|Activate bonus"></button></form>
       </div>
 
       <!-- sell (inactive) -->
@@ -101,6 +101,7 @@ import '../../styles/global.css';
       <!-- redeem (active) -->
       <div class="st-box" id="p-redeem" hidden>
         <h2 data-t="Einlösen|Redeem"></h2>
+        <div class="st-err" id="red-bonus" hidden></div>
         <div class="st-grid">
           <label><span data-t="Betrag in €|Amount in €"></span><input id="red-amt" type="number" inputmode="numeric" min="1" step="1" /></label>
           <label><span data-t="Notiz (optional)|Note (optional)"></span><input id="red-note" maxlength="200" /></label>
@@ -208,7 +209,7 @@ import '../../styles/global.css';
       expired: 'Dieser Gutschein ist abgelaufen.|This gift card has expired.', status_used: 'Dieser Gutschein ist schon aufgebraucht.|This gift card is used up.',
       status_inactive: 'Diese Karte ist noch nicht aktiviert.|This card is not active yet.', status_void: 'Dieser Gutschein ist gesperrt.|This gift card is blocked.',
       bonus_already_given: 'Für diesen Kauf wurde der Bonus schon ausgegeben.|The bonus for this sale was already given.', no_bonus: 'Kein Bonus für diesen Kauf.|No bonus for this sale.',
-      order_not_open: 'Diese Bestellung ist schon erledigt.|This order is already done.', wrong_password: 'Falsches Passwort.|Wrong password.',
+      order_not_open: 'Diese Bestellung ist schon erledigt.|This order is already done.', buyer_name_needed: 'Bitte den Namen des Käufers eintragen.|Please enter the buyer name.', wrong_password: 'Falsches Passwort.|Wrong password.',
       login: 'Bitte neu anmelden.|Please log in again.', server_error: 'Fehler. Bitte nochmal versuchen.|Error. Please try again.',
     };
     const errText = (c) => tr(ERR[c] || ERR.server_error);
@@ -288,7 +289,7 @@ import '../../styles/global.css';
       const st = { inactive: 'Leer|Blank', active: 'Aktiv|Active', used: 'Aufgebraucht|Used up', void: 'Gesperrt|Blocked' }[k.status];
       tags.push(`<span class="st-tag ${k.status === 'active' ? 'on' : ''}">${tr(st)}</span>`);
       if (expired) tags.push(`<span class="st-tag warn">${tr('Abgelaufen|Expired')}</span>`);
-      if (k.is_bonus) tags.push(`<span class="st-tag">Bonus</span>`);
+      if (k.is_bonus) tags.push(`<span class="st-tag warn">Bonus · ${tr('nur für|only for')} ${esc(k.buyer_name || '?')}</span>`);
       tags.push(`<span class="st-tag">${k.format === 'digital' ? 'Digital' : tr('Karte|Card') + (k.serial ? ' #' + k.serial : '')}</span>`);
       if (k.source) tags.push(`<span class="st-tag">${esc(k.source)}</span>`);
       $('c-tags').innerHTML = tags.join('');
@@ -296,7 +297,7 @@ import '../../styles/global.css';
       $('c-of').textContent = k.status !== 'inactive' && k.balance !== k.initial_value ? tr('von|of') + ' ' + fmt(k.initial_value) : '';
       $('p-sell').hidden = k.status !== 'inactive';
       $('p-redeem').hidden = !(k.status === 'active' && !expired);
-      $('p-bonus').hidden = !bonusDue; $('bonus-amt').textContent = fmt(bonusDue || 0);
+      $('p-bonus').hidden = !bonusDue; $('bonus-amt').textContent = fmt(bonusDue || 0); $('bonus-name').value = k.buyer_name || ''; $('bonus-code').value = '';
       const info = [];
       if (k.recipient_name) info.push(tr('Für|For') + ': ' + esc(k.recipient_name));
       if (k.buyer_name) info.push(tr('Käufer|Buyer') + ': ' + esc(k.buyer_name));
@@ -321,6 +322,7 @@ import '../../styles/global.css';
         box.appendChild(inp); sellAmount = 0;
       }
       $('red-amt').value = ''; $('red-note').value = '';
+      $('red-bonus').hidden = !k.is_bonus; $('red-bonus').textContent = tr('Bonus-Gutschein: nur für|Bonus card: only for') + ' ' + (k.buyer_name || '?') + '. ' + tr('Bitte Namen prüfen (Ausweis). Nicht für die beschenkte Person.|Please check the name (ID). Not for the gift recipient.');
     }
 
     async function act(btn, url, data, msgOk) {
@@ -352,7 +354,7 @@ import '../../styles/global.css';
       e.preventDefault();
       const code = clean($('bonus-code').value); const parent = card.code;
       if (code.length !== 10) return show($('c-err'), errText('not_found'));
-      act($('f-bonus').querySelector('button'), '/api/gc/studio/activate', { code, bonusOf: parent, ...who('bonus') },
+      act($('f-bonus').querySelector('button.st-big'), '/api/gc/studio/activate', { code, bonusOf: parent, buyerName: $('bonus-name').value, ...who('bonus') },
         (r) => tr('Bonus-Karte aktiviert|Bonus card activated') + ': ' + fmt(r.card.initial_value) + ' (' + pretty(r.card.code) + ')');
     };
     boot();

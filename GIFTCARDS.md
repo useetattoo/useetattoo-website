@@ -52,7 +52,7 @@ API: `functions/api/gc/*` (Cloudflare Pages Functions). Shared code: `server/gif
 - Privacy policy: add the section below (wording needs approval, `src/data/privacy.js` is approved text only).
 - Tax advisor: confirm VAT treatment of the vouchers (likely single-purpose voucher: VAT at sale).
 - Replace the placeholder edition artwork `public/images/giftcards/edition-christmas-2026.svg` (+ `.png` for email/social) with the final design.
-- Confirm the bonus rules in `config.js` (currently: from €200 → €25, from €250 → €50, until 31.12.2026, bonus valid until 30.06.2027).
+- Confirm the bonus rules in `config.js` (confirmed 24.11.: from €200 → €25, from €300 → €50, until 31.12.2026, bonus valid until 30.06.2027, personal to the buyer, not transferable).
 
 ## Privacy policy draft (for approval)
 **DE – Gutscheine.** Wenn du einen Gutschein online kaufst, verarbeiten wir deinen Namen, deine E-Mail-Adresse, bei einer gedruckten Karte die Lieferadresse sowie optional Name, E-Mail-Adresse und eine Nachricht für die beschenkte Person, um den Kauf abzuwickeln, den Gutschein zu versenden und ihn später einzulösen (Art. 6 Abs. 1 lit. b DSGVO). Die Zahlung wickelt PayPal (Europe) S.à r.l. et Cie, S.C.A., 22–24 Boulevard Royal, 2449 Luxemburg ab; dabei gelten die Datenschutzhinweise von PayPal. Gutschein-E-Mails versenden wir über den E-Mail-Dienst Resend (USA); Grundlage der Übermittlung: [vor Freigabe prüfen: EU-US Data Privacy Framework oder Standardvertragsklauseln, Anbieter und Adresse laut Resend-AVV]. Gutschein- und Kaufdaten bewahren wir wegen handels- und steuerrechtlicher Pflichten bis zu 10 Jahre auf (§ 147 AO, § 257 HGB).

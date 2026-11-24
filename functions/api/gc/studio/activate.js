@@ -38,7 +38,9 @@ export const onRequestPost = handle(async ({ request, env }) => {
     if (already) return bad('bonus_already_given', 409);
     const amount = bonusFor(parent.initial_value, new Date(parent.activated_at || Date.now()));
     if (!amount) return bad('no_bonus', 409);
-    const done = await activatePrinted(DB, code, { ...f, source: 'bonus', isBonus: true, bonusOf: parent.code, amount, buyerName: parent.buyer_name, recipientName: parent.buyer_name });
+    const owner = str(b.buyerName, 80) || parent.buyer_name;
+    if (!owner) return bad('buyer_name_needed');
+    const done = await activatePrinted(DB, code, { ...f, source: 'bonus', isBonus: true, bonusOf: parent.code, amount, buyerName: owner, recipientName: owner, note: 'Persönlich, nur für ' + owner });
     return json({ ok: true, card: done, bonusDue: 0 });
   }
 
