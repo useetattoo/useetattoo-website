@@ -1,4 +1,6 @@
 ---
+import FirstWorks from '../../../components/FirstWorks.astro';
+import firstWorksData from '../../../data/firstWorks.json';
 import Base from '../../../layouts/Base.astro';
 import { t, langs } from '../../../data/i18n.js';
 import { styles, stylesBySlug } from '../../../data/styles.js';
@@ -30,6 +32,11 @@ const featured = (style.artists || []).map((s) => artistsBySlug[s]).filter(Boole
 // consultBook: the visitor must not pick an artist from the style page (ND-309..312), so every booking button goes to the shared consultation.
 const primaryBook = style.consultBook ? site.booking.consultation : (style.book?.[lang] || featured[0]?.book);
 
+// ND-482: Josef-pattern mobile first screen (button + 6 works of this style).
+const firstWorks = (firstWorksData[`style-${style.slug}`] || []).map((w) => ({ ...w, alt: `${style.name[lang]} Tattoo, Usee Tattoo` }));
+const hasFirst = firstWorks.length > 0 && !!primaryBook;
+const mLabel = style.consultBook ? L.bookConsult : L.bookNow;
+const mId = /^https?:/.test(primaryBook || '') ? `booking-fresha-cta-style-${style.slug}` : undefined;
 const title = `${style.name[lang]} Tattoos | UseeTattoo Studio – Berlin`;
 const metaTitle = style.metaTitle?.[lang] || title;
 // Word-boundary-safe meta description truncation (fixes mid-word cutoffs at 155 chars).
@@ -75,14 +82,15 @@ const faqSchema = faq.length > 0 ? {
 } : null;
 const descParas = style.desc[lang].split('\n\n');
 ---
-<Base lang={lang} title={metaTitle} description={description} ogImage={heroImg}>
-<section class="detail-hero">
+<Base lang={lang} title={metaTitle} description={description} ogImage={heroImg} noLoader={hasFirst}>
+<section class={hasFirst ? 'detail-hero dh-first' : 'detail-hero'}>
 <div class="wrap">
 <div class="s-feature">
 <div class="txt dh-txt reveal">
 <div class="eyebrow">{L.stylesTitle}</div>
 <h1>{h1}</h1>
 <div class="spec">{style.tagline[lang]}</div>
+{hasFirst && <FirstWorks works={firstWorks} href={primaryBook} label={mLabel} id={mId} />}
 {descParas.map((para) => <p>{para}</p>)}
 {featured.length === 0 && primaryBook && (<p style="margin-top:24px"><a class="cta primary" style="background:var(--ink);color:var(--paper)" href={primaryBook} target="_blank" rel="noopener">{L.bookNow}</a></p>)}{featured.map((a) => (
 <div class="s-artist-card">
@@ -148,6 +156,7 @@ const descParas = style.desc[lang].split('\n\n');
 </div>
 </section>
 )}
+{hasFirst && <FirstWorks part="sticky" href={primaryBook} label={mLabel} id={mId} />}
 {related.length > 0 && (
 <section class="related-styles" style="padding:30px 0 80px">
 <div class="wrap">

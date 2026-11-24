@@ -2,12 +2,17 @@
 import Base from '../../layouts/Base.astro';
 import { langs } from '../../data/i18n.js';
 import { site } from '../../data/site.js';
+import FirstWorks from '../../components/FirstWorks.astro';
+import firstWorksData from '../../data/firstWorks.json';
 
 export function getStaticPaths() {
   return langs.map((lang) => ({ params: { lang } }));
 }
 const { lang } = Astro.params;
 const img = '/images/consultation/Consultation.webp';
+// ND-482: Josef-pattern mobile first screen with the homepage "Selected Work" images.
+const firstWorks = (firstWorksData.consultation || []).map((w) => ({ ...w, alt: lang === 'de' ? 'Ausgewählte Arbeit, Usee Tattoo' : 'Selected work, Usee Tattoo' }));
+const mId = 'booking-fresha-cta-consultation';
 
 const c = {
   de: {
@@ -194,13 +199,14 @@ const c = {
   },
 }[lang];
 ---
-<Base lang={lang} title={c.title} description={c.description} ogImage={img}>
-  <section class="detail-hero cs-hero">
+<Base lang={lang} title={c.title} description={c.description} ogImage={img} noLoader>
+  <section class="detail-hero cs-hero dh-first">
     <div class="wrap">
       <div class="cs-hero-grid">
         <div class="dh-txt reveal">
           <div class="eyebrow">{c.eyebrow}</div>
           <h1>{c.h1}</h1>
+          <FirstWorks works={firstWorks} href={site.booking.consultation} label={c.ctaBook} id={mId} />
           <p class="cs-lead">{c.lead}</p>
           <div class="cta-row">
             <a class="cta primary" style="background:var(--ink);color:var(--paper)" href={site.booking.consultation} target="_blank" rel="noopener">{c.ctaBook}</a>
@@ -213,6 +219,8 @@ const c = {
       </div>
     </div>
   </section>
+
+  <FirstWorks part="sticky" href={site.booking.consultation} label={c.ctaBook} id={mId} />
 
   <!-- AGENDA -->
   <section id="ablauf-section" style="padding-top:0">
