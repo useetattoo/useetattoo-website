@@ -6,7 +6,8 @@ import Footer from '../components/Footer.astro';
 import QuickForm from '../components/QuickForm.astro';
 import { site } from '../data/site.js';
 
-const { lang = 'de', title, description, ogImage, noAlternate = false, noLoader = false, alternates = null } = Astro.props;
+const { lang = 'de', title, description, ogImage, noAlternate = false, noLoader = false, alternates = null, noindex = false } = Astro.props;
+// noindex: private utility pages (gift card balance page) stay out of search results.
 // alternates: { de: '/de/…/', en: '/en/…/' } for pages whose slug differs per language
 // (Tattoo Journal, ND-377). Overrides the default "swap the /de|/en prefix" pairing
 // for hreflang and the visible DE/EN switch. Paths must be canonical (trailing slash).
@@ -50,7 +51,7 @@ const ck = {
 const alt = lang === 'de' ? 'en' : 'de';
 const pathname = Astro.url.pathname.replace(/\/$/, '') || '/';
 // Pages that already have their own dedicated form: don't add the global quick form
-const hasOwnForm = /\/(contact|cover-up|event-activations)$/.test(pathname);
+const hasOwnForm = /\/(contact|cover-up|event-activations|gift-cards\/card)$/.test(pathname);
 const selfPath = pathname;
 // The visible DE/EN switch must point at the canonical, slashed URL.
 // pathname has its trailing slash stripped above, so /en would 308 to /en/.
@@ -109,6 +110,7 @@ const localBusinessSchema = {
   <link rel="icon" type="image/png" href="/images/brand/LOGO_black_TransparentBG.png" />
   <link rel="apple-touch-icon" href="/images/brand/LOGO_white_TransparentBG.png" />
   <title>{title}</title>
+  {noindex && <meta name="robots" content="noindex, nofollow" />}
   <meta name="description" content={description} />
   <link rel="canonical" href={canonical} />
   {/* noAlternate: page has no counterpart in the other language yet (e.g. /de/styles/ hub,

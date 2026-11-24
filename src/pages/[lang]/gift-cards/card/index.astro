@@ -1,0 +1,133 @@
+---
+// Where every QR code lands (/g/CODE redirects here). Shows the card and its balance.
+import Base from '../../../../layouts/Base.astro';
+import GiftCardVisual from '../../../../components/GiftCardVisual.astro';
+import { langs } from '../../../../data/i18n.js';
+import { site } from '../../../../data/site.js';
+import { GC } from '../../../../../server/giftcards/config.js';
+
+export function getStaticPaths() {
+  return langs.map((lang) => ({ params: { lang } }));
+}
+const { lang } = Astro.params;
+const c = {
+  de: {
+    title: 'Dein Gutschein | Usee Tattoo Berlin',
+    eyebrow: '/ Gutschein', loading: 'Gutschein wird geladen …',
+    hello: 'Für {n}', balance: 'Guthaben', of: 'von', valid: 'Gültig bis', code: 'Code',
+    active: 'Dein Gutschein ist bereit. Buche eine kostenlose Beratung oder komm ins Studio und zeig diesen Code.',
+    bonus: 'Ein Bonus-Gutschein, einfach so von uns.',
+    used: 'Dieser Gutschein ist vollständig eingelöst. Wir hoffen, du trägst das Ergebnis mit Freude.',
+    inactive: 'Dieser Gutschein ist noch nicht aktiviert. Er wird beim Kauf im Studio freigeschaltet.',
+    expired: 'Dieser Gutschein ist abgelaufen. Schreib uns trotzdem gern, wir schauen, was wir tun können.',
+    notfound: 'Diesen Code kennen wir nicht. Bitte prüfe ihn noch einmal oder schreib uns.',
+    book: 'Kostenlose Beratung buchen', artists: 'Artists ansehen', walkin: 'Walk-In ansehen',
+    howTitle: 'So löst du ihn ein',
+    how: ['Buche eine kostenlose Beratung, online oder im Studio.', 'Zeig beim Termin diesen QR-Code oder den Code.', 'Der Betrag wird abgezogen, ein Rest bleibt auf dem Gutschein.'],
+    note: 'Bewahre den Code sicher auf, wer ihn vorzeigt, kann ihn einlösen.',
+    gift: 'Selbst einen Gutschein verschenken',
+  },
+  en: {
+    title: 'Your gift card | Usee Tattoo Berlin',
+    eyebrow: '/ Gift Card', loading: 'Loading your gift card …',
+    hello: 'For {n}', balance: 'Balance', of: 'of', valid: 'Valid until', code: 'Code',
+    active: 'Your gift card is ready. Book a free consultation or visit the studio and show this code.',
+    bonus: 'A bonus gift card, simply from us.',
+    used: 'This gift card has been fully used. We hope you love wearing the result.',
+    inactive: 'This gift card is not activated yet. It is activated when it is bought in the studio.',
+    expired: 'This gift card has expired. Write to us anyway, we will see what we can do.',
+    notfound: 'We do not know this code. Please check it again or write to us.',
+    book: 'Book a free consultation', artists: 'See the artists', walkin: 'See walk-in',
+    howTitle: 'How to use it',
+    how: ['Book a free consultation, online or in the studio.', 'Show this QR code or the code at your appointment.', 'The amount is deducted, anything left stays on the card.'],
+    note: 'Keep the code safe, whoever shows it can use it.',
+    gift: 'Give a gift card yourself',
+  },
+}[lang];
+---
+<Base lang={lang} title={c.title} description={c.title} noindex={true} noLoader={true}>
+  <section class="gcp">
+    <div class="wrap gcp-grid">
+      <div class="gcp-card">
+        <GiftCardVisual id="gcp-visual" image={GC.edition.image} edition={GC.edition.name[lang]} amount="" />
+        <div class="gcp-qr" id="gcp-qr" hidden></div>
+      </div>
+      <div class="gcp-txt">
+        <div class="eyebrow">{c.eyebrow}</div>
+        <h1 id="gcp-h1">{c.loading}</h1>
+        <div class="gcp-meta" id="gcp-meta" hidden>
+          <div><span>{c.balance}</span><b id="gcp-bal"></b><em id="gcp-of"></em></div>
+          <div><span>{c.valid}</span><b id="gcp-exp"></b></div>
+          <div><span>{c.code}</span><b id="gcp-code" class="mono"></b></div>
+        </div>
+        <p class="gcp-msg" id="gcp-msg"></p>
+        <div class="cta-row" id="gcp-ctas" hidden>
+          <a class="cta primary" style="background:var(--ink);color:var(--paper)" href={site.booking.consultation} target="_blank" rel="noopener">{c.book}</a>
+          <a class="cta gcp-ghost" href={`/${lang}/#artists`}>{c.artists}</a>
+        </div>
+        <div class="gcp-how" id="gcp-how" hidden>
+          <h2>{c.howTitle}</h2>
+          <ol>{c.how.map((x) => <li>{x}</li>)}</ol>
+          <p class="gcp-note">{c.note}</p>
+        </div>
+        <p style="margin-top:30px"><a class="link-underline" href={`/${lang}/gift-cards/`}>{c.gift}</a></p>
+      </div>
+    </div>
+  </section>
+  <style is:global>
+    .gcp [hidden]{display:none !important}
+    .gcp{padding:80px 0 110px}
+    .gcp-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:start}
+    .gcp-card{position:sticky;top:120px}
+    .gcp-qr{background:#fff;width:150px;padding:10px;margin:22px auto 0;border:1px solid var(--line)}
+    .gcp-txt .eyebrow{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--bronze);margin-bottom:18px}
+    .gcp-txt h1{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(36px,5vw,58px);line-height:1.05;margin-bottom:26px}
+    .gcp-meta{border-top:1px solid var(--line);margin-bottom:24px}
+    .gcp-meta>div{display:flex;align-items:baseline;gap:12px;padding:14px 0;border-bottom:1px solid var(--line)}
+    .gcp-meta span{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--bronze-dk);width:130px;flex:0 0 auto}
+    .gcp-meta b{font-weight:400;font-size:17px}
+    .gcp-meta #gcp-bal{font-family:'Cormorant Garamond',serif;font-size:34px;line-height:1}
+    .gcp-meta em{font-style:normal;color:#8f887c;font-size:14px}
+    .mono{font-family:Menlo,Consolas,monospace;letter-spacing:.1em}
+    .gcp-msg{color:var(--ink-soft);font-size:16px;line-height:1.8;margin-bottom:8px;max-width:520px}
+    .gcp-ghost{border:1px solid var(--ink);color:var(--ink)}
+    .gcp-ghost:hover{background:var(--ink);color:var(--paper)}
+    .gcp-how{margin-top:44px;border-top:1px solid var(--line);padding-top:30px}
+    .gcp-how h2{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:28px;margin-bottom:14px}
+    .gcp-how ol{padding-left:20px;color:var(--ink-soft);line-height:1.9}
+    .gcp-note{font-size:13px;color:#8f887c;margin-top:14px}
+    @media(max-width:960px){.gcp{padding:30px 0 80px}.gcp-grid{grid-template-columns:1fr;gap:36px}.gcp-card{position:static}}
+  </style>
+  <script is:inline define:vars={{ S: c, LANG: lang }}>
+  (function () {
+    const $ = (id) => document.getElementById(id);
+    const code = (new URLSearchParams(location.search).get('c') || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
+    const fmt = (n) => (LANG === 'de' ? n + ' €' : '€' + n);
+    const date = (iso) => new Date(iso + 'T12:00:00').toLocaleDateString(LANG === 'de' ? 'de-DE' : 'en-GB');
+    const fail = (msg) => { $('gcp-h1').textContent = msg; };
+    if (code.length !== 10) return fail(S.notfound);
+    fetch('/api/gc/card/' + code).then((r) => r.json()).then((r) => {
+      if (!r.ok) return fail(S.notfound);
+      const k = r.card; const v = $('gcp-visual');
+      const pretty = k.code.slice(0, 5) + '-' + k.code.slice(5);
+      $('gcp-code').textContent = pretty;
+      if (k.status === 'inactive') { fail(S.inactive.split('.')[0] + '.'); $('gcp-msg').textContent = S.inactive; return; }
+      v.querySelector('[data-gc-amount]').textContent = fmt(k.balance);
+      if (k.recipient) v.querySelector('[data-gc-name]').textContent = S.hello.replace('{n}', k.recipient);
+      $('gcp-h1').textContent = k.recipient ? S.hello.replace('{n}', k.recipient) : (LANG === 'de' ? 'Dein Gutschein' : 'Your gift card');
+      $('gcp-bal').textContent = fmt(k.balance);
+      if (k.balance !== k.initial) $('gcp-of').textContent = S.of + ' ' + fmt(k.initial);
+      $('gcp-exp').textContent = date(k.expires);
+      $('gcp-meta').hidden = false;
+      const expired = k.expires < new Date().toISOString().slice(0, 10);
+      if (k.status === 'used') $('gcp-msg').textContent = S.used;
+      else if (expired) $('gcp-msg').textContent = S.expired;
+      else {
+        $('gcp-msg').textContent = (k.isBonus ? S.bonus + ' ' : '') + S.active;
+        $('gcp-ctas').hidden = false; $('gcp-how').hidden = false;
+        const q = $('gcp-qr'); q.innerHTML = '<img src="/api/gc/qr/' + k.code + '.svg" alt="QR" width="130" height="130">'; q.hidden = false;
+      }
+    }).catch(() => fail(S.notfound));
+  })();
+  </script>
+</Base>

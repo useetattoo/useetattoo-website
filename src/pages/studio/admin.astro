@@ -1,0 +1,175 @@
+---
+// Management dashboard for gift cards: numbers, activity, staff PINs, print batches, export.
+import '../../styles/fonts.css';
+import '../../styles/global.css';
+---
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/png" href="/images/brand/LOGO_black_TransparentBG.png" />
+  <title>Usee · Gutscheine · Verwaltung</title>
+</head>
+<body class="ad">
+  <header class="ad-head">
+    <a href="/studio/" class="brand">Usee<span>·</span>Tattoo</a>
+    <div class="ad-head-r"><span>Gutscheine · Verwaltung</span><a href="/studio/">Studio</a><button id="logout">Abmelden</button></div>
+  </header>
+  <main class="ad-main">
+    <section id="v-login" class="ad-box ad-narrow" hidden>
+      <h1>Verwaltung</h1>
+      <form id="f-login" class="ad-row"><input type="password" id="pw" placeholder="Admin-Passwort" autocomplete="current-password" /><button class="ad-btn">Anmelden</button></form>
+      <p class="ad-err" id="login-err" hidden></p>
+    </section>
+
+    <section id="v-dash" hidden>
+      <div class="ad-kpis">
+        <div><span>Verkauft</span><b id="k-sold"></b><em id="k-soldn"></em></div>
+        <div><span>Offenes Guthaben</span><b id="k-open"></b><em>davon gekauft: <i id="k-openpaid"></i></em></div>
+        <div><span>Bonus ausgegeben</span><b id="k-bonus"></b><em>Geschenk, kein Umsatz</em></div>
+        <div><span>Leere Karten</span><b id="k-blank"></b><em>gedruckt, noch nicht verkauft</em></div>
+      </div>
+
+      <div class="ad-cols">
+        <div class="ad-box"><h2>Woher kommen die Verkäufe?</h2><table class="ad-t" id="t-source"></table></div>
+        <div class="ad-box"><h2>Pro Monat</h2><table class="ad-t" id="t-month"></table></div>
+      </div>
+      <div class="ad-cols">
+        <div class="ad-box"><h2>Verkauft von</h2><table class="ad-t" id="t-sold"></table></div>
+        <div class="ad-box"><h2>Eingelöst von</h2><table class="ad-t" id="t-red"></table></div>
+      </div>
+
+      <div class="ad-box"><h2>Online-Bestellungen</h2><div class="ad-scroll"><table class="ad-t" id="t-orders"></table></div></div>
+      <div class="ad-box"><h2>Letzte Aktivität</h2><div class="ad-scroll ad-tall"><table class="ad-t" id="t-tx"></table></div></div>
+
+      <div class="ad-box">
+        <h2>Gutschein suchen</h2>
+        <form id="f-search" class="ad-row"><input id="q" placeholder="Code, Name, E-Mail …" /><button class="ad-btn">Suchen</button></form>
+        <div class="ad-scroll"><table class="ad-t" id="t-cards"></table></div>
+      </div>
+
+      <div class="ad-cols">
+        <div class="ad-box">
+          <h2>Karten drucken</h2>
+          <p class="ad-muted">Erstellt leere Karten mit eigenem QR-Code für die aktuelle Edition (<span id="ed-name"></span>). Danach Druckbogen öffnen und als PDF an die Druckerei.</p>
+          <form id="f-batch" class="ad-row"><input id="b-count" type="number" min="1" max="300" value="50" /><input id="b-note" placeholder="Notiz, z. B. Druckerei XY" /><button class="ad-btn">Erstellen</button></form>
+          <table class="ad-t" id="t-batches"></table>
+        </div>
+        <div class="ad-box">
+          <h2>Team & PINs</h2>
+          <p class="ad-muted">Jede Person bekommt eine eigene 4-stellige PIN für Verkauf und Einlösen.</p>
+          <table class="ad-t" id="t-staff"></table>
+          <form id="f-staff" class="ad-row"><input id="s-name" placeholder="Name" /><input id="s-pin" placeholder="Neue PIN" inputmode="numeric" maxlength="4" /><button class="ad-btn">Speichern</button></form>
+        </div>
+      </div>
+
+      <div class="ad-cols">
+        <div class="ad-box"><h2>Läuft bald ab (60 Tage)</h2><table class="ad-t" id="t-exp"></table></div>
+        <div class="ad-box"><h2>Export</h2><p class="ad-muted">CSV für Steuerberatung / Buchhaltung.</p>
+          <p><a class="ad-btn ad-a" href="/api/gc/admin/export?what=cards">Alle Gutscheine</a> <a class="ad-btn ad-a" href="/api/gc/admin/export?what=tx">Alle Buchungen</a></p></div>
+      </div>
+      <p class="ad-err" id="err" hidden></p>
+    </section>
+  </main>
+  <style is:global>
+    .ad [hidden]{display:none !important}
+    .ad{background:var(--paper);min-height:100vh}
+    .ad-head{background:#0e0d0d;color:var(--paper);display:flex;justify-content:space-between;align-items:center;padding:18px 28px}
+    .ad-head .brand{font-size:21px}
+    .ad-head-r{display:flex;gap:16px;align-items:center;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#b9b2a5}
+    .ad-head-r a,.ad-head-r button{color:var(--paper);background:none;border:1px solid rgba(244,241,234,.3);padding:7px 12px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;cursor:pointer}
+    .ad-main{max-width:1200px;margin:0 auto;padding:28px 24px 80px}
+    .ad-main > section{padding:0}
+    .ad-box{background:#fff;border:1px solid var(--line);padding:24px;margin-bottom:18px;min-width:0}
+    .ad-narrow{max-width:460px;margin:40px auto}
+    .ad h1{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:34px;margin-bottom:14px}
+    .ad h2{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:24px;margin-bottom:14px}
+    .ad-row{display:flex;gap:8px;margin:12px 0}
+    .ad input{font-family:'Inter',sans-serif;font-size:15px;padding:11px 12px;border:1px solid var(--line);min-width:0;flex:1}
+    .ad-btn{background:var(--ink);color:var(--paper);border:0;padding:11px 18px;font-size:12px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;white-space:nowrap;text-decoration:none;display:inline-block}
+    .ad-btn:hover{background:var(--bronze)}
+    .ad-sm{padding:6px 10px;font-size:10.5px}
+    .ad-muted{color:#8f887c;font-size:13.5px;line-height:1.6}
+    .ad-err{background:#f6e7e2;color:#7d2e20;padding:12px 14px;font-size:14px}
+    .ad-kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:18px}
+    .ad-kpis>div{background:#0e0d0d;color:var(--paper);padding:22px}
+    .ad-kpis span{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#b9b2a5;display:block}
+    .ad-kpis b{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:44px;line-height:1.1;display:block;margin:6px 0}
+    .ad-kpis em{font-style:normal;font-size:12.5px;color:#8f887c}
+    .ad-kpis i{font-style:normal}
+    .ad-cols{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+    .ad-t{width:100%;border-collapse:collapse;font-size:13.5px}
+    .ad-t th{text-align:left;font-weight:500;font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--bronze-dk);padding:8px 6px;border-bottom:1px solid var(--line);white-space:nowrap}
+    .ad-t td{padding:9px 6px;border-bottom:1px solid #efeae1;vertical-align:top}
+    .ad-t td.r{text-align:right;white-space:nowrap}
+    .ad-scroll{overflow:auto;max-height:420px}
+    .ad-tall{max-height:560px}
+    .mono{font-family:Menlo,Consolas,monospace;letter-spacing:.06em}
+    .pill{font-size:10.5px;letter-spacing:.08em;text-transform:uppercase;border:1px solid var(--line);padding:2px 6px;white-space:nowrap}
+    @media(max-width:900px){.ad-kpis{grid-template-columns:1fr 1fr}.ad-cols{grid-template-columns:1fr}}
+  </style>
+  <script is:inline>
+  (function () {
+    const $ = (id) => document.getElementById(id);
+    const api = (u, d) => fetch(u, d ? { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(d) } : {}).then((r) => r.json());
+    const e = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+    const eur = (n) => (Number(n) || 0).toLocaleString('de-DE') + ' €';
+    const pc = (c) => c ? c.slice(0, 5) + '-' + c.slice(5) : '';
+    const d = (iso) => iso ? new Date(iso).toLocaleString('de-DE', { day: '2-digit', month: '2-digit', year: '2-digit', hour: '2-digit', minute: '2-digit' }) : '';
+    const dd = (iso) => iso ? new Date(iso.slice(0, 10) + 'T12:00:00').toLocaleDateString('de-DE') : '';
+    const SRC = { web: 'Website', studio: 'Studio', event: 'Event', bonus: 'Bonus' };
+    const KIND = { issue: 'Ausgestellt', activate: 'Aktiviert', redeem: 'Eingelöst', void: 'Gesperrt', adjust: 'Korrektur' };
+    const table = (id, head, rows) => ($(id).innerHTML = `<tr>${head.map((h) => `<th>${h}</th>`).join('')}</tr>` + (rows.length ? rows.join('') : `<tr><td class="ad-muted" colspan="${head.length}">–</td></tr>`));
+    const err = (m) => { $('err').textContent = m; $('err').hidden = !m; };
+
+    async function load() {
+      const r = await api('/api/gc/admin/summary');
+      if (!r.ok) { $('v-login').hidden = false; $('v-dash').hidden = true; return; }
+      $('v-login').hidden = true; $('v-dash').hidden = false;
+      const t = r.totals;
+      $('k-sold').textContent = eur(t.sold_value); $('k-soldn').textContent = t.sold_count + ' Gutscheine';
+      $('k-open').textContent = eur(t.open_balance); $('k-openpaid').textContent = eur(t.open_paid_balance);
+      $('k-bonus').textContent = eur(t.bonus_value); $('k-blank').textContent = r.blanks;
+      $('ed-name').textContent = r.edition.name.de;
+      table('t-source', ['Quelle', 'Anzahl', 'Wert'], r.bySource.map((x) => `<tr><td>${SRC[x.source] || e(x.source)}</td><td>${x.n}</td><td class="r">${eur(x.v)}</td></tr>`));
+      table('t-month', ['Monat', 'Anzahl', 'Wert'], r.byMonth.map((x) => `<tr><td>${e(x.m)}</td><td>${x.n}</td><td class="r">${eur(x.v)}</td></tr>`));
+      table('t-sold', ['Person', 'Karten', 'Wert'], r.sold.map((x) => `<tr><td>${e(x.staff)}</td><td>${x.n}</td><td class="r">${eur(x.v)}</td></tr>`));
+      table('t-red', ['Person', 'Einlösungen', 'Wert'], r.redeemed.map((x) => `<tr><td>${e(x.staff)}</td><td>${x.n}</td><td class="r">${eur(x.v)}</td></tr>`));
+      table('t-orders', ['Bezahlt', 'Format', 'Wert', 'Käufer', 'Für', 'Code', 'Status'], r.orders.map((o) => `<tr><td>${d(o.paid_at)}</td><td>${o.format === 'physical' ? 'Karte' : 'Digital'}</td><td class="r">${eur(o.amount)}${o.bonus ? ` <span class="pill">+${o.bonus} Bonus</span>` : ''}</td><td>${e(o.buyer_name)}<br><span class="ad-muted">${e(o.buyer_email)}</span></td><td>${e(o.recipient_name)}${o.ship_city ? `<br><span class="ad-muted">${e(o.ship_city)}</span>` : ''}</td><td class="mono">${pc(o.card_code)}</td><td>${o.format === 'physical' ? (o.fulfilled_at ? 'Verschickt' : '<b>Zu versenden</b>') : 'Per E-Mail'}</td></tr>`));
+      table('t-tx', ['Zeit', 'Was', 'Code', 'Betrag', 'Person', 'Notiz'], r.tx.map((x) => `<tr><td>${d(x.created_at)}</td><td>${KIND[x.kind] || x.kind}${x.is_bonus ? ' <span class="pill">Bonus</span>' : ''}</td><td class="mono">${pc(x.code)}</td><td class="r">${eur(x.amount)}</td><td>${e(x.staff || (x.source === 'web' ? 'Website' : ''))}</td><td>${e(x.note)}</td></tr>`));
+      table('t-batches', ['Erstellt', 'Karten', 'Noch leer', ''], r.batches.map((b) => `<tr><td>${d(b.created_at)}<br><span class="ad-muted">${e(b.note)}</span></td><td>${b.count}</td><td>${b.blank}</td><td class="r"><a class="ad-btn ad-sm" href="/studio/print/?id=${b.id}" target="_blank">Druckbogen</a></td></tr>`));
+      table('t-staff', ['Name', 'PIN', 'Aktiv'], r.staff.map((s) => `<tr><td>${e(s.name)}</td><td>${s.pin ? '✓ gesetzt' : '<b>fehlt</b>'}</td><td>${s.active ? 'ja' : 'nein'}</td></tr>`));
+      table('t-exp', ['Code', 'Für', 'Rest', 'Bis'], r.expiring.map((x) => `<tr><td class="mono">${pc(x.code)}</td><td>${e(x.recipient_name)}</td><td class="r">${eur(x.balance)}</td><td>${dd(x.expires_at)}</td></tr>`));
+      search('');
+    }
+    async function search(q) {
+      const r = await api('/api/gc/admin/cards?q=' + encodeURIComponent(q));
+      if (!r.ok) return;
+      table('t-cards', ['Code', 'Status', 'Quelle', 'Wert', 'Rest', 'Für / Käufer', 'Gültig bis', ''], r.cards.map((c) => `<tr><td class="mono">${pc(c.code)}${c.serial ? `<br><span class="ad-muted">Karte #${c.serial}</span>` : ''}</td><td>${{ active: 'Aktiv', used: 'Aufgebraucht', void: 'Gesperrt' }[c.status] || c.status}${c.is_bonus ? ' <span class="pill">Bonus</span>' : ''}</td><td>${SRC[c.source] || ''}${c.sold_by ? `<br><span class="ad-muted">${e(c.sold_by)}</span>` : ''}</td><td class="r">${eur(c.initial_value)}</td><td class="r">${eur(c.balance)}</td><td>${e(c.recipient_name)}<br><span class="ad-muted">${e(c.buyer_name)} ${e(c.buyer_email)}</span>${c.note ? `<br><span class="ad-muted">${e(c.note)}</span>` : ''}</td><td>${dd(c.expires_at)}</td><td class="r">${c.status === 'active' ? `<button class="ad-btn ad-sm" data-void="${c.code}">Sperren</button>` : ''}</td></tr>`));
+      $('t-cards').querySelectorAll('[data-void]').forEach((b) => (b.onclick = async () => {
+        const note = prompt('Warum sperren? (z. B. Widerruf, verloren, Fehler)');
+        if (!note) return;
+        const r = await api('/api/gc/admin/void', { code: b.dataset.void, note });
+        if (!r.ok) return err('Fehler: ' + r.error);
+        load();
+      }));
+    }
+    $('f-login').onsubmit = async (ev) => { ev.preventDefault(); const r = await api('/api/gc/admin/login', { password: $('pw').value }); if (!r.ok) { $('login-err').textContent = 'Falsches Passwort.'; $('login-err').hidden = false; return; } load(); };
+    $('logout').onclick = async () => { await fetch('/api/gc/admin/login', { method: 'DELETE' }); location.reload(); };
+    $('f-search').onsubmit = (ev) => { ev.preventDefault(); search($('q').value); };
+    $('f-batch').onsubmit = async (ev) => { ev.preventDefault(); const r = await api('/api/gc/admin/batch', { count: Number($('b-count').value), note: $('b-note').value }); if (!r.ok) return err('Fehler: ' + r.error); load(); };
+    $('f-staff').onsubmit = async (ev) => {
+      ev.preventDefault();
+      const pin = $('s-pin').value.trim();
+      if (pin && !/^\d{4}$/.test(pin)) return err('Die PIN muss 4 Ziffern haben.');
+      const r = await api('/api/gc/admin/staff', { name: $('s-name').value.trim(), pin });
+      if (!r.ok) return err('Fehler: ' + r.error);
+      err(''); $('s-pin').value = ''; load();
+    };
+    load();
+  })();
+  </script>
+</body>
+</html>

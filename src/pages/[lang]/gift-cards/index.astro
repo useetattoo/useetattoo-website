@@ -1,0 +1,542 @@
+---
+import Base from '../../../layouts/Base.astro';
+import GiftCardVisual from '../../../components/GiftCardVisual.astro';
+import { langs } from '../../../data/i18n.js';
+import { site } from '../../../data/site.js';
+import { GC } from '../../../../server/giftcards/config.js';
+
+export function getStaticPaths() {
+  return langs.map((lang) => ({ params: { lang } }));
+}
+const { lang } = Astro.params;
+const de = lang === 'de';
+const eur = (n) => (de ? `${n} €` : `€${n}`);
+const dmy = (iso) => { const [y, m, d] = iso.split('-'); return de ? `${d}.${m}.${y}` : `${d}/${m}/${y}`; };
+const edition = GC.edition.name[lang];
+const rules = [...GC.bonus.rules].sort((a, b) => a.min - b.min);
+
+const c = {
+  de: {
+    title: 'Tattoo-Gutschein Berlin | Usee Tattoo – Gutschein online kaufen',
+    description: 'Tattoo-Gutschein von Usee Tattoo Berlin: digital per E-Mail oder als gedruckte Karte per Post. Für alle Artists, 3 Jahre gültig, Restguthaben bleibt.',
+    eyebrow: '/ Gutscheine',
+    h1: 'Ein Tattoo verschenken',
+    tagline: 'Für Arbeiten, die bleiben.',
+    intro: 'Ein Usee Gutschein ist mehr als ein Betrag. Er ist der Anfang eines Tattoos: eine kostenlose Beratung, ein Entwurf, der um die Person herum entsteht, und ein Artist, der darauf spezialisiert ist. Einlösbar bei allen unseren Artists.',
+    cta: 'Gutschein gestalten',
+    offerKicker: 'Weihnachtsaktion',
+    offer: (r) => `Bis ${dmy(GC.bonus.activeUntil)}: Wer verschenkt, bekommt selbst etwas. ${r.map((x, i) => `${i ? 'ab' : 'Ab'} ${eur(x.min)} ${i ? 'sogar' : 'schenken wir dir'} ${eur(x.bonus)}`).join(', ')}, als eigenen Gutschein für dich.`,
+    s1: 'Betrag', s2: 'Format', s3: 'Für wen?', s4: 'Deine Angaben',
+    custom: 'Eigener Betrag', customPh: `ab ${GC.customMin} €`,
+    amountHint: 'Kleine Tattoos ab 100 €. Größere Projekte beginnen mit einer kostenlosen Beratung, der Gutschein wird dann einfach verrechnet.',
+    digital: 'Digital', digitalTxt: 'Per E-Mail mit QR-Code, sofort oder zum Wunschtermin.',
+    physical: 'Gedruckte Karte', physicalTxt: 'Im Umschlag per Post, versandkostenfrei. Versand in 1–3 Werktagen.',
+    recipientName: 'Name der beschenkten Person', recipientNamePh: 'Erscheint auf dem Gutschein',
+    message: 'Persönliche Nachricht', messagePh: 'Optional, max. 300 Zeichen',
+    sendTo: 'Wohin soll der Gutschein?', toMe: 'An mich, ich gebe ihn selbst weiter', toThem: 'Direkt an die beschenkte Person',
+    recipientEmail: 'E-Mail der beschenkten Person', deliverAt: 'Versanddatum', deliverHint: 'Leer lassen = sofort. Bis zu 29 Tage im Voraus.',
+    shipName: 'Name (Empfänger der Post)', shipStreet: 'Straße und Hausnummer', shipZip: 'PLZ', shipCity: 'Ort', shipCountry: 'Land',
+    buyerName: 'Dein Name', buyerEmail: 'Deine E-Mail', buyerHint: 'Hierhin schicken wir die Bestätigung.',
+    summary: 'Dein Gutschein', value: 'Gutschein', shipping: 'Versand', free: 'kostenlos', total: 'Gesamt',
+    bonusLine: (b) => `+ ${b} Gutschein für dich`,
+    terms: 'Ich akzeptiere die <a href="#terms">Gutscheinbedingungen</a> und habe die <a href="/de/datenschutz/">Datenschutzerklärung</a> gelesen.',
+    payNote: 'Sichere Zahlung über PayPal, auch mit Kredit- oder Debitkarte ohne PayPal-Konto.',
+    testPay: 'Testzahlung (nur Vorschau)',
+    soon: 'Die Online-Zahlung wird gerade eingerichtet. Bis dahin bekommst du Gutscheine direkt im Studio, oder schreib uns an info@useetattoo.com.',
+    errors: {
+      amount: `Bitte einen Betrag zwischen ${GC.customMin} und ${GC.customMax} € wählen.`, buyerName: 'Bitte deinen Namen angeben.',
+      buyerEmail: 'Bitte eine gültige E-Mail angeben.', recipientEmail: 'Bitte die E-Mail der beschenkten Person angeben.',
+      deliverAt: 'Das Versanddatum muss zwischen heute und in 29 Tagen liegen.', shipping: 'Bitte die vollständige Lieferadresse angeben.',
+      shipCountry: 'In dieses Land können wir leider nicht versenden.', terms: 'Bitte die Gutscheinbedingungen akzeptieren.',
+      payment_failed: 'Die Zahlung hat nicht geklappt. Bitte versuch es noch einmal.', generic: 'Etwas ist schiefgelaufen. Bitte versuch es noch einmal oder schreib uns.',
+    },
+    thanksTitle: 'Danke, dein Gutschein ist bestellt.',
+    thanksDigitalMe: 'Der Gutschein ist per E-Mail unterwegs zu dir.',
+    thanksDigitalThem: (d) => (d ? `Der Gutschein wird am ${d} per E-Mail verschickt.` : 'Der Gutschein ist per E-Mail unterwegs.'),
+    thanksPhysical: 'Wir drucken deine Karte und schicken sie in den nächsten 1–3 Werktagen los.',
+    thanksCode: 'Gutscheincode', thanksOpen: 'Gutschein ansehen', thanksBonus: 'Dein Bonus-Gutschein',
+    thanksMail: 'Eine Bestätigung ist an deine E-Mail unterwegs.',
+    howTitle: 'So funktioniert es',
+    how: [
+      ['Gestalten', 'Betrag wählen, digital oder als Karte, mit Namen und persönlicher Nachricht.'],
+      ['Verschenken', 'Per E-Mail zum Wunschtermin oder als gedruckte Karte im Umschlag.'],
+      ['Einlösen', 'QR-Code scannen, kostenlose Beratung buchen, bei jedem unserer Artists einlösen.'],
+    ],
+    peTitle: 'Etwas ganz Besonderes?',
+    peText: 'Für eine Private Experience, ein Tattoo-Erlebnis für zwei oder einen Gutschein in individueller Höhe stellen wir dir gern einen persönlichen Gutschein zusammen.',
+    peCta: 'Anfrage senden',
+    balanceTitle: 'Guthaben prüfen',
+    balanceText: 'Scanne den QR-Code auf deinem Gutschein oder gib den Code ein.',
+    balanceBtn: 'Prüfen', balancePh: 'z. B. AB3CD-EF4GH',
+    termsTitle: 'Gutscheinbedingungen',
+    termsList: [
+      ['Einlösung', 'Einlösbar für Tattoos bei allen Artists von Usee Tattoo, Neue Kantstraße 6, 14057 Berlin, auch für die Anzahlung bei der Terminbuchung. Mehrere Gutscheine können kombiniert werden.'],
+      ['Gültigkeit', `Gekaufte Gutscheine sind drei Jahre gültig, bis zum 31. Dezember des dritten Jahres nach dem Kauf. Bonus-Gutscheine aus Aktionen sind ein Geschenk und gelten bis zu dem Datum, das auf ihnen steht (aktuell ${dmy(GC.bonus.expires)}).`],
+      ['Restguthaben', 'Wird nicht der volle Betrag genutzt, bleibt der Rest auf dem Gutschein. Eine Barauszahlung ist nicht möglich.'],
+      ['Weitergabe', 'Der Gutschein ist übertragbar. Wer den Code oder QR-Code vorzeigt, kann ihn einlösen, bitte bewahre ihn sicher auf. Bei Verlust sperren wir einen noch nicht eingelösten Gutschein gegen Kaufnachweis und stellen ihn neu aus.'],
+      ['Mindestalter', 'Wir tätowieren ab 18 Jahren mit gültigem Lichtbildausweis.'],
+      ['Widerruf', 'Bei Online-Käufen hast du ein Widerrufsrecht von 14 Tagen, solange der Gutschein noch nicht eingelöst wurde. Mit dem Widerruf entfällt auch ein Bonus-Gutschein. Schreib uns dazu an info@useetattoo.com.'],
+    ],
+  },
+  en: {
+    title: 'Tattoo Gift Card Berlin | Usee Tattoo – Buy a gift card online',
+    description: 'Usee Tattoo Berlin gift card: digital by email or as a printed card by post. For all artists, valid for 3 years, any balance stays on the card.',
+    eyebrow: '/ Gift Cards',
+    h1: 'Give a tattoo',
+    tagline: 'For work that stays.',
+    intro: 'A Usee gift card is more than an amount. It is the start of a tattoo: a free consultation, a design drawn around the person, and an artist who specialises in it. Valid with all our artists.',
+    cta: 'Create a gift card',
+    offerKicker: 'Christmas offer',
+    offer: (r) => `Until ${dmy(GC.bonus.activeUntil)}: when you give, you get something too. ${r.map((x, i) => `${i ? 'from' : 'From'} ${eur(x.min)} we give you ${i ? 'even ' : ''}${eur(x.bonus)}`).join(', ')}, as your own gift card.`,
+    s1: 'Amount', s2: 'Format', s3: 'Who is it for?', s4: 'Your details',
+    custom: 'Custom amount', customPh: `from €${GC.customMin}`,
+    amountHint: 'Small tattoos start at €100. Larger projects begin with a free consultation, and the gift card is simply deducted.',
+    digital: 'Digital', digitalTxt: 'By email with a QR code, right away or on a date you choose.',
+    physical: 'Printed card', physicalTxt: 'In an envelope by post, free shipping. Sent within 1–3 working days.',
+    recipientName: 'Name of the person', recipientNamePh: 'Shown on the gift card',
+    message: 'Personal message', messagePh: 'Optional, up to 300 characters',
+    sendTo: 'Where should the gift card go?', toMe: 'To me, I will pass it on', toThem: 'Straight to the person',
+    recipientEmail: "Recipient's email", deliverAt: 'Delivery date', deliverHint: 'Leave empty = right away. Up to 29 days ahead.',
+    shipName: 'Name (who receives the post)', shipStreet: 'Street and number', shipZip: 'Postcode', shipCity: 'City', shipCountry: 'Country',
+    buyerName: 'Your name', buyerEmail: 'Your email', buyerHint: 'We send the confirmation here.',
+    summary: 'Your gift card', value: 'Gift card', shipping: 'Shipping', free: 'free', total: 'Total',
+    bonusLine: (b) => `+ ${b} gift card for you`,
+    terms: 'I accept the <a href="#terms">gift card terms</a> and have read the <a href="/en/datenschutz/">privacy policy</a>.',
+    payNote: 'Secure payment with PayPal, also by credit or debit card without a PayPal account.',
+    testPay: 'Test payment (preview only)',
+    soon: 'Online payment is being set up. Until then, gift cards are available in the studio, or write to us at info@useetattoo.com.',
+    errors: {
+      amount: `Please choose an amount between €${GC.customMin} and €${GC.customMax}.`, buyerName: 'Please enter your name.',
+      buyerEmail: 'Please enter a valid email.', recipientEmail: "Please enter the recipient's email.",
+      deliverAt: 'The delivery date must be between today and 29 days from now.', shipping: 'Please enter the full delivery address.',
+      shipCountry: 'Sorry, we cannot ship to this country.', terms: 'Please accept the gift card terms.',
+      payment_failed: 'The payment did not go through. Please try again.', generic: 'Something went wrong. Please try again or write to us.',
+    },
+    thanksTitle: 'Thank you, your gift card is ordered.',
+    thanksDigitalMe: 'Your gift card is on its way to your inbox.',
+    thanksDigitalThem: (d) => (d ? `The gift card will be emailed on ${d}.` : 'The gift card is on its way by email.'),
+    thanksPhysical: 'We print your card and post it within 1–3 working days.',
+    thanksCode: 'Gift card code', thanksOpen: 'View gift card', thanksBonus: 'Your bonus gift card',
+    thanksMail: 'A confirmation is on its way to your email.',
+    howTitle: 'How it works',
+    how: [
+      ['Create', 'Choose the amount, digital or printed, with a name and a personal message.'],
+      ['Give', 'By email on the day you choose, or as a printed card in an envelope.'],
+      ['Use', 'Scan the QR code, book a free consultation, use it with any of our artists.'],
+    ],
+    peTitle: 'Something truly special?',
+    peText: 'For a Private Experience, a tattoo experience for two, or a gift card of a custom value, we are happy to put together a personal gift card for you.',
+    peCta: 'Send a request',
+    balanceTitle: 'Check your balance',
+    balanceText: 'Scan the QR code on your gift card or enter the code.',
+    balanceBtn: 'Check', balancePh: 'e.g. AB3CD-EF4GH',
+    termsTitle: 'Gift card terms',
+    termsList: [
+      ['Use', 'Valid for tattoos with all artists at Usee Tattoo, Neue Kantstraße 6, 14057 Berlin, including the deposit when booking. Several gift cards can be combined.'],
+      ['Validity', `Purchased gift cards are valid for three years, until 31 December of the third year after purchase. Bonus gift cards from offers are a gift and are valid until the date shown on them (currently ${dmy(GC.bonus.expires)}).`],
+      ['Balance', 'If the full amount is not used, the rest stays on the gift card. Cash payout is not possible.'],
+      ['Passing it on', 'The gift card can be passed on. Whoever shows the code or QR code can use it, so please keep it safe. If it is lost, we block an unused gift card on proof of purchase and issue a new one.'],
+      ['Minimum age', 'We tattoo from 18 years with a valid photo ID.'],
+      ['Withdrawal', 'For online purchases you have a 14-day right of withdrawal as long as the gift card has not been used. A bonus gift card is cancelled with the withdrawal. Just write to info@useetattoo.com.'],
+    ],
+  },
+}[lang];
+
+const countries = {
+  DE: { de: 'Deutschland', en: 'Germany' }, AT: { de: 'Österreich', en: 'Austria' }, CH: { de: 'Schweiz', en: 'Switzerland' },
+  NL: { de: 'Niederlande', en: 'Netherlands' }, BE: { de: 'Belgien', en: 'Belgium' }, LU: { de: 'Luxemburg', en: 'Luxembourg' },
+  FR: { de: 'Frankreich', en: 'France' }, DK: { de: 'Dänemark', en: 'Denmark' }, PL: { de: 'Polen', en: 'Poland' }, CZ: { de: 'Tschechien', en: 'Czechia' },
+};
+const strings = {
+  errors: c.errors, bonusLine: c.bonusLine('{b}'), thanksDigitalMe: c.thanksDigitalMe,
+  thanksDigitalThem: c.thanksDigitalThem('{d}'), thanksDigitalThemNow: c.thanksDigitalThem(''), thanksPhysical: c.thanksPhysical, free: c.free, testPay: c.testPay, soon: c.soon,
+};
+---
+<Base lang={lang} title={c.title} description={c.description} ogImage="/images/giftcards/edition-christmas-2026.png">
+  <section class="detail-hero gc-hero">
+    <div class="wrap gc-hero-grid">
+      <div class="dh-txt gc-txt reveal">
+        <div class="eyebrow">{c.eyebrow}</div>
+        <h1>{c.h1}</h1>
+        <div class="gc-tag">{c.tagline}</div>
+        <div class="cta-row gc-cta"><a class="cta primary" style="background:var(--ink);color:var(--paper)" href="#gc-build">{c.cta}</a></div>
+        <p class="gc-p">{c.intro}</p>
+      </div>
+      <div class="gc-hero-card reveal">
+        <GiftCardVisual image={GC.edition.image} edition={edition} amount={eur(100)} />
+      </div>
+    </div>
+  </section>
+
+  <div class="gc-offer" id="gc-offer" data-until={GC.bonus.activeUntil} data-from={GC.bonus.activeFrom}>
+    <div class="wrap"><span class="gc-offer-k">{c.offerKicker}</span><span>{c.offer(rules)}</span></div>
+  </div>
+
+  <section class="gc-build-sec" id="gc-build">
+    <div class="wrap">
+      <form class="gc-build" id="gc-form" novalidate>
+        <div class="gc-steps">
+          <fieldset class="gc-step">
+            <legend><span class="n">01</span>{c.s1}</legend>
+            <div class="gc-amounts" role="radiogroup">
+              {GC.amounts.map((a) => <button type="button" class="gc-amt" data-amount={a} aria-pressed={a === 100 ? 'true' : 'false'}>{eur(a)}</button>)}
+              <label class="gc-custom"><span>{c.custom}</span><input type="number" inputmode="numeric" min={GC.customMin} max={GC.customMax} step="1" id="gc-custom" placeholder={c.customPh} /></label>
+            </div>
+            <p class="gc-hint">{c.amountHint}</p>
+          </fieldset>
+
+          <fieldset class="gc-step">
+            <legend><span class="n">02</span>{c.s2}</legend>
+            <div class="gc-formats">
+              <label class="gc-format"><input type="radio" name="format" value="digital" checked /><span><b>{c.digital}</b><small>{c.digitalTxt}</small></span></label>
+              <label class="gc-format"><input type="radio" name="format" value="physical" /><span><b>{c.physical}</b><small>{c.physicalTxt}</small></span></label>
+            </div>
+          </fieldset>
+
+          <fieldset class="gc-step">
+            <legend><span class="n">03</span>{c.s3}</legend>
+            <div class="gc-grid2">
+              <label class="gc-f"><span>{c.recipientName}</span><input id="gc-rname" maxlength="80" placeholder={c.recipientNamePh} autocomplete="off" /></label>
+            </div>
+            <label class="gc-f"><span>{c.message}</span><textarea id="gc-msg" maxlength="300" rows="3" placeholder={c.messagePh}></textarea></label>
+            <div data-only="digital">
+              <div class="gc-f"><span>{c.sendTo}</span>
+                <div class="gc-radios">
+                  <label><input type="radio" name="sendTo" value="me" checked /> {c.toMe}</label>
+                  <label><input type="radio" name="sendTo" value="recipient" /> {c.toThem}</label>
+                </div>
+              </div>
+              <div class="gc-grid2" data-only-to="recipient" hidden>
+                <label class="gc-f"><span>{c.recipientEmail}</span><input type="email" id="gc-remail" maxlength="120" autocomplete="off" /></label>
+                <label class="gc-f"><span>{c.deliverAt}</span><input type="date" id="gc-date" /><small>{c.deliverHint}</small></label>
+              </div>
+            </div>
+            <div data-only="physical" hidden>
+              <div class="gc-grid2">
+                <label class="gc-f"><span>{c.shipName}</span><input id="gc-sname" maxlength="80" autocomplete="name" /></label>
+                <label class="gc-f"><span>{c.shipStreet}</span><input id="gc-sstreet" maxlength="120" autocomplete="street-address" /></label>
+                <label class="gc-f"><span>{c.shipZip}</span><input id="gc-szip" maxlength="12" autocomplete="postal-code" /></label>
+                <label class="gc-f"><span>{c.shipCity}</span><input id="gc-scity" maxlength="60" autocomplete="address-level2" /></label>
+                <label class="gc-f"><span>{c.shipCountry}</span>
+                  <select id="gc-scountry">{GC.shipCountries.map((k) => <option value={k}>{countries[k][lang]}</option>)}</select>
+                </label>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="gc-step">
+            <legend><span class="n">04</span>{c.s4}</legend>
+            <div class="gc-grid2">
+              <label class="gc-f"><span>{c.buyerName}</span><input id="gc-bname" maxlength="80" autocomplete="name" /></label>
+              <label class="gc-f"><span>{c.buyerEmail}</span><input type="email" id="gc-bemail" maxlength="120" autocomplete="email" /><small>{c.buyerHint}</small></label>
+            </div>
+          </fieldset>
+        </div>
+
+        <aside class="gc-summary">
+          <div class="gc-sum-in">
+            <div class="gc-sum-t">{c.summary}</div>
+            <GiftCardVisual id="gc-preview" image={GC.edition.image} edition={edition} amount={eur(100)} />
+            <dl class="gc-lines">
+              <div><dt>{c.value}</dt><dd id="gc-l-value">{eur(100)}</dd></div>
+              <div data-only="physical" hidden><dt>{c.shipping}</dt><dd>{GC.shippingFee ? eur(GC.shippingFee) : c.free}</dd></div>
+              <div class="gc-total"><dt>{c.total}</dt><dd id="gc-l-total">{eur(100)}</dd></div>
+              <div class="gc-bonus" id="gc-l-bonus" hidden><dd></dd></div>
+            </dl>
+            <label class="gc-check"><input type="checkbox" id="gc-terms" /><span set:html={c.terms} /></label>
+            <div class="gc-err" id="gc-err" role="alert" hidden></div>
+            <div id="gc-pay"></div>
+            <p class="gc-paynote">{c.payNote}</p>
+          </div>
+        </aside>
+      </form>
+
+      <div class="gc-thanks" id="gc-thanks" hidden>
+        <div class="eyebrow">{c.eyebrow}</div>
+        <h2 class="gc-h2">{c.thanksTitle}</h2>
+        <p class="gc-p" id="gc-t-text"></p>
+        <div class="gc-t-code" id="gc-t-card" hidden><span>{c.thanksCode}</span><b></b><a class="cta primary" style="background:var(--ink);color:var(--paper)" href="#">{c.thanksOpen}</a></div>
+        <div class="gc-t-code gc-t-bonus" id="gc-t-bonus" hidden><span>{c.thanksBonus}</span><b></b><a class="link-underline" href="#">{c.thanksOpen}</a></div>
+        <p class="gc-hint">{c.thanksMail}</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="gc-how">
+    <div class="wrap">
+      <h2 class="gc-h2 reveal">{c.howTitle}</h2>
+      <div class="gc-how-grid reveal">
+        {c.how.map(([h, p], i) => <div class="gc-how-i"><div class="n">0{i + 1}</div><h3>{h}</h3><p>{p}</p></div>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="gc-pe">
+    <div class="wrap gc-pe-grid">
+      <div class="reveal">
+        <h2 class="gc-h2">{c.peTitle}</h2>
+        <p class="gc-p">{c.peText}</p>
+        <a class="link-underline" href={`/${lang}/contact/`}>{c.peCta}</a>
+      </div>
+      <div class="gc-balance reveal" id="balance">
+        <h3>{c.balanceTitle}</h3>
+        <p>{c.balanceText}</p>
+        <form id="gc-check" class="gc-check-form"><input id="gc-check-code" placeholder={c.balancePh} autocomplete="off" /><button type="submit">{c.balanceBtn}</button></form>
+      </div>
+    </div>
+  </section>
+
+  <section class="faq gc-terms" id="terms">
+    <div class="wrap">
+      <div class="faq-list">
+        <h2 class="gc-h2" style="margin-bottom:20px">{c.termsTitle}</h2>
+        {c.termsList.map(([q, a]) => (
+          <details><summary>{q}<span class="plus">+</span></summary><div class="ans">{a}</div></details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <style is:global>
+    .gc-build [hidden],.gc-thanks [hidden],#gc-l-bonus[hidden]{display:none !important}
+    .gc-build[hidden]{display:none !important}
+    .gc-hero{padding-bottom:70px}
+    .gc-hero-grid{display:grid;grid-template-columns:1fr 1fr;gap:64px;align-items:center}
+    .gc-tag{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:22px;color:var(--bronze-dk);margin:2px 0 26px}
+    .gc-p{color:var(--ink-soft);font-size:16px;line-height:1.85;max-width:560px}
+    .gc-cta{margin:0 0 30px}
+    .gc-hero-card{transform:rotate(-2.2deg);max-width:560px;justify-self:end;width:100%}
+    .gc-offer{background:var(--ink);color:#d8d2c6;font-size:14.5px;line-height:1.6;padding:18px 0}
+    .gc-offer .wrap{display:flex;gap:18px;align-items:baseline;flex-wrap:wrap}
+    .gc-offer-k{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:var(--bronze);white-space:nowrap}
+    .gc-build-sec{background:var(--paper-2);padding:90px 0}
+    .gc-build{display:grid;grid-template-columns:1.25fr .75fr;gap:56px;align-items:start}
+    .gc-step{border:0;border-top:1px solid var(--line);padding:30px 0 34px}
+    .gc-step:first-child{border-top:0;padding-top:0}
+    .gc-step legend{font-family:'Cormorant Garamond',serif;font-size:30px;font-weight:400;display:flex;gap:16px;align-items:baseline;padding:0;margin-bottom:22px;float:left;width:100%}
+    .gc-step legend + *{clear:both}
+    .gc-step .n{font-family:'Inter',sans-serif;font-size:11px;letter-spacing:.24em;color:var(--bronze)}
+    .gc-amounts{display:flex;flex-wrap:wrap;gap:10px}
+    .gc-amt{background:transparent;border:1px solid var(--line);padding:15px 0;width:92px;font-family:'Cormorant Garamond',serif;font-size:24px;color:var(--ink);cursor:pointer;transition:all .35s var(--ease)}
+    .gc-amt:hover{border-color:var(--bronze)}
+    .gc-amt[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+    .gc-custom{display:flex;flex-direction:column;justify-content:center;border:1px solid var(--line);padding:6px 14px;min-width:170px;background:var(--paper)}
+    .gc-custom span{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--bronze-dk)}
+    .gc-custom input{border:0;background:transparent;font-family:'Cormorant Garamond',serif;font-size:22px;width:100%;outline:none;color:var(--ink)}
+    .gc-custom.on{border-color:var(--ink)}
+    .gc-hint{font-size:13.5px;color:var(--ink-soft);margin-top:14px;line-height:1.7;max-width:560px}
+    .gc-formats{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .gc-format{border:1px solid var(--line);padding:20px 22px;display:flex;gap:14px;cursor:pointer;background:var(--paper);transition:border-color .35s var(--ease)}
+    .gc-format:has(input:checked){border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+    .gc-format input{accent-color:var(--ink);margin-top:5px}
+    .gc-format b{display:block;font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:500}
+    .gc-format small{display:block;font-size:13.5px;color:var(--ink-soft);line-height:1.6;margin-top:4px}
+    .gc-grid2{display:grid;grid-template-columns:1fr 1fr;gap:0 18px}
+    .gc-f{display:flex;flex-direction:column;gap:7px;margin-bottom:18px}
+    .gc-f > span{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--bronze-dk)}
+    .gc-f input,.gc-f textarea,.gc-f select{font-family:'Inter',sans-serif;font-size:15px;padding:13px 14px;border:1px solid var(--line);background:var(--white);color:var(--ink);border-radius:0;width:100%}
+    .gc-f input:focus,.gc-f textarea:focus,.gc-f select:focus{outline:none;border-color:var(--bronze)}
+    .gc-f small{font-size:12px;color:#8f887c}
+    .gc-f .bad{border-color:#a3412f}
+    .gc-radios{display:flex;flex-direction:column;gap:10px;font-size:15px;color:var(--ink)}
+    .gc-radios label{display:flex;align-items:center;gap:10px;cursor:pointer}
+    .gc-f .gc-radios input{width:auto;accent-color:var(--ink);margin:0;padding:0}
+    .gc-summary{position:sticky;top:110px}
+    .gc-sum-in{background:var(--paper);border:1px solid var(--line);padding:30px}
+    .gc-sum-t{font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--bronze);margin-bottom:18px}
+    .gc-lines{margin:24px 0 18px}
+    .gc-lines > div{display:flex;justify-content:space-between;padding:9px 0;border-bottom:1px solid var(--line);font-size:15px}
+    .gc-lines dt{color:var(--ink-soft)}
+    .gc-total{font-weight:500}
+    .gc-total dd{font-family:'Cormorant Garamond',serif;font-size:26px;line-height:1}
+    .gc-bonus{border-bottom:0 !important;color:var(--bronze-dk);font-style:italic;font-family:'Cormorant Garamond',serif;font-size:19px}
+    .gc-check{display:flex;gap:10px;font-size:13px;line-height:1.6;color:var(--ink-soft);margin-bottom:16px;cursor:pointer}
+    .gc-check input{accent-color:var(--ink);margin-top:4px;flex:0 0 auto}
+    .gc-check a{color:var(--ink)}
+    .gc-err{background:#f6e7e2;color:#7d2e20;font-size:13.5px;padding:12px 14px;margin-bottom:14px;line-height:1.5}
+    .gc-paynote{font-size:12px;color:#8f887c;margin-top:12px;line-height:1.6}
+    .gc-testpay{width:100%;background:var(--ink);color:var(--paper);border:0;padding:16px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;cursor:pointer}
+    .gc-testpay:hover{background:var(--bronze)}
+    #gc-pay.busy{opacity:.5;pointer-events:none}
+    .gc-soon{background:var(--paper-2);border-left:2px solid var(--bronze);padding:14px 16px;font-size:14px;line-height:1.6;color:var(--ink-soft)}
+    .gc-thanks{max-width:720px;margin:0 auto;text-align:center}
+    .gc-thanks .eyebrow{font-size:12px;letter-spacing:.3em;text-transform:uppercase;color:var(--bronze);margin-bottom:18px}
+    .gc-thanks .gc-p{margin:0 auto 28px}
+    .gc-t-code{background:var(--paper);border:1px solid var(--line);padding:26px;margin-bottom:16px;display:flex;flex-direction:column;align-items:center;gap:12px}
+    .gc-t-code span{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--bronze-dk)}
+    .gc-t-code b{font-family:Menlo,Consolas,monospace;font-size:24px;letter-spacing:.12em;font-weight:500}
+    .gc-h2{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:clamp(28px,4vw,42px);margin:0 0 18px;line-height:1.15}
+    .gc-how-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:40px;margin-top:40px}
+    .gc-how-i .n{font-family:'Cormorant Garamond',serif;font-size:34px;color:var(--bronze)}
+    .gc-how-i h3{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:24px;margin:6px 0 8px}
+    .gc-how-i p{color:var(--ink-soft);font-size:15px;line-height:1.75}
+    .gc-pe{padding-top:0}
+    .gc-pe-grid > *,.gc-build > *,.gc-hero-grid > *{min-width:0}
+    .gc-pe-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:70px;align-items:start;border-top:1px solid var(--line);padding-top:90px}
+    .gc-pe .gc-p{margin-bottom:26px}
+    .gc-balance{background:var(--ink);color:var(--paper);padding:38px}
+    .gc-balance h3{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:28px;margin-bottom:10px}
+    .gc-balance p{color:#b9b2a5;font-size:14.5px;margin-bottom:20px}
+    .gc-check-form{display:flex;gap:8px}
+    .gc-check-form input{flex:1;min-width:0;background:transparent;border:1px solid rgba(244,241,234,.3);color:var(--paper);padding:13px 14px;font-family:Menlo,Consolas,monospace;letter-spacing:.08em;text-transform:uppercase}
+    .gc-check-form input:focus{outline:none;border-color:var(--bronze)}
+    .gc-check-form button{background:var(--paper);color:var(--ink);border:0;padding:0 22px;font-size:12px;letter-spacing:.16em;text-transform:uppercase;cursor:pointer}
+    .gc-check-form button:hover{background:var(--bronze);color:var(--paper)}
+    @media(max-width:960px){
+      .gc-hero{padding-top:12px}
+      .gc-hero-grid,.gc-build,.gc-pe-grid{grid-template-columns:1fr;gap:40px}
+      .gc-txt{display:flex;flex-direction:column}
+      .gc-txt h1{margin-bottom:10px}
+      .gc-hero-card{justify-self:center;max-width:460px;transform:rotate(-1.5deg)}
+      .gc-summary{position:static}
+      .gc-how-grid{grid-template-columns:1fr;gap:26px}
+      .gc-pe-grid{padding-top:70px}
+    }
+    @media(max-width:600px){
+      .gc-amt{width:calc(33.33% - 7px)}
+      .gc-custom{flex:1 1 100%}
+      .gc-formats,.gc-grid2{grid-template-columns:1fr}
+      .gc-sum-in{padding:22px}
+      .gc-build-sec{padding:60px 0}
+    }
+  </style>
+
+  <script is:inline define:vars={{ S: strings, LANG: lang, MAXDAYS: GC.maxDeliveryDays }}>
+  (function () {
+    const $ = (id) => document.getElementById(id);
+    const form = $('gc-form'); if (!form) return;
+    const fmt = (n) => (LANG === 'de' ? n + ' €' : '€' + n);
+    let cfg = null, amount = 100, busy = false;
+
+    // Offer strip only while the offer runs (the page is static).
+    const offer = $('gc-offer'); const today = new Date().toISOString().slice(0, 10);
+    if (offer && (today > offer.dataset.until || today < offer.dataset.from)) offer.remove();
+
+    const fmtVal = () => form.querySelector('input[name=format]:checked').value;
+    const sendTo = () => form.querySelector('input[name=sendTo]:checked').value;
+    function bonusFor(a) {
+      if (!cfg || !cfg.bonus) return 0;
+      const r = cfg.bonus.rules.slice().sort((x, y) => y.min - x.min).find((r) => a >= r.min);
+      return r ? r.bonus : 0;
+    }
+    function render() {
+      const f = fmtVal();
+      document.querySelectorAll('[data-only]').forEach((el) => (el.hidden = el.dataset.only !== f));
+      document.querySelectorAll('[data-only-to]').forEach((el) => (el.hidden = sendTo() !== el.dataset.onlyTo));
+      const ship = f === 'physical' && cfg ? cfg.shippingFee : 0;
+      const ok = amount >= 25;
+      $('gc-l-value').textContent = ok ? fmt(amount) : '–';
+      $('gc-l-total').textContent = ok ? fmt(amount + ship) : '–';
+      const prev = $('gc-preview');
+      prev.querySelector('[data-gc-amount]').textContent = ok ? fmt(amount) : '';
+      prev.querySelector('[data-gc-name]').textContent = $('gc-rname').value.trim() ? (LANG === 'de' ? 'für ' : 'for ') + $('gc-rname').value.trim() : '';
+      const b = ok ? bonusFor(amount) : 0;
+      const bl = $('gc-l-bonus'); bl.hidden = !b; bl.querySelector('dd').textContent = S.bonusLine.replace('{b}', fmt(b));
+    }
+    form.querySelectorAll('.gc-amt').forEach((btn) => btn.addEventListener('click', () => {
+      form.querySelectorAll('.gc-amt').forEach((x) => x.setAttribute('aria-pressed', 'false'));
+      btn.setAttribute('aria-pressed', 'true'); $('gc-custom').value = ''; $('gc-custom').parentElement.classList.remove('on');
+      amount = Number(btn.dataset.amount); render();
+    }));
+    $('gc-custom').addEventListener('input', (e) => {
+      const v = Math.floor(Number(e.target.value) || 0);
+      form.querySelectorAll('.gc-amt').forEach((x) => x.setAttribute('aria-pressed', 'false'));
+      e.target.parentElement.classList.add('on'); amount = v; render();
+    });
+    form.addEventListener('change', render);
+    $('gc-rname').addEventListener('input', render);
+    const d = new Date(); const max = new Date(Date.now() + MAXDAYS * 864e5);
+    $('gc-date').min = d.toISOString().slice(0, 10); $('gc-date').max = max.toISOString().slice(0, 10);
+
+    function payload() {
+      return {
+        lang: LANG, amount, format: fmtVal(), terms: $('gc-terms').checked,
+        recipientName: $('gc-rname').value, message: $('gc-msg').value,
+        sendTo: sendTo(), recipientEmail: $('gc-remail').value, deliverAt: $('gc-date').value,
+        shipName: $('gc-sname').value, shipStreet: $('gc-sstreet').value, shipZip: $('gc-szip').value, shipCity: $('gc-scity').value, shipCountry: $('gc-scountry').value,
+        buyerName: $('gc-bname').value, buyerEmail: $('gc-bemail').value,
+      };
+    }
+    const fieldFor = { buyerName: 'gc-bname', buyerEmail: 'gc-bemail', recipientEmail: 'gc-remail', deliverAt: 'gc-date', shipping: 'gc-sstreet', amount: 'gc-custom' };
+    function showErr(code) {
+      const el = $('gc-err');
+      form.querySelectorAll('.bad').forEach((x) => x.classList.remove('bad'));
+      if (!code) { el.hidden = true; return; }
+      el.textContent = S.errors[code] || S.errors.generic; el.hidden = false;
+      const f = fieldFor[code] && $(fieldFor[code]); if (f) { f.classList.add('bad'); f.focus({ preventScroll: false }); }
+    }
+    function check(p) {
+      const em = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+      if (!(p.amount >= cfg.customMin && p.amount <= cfg.customMax)) return 'amount';
+      if (p.format === 'digital' && p.sendTo === 'recipient' && !em.test(p.recipientEmail.trim())) return 'recipientEmail';
+      if (p.format === 'physical' && (!p.shipName.trim() || !p.shipStreet.trim() || !p.shipZip.trim() || !p.shipCity.trim())) return 'shipping';
+      if (!p.buyerName.trim()) return 'buyerName';
+      if (!em.test(p.buyerEmail.trim())) return 'buyerEmail';
+      if (!p.terms) return 'terms';
+      return null;
+    }
+    const post = (url, data) => fetch(url, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(data) }).then((r) => r.json());
+    let orderId = null;
+    async function createOrder() {
+      const r = await post('/api/gc/order', payload());
+      if (!r.ok) { showErr(r.error); throw new Error(r.error); }
+      orderId = r.orderId; return r.paypalId;
+    }
+    async function capture() {
+      const r = await post('/api/gc/capture', { orderId });
+      if (!r.ok) { showErr(r.error === 'payment_failed' ? 'payment_failed' : 'generic'); return; }
+      thanks(r);
+    }
+    function thanks(r) {
+      const p = payload();
+      form.hidden = true; $('gc-thanks').hidden = false;
+      let txt = S.thanksPhysical;
+      if (r.format === 'digital') {
+        if (p.sendTo === 'recipient') {
+          txt = r.deliverAt ? S.thanksDigitalThem.replace('{d}', new Date(r.deliverAt).toLocaleDateString(LANG === 'de' ? 'de-DE' : 'en-GB')) : S.thanksDigitalThemNow;
+        } else txt = S.thanksDigitalMe;
+      }
+      $('gc-t-text').textContent = txt;
+      const show = (id, code) => { if (!code) return; const el = $(id); el.hidden = false; el.querySelector('b').textContent = code.slice(0, 5) + '-' + code.slice(5); el.querySelector('a').href = '/g/' + code; };
+      show('gc-t-card', r.card); show('gc-t-bonus', r.bonus);
+      $('gc-build').scrollIntoView({ behavior: 'smooth' });
+      window.dataLayer && window.dataLayer.push({ event: 'gift_card_purchase', value: p.amount, currency: 'EUR' });
+    }
+
+    function mountTest() {
+      const b = document.createElement('button'); b.type = 'button'; b.className = 'gc-testpay'; b.textContent = S.testPay;
+      b.addEventListener('click', async () => {
+        if (busy) return; const e = check(payload()); if (e) return showErr(e); showErr(null);
+        busy = true; $('gc-pay').classList.add('busy');
+        try { await createOrder(); await capture(); } catch (e) {} finally { busy = false; $('gc-pay').classList.remove('busy'); }
+      });
+      $('gc-pay').appendChild(b);
+    }
+    function mountPayPal() {
+      const s = document.createElement('script');
+      s.src = 'https://www.paypal.com/sdk/js?client-id=' + encodeURIComponent(cfg.paypalClientId) + '&currency=EUR&intent=capture&components=buttons&locale=' + (LANG === 'de' ? 'de_DE' : 'en_GB');
+      s.onload = () => window.paypal.Buttons({
+        style: { layout: 'vertical', color: 'black', shape: 'rect', label: 'pay', height: 48 },
+        onClick: (data, actions) => { const e = check(payload()); if (e) { showErr(e); return actions.reject(); } showErr(null); return actions.resolve(); },
+        createOrder: () => createOrder(),
+        onApprove: () => capture(),
+        onError: () => { if ($('gc-err').hidden) showErr('generic'); },
+      }).render('#gc-pay');
+      document.head.appendChild(s);
+    }
+    fetch('/api/gc/config').then((r) => r.json()).then((r) => {
+      cfg = r; render();
+      if (r.mock) mountTest(); else if (r.enabled && r.paypalClientId) mountPayPal();
+      else { const p = document.createElement('p'); p.className = 'gc-soon'; p.textContent = S.soon; $('gc-pay').appendChild(p); }
+    }).catch(() => {});
+    render();
+
+    // Balance check -> card page
+    $('gc-check').addEventListener('submit', (e) => {
+      e.preventDefault();
+      const code = $('gc-check-code').value.toUpperCase().replace(/[^A-Z0-9]/g, '');
+      if (code.length === 10) location.href = '/' + LANG + '/gift-cards/card/?c=' + code;
+    });
+  })();
+  </script>
+</Base>

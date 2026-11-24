@@ -1,0 +1,362 @@
+---
+// Studio iPad: sell (activate) printed cards, redeem, post online orders.
+// Not linked anywhere, not indexed. All data comes from /api/gc/studio/*.
+import '../../styles/fonts.css';
+import '../../styles/global.css';
+---
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="robots" content="noindex, nofollow" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="Usee Studio" />
+  <link rel="apple-touch-icon" href="/images/brand/LOGO_white_TransparentBG.png" />
+  <link rel="icon" type="image/png" href="/images/brand/LOGO_black_TransparentBG.png" />
+  <title>Usee Studio · Gutscheine</title>
+</head>
+<body class="st">
+  <header class="st-head">
+    <a href="/studio/" class="brand">Usee<span>·</span>Tattoo</a>
+    <div class="st-head-r">
+      <span class="st-sub" data-t="Gutscheine|Gift cards"></span>
+      <button type="button" class="st-lang" id="st-lang">EN</button>
+      <a class="st-admin" id="st-adminlink" href="/studio/admin/" hidden data-t="Verwaltung|Admin"></a>
+    </div>
+  </header>
+
+  <main class="st-main">
+    <!-- Login -->
+    <section id="v-login" class="st-box st-narrow" hidden>
+      <h1 data-t="Studio-Zugang|Studio access"></h1>
+      <p class="st-muted" data-t="Einmal auf diesem Gerät anmelden. Danach bleibt es angemeldet.|Log in once on this device. It stays logged in."></p>
+      <form id="f-login" class="st-row">
+        <input type="password" id="login-pw" autocomplete="current-password" data-ph="Studio-Passwort|Studio password" />
+        <button class="st-btn" data-t="Anmelden|Log in"></button>
+      </form>
+      <div class="st-err" id="login-err" hidden></div>
+    </section>
+
+    <!-- Home -->
+    <section id="v-home" hidden>
+      <div class="st-box">
+        <h1 data-t="Gutschein öffnen|Open a gift card"></h1>
+        <p class="st-muted" data-t="QR-Code mit der Kamera scannen, die Karte öffnet sich hier. Oder den Code eintippen.|Scan the QR code with the camera, the card opens here. Or type the code."></p>
+        <form id="f-open" class="st-row">
+          <input id="open-code" class="mono" autocomplete="off" autocapitalize="characters" placeholder="AB3CD-EF4GH" />
+          <button class="st-btn" data-t="Öffnen|Open"></button>
+        </form>
+        <div class="st-err" id="open-err" hidden></div>
+      </div>
+      <div class="st-box" id="orders-box">
+        <h2><span data-t="Zu versenden|To post"></span> <span class="st-badge" id="orders-n">0</span></h2>
+        <p class="st-muted" data-t="Online bestellte Karten. Leere Karte nehmen, scannen, beim Aktivieren die Bestellung auswählen, dann in den Umschlag und zur Post.|Cards ordered online. Take a blank card, scan it, pick the order when activating, then envelope and post."></p>
+        <div id="orders-list"></div>
+      </div>
+    </section>
+
+    <!-- Card -->
+    <section id="v-card" hidden>
+      <a href="/studio/" class="st-back" data-t="← Zurück|← Back"></a>
+      <div class="st-card-head st-box">
+        <div>
+          <div class="st-k" data-t="Gutschein|Gift card"></div>
+          <div class="st-code mono" id="c-code"></div>
+          <div class="st-tags" id="c-tags"></div>
+        </div>
+        <div class="st-bal"><div class="st-k" data-t="Guthaben|Balance"></div><div id="c-bal"></div><div class="st-muted" id="c-of"></div></div>
+      </div>
+      <div class="st-ok" id="c-ok" hidden></div>
+      <div class="st-err" id="c-err" hidden></div>
+
+      <!-- bonus due -->
+      <div class="st-box st-bonus" id="p-bonus" hidden>
+        <h2 data-t="Bonus-Karte fällig|Bonus card due"></h2>
+        <p><span data-t="Dieser Kauf bekommt einen Bonus von|This sale gets a bonus of"></span> <b id="bonus-amt"></b>. <span data-t="Zweite leere Karte scannen oder den Code eintippen, dann aktivieren.|Scan a second blank card or type its code, then activate."></span></p>
+        <form id="f-bonus"><input id="bonus-code" class="mono" autocomplete="off" placeholder="AB3CD-EF4GH" /><div class="st-who" data-who="bonus"></div><button class="st-btn st-big" data-t="Bonus aktivieren|Activate bonus"></button></form>
+      </div>
+
+      <!-- sell (inactive) -->
+      <div class="st-box" id="p-sell" hidden>
+        <h2 data-t="Karte verkaufen|Sell this card"></h2>
+        <div class="st-orders-pick" id="sell-orders" hidden>
+          <div class="st-k" data-t="Für eine Online-Bestellung?|For an online order?"></div>
+          <select id="sell-order"></select>
+        </div>
+        <div id="sell-direct">
+          <div class="st-k" data-t="Betrag|Amount"></div>
+          <div class="st-amts" id="sell-amts"></div>
+          <div class="st-grid">
+            <label><span data-t="Käufer (optional)|Buyer (optional)"></span><input id="sell-buyer" maxlength="80" /></label>
+            <label><span data-t="Für (optional, steht auf der Karte)|For (optional)"></span><input id="sell-for" maxlength="80" /></label>
+            <label class="st-wide"><span data-t="Notiz, z. B. Influencer, Event|Note, e.g. influencer, event"></span><input id="sell-note" maxlength="200" /></label>
+            <label><span data-t="Verkauft bei|Sold at"></span><select id="sell-source"><option value="studio" data-t="Studio|Studio"></option><option value="event" data-t="Event / Messe|Event / fair"></option></select></label>
+          </div>
+        </div>
+        <div class="st-who" data-who="sell"></div>
+        <button class="st-btn st-big" id="sell-go" data-t="Aktivieren|Activate"></button>
+      </div>
+
+      <!-- redeem (active) -->
+      <div class="st-box" id="p-redeem" hidden>
+        <h2 data-t="Einlösen|Redeem"></h2>
+        <div class="st-grid">
+          <label><span data-t="Betrag in €|Amount in €"></span><input id="red-amt" type="number" inputmode="numeric" min="1" step="1" /></label>
+          <label><span data-t="Notiz (optional)|Note (optional)"></span><input id="red-note" maxlength="200" /></label>
+        </div>
+        <button type="button" class="st-link" id="red-all" data-t="Ganzes Guthaben nutzen|Use full balance"></button>
+        <div class="st-who" data-who="redeem"></div>
+        <button class="st-btn st-big" id="red-go" data-t="Einlösen|Redeem"></button>
+      </div>
+
+      <div class="st-box">
+        <h2 data-t="Verlauf|History"></h2>
+        <div id="c-info" class="st-info"></div>
+        <table class="st-table"><tbody id="c-tx"></tbody></table>
+      </div>
+    </section>
+  </main>
+
+  <template id="tpl-who">
+    <div class="st-k" data-t="Wer bist du?|Who are you?"></div>
+    <div class="st-staff"></div>
+    <label class="st-pin"><span>PIN</span><input type="password" inputmode="numeric" maxlength="4" autocomplete="off" pattern="[0-9]*" /></label>
+  </template>
+
+  <style is:global>
+    .st [hidden]{display:none !important}
+    .st{background:var(--paper);min-height:100vh}
+    .st-head{background:#0e0d0d;color:var(--paper);display:flex;align-items:center;justify-content:space-between;padding:18px 26px;padding-top:max(18px,env(safe-area-inset-top))}
+    .st-head .brand{font-size:21px}
+    .st-head-r{display:flex;gap:16px;align-items:center;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:#b9b2a5}
+    .st-lang,.st-admin{background:none;border:1px solid rgba(244,241,234,.3);color:var(--paper);padding:7px 12px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;cursor:pointer}
+    .st-main{max-width:860px;margin:0 auto;padding:28px 20px 80px}
+    .st-main > section{padding:0}
+    .st-box{background:#fff;border:1px solid var(--line);padding:26px;margin-bottom:18px}
+    .st-narrow{max-width:460px;margin:40px auto}
+    .st h1{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:34px;margin-bottom:8px}
+    .st h2{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:26px;margin-bottom:12px}
+    .st-muted{color:#8f887c;font-size:14px;line-height:1.6;margin-bottom:16px}
+    .st-k{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--bronze-dk);margin:14px 0 8px}
+    .st-row{display:flex;gap:10px}
+    .st input,.st select{font-family:'Inter',sans-serif;font-size:18px;padding:14px;border:1px solid var(--line);background:#fff;color:var(--ink);border-radius:0;width:100%;-webkit-appearance:none}
+    .st input:focus,.st select:focus{outline:none;border-color:var(--bronze)}
+    .mono{font-family:Menlo,Consolas,monospace !important;letter-spacing:.1em;text-transform:uppercase}
+    .st-btn{background:var(--ink);color:var(--paper);border:0;padding:0 26px;font-size:13px;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;white-space:nowrap;min-height:52px}
+    .st-btn:active{background:var(--bronze)}
+    .st-btn[disabled]{opacity:.5}
+    .st-big{width:100%;margin-top:18px;min-height:60px;font-size:14px}
+    .st-err{background:#f6e7e2;color:#7d2e20;padding:14px 16px;margin:12px 0;font-size:15px}
+    .st-ok{background:#e7efe3;color:#2f5a25;padding:14px 16px;margin-bottom:18px;font-size:15px}
+    .st-badge{display:inline-block;background:var(--bronze);color:#fff;font-family:'Inter',sans-serif;font-size:13px;padding:2px 10px;vertical-align:middle}
+    .st-order{border-top:1px solid var(--line);padding:14px 0;display:grid;grid-template-columns:1fr auto;gap:6px 14px;font-size:15px}
+    .st-order b{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:500}
+    .st-order .addr{color:var(--ink-soft);font-size:14px;line-height:1.5}
+    .st-back{display:inline-block;margin-bottom:14px;color:var(--ink-soft);text-decoration:none;font-size:14px}
+    .st-card-head{display:flex;justify-content:space-between;gap:20px;align-items:flex-end}
+    .st-code{font-size:26px}
+    .st-tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:8px}
+    .st-tag{font-size:11px;letter-spacing:.1em;text-transform:uppercase;border:1px solid var(--line);padding:4px 8px;color:var(--ink-soft)}
+    .st-tag.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+    .st-tag.warn{background:#a3412f;color:#fff;border-color:#a3412f}
+    .st-bal{text-align:right}
+    #c-bal{font-family:'Cormorant Garamond',serif;font-size:52px;line-height:1}
+    .st-amts{display:flex;flex-wrap:wrap;gap:8px}
+    .st-amts button{flex:1 1 80px;min-height:54px;background:#fff;border:1px solid var(--line);font-family:'Cormorant Garamond',serif;font-size:24px;cursor:pointer;color:var(--ink)}
+    .st-amts button.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+    .st-amts input{flex:1 1 120px}
+    .st-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
+    .st-grid label{display:flex;flex-direction:column;gap:6px}
+    .st-grid label > span{font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--bronze-dk)}
+    .st-wide{grid-column:1/-1}
+    .st-staff{display:flex;gap:8px;flex-wrap:wrap}
+    .st-staff button{flex:1 1 110px;min-height:54px;background:#fff;border:1px solid var(--line);font-size:16px;cursor:pointer;color:var(--ink)}
+    .st-staff button.on{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+    .st-pin{display:flex;align-items:center;gap:12px;margin-top:10px}
+    .st-pin span{font-size:11px;letter-spacing:.16em;color:var(--bronze-dk)}
+    .st-pin input{max-width:160px;letter-spacing:.5em;font-size:24px;text-align:center}
+    .st-link{background:none;border:0;color:var(--bronze-dk);text-decoration:underline;font-size:14px;margin-top:10px;cursor:pointer;padding:0}
+    .st-bonus{border-color:var(--bronze);background:#fbf7f0}
+    .st-orders-pick{margin-bottom:6px}
+    .st-info{font-size:14px;color:var(--ink-soft);line-height:1.7;margin-bottom:10px}
+    .st-table{width:100%;border-collapse:collapse;font-size:14px}
+    .st-table td{border-top:1px solid var(--line);padding:10px 6px;vertical-align:top}
+    .st-table td.amt{text-align:right;white-space:nowrap;font-weight:500}
+    @media(max-width:600px){.st-grid{grid-template-columns:1fr}.st-card-head{flex-direction:column;align-items:flex-start}.st-bal{text-align:left}.st-row{flex-direction:column}.st-row .st-btn{min-height:54px}}
+  </style>
+
+  <script is:inline>
+  (function () {
+    const $ = (id) => document.getElementById(id);
+    let L = 'de';
+    try { L = localStorage.getItem('st-lang') || 'de'; } catch (e) {}
+    const tr = (s) => { const [d, e] = s.split('|'); return L === 'de' ? d : e || d; };
+    function applyLang() {
+      document.querySelectorAll('[data-t]').forEach((el) => (el.textContent = tr(el.dataset.t)));
+      document.querySelectorAll('[data-ph]').forEach((el) => (el.placeholder = tr(el.dataset.ph)));
+      $('st-lang').textContent = L === 'de' ? 'EN' : 'DE';
+      document.documentElement.lang = L;
+    }
+    $('st-lang').onclick = () => { L = L === 'de' ? 'en' : 'de'; try { localStorage.setItem('st-lang', L); } catch (e) {} applyLang(); if (card) showCard(card, tx); };
+
+    const ERR = {
+      wrong_pin: 'Falsche PIN.|Wrong PIN.', pin_not_set: 'Für diese Person ist noch keine PIN gesetzt (Verwaltung).|No PIN set for this person yet (admin).',
+      locked: 'Zu viele falsche Versuche. 10 Minuten warten.|Too many wrong tries. Wait 10 minutes.', unknown_staff: 'Bitte wählen, wer du bist.|Please pick who you are.',
+      not_found: 'Diesen Code gibt es nicht.|This code does not exist.', already_active: 'Diese Karte ist schon aktiviert.|This card is already active.',
+      amount: 'Bitte einen gültigen Betrag eingeben.|Please enter a valid amount.', not_enough: 'Nicht genug Guthaben.|Not enough balance.',
+      expired: 'Dieser Gutschein ist abgelaufen.|This gift card has expired.', status_used: 'Dieser Gutschein ist schon aufgebraucht.|This gift card is used up.',
+      status_inactive: 'Diese Karte ist noch nicht aktiviert.|This card is not active yet.', status_void: 'Dieser Gutschein ist gesperrt.|This gift card is blocked.',
+      bonus_already_given: 'Für diesen Kauf wurde der Bonus schon ausgegeben.|The bonus for this sale was already given.', no_bonus: 'Kein Bonus für diesen Kauf.|No bonus for this sale.',
+      order_not_open: 'Diese Bestellung ist schon erledigt.|This order is already done.', wrong_password: 'Falsches Passwort.|Wrong password.',
+      login: 'Bitte neu anmelden.|Please log in again.', server_error: 'Fehler. Bitte nochmal versuchen.|Error. Please try again.',
+    };
+    const errText = (c) => tr(ERR[c] || ERR.server_error);
+    const show = (el, msg) => { el.textContent = msg; el.hidden = !msg; };
+    const fmt = (n) => n + ' €';
+    const pretty = (c) => c.slice(0, 5) + '-' + c.slice(5);
+    const clean = (c) => String(c || '').toUpperCase().replace(/[^A-Z0-9]/g, '');
+    const api = (url, data, method) => fetch(url, data ? { method: method || 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify(data) } : {}).then((r) => r.json());
+    const dt = (iso) => new Date(iso).toLocaleString(L === 'de' ? 'de-DE' : 'en-GB', { day: '2-digit', month: '2-digit', year: '2-digit', hour: '2-digit', minute: '2-digit' });
+
+    let me = null, card = null, tx = [], openOrders = [], sellAmount = 0;
+    const views = ['v-login', 'v-home', 'v-card'];
+    const view = (v) => views.forEach((x) => ($(x).hidden = x !== v));
+
+    // staff picker + PIN, one per action panel
+    function mountWho() {
+      document.querySelectorAll('[data-who]').forEach((box) => {
+        box.innerHTML = ''; box.appendChild($('tpl-who').content.cloneNode(true));
+        const wrap = box.querySelector('.st-staff');
+        me.staff.forEach((s) => {
+          const b = document.createElement('button'); b.type = 'button'; b.textContent = s.name;
+          b.onclick = () => { wrap.querySelectorAll('button').forEach((x) => x.classList.remove('on')); b.classList.add('on'); box.dataset.staff = s.name; box.querySelector('input').focus(); };
+          wrap.appendChild(b);
+        });
+      });
+      applyLang();
+    }
+    const who = (k) => { const box = document.querySelector(`[data-who="${k}"]`); return { staff: box.dataset.staff || '', pin: box.querySelector('input').value }; };
+    const clearPin = () => document.querySelectorAll('.st-pin input').forEach((i) => (i.value = ''));
+
+    async function boot() {
+      applyLang();
+      me = await api('/api/gc/studio/me');
+      if (!me.studio) return view('v-login');
+      $('st-adminlink').hidden = !me.admin;
+      mountWho();
+      const c = clean(new URLSearchParams(location.search).get('c'));
+      if (c) return openCard(c);
+      home();
+    }
+    $('f-login').onsubmit = async (e) => {
+      e.preventDefault();
+      const r = await api('/api/gc/studio/login', { password: $('login-pw').value });
+      if (!r.ok) return show($('login-err'), errText(r.error));
+      boot();
+    };
+
+    async function home() {
+      view('v-home'); history.replaceState(null, '', '/studio/');
+      const r = await api('/api/gc/studio/orders');
+      if (!r.ok) return r.error === 'login' ? view('v-login') : null;
+      openOrders = r.orders;
+      $('orders-n').textContent = r.orders.length;
+      $('orders-list').innerHTML = r.orders.length ? '' : `<p class="st-muted">${tr('Nichts zu versenden.|Nothing to post.')}</p>`;
+      r.orders.forEach((o) => {
+        const d = document.createElement('div'); d.className = 'st-order';
+        d.innerHTML = `<div><b>${fmt(o.amount)}</b> · ${esc(o.recipient_name ? tr('für|for') + ' ' + o.recipient_name : '')}<div class="addr">${esc(o.ship_name)}<br>${esc(o.ship_street)}<br>${esc(o.ship_zip)} ${esc(o.ship_city)} · ${esc(o.ship_country)}</div>${o.message ? `<div class="addr"><i>„${esc(o.message)}“</i></div>` : ''}</div><div class="st-muted">${dt(o.created_at)}<br>${esc(o.buyer_name)}</div>`;
+        $('orders-list').appendChild(d);
+      });
+    }
+    const esc = (s) => String(s ?? '').replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+    $('f-open').onsubmit = (e) => { e.preventDefault(); const c = clean($('open-code').value); if (c.length !== 10) return show($('open-err'), errText('not_found')); openCard(c); };
+
+    async function openCard(code) {
+      const r = await api('/api/gc/studio/card?c=' + code);
+      if (!r.ok) { if (r.error === 'login') return view('v-login'); view('v-home'); home(); return show($('open-err'), errText(r.error)); }
+      history.replaceState(null, '', '/studio/?c=' + code);
+      openOrders = r.openOrders; show($('c-ok'), ''); show($('c-err'), '');
+      showCard(r.card, r.tx, r.expired, r.bonusDue);
+    }
+
+    function showCard(k, t, expired, bonusDue) {
+      card = k; tx = t; view('v-card');
+      $('c-code').textContent = pretty(k.code);
+      const tags = [];
+      const st = { inactive: 'Leer|Blank', active: 'Aktiv|Active', used: 'Aufgebraucht|Used up', void: 'Gesperrt|Blocked' }[k.status];
+      tags.push(`<span class="st-tag ${k.status === 'active' ? 'on' : ''}">${tr(st)}</span>`);
+      if (expired) tags.push(`<span class="st-tag warn">${tr('Abgelaufen|Expired')}</span>`);
+      if (k.is_bonus) tags.push(`<span class="st-tag">Bonus</span>`);
+      tags.push(`<span class="st-tag">${k.format === 'digital' ? 'Digital' : tr('Karte|Card') + (k.serial ? ' #' + k.serial : '')}</span>`);
+      if (k.source) tags.push(`<span class="st-tag">${esc(k.source)}</span>`);
+      $('c-tags').innerHTML = tags.join('');
+      $('c-bal').textContent = k.status === 'inactive' ? '–' : fmt(k.balance);
+      $('c-of').textContent = k.status !== 'inactive' && k.balance !== k.initial_value ? tr('von|of') + ' ' + fmt(k.initial_value) : '';
+      $('p-sell').hidden = k.status !== 'inactive';
+      $('p-redeem').hidden = !(k.status === 'active' && !expired);
+      $('p-bonus').hidden = !bonusDue; $('bonus-amt').textContent = fmt(bonusDue || 0);
+      const info = [];
+      if (k.recipient_name) info.push(tr('Für|For') + ': ' + esc(k.recipient_name));
+      if (k.buyer_name) info.push(tr('Käufer|Buyer') + ': ' + esc(k.buyer_name));
+      if (k.expires_at) info.push(tr('Gültig bis|Valid until') + ': ' + new Date(k.expires_at + 'T12:00:00').toLocaleDateString(L === 'de' ? 'de-DE' : 'en-GB'));
+      if (k.bonus_of) info.push(tr('Bonus zu|Bonus for') + ': ' + pretty(k.bonus_of));
+      if (k.message) info.push(tr('Nachricht|Message') + ': „' + esc(k.message) + '“');
+      if (k.note) info.push(tr('Notiz|Note') + ': ' + esc(k.note));
+      $('c-info').innerHTML = info.join('<br>');
+      const kind = { issue: 'Ausgestellt|Issued', activate: 'Aktiviert|Activated', redeem: 'Eingelöst|Redeemed', void: 'Gesperrt|Blocked', adjust: 'Korrektur|Adjusted' };
+      $('c-tx').innerHTML = (t || []).map((x) => `<tr><td>${dt(x.created_at)}</td><td>${tr(kind[x.kind] || x.kind)}${x.staff ? ' · ' + esc(x.staff) : ''}${x.note ? `<br><span class="st-muted">${esc(x.note)}</span>` : ''}</td><td class="amt">${x.amount > 0 ? '+' : ''}${fmt(x.amount)}</td></tr>`).join('') || `<tr><td class="st-muted">–</td></tr>`;
+      // sell panel
+      if (k.status === 'inactive') {
+        const sel = $('sell-order');
+        $('sell-orders').hidden = !openOrders.length;
+        sel.innerHTML = `<option value="">${tr('Nein, Verkauf hier im Studio|No, sale here in the studio')}</option>` + openOrders.map((o) => `<option value="${o.id}">${fmt(o.amount)} · ${esc(o.ship_name)}, ${esc(o.ship_city)}</option>`).join('');
+        sel.onchange = () => ($('sell-direct').hidden = !!sel.value);
+        $('sell-direct').hidden = false;
+        const box = $('sell-amts'); box.innerHTML = '';
+        me.amounts.forEach((a) => { const b = document.createElement('button'); b.type = 'button'; b.textContent = fmt(a); b.onclick = () => { box.querySelectorAll('button').forEach((x) => x.classList.remove('on')); b.classList.add('on'); sellAmount = a; box.querySelector('input').value = ''; }; box.appendChild(b); });
+        const inp = document.createElement('input'); inp.type = 'number'; inp.inputMode = 'numeric'; inp.placeholder = tr('Anderer Betrag|Other amount');
+        inp.oninput = () => { box.querySelectorAll('button').forEach((x) => x.classList.remove('on')); sellAmount = Math.floor(Number(inp.value) || 0); };
+        box.appendChild(inp); sellAmount = 0;
+      }
+      $('red-amt').value = ''; $('red-note').value = '';
+    }
+
+    async function act(btn, url, data, msgOk) {
+      btn.disabled = true; show($('c-err'), '');
+      try {
+        const r = await api(url, data);
+        if (!r.ok) { clearPin(); return show($('c-err'), errText(r.error)); }
+        clearPin();
+        const fresh = await api('/api/gc/studio/card?c=' + r.card.code);
+        showCard(fresh.card, fresh.tx, fresh.expired, r.bonusDue || 0);
+        show($('c-ok'), msgOk(r));
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      } finally { btn.disabled = false; }
+    }
+    $('sell-go').onclick = () => {
+      const w = who('sell'); const orderId = $('sell-order').value;
+      if (!orderId && !(sellAmount >= 25)) return show($('c-err'), errText('amount'));
+      act($('sell-go'), '/api/gc/studio/activate', { code: card.code, ...w, orderId: orderId || undefined, amount: sellAmount, buyerName: $('sell-buyer').value, recipientName: $('sell-for').value, note: $('sell-note').value, source: $('sell-source').value },
+        (r) => tr('Aktiviert|Activated') + ': ' + fmt(r.card.initial_value) + (orderId ? ' · ' + tr('Jetzt in den Umschlag und zur Post.|Now envelope and post.') : ''));
+    };
+    $('red-all').onclick = () => ($('red-amt').value = card.balance);
+    $('red-go').onclick = () => {
+      const amount = Number($('red-amt').value);
+      if (!(amount > 0)) return show($('c-err'), errText('amount'));
+      act($('red-go'), '/api/gc/studio/redeem', { code: card.code, amount, note: $('red-note').value, ...who('redeem') },
+        (r) => tr('Eingelöst|Redeemed') + ': ' + fmt(amount) + ' · ' + tr('Rest|Left') + ': ' + fmt(r.card.balance));
+    };
+    $('f-bonus').onsubmit = (e) => {
+      e.preventDefault();
+      const code = clean($('bonus-code').value); const parent = card.code;
+      if (code.length !== 10) return show($('c-err'), errText('not_found'));
+      act($('f-bonus').querySelector('button'), '/api/gc/studio/activate', { code, bonusOf: parent, ...who('bonus') },
+        (r) => tr('Bonus-Karte aktiviert|Bonus card activated') + ': ' + fmt(r.card.initial_value) + ' (' + pretty(r.card.code) + ')');
+    };
+    boot();
+  })();
+  </script>
+</body>
+</html>

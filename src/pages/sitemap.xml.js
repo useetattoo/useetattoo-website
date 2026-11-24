@@ -35,6 +35,7 @@ const staticPaths = [
   'events/past-events/',
   'events/event-activations/',
   'consultation/',
+  'gift-cards/',
   'erstes-tattoo/',
   'journal/',
   'styles/',

@@ -30,7 +30,7 @@
 
 /*
   X-Frame-Options: SAMEORIGIN
-  Content-Security-Policy-Report-Only: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://www.google-analytics.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://connect.facebook.net https://www.google.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://api.web3forms.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://*.g.doubleclick.net https://pagead2.googlesyndication.com https://www.google.com https://www.facebook.com; frame-src 'self' https://www.google.com https://www.fresha.com https://book.useetattoo.com https://td.doubleclick.net https://www.facebook.com; form-action 'self' https://api.web3forms.com; base-uri 'self'; object-src 'none'
+  Content-Security-Policy-Report-Only: default-src 'self'; script-src 'self' 'unsafe-inline' https://www.paypal.com https://www.paypalobjects.com https://www.googletagmanager.com https://www.google-analytics.com https://www.googleadservices.com https://googleads.g.doubleclick.net https://connect.facebook.net https://www.google.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https:; font-src 'self' data:; connect-src 'self' https://*.paypal.com https://api.web3forms.com https://*.google-analytics.com https://*.analytics.google.com https://*.googletagmanager.com https://*.g.doubleclick.net https://pagead2.googlesyndication.com https://www.google.com https://www.facebook.com; frame-src 'self' https://*.paypal.com https://www.google.com https://www.fresha.com https://book.useetattoo.com https://td.doubleclick.net https://www.facebook.com; form-action 'self' https://api.web3forms.com; base-uri 'self'; object-src 'none'
 
 # ---- ND-143 (2026-09-22): staging/preview hosts must not be indexed ----
 # This Pages project is also served on useetattoo-website.pages.dev, which
@@ -48,3 +48,10 @@ https://:project.pages.dev/*
 
 https://:version.:project.pages.dev/*
   X-Robots-Tag: noindex, nofollow
+
+# ---- Gift cards (2026-11): studio/admin tools are private, never indexed ----
+# PayPal origins above were added to the Report-Only CSP for the gift card
+# checkout on /de|en/gift-cards/ (PayPal JS SDK + its iframes/API).
+/studio/*
+  X-Robots-Tag: noindex, nofollow
+  Cache-Control: no-store

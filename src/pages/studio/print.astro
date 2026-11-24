@@ -1,0 +1,80 @@
+---
+// Print sheet: one A6 card BACK per page (148 × 105 mm) with its own QR code.
+// The FRONT is the edition artwork, printed the same for every card.
+// Open from the admin page → browser "Print" → "Save as PDF" → send to the print shop.
+import '../../styles/fonts.css';
+---
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Usee · Druckbogen Gutscheine</title>
+</head>
+<body>
+  <div class="bar" id="bar">
+    <span id="info">Lädt …</span>
+    <button onclick="window.print()">Drucken / als PDF speichern</button>
+  </div>
+  <div id="sheets"></div>
+  <style is:global>
+    @page{size:148mm 105mm;margin:0}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{background:#d9d4ca;font-family:'Inter',system-ui,sans-serif;color:#111010;-webkit-print-color-adjust:exact;print-color-adjust:exact}
+    .bar{position:sticky;top:0;background:#0e0d0d;color:#f4f1ea;padding:12px 20px;display:flex;justify-content:space-between;align-items:center;font-size:13px;z-index:2}
+    .bar button{background:#f4f1ea;border:0;padding:10px 16px;font-size:12px;letter-spacing:.1em;text-transform:uppercase;cursor:pointer}
+    #sheets{display:flex;flex-direction:column;align-items:center;gap:16px;padding:24px}
+    .card{width:148mm;height:105mm;background:#f4f1ea;position:relative;display:grid;grid-template-columns:1fr 46mm;gap:7mm;padding:9mm 10mm 8mm;overflow:hidden;page-break-after:always;break-after:page;box-shadow:0 4px 18px rgba(0,0,0,.15)}
+    .card::after{content:"";position:absolute;inset:4mm;border:.25mm solid #b9a888;pointer-events:none}
+    .l{display:flex;flex-direction:column;justify-content:space-between;position:relative;z-index:1}
+    .brand{display:flex;align-items:center;gap:3mm}
+    .brand img{width:6.5mm}
+    .brand span{font-family:'Cormorant Garamond',serif;font-size:13pt;letter-spacing:.26em;text-transform:uppercase}
+    .brand b{color:#8a7355;font-weight:400}
+    .t{font-family:'Cormorant Garamond',serif;font-size:21pt;font-weight:400;line-height:1.05;margin-top:4mm}
+    .t i{display:block;font-size:12pt;color:#6f5c43;margin-top:1mm}
+    .ed{font-size:6.5pt;letter-spacing:.28em;text-transform:uppercase;color:#6f5c43;margin-top:2.5mm}
+    .how{font-size:6.6pt;line-height:1.5;color:#3a3735}
+    .how p+p{margin-top:1.2mm;color:#6f5c43}
+    .r{display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;z-index:1}
+    .qr{width:40mm;height:40mm;background:#fff;padding:1.5mm}
+    .qr img{width:100%;height:100%;display:block}
+    .code{font-family:Menlo,Consolas,monospace;font-size:9pt;letter-spacing:.12em;margin-top:2.5mm}
+    .no{font-size:6.5pt;letter-spacing:.2em;text-transform:uppercase;color:#6f5c43;margin-top:1.2mm}
+    .web{font-size:7pt;letter-spacing:.12em;margin-top:3mm}
+    @media print{.bar{display:none}#sheets{padding:0;gap:0;display:block}.card{box-shadow:none}body{background:#fff}}
+  </style>
+  <script is:inline>
+  (function () {
+    const id = new URLSearchParams(location.search).get('id');
+    const info = document.getElementById('info');
+    fetch('/api/gc/admin/batch?id=' + encodeURIComponent(id || '')).then((r) => r.json()).then((r) => {
+      if (!r.ok) { info.textContent = r.error === 'login' ? 'Bitte zuerst in der Verwaltung anmelden.' : 'Druckbogen nicht gefunden.'; return; }
+      const total = r.cards.length;
+      info.textContent = `${total} Karten · ${r.edition.name.de} · Rückseiten A6 quer (148 × 105 mm)`;
+      const pad = (n) => String(n).padStart(3, '0');
+      document.getElementById('sheets').innerHTML = r.cards.map((c) => `
+        <div class="card">
+          <div class="l">
+            <div>
+              <div class="brand"><img src="/images/brand/LOGO_black_TransparentBG.png" alt=""><span>Usee<b>·</b>Tattoo</span></div>
+              <div class="t">Gutschein<i>Gift Card</i></div>
+              <div class="ed">${r.edition.name.de}</div>
+            </div>
+            <div class="how">
+              <p>QR-Code scannen: Guthaben sehen und kostenlose Beratung buchen. Einlösbar bei allen Artists. Restguthaben bleibt erhalten.</p>
+              <p>Scan the QR code to see the balance and book a free consultation. Valid with all artists. Any balance stays on the card.</p>
+            </div>
+          </div>
+          <div class="r">
+            <div class="qr"><img src="/api/gc/qr/${c.code}.svg" alt=""></div>
+            <div class="code">${c.code.slice(0, 5)}-${c.code.slice(5)}</div>
+            <div class="no">Nr. ${pad(c.serial)}</div>
+            <div class="web">useetattoo.com</div>
+          </div>
+        </div>`).join('');
+    });
+  })();
+  </script>
+</body>
+</html>

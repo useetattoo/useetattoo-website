@@ -1,0 +1,7 @@
+# Local testing only (wrangler pages dev). Never use mock on production.
+GC_PAYPAL_ENV=mock
+GC_EMAIL_MODE=mock
+GC_SESSION_SECRET=local-test-secret
+GC_STUDIO_PASSWORD=studio123
+GC_ADMIN_PASSWORD=admin123
+GC_SITE_URL=http://localhost:8788
