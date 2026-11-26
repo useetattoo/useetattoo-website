@@ -193,22 +193,6 @@ const localBusinessSchema = {
 </head>
 <body class={lang}>
   {!noLoader && <div id="page-loader"><span class="pl-mark">Usee<span>·</span>Tattoo</span></div>}
-  {/* ===== BIKE DAYS BERLIN announcement bar (temporary, remove after 29 Nov 2026) ===== */}
-  <a class="bd-topbar" href="/bikedays/">
-    <span>Live auf den BIKE DAYS BERLIN, 27.–29. Nov., Halle 26c, Stand 208 <b>&rarr; Termin buchen</b></span>
-    <span class="bd-topbar-sep" aria-hidden="true">&nbsp;·&nbsp;</span>
-    <span>Live at BIKE DAYS BERLIN, 27–29 Nov, Hall 26c, Stand 208 <b>&rarr; Book a slot</b></span>
-  </a>
-  <style>
-    .bd-topbar{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;
-      background:#e60000;color:#fff;text-decoration:none;text-align:center;
-      padding:8px 18px;font-family:'Inter',sans-serif;font-size:12px;letter-spacing:.02em;line-height:1.45;
-      transition:background .3s var(--ease)}
-    .bd-topbar:hover{background:#c90000}
-    .bd-topbar b{font-weight:700;text-decoration:underline;text-underline-offset:2px;white-space:nowrap}
-    .bd-topbar-sep{opacity:.6}
-    @media(max-width:600px){.bd-topbar{font-size:11px;padding:7px 12px}}
-  </style>
 
   <div class="backdrop" id="backdrop"></div>
   <Header lang={lang} altPath={altPath} altLabel={alt.toUpperCase()} />
